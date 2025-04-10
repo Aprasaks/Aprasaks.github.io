@@ -15,10 +15,10 @@ $doc-font-size-x-large: $doc-font-size * 1.375 !default;
 $paragraph-indent: false !default; // true, false (default)
 $indent-var: 1.3em !default;
 
-/* system typefaces */
+/* system typefaces 폰트변경 */
 $customFont: "KNPSKkomi-Regular00";
 $serif: Georgia, Times, serif !default;
-$sans-serif: -apple-system, BlinkMacSystemFont, "Nanum Pen Script", "Roboto",
+$sans-serif: -apple-system, BlinkMacSystemFont, "KNPSKkomi-Regular00", "Roboto",
   "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif !default;
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 
