@@ -3,13 +3,15 @@ layout: single
 toc: true
 tag: [react, Router]
 categories: React
+sidebar:
+  nav: "counts"
 ---
 
 React는 컴포넌트 기반 UI 라이브러리로, 주로 단일 페이지 애플리케이션(SPA)을 구축할 때 많이 사용됩니다. SPA에서는 페이지 간 이동을 위해 전통적인 브라우저 리로딩 없이 클라이언트 측에서 URL만 변경하면서 다른 화면(컴포넌트)을 렌더링해야 합니다. **React Router**는 이러한 내비게이션을 구현할 수 있도록 도와주는 라이브러리입니다.
 
 이번 포스팅에서는 React Router의 기본 개념부터 시작해 설치 방법, 주요 컴포넌트와 Hook, 그리고 간단한 예제까지 차근차근 설명하겠습니다.
 
-------
+---
 
 ## 1. React Router란?
 
@@ -23,7 +25,7 @@ React는 컴포넌트 기반 UI 라이브러리로, 주로 단일 페이지 애�
 
 > **참고:** React Router는 버전 6 기준으로 API와 사용법에 몇 가지 변화가 있습니다. 이 포스팅에서는 최신 버전인 v6를 기준으로 설명합니다.
 
-------
+---
 
 ## 2. React Router 설치하기
 
@@ -39,7 +41,7 @@ npm install react-router-dom
 yarn add react-router-dom
 ```
 
-------
+---
 
 ## 3. 주요 컴포넌트와 Hook
 
@@ -48,29 +50,29 @@ React Router v6의 사용법은 이전 버전과 다소 차이가 있지만, 기
 ### 3.1. `<BrowserRouter>`
 
 - **역할:**
-   애플리케이션의 최상위에서 라우팅 컨텍스트를 제공하는 컴포넌트입니다. URL 히스토리(API)를 관리하며, 내부에 정의된 모든 라우트가 이 컨텍스트를 상속받습니다.
+  애플리케이션의 최상위에서 라우팅 컨텍스트를 제공하는 컴포넌트입니다. URL 히스토리(API)를 관리하며, 내부에 정의된 모든 라우트가 이 컨텍스트를 상속받습니다.
 
 - **사용법:**
-   보통 `index.js`나 최상위 컴포넌트(App.js)에서 사용합니다.
+  보통 `index.js`나 최상위 컴포넌트(App.js)에서 사용합니다.
 
   ```jsx
-  import React from 'react';
-  import ReactDOM from 'react-dom';
-  import { BrowserRouter } from 'react-router-dom';
-  import App from './App';
-  
+  import React from "react";
+  import ReactDOM from "react-dom";
+  import { BrowserRouter } from "react-router-dom";
+  import App from "./App";
+
   ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>,
-    document.getElementById('root')
+    document.getElementById("root")
   );
   ```
 
 ### 3.2. `<Routes>`와 `<Route>`
 
 - **역할:**
-   `<Routes>` 컴포넌트는 여러 `<Route>` 컴포넌트를 감싸며, 현재 URL과 일치하는 경로에 해당하는 컴포넌트를 찾아 렌더링합니다.
+  `<Routes>` 컴포넌트는 여러 `<Route>` 컴포넌트를 감싸며, 현재 URL과 일치하는 경로에 해당하는 컴포넌트를 찾아 렌더링합니다.
 
 - **`<Route>`의 주요 속성:**
 
@@ -80,12 +82,12 @@ React Router v6의 사용법은 이전 버전과 다소 차이가 있지만, 기
 - **사용법 예시:**
 
   ```jsx
-  import React from 'react';
-  import { Routes, Route } from 'react-router-dom';
-  import Home from './pages/Home';
-  import About from './pages/About';
-  import NotFound from './pages/NotFound';
-  
+  import React from "react";
+  import { Routes, Route } from "react-router-dom";
+  import Home from "./pages/Home";
+  import About from "./pages/About";
+  import NotFound from "./pages/NotFound";
+
   function App() {
     return (
       <div>
@@ -98,32 +100,36 @@ React Router v6의 사용법은 이전 버전과 다소 차이가 있지만, 기
       </div>
     );
   }
-  
+
   export default App;
   ```
 
 ### 3.3. `<Link>` 컴포넌트
 
 - **역할:**
-   `<Link>`는 일반 HTML의 `<a>` 태그와 비슷하지만, 페이지 전체를 새로 고치지 않고 클라이언트 사이드 내비게이션을 수행합니다.
+  `<Link>`는 일반 HTML의 `<a>` 태그와 비슷하지만, 페이지 전체를 새로 고치지 않고 클라이언트 사이드 내비게이션을 수행합니다.
 
 - **사용법 예시:**
 
   ```jsx
-  import React from 'react';
-  import { Link } from 'react-router-dom';
-  
+  import React from "react";
+  import { Link } from "react-router-dom";
+
   function Navigation() {
     return (
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
         </ul>
       </nav>
     );
   }
-  
+
   export default Navigation;
   ```
 
@@ -132,47 +138,47 @@ React Router v6의 사용법은 이전 버전과 다소 차이가 있지만, 기
 React Router v6에서는 몇 가지 Hook을 제공하여 라우팅과 관련된 정보를 쉽게 사용할 수 있습니다.
 
 - **`useParams`:**
-   URL 경로에 포함된 매개변수를 읽어올 때 사용합니다.
+  URL 경로에 포함된 매개변수를 읽어올 때 사용합니다.
 
   ```jsx
-  import React from 'react';
-  import { useParams } from 'react-router-dom';
-  
+  import React from "react";
+  import { useParams } from "react-router-dom";
+
   function User() {
     const { userId } = useParams(); // 예: 경로에 /user/:userId가 있을 때
     return <div>사용자 ID: {userId}</div>;
   }
-  
+
   export default User;
   ```
 
 - **`useNavigate`:**
-   프로그래밍 방식으로 다른 경로로 이동할 때 사용하는 Hook입니다.
+  프로그래밍 방식으로 다른 경로로 이동할 때 사용하는 Hook입니다.
 
   ```jsx
-  import React from 'react';
-  import { useNavigate } from 'react-router-dom';
-  
+  import React from "react";
+  import { useNavigate } from "react-router-dom";
+
   function Login() {
     const navigate = useNavigate();
-  
+
     const handleSubmit = (e) => {
       e.preventDefault();
       // 로그인 로직을 수행한 후, 대시보드로 이동
-      navigate('/dashboard');
+      navigate("/dashboard");
     };
-  
+
     return (
       <form onSubmit={handleSubmit}>
         <button type="submit">로그인</button>
       </form>
     );
   }
-  
+
   export default Login;
   ```
 
-------
+---
 
 ## 4. React Router 예제 만들기
 
@@ -195,7 +201,7 @@ src/
 **Home.js**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Home() {
   return (
@@ -212,7 +218,7 @@ export default Home;
 **About.js**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function About() {
   return (
@@ -229,7 +235,7 @@ export default About;
 **NotFound.js**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function NotFound() {
   return (
@@ -245,12 +251,12 @@ export default NotFound;
 **App.js**
 
 ```jsx
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import NotFound from './pages/NotFound';
-import Navigation from './Navigation';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import Navigation from "./Navigation";
 
 function App() {
   return (
@@ -272,15 +278,19 @@ export default App;
 **Navigation.js**
 
 ```jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
     <nav>
       <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
       </ul>
     </nav>
   );
@@ -292,16 +302,16 @@ export default Navigation;
 **index.js**
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 
 ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 ```
 
@@ -312,7 +322,7 @@ ReactDOM.render(
 - **Routes**와 **Route**는 현재 URL에 따라 렌더링할 컴포넌트를 결정합니다.
 - 존재하지 않는 경로는 `path="*"`를 통해 **NotFound** 컴포넌트를 렌더링해 404 페이지를 표시합니다.
 
-------
+---
 
 ## 5. 고급 사용법
 
@@ -322,10 +332,10 @@ React Router에서는 중첩 라우트를 쉽게 구현할 수 있습니다. 예
 
 ```jsx
 // Dashboard.js 예시
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import Overview from './Overview';
-import Settings from './Settings';
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import Overview from "./Overview";
+import Settings from "./Settings";
 
 function Dashboard() {
   return (
@@ -333,8 +343,12 @@ function Dashboard() {
       <h1>Dashboard</h1>
       <nav>
         <ul>
-          <li><Link to="overview">Overview</Link></li>
-          <li><Link to="settings">Settings</Link></li>
+          <li>
+            <Link to="overview">Overview</Link>
+          </li>
+          <li>
+            <Link to="settings">Settings</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
@@ -358,8 +372,8 @@ export default Dashboard;
 예를 들어, `/user/:userId` 경로를 사용한다면:
 
 ```jsx
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 
 function UserProfile() {
   const { userId } = useParams();
@@ -369,25 +383,25 @@ function UserProfile() {
 export default UserProfile;
 ```
 
-------
+---
 
 ## 6. 정리
 
 이번 포스팅에서는 React Router를 통해 SPA 내비게이션을 구현하는 기본적인 방법을 살펴보았습니다. 주요 내용은 다음과 같습니다:
 
 - **React Router란?**
-   클라이언트 사이드 라우팅을 구현하여 페이지 전체를 새로 고치지 않고도 URL에 따라 다른 컴포넌트를 렌더링하는 라이브러리입니다.
+  클라이언트 사이드 라우팅을 구현하여 페이지 전체를 새로 고치지 않고도 URL에 따라 다른 컴포넌트를 렌더링하는 라이브러리입니다.
 - **설치와 기본 설정:**
-   `react-router-dom`을 설치한 후, 최상위 컴포넌트에서 `<BrowserRouter>`로 감싸주는 방식입니다.
+  `react-router-dom`을 설치한 후, 최상위 컴포넌트에서 `<BrowserRouter>`로 감싸주는 방식입니다.
 - **주요 컴포넌트:**
-   `<Routes>`와 `<Route>`, `<Link>`를 통해 URL에 따른 컴포넌트 매칭과 내비게이션을 구현합니다.
+  `<Routes>`와 `<Route>`, `<Link>`를 통해 URL에 따른 컴포넌트 매칭과 내비게이션을 구현합니다.
 - **Hook 사용:**
-   `useParams`, `useNavigate` 등을 통해 동적 라우팅과 프로그래밍 방식 내비게이션이 가능합니다.
+  `useParams`, `useNavigate` 등을 통해 동적 라우팅과 프로그래밍 방식 내비게이션이 가능합니다.
 - **고급 사용법:**
-   중첩 라우팅과 URL 매개변수, 쿼리스트링 처리 방법 등을 통해 더 복잡한 애플리케이션 내비게이션도 구현할 수 있습니다.
+  중첩 라우팅과 URL 매개변수, 쿼리스트링 처리 방법 등을 통해 더 복잡한 애플리케이션 내비게이션도 구현할 수 있습니다.
 
 React Router는 SPA 개발에 매우 강력한 도구입니다. 이번 포스팅의 예제와 설명을 통해 기본 사용법을 익히고, 더 복잡한 라우팅 시나리오에 도전해보세요. 다음 포스팅에서는 React Router를 이용한 실제 프로젝트에서의 내비게이션 최적화와 에러 핸들링 등에 대해 더 다뤄볼 수 있습니다.
 
-------
+---
 
 이로써 React Router에 관한 초보자 가이드를 마칩니다. 여러분의 프로젝트에 성공적으로 적용하여 보다 다이나믹한 사용자 경험을 제공해보세요!
