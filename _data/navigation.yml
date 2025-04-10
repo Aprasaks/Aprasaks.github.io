@@ -17,4 +17,4 @@ counts:
   - title: "category"
     use: true
   - title: "tag"
-    use: true
+    use: false
