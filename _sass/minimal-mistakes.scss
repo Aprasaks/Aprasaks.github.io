@@ -37,4 +37,10 @@
 @import "minimal-mistakes/print";
 
 /* fonts */
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+@font-face {
+  font-family: "KNPSKkomi-Regular00";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KNPSKkomi-Regular00.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
