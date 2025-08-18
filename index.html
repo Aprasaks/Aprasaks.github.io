@@ -164,6 +164,10 @@
           text-decoration: none;
         }
       }
+          .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+      .project h3 { display:flex; align-items:center; gap:8px; margin:0 0 6px; font-size:17px; }
+      .badge { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; color:var(--muted); }
     </style>
   </head>
   <body>
@@ -217,40 +221,27 @@
           </ul>
         </div>
       </section>
-      <section class="section">
+          <section class="section">
         <h2>포트폴리오</h2>
         <div class="project">
-          <h3>CodeLoungeV2 — 코드 플레이그라운드</h3>
+          <h3>CodeLoungeV2 — 코드 플레이그라운드 <span class="badge">개인</span></h3>
           <p class="muted">JavaScript, React, Vite, Monaco Editor</p>
           <ul>
-            <li>
-              <strong>개요</strong>: HTML/CSS/JS 코드를 탭 전환하며 작성하면
-              <em>실시간 미리보기</em>가 동작하며 실시간으로 다른 사용자와 소통할 수 있는 웹사이트.
-            </li>
-
-            <li>
-              <strong>구현 방식</strong>:
+            <li><strong>설명</strong>: HTML/CSS/JS 코드를 작성하면 우측에 <em>즉시 미리보기</em>가 반영되는 학습형 코드 플레이그라운드.</li>
+            <li><strong>구현 방식</strong>:
               <ul>
-                <li>
-                  코드 입력은 <code>monaco-editor</code>를 사용 → VSCode처럼 자동완성과 문법 강조
-                  기능을 위해 적용.
-                </li>
-                <li>
-                  HTML/CSS/JS 코드를 합쳐 <code>&lt;iframe&gt;</code>에 삽입 → 입력 즉시 미리보기
-                  기능을 제공.
-                </li>
-                <li>
-                  <code>localStorage</code> 활용 → 백앤드에 대한 지식이 없는 상태에서 코드를
-                  자동저장하고 불러오는 작업을 하기위해 사용.
-                </li>
+                <li><code>monaco-editor</code>로 코드 입력 영역 구현 → 자동완성, 문법 강조 제공.</li>
+                <li>입력된 HTML/CSS/JS를 조합해 <code>&lt;iframe&gt;</code>에 주입 → 입력 즉시 미리보기 갱신.</li>
+                <li><code>localStorage</code>로 코드 자동 저장/복원 → 백엔드 없이도 작성 중 데이터 보존.</li>
               </ul>
             </li>
-
-            <li>
-              <strong>아쉬운 점</strong>: 웹소켓을 활용해 실시간 채팅뿐 아니라 코드 동기화도
-              구현하고 싶었지만, 당시 웹소켓에 대한 이해 부족으로 구현하지 못했습니다. 추후 학습을
-              통해 실시간 협업 기능을 보완할 계획입니다.
+            <li><strong>선택/비선택 이유</strong>:
+              <ul>
+                <li>미리보기 구현은 빌드/서버 의존도를 줄이기 위해 <code>iframe</code>을 선택.</li>
+                <li>상태 저장은 초기 단계에서 DB·인증을 도입하지 않기 위해 <code>localStorage</code>로 대체.</li>
+              </ul>
             </li>
+            <li><strong>아쉬운 점</strong>: 실시간 협업(채팅/동기화)은 미구현. 추후 WebSocket 학습 후 확장 예정.</li>
           </ul>
           <p>
             <a href="https://code-lounge-v2.vercel.app/" target="_blank">Live Demo</a>
@@ -258,7 +249,35 @@
             <a href="https://github.com/Aprasaks/CodeLoungeV2" target="_blank">GitHub Repository</a>
           </p>
         </div>
+
+        <div class="project">
+          <h3>Q&A 기반 LMS — 팀 프로젝트 <span class="badge">팀</span></h3>
+          <p class="muted">React, TypeScript, Vite, Tailwind CSS, Axios, Zustand</p>
+          <ul>
+            <li><strong>개요</strong>: 질문·답변·채택 흐름을 중심으로 학습 Q&A를 지원하는 LMS.</li>
+            <li><strong>내 역할</strong> (내가 한 것만 기재):
+              <ul>
+                <li><strong>공통 컴포넌트</strong>: Button·Input 초안은 인라인 스타일로 시작했으나, 팀 회의 후 <code>cn</code> 유틸(클래스 병합)로 전환 → 스타일 일관성과 재사용성 향상.</li>
+                <li><strong>질문 작성/수정</strong>: 외부 마크다운 에디터 라이브러리 없이 직접 입력/툴바/미리보기 구성.</li>
+                <li><strong>질문/답변 API 연동</strong>: 팀 합의로 공통 <code>fetcher</code>(멘토 제공)를 채택해 요청/에러 처리 표준화.</li>
+              </ul>
+            </li>
+            <li><strong>선택/비선택 이유</strong>:
+              <ul>
+                <li>스타일 시스템은 Tailwind + <code>cn</code>으로 단순화 → 디자인 토큰과 조합식 스타일을 팀 전체 코드에 일관성을 주기 위해 사용.</li>
+                <li>마크다운 에디터는 학습을 위해 <em>직접 구현</em>을 선택 → 기존 블로그 프로젝트를 통해 에디터 라이브러리를 여럿 사용했었고 이번엔 한번 구현해보자 라는 생각으로 시도.</li>
+                <li>데이터 요청은 구현 편차를 줄이기 위해 공통 <code>fetcher</code> 사용 → 코드 중복과 실수 감소.</li>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            <a href="https://oz-team2.kro.kr/" target="_blank">서비스 링크</a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/OZ-Coding-School/oz_externship_fe_01_team2" target="_blank">GitHub</a>
+          </p>
+        </div>
       </section>
+    </main>
     </main>
 
     <script>
