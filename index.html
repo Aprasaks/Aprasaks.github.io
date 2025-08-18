@@ -1,59 +1,283 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="system">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>강혁 - 이력서</title>
+    <meta name="color-scheme" content="light dark" />
     <style>
+      :root {
+        --bg: #f7f7f9;
+        --surface: #ffffff;
+        --text: #111318;
+        --muted: #5a6674;
+        --border: #e7e9ef;
+        --brand: #3657ff;
+        --shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0c0d10;
+          --surface: #12141a;
+          --text: #e6e8ee;
+          --muted: #8a94a4;
+          --border: #252a36;
+          --brand: #7c9cff;
+          --shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+      }
+      html[data-theme="light"] {
+        color-scheme: light;
+      }
+      html[data-theme="dark"] {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
       body {
-        font-family: sans-serif;
-        margin: 40px;
-        line-height: 1.6;
-        background: #f7f7f7;
-        color: #222;
+        height: 100%;
       }
-      h1,
-      h2 {
-        margin-bottom: 0.4em;
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, "Apple SD Gothic Neo",
+          sans-serif;
+        line-height: 1.65;
+        transition: background 0.25s ease, color 0.25s ease;
       }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 28px 18px 64px;
+      }
+
+      header.sticky {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: saturate(140%) blur(8px);
+        border-bottom: 1px solid var(--border);
+        background: color-mix(in srgb, var(--bg), transparent 22%);
+      }
+      .topbar {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        padding: 12px 18px;
+        max-width: 940px;
+        margin: 0 auto;
+      }
+      .name {
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+      .spacer {
+        flex: 1;
+      }
+      .btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn:hover {
+        border-color: color-mix(in srgb, var(--brand), var(--border) 60%);
+      }
+
       .section {
-        margin-bottom: 2em;
-        padding: 1em;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: var(--shadow);
+        margin-top: 14px;
+      }
+      h1 {
+        font-size: 30px;
+        margin: 0 0 6px;
+      }
+      h2 {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+      h3 {
+        font-size: 15px;
+        margin: 0 0 4px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      ul {
+        margin: 8px 0 0 18px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 22px;
+        align-items: center;
+      }
+      .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 20%;
+        display: block;
+        border-radius: 50%;
+      }
+
+      @page {
+        size: A4;
+        margin: 14mm;
+      }
+      @media print {
+        html {
+          color-scheme: light;
+        }
+        header.sticky,
+        .no-print {
+          display: none !important;
+        }
+        body {
+          background: #fff;
+        }
+        .section {
+          border: none;
+          box-shadow: none;
+          padding: 0;
+        }
+        .container {
+          padding: 0;
+        }
+        a {
+          color: black;
+          text-decoration: none;
+        }
       }
     </style>
   </head>
   <body>
-    <header class="section">
-      <h1>강혁 (Kang Hyuk)</h1>
-      <p>프론트엔드 개발자 · React / TypeScript / Next.js</p>
-      <p>📧 you@example.com | 📱 010-0000-0000 | 📍 서울</p>
+    <header class="sticky">
+      <div class="topbar">
+        <div class="name">강혁 · Frontend Developer</div>
+        <div class="spacer"></div>
+        <button class="btn no-print" id="themeBtn" aria-label="테마 전환">🌗 System</button>
+      </div>
     </header>
 
-    <main>
+    <main class="container">
+      <section class="hero">
+        <div>
+          <img src="https://github.com/Aprasaks.png" alt="프로필 사진" />
+        </div>
+        <div>
+          <h1>윤강혁 (Yoon KangHyeok)</h1>
+          <p class="muted">프론트엔드 신입개발자 · React / TypeScript / Next.js</p>
+          <p>📧 heavenis0113@gmail.com · 📱 010-4284-4356</p>
+          <p><a href="https://github.com/Aprasaks" target="_blank">github.com/Aprasaks</a></p>
+        </div>
+      </section>
+
       <section class="section">
         <h2>소개</h2>
         <p>
-          사용자 경험을 중시하는 프론트엔드 개발자 지망생입니다.<br />
-          Next.js, TypeScript 기반으로 프로젝트를 진행하며, 디자인 시스템과 컴포넌트 공통화에 관심이
-          많습니다.
+          안전교육 강사로 3년간 활동하며 교육 현장의 변화를 직접 경험했습니다.<br />
+          AI와 디지털 기술을 활용한 교육의 필요성을 느껴 프론트엔드 개발로 전향했습니다.<br />
+          사용자 경험을 중시하며, 재사용 가능한 컴포넌트와 일관된 UI를 설계하는 데 관심이 있습니다.
         </p>
       </section>
 
+      <section class="section two-col">
+        <div>
+          <h2>교육</h2>
+          <ul>
+            <li><strong>오즈코딩스쿨</strong> — 프론트엔드 과정 수료 (2025)</li>
+            <li><strong>서울사이버대학교 안전관리학과</strong> — 졸업 예정 (2026)</li>
+            <li><strong>사회복지학과</strong> — 학사 졸업</li>
+            <li><strong>응급구조사 과정</strong> — 수료</li>
+          </ul>
+        </div>
+        <div>
+          <h2>경력</h2>
+          <ul>
+            <li>
+              <strong>안전교육 강사</strong> — 3년<br />
+              (AI 기반 교육 도입 사례를 경험하며, 기술과 교육의 접목에 관심을 갖게 됨)
+            </li>
+          </ul>
+        </div>
+      </section>
       <section class="section">
-        <h2>기술 스택</h2>
-        <ul>
-          <li>React, Next.js, TypeScript</li>
-          <li>Tailwind CSS, Zustand</li>
-          <li>Git, GitHub, Vercel</li>
-        </ul>
+        <h2>포트폴리오</h2>
+        <div class="project">
+          <h3>CodeLoungeV2 — 코드 플레이그라운드</h3>
+          <p class="muted">JavaScript, React, Vite, Monaco Editor</p>
+          <ul>
+            <li>
+              <strong>개요</strong>: HTML/CSS/JS 코드를 탭 전환하며 작성하면
+              <em>실시간 미리보기</em>가 동작하며 실시간으로 다른 사용자와 소통할 수 있는 웹사이트.
+            </li>
+
+            <li>
+              <strong>구현 방식</strong>:
+              <ul>
+                <li>
+                  코드 입력은 <code>monaco-editor</code>를 사용 → VSCode처럼 자동완성과 문법 강조
+                  기능을 위해 적용.
+                </li>
+                <li>
+                  HTML/CSS/JS 코드를 합쳐 <code>&lt;iframe&gt;</code>에 삽입 → 입력 즉시 미리보기
+                  기능을 제공.
+                </li>
+                <li>
+                  <code>localStorage</code> 활용 → 백앤드에 대한 지식이 없는 상태에서 코드를
+                  자동저장하고 불러오는 작업을 하기위해 사용.
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>아쉬운 점</strong>: 웹소켓을 활용해 실시간 채팅뿐 아니라 코드 동기화도
+              구현하고 싶었지만, 당시 웹소켓에 대한 이해 부족으로 구현하지 못했습니다. 추후 학습을
+              통해 실시간 협업 기능을 보완할 계획입니다.
+            </li>
+          </ul>
+          <p>
+            <a href="https://code-lounge-v2.vercel.app/" target="_blank">Live Demo</a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/Aprasaks/CodeLoungeV2" target="_blank">GitHub Repository</a>
+          </p>
+        </div>
       </section>
     </main>
 
-    <footer class="section">
-      <p>© 2025 강혁. 모든 권리 보유.</p>
-    </footer>
+    <script>
+      const btn = document.getElementById("themeBtn");
+      const root = document.documentElement;
+      function label() {
+        const mode = root.getAttribute("data-theme") || "system";
+        btn.textContent = mode === "light" ? "☀️ Light" : mode === "dark" ? "🌙 Dark" : "🌗 System";
+      }
+      label();
+      btn.addEventListener("click", () => {
+        const cur = root.getAttribute("data-theme") || "system";
+        const order = ["system", "light", "dark"];
+        const next = order[(order.indexOf(cur) + 1) % order.length];
+        root.setAttribute("data-theme", next);
+        if (next === "system") localStorage.removeItem("theme");
+        else localStorage.setItem("theme", next);
+        label();
+      });
+    </script>
   </body>
 </html>
