@@ -1,302 +1,112 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="system">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>강혁 - 이력서</title>
-    <meta name="color-scheme" content="light dark" />
-    <style>
-      :root {
-        --bg: #f7f7f9;
-        --surface: #ffffff;
-        --text: #111318;
-        --muted: #5a6674;
-        --border: #e7e9ef;
-        --brand: #3657ff;
-        --shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #0c0d10;
-          --surface: #12141a;
-          --text: #e6e8ee;
-          --muted: #8a94a4;
-          --border: #252a36;
-          --brand: #7c9cff;
-          --shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-        }
-      }
-      html[data-theme="light"] {
-        color-scheme: light;
-      }
-      html[data-theme="dark"] {
-        color-scheme: dark;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        height: 100%;
-      }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, "Apple SD Gothic Neo",
-          sans-serif;
-        line-height: 1.65;
-        transition: background 0.25s ease, color 0.25s ease;
-      }
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 28px 18px 64px;
-      }
-
-      header.sticky {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        backdrop-filter: saturate(140%) blur(8px);
-        border-bottom: 1px solid var(--border);
-        background: color-mix(in srgb, var(--bg), transparent 22%);
-      }
-      .topbar {
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        padding: 12px 18px;
-        max-width: 940px;
-        margin: 0 auto;
-      }
-      .name {
-        font-weight: 800;
-        letter-spacing: 0.2px;
-      }
-      .spacer {
-        flex: 1;
-      }
-      .btn {
-        appearance: none;
-        border: 1px solid var(--border);
-        background: var(--surface);
-        color: var(--text);
-        padding: 8px 12px;
-        border-radius: 10px;
-        font-weight: 600;
-        cursor: pointer;
-      }
-      .btn:hover {
-        border-color: color-mix(in srgb, var(--brand), var(--border) 60%);
-      }
-
-      .section {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 16px;
-        box-shadow: var(--shadow);
-        margin-top: 14px;
-      }
-      h1 {
-        font-size: 30px;
-        margin: 0 0 6px;
-      }
-      h2 {
-        font-size: 18px;
-        margin: 0 0 10px;
-      }
-      h3 {
-        font-size: 15px;
-        margin: 0 0 4px;
-      }
-      .muted {
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      ul {
-        margin: 8px 0 0 18px;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 22px;
-        align-items: center;
-      }
-      .hero img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 50% 20%;
-        display: block;
-        border-radius: 50%;
-      }
-
-      @page {
-        size: A4;
-        margin: 14mm;
-      }
-      @media print {
-        html {
-          color-scheme: light;
-        }
-        header.sticky,
-        .no-print {
-          display: none !important;
-        }
-        body {
-          background: #fff;
-        }
-        .section {
-          border: none;
-          box-shadow: none;
-          padding: 0;
-        }
-        .container {
-          padding: 0;
-        }
-        a {
-          color: black;
-          text-decoration: none;
-        }
-      }
-          .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-      @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
-      .project h3 { display:flex; align-items:center; gap:8px; margin:0 0 6px; font-size:17px; }
-      .badge { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; color:var(--muted); }
-    </style>
-  </head>
-  <body>
-    <header class="sticky">
-      <div class="topbar">
-        <div class="name">강혁 · Frontend Developer</div>
-        <div class="spacer"></div>
-        <button class="btn no-print" id="themeBtn" aria-label="테마 전환">🌗 System</button>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demian | Knowledge Systems</title>
+  <meta
+    name="description"
+    content="AI와 웹 기술로 지식, 생각, 삶의 기록을 구조화하는 서비스를 만듭니다."
+  />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Demian / 윤강혁</p>
+      <h1>Building systems for knowledge, thought, and life records in the AI era.</h1>
+      <p class="hero-ko">
+        AI와 웹 기술로 지식, 생각, 삶의 기록을 구조화하는 서비스를 만듭니다.
+      </p>
+      <div class="hero-links">
+        <a href="https://dechive.dev" target="_blank" rel="noreferrer">Dechive</a>
+        <a href="https://github.com/heavenis0113" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="mailto:heavenis0113@gmail.com">Email</a>
       </div>
-    </header>
+    </section>
 
-    <main class="container">
-      <section class="hero">
-        <div>
-          <img src="https://github.com/Aprasaks.png" alt="프로필 사진" />
-        </div>
-        <div>
-          <h1>윤강혁 (Yoon KangHyeok)</h1>
-          <p class="muted">프론트엔드 신입개발자 · React / TypeScript / Next.js</p>
-          <p>📧 heavenis0113@gmail.com · 📱 010-4284-4356</p>
-          <p><a href="https://github.com/Aprasaks" target="_blank">github.com/Aprasaks</a></p>
-        </div>
-      </section>
+    <section class="section">
+      <h2>About</h2>
+      <p>
+        저는 AI와 웹 기술을 이용해 흩어진 지식과 기록을 다시 읽을 수 있는 형태로
+        정리하는 일에 관심이 있습니다.
+      </p>
+      <p>
+        빠르게 기능을 만드는 것보다, 어떤 생각이 왜 필요한지,
+        그 생각을 어떻게 구조화할 수 있는지를 중요하게 봅니다.
+      </p>
+    </section>
 
-      <section class="section">
-        <h2>소개</h2>
+    <section class="section">
+      <h2>What I Pursue</h2>
+      <p>
+        제가 추구하는 것은 빠른 트렌드의 소비보다, 오래 남는 구조를 만드는 일입니다.
+      </p>
+      <p>
+        AI를 단순한 자동화 도구로 보기보다, 생각을 비추고 기록을 정리하는 도구로 바라봅니다.
+        지식은 흘러가지만, 잘 구조화된 기록은 다시 꺼내 읽을 수 있다고 믿습니다.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Projects</h2>
+
+      <article class="card">
+        <div>
+          <p class="label">Knowledge Library</p>
+          <h3>Dechive</h3>
+        </div>
         <p>
-          안전교육 강사로 3년간 활동하며 교육 현장의 변화를 직접 경험했습니다.<br />
-          AI와 디지털 기술을 활용한 교육의 필요성을 느껴 프론트엔드 개발로 전향했습니다.<br />
-          사용자 경험을 중시하며, 재사용 가능한 컴포넌트와 일관된 UI를 설계하는 데 관심이 있습니다.
+          생각과 지식을 기록하고 다시 탐색하기 위한 개인 지식 도서관입니다.
+          AI, Data, Dev, Product에 관한 짧은 개념 기록을 쌓고 있으며,
+          각 글은 하나의 질문에 답하는 짧은 책처럼 다룹니다.
         </p>
-      </section>
+        <a href="https://dechive.dev" target="_blank" rel="noreferrer">Visit Dechive</a>
+      </article>
 
-      <section class="section two-col">
+      <article class="card">
         <div>
-          <h2>교육</h2>
-          <ul>
-            <li><strong>오즈코딩스쿨</strong> — 프론트엔드 과정 수료 (2025)</li>
-            <li><strong>서울사이버대학교 안전관리학과</strong> — 졸업 예정 (2026)</li>
-            <li><strong>사회복지학과</strong> — 학사 졸업</li>
-            <li><strong>응급구조사 과정</strong> — 수료</li>
-          </ul>
+          <p class="label">Life Archive Concept</p>
+          <h3>Akashic</h3>
         </div>
-        <div>
-          <h2>경력</h2>
-          <ul>
-            <li>
-              <strong>안전교육 강사</strong> — 3년<br />
-              (AI 기반 교육 도입 사례를 경험하며, 기술과 교육의 접목에 관심을 갖게 됨)
-            </li>
-          </ul>
-        </div>
-      </section>
-          <section class="section">
-        <h2>포트폴리오</h2>
-        <div class="project">
-          <h3>CodeLoungeV2 — 코드 플레이그라운드 <span class="badge">개인</span></h3>
-          <p class="muted">JavaScript, React, Vite, Monaco Editor</p>
-          <ul>
-            <li><strong>설명</strong>: HTML/CSS/JS 코드를 작성하면 우측에 <em>즉시 미리보기</em>가 반영되는 학습형 코드 플레이그라운드.</li>
-            <li><strong>구현 방식</strong>:
-              <ul>
-                <li><code>monaco-editor</code>로 코드 입력 영역 구현 → 자동완성, 문법 강조 제공.</li>
-                <li>입력된 HTML/CSS/JS를 조합해 <code>&lt;iframe&gt;</code>에 주입 → 입력 즉시 미리보기 갱신.</li>
-                <li><code>localStorage</code>로 코드 자동 저장/복원 → 백엔드 없이도 작성 중 데이터 보존.</li>
-              </ul>
-            </li>
-            <li><strong>선택/비선택 이유</strong>:
-              <ul>
-                <li>미리보기 구현은 빌드/서버 의존도를 줄이기 위해 <code>iframe</code>을 선택.</li>
-                <li>상태 저장은 초기 단계에서 DB·인증을 도입하지 않기 위해 <code>localStorage</code>로 대체.</li>
-              </ul>
-            </li>
-            <li><strong>아쉬운 점</strong>: 실시간 협업(채팅/동기화)은 미구현. 추후 WebSocket 학습 후 확장 예정.</li>
-          </ul>
-          <p>
-            <a href="https://code-lounge-v2.vercel.app/" target="_blank">Live Demo</a>
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Aprasaks/CodeLoungeV2" target="_blank">GitHub Repository</a>
-          </p>
-        </div>
+        <p>
+          한 사람의 삶을 기록하고 저장하고 분석하는 AI 비서 개념입니다.
+          Dechive가 세상의 지식을 읽는 방식이라면,
+          Akashic은 한 사람의 삶을 다시 읽기 위한 시스템입니다.
+        </p>
+        <span class="status">Concept / Planning</span>
+      </article>
+    </section>
 
-        <div class="project">
-          <h3>Q&A 기반 LMS — 팀 프로젝트 <span class="badge">팀</span></h3>
-          <p class="muted">React, TypeScript, Vite, Tailwind CSS, Axios, Zustand</p>
-          <ul>
-            <li><strong>개요</strong>: 질문·답변·채택 흐름을 중심으로 학습 Q&A를 지원하는 LMS.</li>
-            <li><strong>내 역할</strong> (내가 한 것만 기재):
-              <ul>
-                <li><strong>공통 컴포넌트</strong>: Button·Input 초안은 인라인 스타일로 시작했으나, 팀 회의 후 <code>cn</code> 유틸(클래스 병합)로 전환 → 스타일 일관성과 재사용성 향상.</li>
-                <li><strong>질문 작성/수정</strong>: 외부 마크다운 에디터 라이브러리 없이 직접 입력/툴바/미리보기 구성.</li>
-                <li><strong>질문/답변 API 연동</strong>: 팀 합의로 공통 <code>fetcher</code>(멘토 제공)를 채택해 요청/에러 처리 표준화.</li>
-              </ul>
-            </li>
-            <li><strong>선택/비선택 이유</strong>:
-              <ul>
-                <li>스타일 시스템은 Tailwind + <code>cn</code>으로 단순화 → 디자인 토큰과 조합식 스타일을 팀 전체 코드에 일관성을 주기 위해 사용.</li>
-                <li>마크다운 에디터는 학습을 위해 <em>직접 구현</em>을 선택 → 기존 블로그 프로젝트를 통해 에디터 라이브러리를 여럿 사용했었고 이번엔 한번 구현해보자 라는 생각으로 시도.</li>
-                <li>데이터 요청은 구현 편차를 줄이기 위해 공통 <code>fetcher</code> 사용 → 코드 중복과 실수 감소.</li>
-              </ul>
-            </li>
-          </ul>
-          <p>
-            <a href="https://oz-team2.kro.kr/" target="_blank">서비스 링크</a>
-            &nbsp;·&nbsp;
-            <a href="https://github.com/OZ-Coding-School/oz_externship_fe_01_team2" target="_blank">GitHub</a>
-          </p>
-        </div>
-      </section>
-    </main>
-    </main>
+    <section class="section">
+      <h2>Selected Writings</h2>
 
-    <script>
-      const btn = document.getElementById("themeBtn");
-      const root = document.documentElement;
-      function label() {
-        const mode = root.getAttribute("data-theme") || "system";
-        btn.textContent = mode === "light" ? "☀️ Light" : mode === "dark" ? "🌙 Dark" : "🌗 System";
-      }
-      label();
-      btn.addEventListener("click", () => {
-        const cur = root.getAttribute("data-theme") || "system";
-        const order = ["system", "light", "dark"];
-        const next = order[(order.indexOf(cur) + 1) % order.length];
-        root.setAttribute("data-theme", next);
-        if (next === "system") localStorage.removeItem("theme");
-        else localStorage.setItem("theme", next);
-        label();
-      });
-    </script>
-  </body>
+      <div class="writing-list">
+        <a href="https://dechive.dev/en/archive/what-null-leaves-behind" target="_blank" rel="noreferrer">
+          <span>SQL NULL is not an empty value</span>
+          <small>Data / SQL</small>
+        </a>
+
+        <a href="https://dechive.dev/en/archive/handing-over-thought-first" target="_blank" rel="noreferrer">
+          <span>Before Asking AI for Answers, Hand Over Your Thinking</span>
+          <small>AI / Prompt</small>
+        </a>
+
+        <a href="https://dechive.dev/archive/asking-data-with-sql" target="_blank" rel="noreferrer">
+          <span>데이터를 묻는다는 것</span>
+          <small>Data / SQL</small>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© Demian</p>
+      <div>
+        <a href="mailto:heavenis0113@gmail.com">Email</a>
+        <a href="https://github.com/heavenis0113" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://dechive.dev" target="_blank" rel="noreferrer">Dechive</a>
+      </div>
+    </footer>
+  </main>
+</body>
 </html>

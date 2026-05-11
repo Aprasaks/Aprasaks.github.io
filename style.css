@@ -1,0 +1,204 @@
+:root {
+  --bg: #0a0805;
+  --panel: #120f0a;
+  --panel-soft: #17120c;
+  --text: #f4efe7;
+  --muted: #b8aa96;
+  --faint: #756957;
+  --line: rgba(215, 174, 104, 0.18);
+  --amber: #d7ae68;
+  --amber-soft: rgba(215, 174, 104, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(215, 174, 104, 0.08), transparent 34rem),
+    linear-gradient(180deg, #0a0805 0%, #080604 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page {
+  width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 48px;
+}
+
+.hero {
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow,
+.label,
+.status {
+  color: var(--amber);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 780px;
+  margin: 18px 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 7vw, 5.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.hero-ko {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.hero-links a,
+.card a,
+.footer a {
+  border: 1px solid var(--line);
+  background: var(--amber-soft);
+  color: var(--text);
+  padding: 9px 13px;
+  font-size: 0.9rem;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.hero-links a:hover,
+.card a:hover,
+.footer a:hover {
+  border-color: rgba(215, 174, 104, 0.45);
+  background: rgba(215, 174, 104, 0.18);
+  color: var(--amber);
+}
+
+.section {
+  padding: 46px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.section h2 {
+  margin: 0 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 500;
+}
+
+.section p {
+  max-width: 720px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin: 0 0 14px;
+}
+
+.card {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+}
+
+.card h3 {
+  margin: 4px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card a,
+.status {
+  width: fit-content;
+}
+
+.writing-list {
+  display: grid;
+  gap: 10px;
+}
+
+.writing-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.018);
+  color: var(--text);
+}
+
+.writing-list a:hover {
+  border-color: rgba(215, 174, 104, 0.42);
+  background: rgba(215, 174, 104, 0.08);
+}
+
+.writing-list small {
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 32px;
+  color: var(--faint);
+}
+
+.footer div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer a {
+  padding: 7px 10px;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: min(100% - 28px, 920px);
+    padding-top: 42px;
+  }
+
+  .hero {
+    padding: 48px 0 40px;
+  }
+
+  .writing-list a,
+  .footer {
+    flex-direction: column;
+  }
+
+  .writing-list small {
+    white-space: normal;
+  }
+}
