@@ -1,0 +1,154 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+
+  <!-- Background -->
+  <rect width="1200" height="720" fill="#F7F5F2"/>
+
+  <!-- Header bar -->
+  <rect width="1200" height="52" fill="#1E3A2F"/>
+  <text x="28" y="32" font-size="15" font-weight="800" fill="white" letter-spacing="-0.5">문서24시</text>
+  <rect x="106" y="19" width="1" height="15" fill="rgba(255,255,255,0.25)"/>
+  <text x="116" y="32" font-size="11" fill="rgba(255,255,255,0.5)">자동 문서 발송 서비스</text>
+  <text x="890" y="32" font-size="11" fill="rgba(255,255,255,0.55)">대시보드</text>
+  <text x="964" y="32" font-size="11" fill="rgba(255,255,255,0.55)">문서 관리</text>
+  <text x="1040" y="32" font-size="11" fill="rgba(255,255,255,0.55)">발송 현황</text>
+  <circle cx="1158" cy="26" r="14" fill="rgba(255,255,255,0.12)"/>
+  <text x="1158" y="31" font-size="10" fill="rgba(255,255,255,0.7)" text-anchor="middle">관리자</text>
+
+  <!-- Sub header -->
+  <rect y="52" width="1200" height="48" fill="white"/>
+  <rect y="100" width="1200" height="1" fill="#E5E2DC"/>
+  <text x="28" y="76" font-size="15" font-weight="700" fill="#1A1A1A">자동 발송 대시보드</text>
+  <text x="28" y="94" font-size="11" fill="#9E9E9E">조건에 맞는 수신자에게 문서를 자동으로 발송합니다</text>
+  <rect x="1038" y="63" width="136" height="30" rx="6" fill="#1E3A2F"/>
+  <text x="1106" y="82" font-size="11" font-weight="600" fill="white" text-anchor="middle">+ 새 자동화 추가</text>
+
+  <!-- Stat cards row -->
+  <!-- Card 1 -->
+  <rect x="28" y="116" width="264" height="82" rx="8" fill="white" stroke="#E5E2DC" stroke-width="1"/>
+  <text x="48" y="142" font-size="11" fill="#9E9E9E">오늘 발송 완료</text>
+  <text x="48" y="176" font-size="32" font-weight="800" fill="#1E3A2F">24</text>
+  <text x="92" y="176" font-size="13" fill="#6B6B6B">건</text>
+  <text x="272" y="142" font-size="10" fill="#3A9E60" text-anchor="end">↑ 어제보다 3건</text>
+
+  <!-- Card 2 -->
+  <rect x="308" y="116" width="264" height="82" rx="8" fill="white" stroke="#E5E2DC" stroke-width="1"/>
+  <text x="328" y="142" font-size="11" fill="#9E9E9E">발송 성공률</text>
+  <text x="328" y="176" font-size="32" font-weight="800" fill="#1E3A2F">98</text>
+  <text x="378" y="176" font-size="13" fill="#6B6B6B">%</text>
+
+  <!-- Card 3 -->
+  <rect x="588" y="116" width="264" height="82" rx="8" fill="white" stroke="#E5E2DC" stroke-width="1"/>
+  <text x="608" y="142" font-size="11" fill="#9E9E9E">절약된 시간</text>
+  <text x="608" y="176" font-size="32" font-weight="800" fill="#1E3A2F">3.2</text>
+  <text x="668" y="176" font-size="13" fill="#6B6B6B">시간/일</text>
+
+  <!-- Card 4 (dark) -->
+  <rect x="868" y="116" width="304" height="82" rx="8" fill="#1E3A2F"/>
+  <text x="890" y="142" font-size="11" fill="rgba(255,255,255,0.55)">다음 자동 발송</text>
+  <text x="890" y="172" font-size="24" font-weight="800" fill="white">오후 6:00</text>
+  <text x="890" y="190" font-size="11" fill="rgba(255,255,255,0.5)">견적서 3건 · 청구서 5건</text>
+
+  <!-- Left panel: Automation rules -->
+  <rect x="28" y="216" width="556" height="480" rx="8" fill="white" stroke="#E5E2DC" stroke-width="1"/>
+  <text x="50" y="246" font-size="13" font-weight="700" fill="#1A1A1A">자동화 규칙</text>
+  <rect x="50" y="258" width="512" height="1" fill="#E5E2DC"/>
+
+  <!-- Rule 1 (active) -->
+  <rect x="50" y="270" width="512" height="70" rx="6" fill="#F8F8F6"/>
+  <rect x="66" y="289" width="34" height="18" rx="9" fill="#1E3A2F"/>
+  <circle cx="90" cy="298" r="7" fill="white"/>
+  <text x="112" y="291" font-size="12" font-weight="700" fill="#1A1A1A">월간 청구서 자동 발송</text>
+  <text x="112" y="308" font-size="11" fill="#9E9E9E">매월 1일 오전 9:00 · 이메일 발송</text>
+  <rect x="466" y="281" width="80" height="20" rx="4" fill="#E8F0EB"/>
+  <text x="506" y="294" font-size="10" fill="#1E3A2F" text-anchor="middle" font-weight="600">● 활성</text>
+  <text x="112" y="326" font-size="11" fill="#6B6B6B">수신자 12명 · 청구서 템플릿</text>
+
+  <!-- Rule 2 (active) -->
+  <rect x="50" y="352" width="512" height="70" rx="6" fill="#F8F8F6"/>
+  <rect x="66" y="371" width="34" height="18" rx="9" fill="#1E3A2F"/>
+  <circle cx="90" cy="380" r="7" fill="white"/>
+  <text x="112" y="373" font-size="12" font-weight="700" fill="#1A1A1A">견적서 자동 회신</text>
+  <text x="112" y="390" font-size="11" fill="#9E9E9E">문의 접수 즉시 · 카카오 + 이메일</text>
+  <rect x="466" y="363" width="80" height="20" rx="4" fill="#E8F0EB"/>
+  <text x="506" y="376" font-size="10" fill="#1E3A2F" text-anchor="middle" font-weight="600">● 활성</text>
+  <text x="112" y="408" font-size="11" fill="#6B6B6B">자동 수신자 연동 · 견적서 템플릿</text>
+
+  <!-- Rule 3 (inactive) -->
+  <rect x="50" y="434" width="512" height="70" rx="6" fill="#F8F8F6"/>
+  <rect x="66" y="453" width="34" height="18" rx="9" fill="#D8D8D8"/>
+  <circle cx="72" cy="462" r="7" fill="white"/>
+  <text x="112" y="455" font-size="12" font-weight="700" fill="#ACACAC">계약 만료 30일 전 알림</text>
+  <text x="112" y="472" font-size="11" fill="#C8C8C8">만료 30일 전 · 이메일</text>
+  <rect x="460" y="445" width="86" height="20" rx="4" fill="#F0F0F0"/>
+  <text x="503" y="458" font-size="10" fill="#ACACAC" text-anchor="middle">○ 비활성</text>
+  <text x="112" y="490" font-size="11" fill="#C8C8C8">수신자 8명 · 알림 템플릿</text>
+
+  <!-- Rule 4 (active) -->
+  <rect x="50" y="516" width="512" height="70" rx="6" fill="#F8F8F6"/>
+  <rect x="66" y="535" width="34" height="18" rx="9" fill="#1E3A2F"/>
+  <circle cx="90" cy="544" r="7" fill="white"/>
+  <text x="112" y="537" font-size="12" font-weight="700" fill="#1A1A1A">주간 정산서 발송</text>
+  <text x="112" y="554" font-size="11" fill="#9E9E9E">매주 금요일 오후 5:00 · 이메일</text>
+  <rect x="466" y="527" width="80" height="20" rx="4" fill="#E8F0EB"/>
+  <text x="506" y="540" font-size="10" fill="#1E3A2F" text-anchor="middle" font-weight="600">● 활성</text>
+  <text x="112" y="572" font-size="11" fill="#6B6B6B">수신자 5명 · 정산서 템플릿</text>
+
+  <!-- Add rule placeholder -->
+  <rect x="50" y="600" width="512" height="44" rx="6" fill="none" stroke="#E5E2DC" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="306" y="627" font-size="12" fill="#ACACAC" text-anchor="middle">+ 새 자동화 규칙 추가</text>
+
+  <!-- Right panel: Recent sends -->
+  <rect x="600" y="216" width="572" height="480" rx="8" fill="white" stroke="#E5E2DC" stroke-width="1"/>
+  <text x="622" y="246" font-size="13" font-weight="700" fill="#1A1A1A">최근 발송 내역</text>
+  <rect x="622" y="258" width="528" height="1" fill="#E5E2DC"/>
+
+  <!-- Item 1 -->
+  <rect x="622" y="270" width="528" height="56" rx="6" fill="#F8F8F6"/>
+  <rect x="638" y="284" width="28" height="28" rx="5" fill="#1E3A2F"/>
+  <text x="652" y="302" font-size="10" fill="white" text-anchor="middle" font-weight="600">청구</text>
+  <text x="678" y="292" font-size="12" font-weight="600" fill="#1A1A1A">청구서_2026-06_홍길동.pdf</text>
+  <text x="678" y="310" font-size="11" fill="#9E9E9E">오전 9:00 · hong@example.com</text>
+  <rect x="1076" y="282" width="58" height="22" rx="4" fill="#E8F0EB"/>
+  <text x="1105" y="296" font-size="10" fill="#1E3A2F" text-anchor="middle" font-weight="600">✓ 완료</text>
+
+  <!-- Item 2 -->
+  <rect x="622" y="338" width="528" height="56" rx="6" fill="#F8F8F6"/>
+  <rect x="638" y="352" width="28" height="28" rx="5" fill="#2D5A45"/>
+  <text x="652" y="370" font-size="10" fill="white" text-anchor="middle" font-weight="600">견적</text>
+  <text x="678" y="360" font-size="12" font-weight="600" fill="#1A1A1A">견적서_김철수_사무소.pdf</text>
+  <text x="678" y="378" font-size="11" fill="#9E9E9E">오전 9:00 · kim@office.kr</text>
+  <rect x="1076" y="350" width="58" height="22" rx="4" fill="#E8F0EB"/>
+  <text x="1105" y="364" font-size="10" fill="#1E3A2F" text-anchor="middle" font-weight="600">✓ 완료</text>
+
+  <!-- Item 3 -->
+  <rect x="622" y="406" width="528" height="56" rx="6" fill="#F8F8F6"/>
+  <rect x="638" y="420" width="28" height="28" rx="5" fill="#1E3A2F"/>
+  <text x="652" y="438" font-size="10" fill="white" text-anchor="middle" font-weight="600">계약</text>
+  <text x="678" y="428" font-size="12" font-weight="600" fill="#1A1A1A">계약서_이영희_스튜디오.pdf</text>
+  <text x="678" y="446" font-size="11" fill="#9E9E9E">오전 9:01 · lee@studio.com</text>
+  <rect x="1076" y="418" width="58" height="22" rx="4" fill="#E8F0EB"/>
+  <text x="1105" y="432" font-size="10" fill="#1E3A2F" text-anchor="middle" font-weight="600">✓ 완료</text>
+
+  <!-- Item 4 (scheduled) -->
+  <rect x="622" y="474" width="528" height="56" rx="6" fill="#FFFDF5"/>
+  <rect x="638" y="488" width="28" height="28" rx="5" fill="#D4860A"/>
+  <text x="652" y="506" font-size="10" fill="white" text-anchor="middle" font-weight="600">청구</text>
+  <text x="678" y="496" font-size="12" font-weight="600" fill="#1A1A1A">청구서_박민준_컨설팅.pdf</text>
+  <text x="678" y="514" font-size="11" fill="#9E9E9E">오후 6:00 예약 · park@consult.co</text>
+  <rect x="1068" y="486" width="66" height="22" rx="4" fill="#FEF3CD"/>
+  <text x="1101" y="500" font-size="10" fill="#D4860A" text-anchor="middle">⏱ 예약중</text>
+
+  <!-- Item 5 (scheduled) -->
+  <rect x="622" y="542" width="528" height="56" rx="6" fill="#FFFDF5"/>
+  <rect x="638" y="556" width="28" height="28" rx="5" fill="#2D5A45"/>
+  <text x="652" y="574" font-size="10" fill="white" text-anchor="middle" font-weight="600">정산</text>
+  <text x="678" y="564" font-size="12" font-weight="600" fill="#1A1A1A">주간정산서_2026-W24.pdf</text>
+  <text x="678" y="582" font-size="11" fill="#9E9E9E">금 오후 5:00 예약 · 수신자 5명</text>
+  <rect x="1068" y="554" width="66" height="22" rx="4" fill="#FEF3CD"/>
+  <text x="1101" y="568" font-size="10" fill="#D4860A" text-anchor="middle">⏱ 예약중</text>
+
+  <!-- View all -->
+  <rect x="622" y="612" width="528" height="40" rx="6" fill="none" stroke="#E5E2DC" stroke-width="1"/>
+  <text x="886" y="636" font-size="12" fill="#9E9E9E" text-anchor="middle">전체 발송 내역 보기 →</text>
+
+</svg>

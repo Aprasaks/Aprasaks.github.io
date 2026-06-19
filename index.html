@@ -1,352 +1,612 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demian | Verification Portfolio</title>
-  <meta
-    name="description"
-    content="2026년 6월부터 정보, 지식, 판단, 학습을 직접 검증하며 쌓아가는 검증형 포트폴리오입니다."
-  />
-  <link rel="stylesheet" href="./style.css" />
-</head>
-<body>
-  <main class="page">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Demian / 윤강혁 · Verification Portfolio</p>
-          <h1>2026년 6월을 내 길을 증명하는 달로 삼는다.</h1>
-          <p class="hero-lead">
-            AI 시대에 필요한 것은 더 많은 답이 아니라, 검증하는 힘입니다.
-            저는 네 개의 프로젝트를 통해 정보, 지식, 판단, 학습을 검증합니다.
-          </p>
-          <div class="hero-links" aria-label="Primary links">
-            <a href="https://dechive.dev" target="_blank" rel="noreferrer">Dechive</a>
-            <a href="https://github.com/heavenis0113" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="mailto:heavenis0113@gmail.com">Email</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dechive Studio | 홈페이지 · 자동화 · 맞춤 강의</title>
+    <meta
+      name="description"
+      content="사업자에게 실제로 필요한 것부터 함께 찾습니다. 홈페이지 제작, 업무 자동화 설계, 맞춤 강의 — 진단에서 시작하는 AI 실무 서비스입니다."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Dechive Studio | 홈페이지 · 자동화 · 맞춤 강의"
+    />
+    <meta
+      property="og:description"
+      content="사업자에게 실제로 필요한 것부터 함께 찾습니다. 홈페이지 제작, 업무 자동화 설계, 맞춤 강의 — 진단에서 시작하는 AI 실무 서비스입니다."
+    />
+    <meta property="og:url" content="https://aprasaks.github.io" />
+    <meta property="og:site_name" content="Dechive Studio" />
+    <meta property="og:locale" content="ko_KR" />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- ================================================
+       HEADER
+       ================================================ -->
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a href="#" class="logo" aria-label="Dechive Studio 홈으로"
+          >Dechive Studio</a
+        >
+
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <ul class="nav-list">
+            <li><a href="#services">서비스</a></li>
+            <li><a href="#process">작업 방식</a></li>
+            <li><a href="#why">왜 Dechive Studio인가요</a></li>
+            <li><a href="#examples">작업 예시</a></li>
+            <li><a href="#contact">문의</a></li>
+          </ul>
+        </nav>
+
+        <a href="#contact" class="btn btn-primary header-cta">무료 진단 문의</a>
+
+        <button
+          class="nav-toggle"
+          aria-label="메뉴 열기"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav aria-label="모바일 메뉴">
+          <ul>
+            <li><a href="#services">서비스</a></li>
+            <li><a href="#process">작업 방식</a></li>
+            <li><a href="#why">왜 Dechive Studio인가요</a></li>
+            <li><a href="#examples">작업 예시</a></li>
+            <li><a href="#contact">문의</a></li>
+          </ul>
+        </nav>
+        <a href="#contact" class="btn btn-primary">무료 진단 문의</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- ================================================
+         1. HERO SECTION
+         ================================================ -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">홈페이지 · 자동화 · 맞춤 강의</p>
+            <h1 id="hero-title">
+              <span class="h1-sm">사업자를 위한</span>
+              <span class="h1-md">필요한 것부터 함께 찾는</span>
+              <span class="h1-lg">AI 실무 서비스</span>
+            </h1>
+            <p class="hero-lead">
+              막연하게 무언가가 필요하다는 건 알지만, 정확히 뭔지 모를 때.<br />
+              Dechive Studio는 지금 당신에게 실제로 필요한 것이 무엇인지 먼저
+              찾고,<br />
+              홈페이지 제작·업무 자동화·맞춤 강의로 함께 만들어갑니다.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">무료 진단 문의하기</a>
+              <a href="#examples" class="btn btn-secondary">작업 예시 보기</a>
+            </div>
+          </div>
+
+          <div class="hero-preview" aria-hidden="true">
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <div class="browser-url">dechive-studio.com</div>
+              </div>
+              <div class="browser-content">
+                <div class="mini-hero">
+                  <div class="mini-eyebrow"></div>
+                  <div class="mini-title"></div>
+                  <div class="mini-title mini-title--short"></div>
+                  <div class="mini-desc"></div>
+                  <div class="mini-desc mini-desc--short"></div>
+                  <div class="mini-btns">
+                    <div class="mini-btn mini-btn--solid"></div>
+                    <div class="mini-btn"></div>
+                  </div>
+                </div>
+                <div class="mini-cards">
+                  <div class="mini-card">
+                    <div class="mini-card-icon"></div>
+                    <div class="mini-card-line"></div>
+                    <div class="mini-card-line mini-card-line--short"></div>
+                  </div>
+                  <div class="mini-card">
+                    <div class="mini-card-icon"></div>
+                    <div class="mini-card-line"></div>
+                    <div class="mini-card-line mini-card-line--short"></div>
+                  </div>
+                  <div class="mini-card">
+                    <div class="mini-card-icon"></div>
+                    <div class="mini-card-line"></div>
+                    <div class="mini-card-line mini-card-line--short"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <aside class="hero-panel" aria-label="Portfolio thesis">
-          <p class="panel-kicker">June 2026 Thesis</p>
-          <dl class="metric-list">
-            <div>
-              <dt>4</dt>
-              <dd>검증 프로젝트</dd>
+      <!-- ================================================
+         2. SERVICES SECTION
+         ================================================ -->
+      <section
+        class="section section--alt"
+        id="services"
+        aria-labelledby="services-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">서비스</p>
+            <h2 id="services-title">세 가지 방식으로 함께합니다</h2>
+            <p>
+              홈페이지든, 자동화든, 강의든 — 시작은 항상 같습니다.<br />
+              지금 이 사람에게 실제로 무엇이 필요한지 먼저 찾는 것.
+            </p>
+          </div>
+          <div class="card-grid card-grid--3">
+            <article class="service-card">
+              <div class="service-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+              </div>
+              <h3>홈페이지 제작</h3>
+              <p>
+                방문자가 처음 봤을 때 "이게 뭐 하는 곳인지" 바로 이해하고 문의할
+                수 있는 1페이지 사업 소개 페이지를 설계합니다.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+                  />
+                </svg>
+              </div>
+              <h3>업무 자동화 설계</h3>
+              <p>
+                "자동화 해드릴게요"가 아닙니다. 어떤 반복 업무가 시간을 가장
+                많이 잡아먹는지 먼저 찾고, 실제로 쓸 수 있는 방법을 설계합니다.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h3>맞춤 강의</h3>
+              <p>
+                단순 커리큘럼이 아닙니다. 지금 이 사람에게 필요한 것이 무엇인지
+                먼저 파악하고, 수업마다 그에 맞게 설계합니다.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================
+         3. WHY SECTION
+         ================================================ -->
+      <section class="section" id="why" aria-labelledby="why-title">
+        <div class="container">
+          <div class="why-layout">
+            <div class="why-copy">
+              <p class="eyebrow">왜 Dechive Studio인가요?</p>
+              <h2 id="why-title">유행보다 검증과 구조를 먼저 봅니다</h2>
+              <p>
+                AI 도구를 다룬다고 해서 바로 좋은 홈페이지가 만들어지는 것은
+                아닙니다.
+              </p>
+              <p>
+                Dechive Studio는 프로젝트 관리와 Agile, Google 프롬프팅 학습,
+                실제 제작 경험을 바탕으로 사업 소개 페이지의 구조를 함께
+                설계합니다.
+              </p>
+              <p>
+                방문자가 무엇을 이해해야 하는지, 어떤 흐름에서 신뢰를
+                느끼는지,<br />
+                어디에서 문의로 이어져야 하는지를 먼저 정리합니다.<br />
+                그래서 단순히 예쁜 페이지가 아니라, 만든 사람이 계속 사용할 수
+                있는 페이지를 목표로 합니다.
+              </p>
             </div>
-            <div>
-              <dt>Daily</dt>
-              <dd>수동 기록</dd>
-            </div>
-            <div>
-              <dt>Proof</dt>
-              <dd>결과보다 근거</dd>
-            </div>
-          </dl>
-          <p>
-            이 페이지는 자동 수집 대시보드가 아니라, 직접 관찰하고 판단한 내용을
-            HTML로 남기는 공개 작업 기록입니다.
+
+            <ul class="strength-list" aria-label="Dechive Studio의 강점">
+              <li class="strength-item">
+                <span class="strength-check" aria-hidden="true">✓</span>
+                <div>
+                  <strong>검증된 학습</strong>
+                  <p>
+                    프로젝트 관리, Agile, Google 프롬프팅 학습을 실제 제작에
+                    연결합니다.
+                  </p>
+                </div>
+              </li>
+              <li class="strength-item">
+                <span class="strength-check" aria-hidden="true">✓</span>
+                <div>
+                  <strong>실제 제작 경험</strong>
+                  <p>
+                    이론이 아닌 실제 사이트 설계 및 제작 경험을 바탕으로 합니다.
+                  </p>
+                </div>
+              </li>
+              <li class="strength-item">
+                <span class="strength-check" aria-hidden="true">✓</span>
+                <div>
+                  <strong>프로젝트 관점</strong>
+                  <p>
+                    단순 제작이 아닌 목표와 구조를 먼저 정리하는 방식으로
+                    접근합니다.
+                  </p>
+                </div>
+              </li>
+              <li class="strength-item">
+                <span class="strength-check" aria-hidden="true">✓</span>
+                <div>
+                  <strong>AI 결과물 검토</strong>
+                  <p>
+                    AI를 활용하더라도 최종 구조, 문구, 흐름은 사람이 검토하고
+                    정리합니다.
+                  </p>
+                </div>
+              </li>
+              <li class="strength-item">
+                <span class="strength-check" aria-hidden="true">✓</span>
+                <div>
+                  <strong>문의 흐름 설계</strong>
+                  <p>
+                    방문자가 자연스럽게 문의로 이어질 수 있는 구조를 함께
+                    만듭니다.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================
+         4. PROCESS SECTION
+         ================================================ -->
+      <section
+        class="section section--alt"
+        id="process"
+        aria-labelledby="process-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">작업 방식</p>
+            <h2 id="process-title">어떻게 진행되나요?</h2>
+          </div>
+          <ol class="process-list">
+            <li class="process-step">
+              <div class="process-num" aria-hidden="true">01</div>
+              <h3>상담</h3>
+              <p>필요한 내용과 목표를 함께 정리합니다.</p>
+            </li>
+            <li class="process-step">
+              <div class="process-num" aria-hidden="true">02</div>
+              <h3>구조 설계</h3>
+              <p>방문자가 이해해야 할 메시지와 섹션 흐름을 설계합니다.</p>
+            </li>
+            <li class="process-step">
+              <div class="process-num" aria-hidden="true">03</div>
+              <h3>초안 제작</h3>
+              <p>디자인과 카피 초안을 제작합니다.</p>
+            </li>
+            <li class="process-step">
+              <div class="process-num" aria-hidden="true">04</div>
+              <h3>수정 및 전달</h3>
+              <p>피드백을 반영해 수정 후 최종 전달합니다.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ================================================
+         5. TARGET SECTION
+         ================================================ -->
+      <section class="section" aria-labelledby="target-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">대상</p>
+            <h2 id="target-title">이런 분들께 잘 맞습니다</h2>
+          </div>
+          <div class="card-grid card-grid--3">
+            <article class="target-card">
+              <div class="target-icon" aria-hidden="true">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <h3>1인 강사</h3>
+              <p>
+                강의와 경력을 효과적으로 보여주고 수강 문의를 늘리고 싶으신 분
+              </p>
+            </article>
+
+            <article class="target-card">
+              <div class="target-icon" aria-hidden="true">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <h3>작은 사업자</h3>
+              <p>
+                우리 가게와 서비스의 강점을 쉽고 명확하게 전달하고 싶으신 분
+              </p>
+            </article>
+
+            <article class="target-card">
+              <div class="target-icon" aria-hidden="true">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                  <line x1="12" y1="12" x2="12" y2="16" />
+                  <line x1="10" y1="14" x2="14" y2="14" />
+                </svg>
+              </div>
+              <h3>프리랜서</h3>
+              <p>포트폴리오와 서비스를 정리해 신뢰도를 높이고 싶으신 분</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================
+         6. WORK EXAMPLES SECTION
+         ================================================ -->
+      <section
+        class="section section--alt"
+        id="examples"
+        aria-labelledby="examples-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">작업 예시</p>
+            <h2 id="examples-title">간단한 작업 예시</h2>
+            <p>실제 작업물이 추가되면 이미지와 링크로 교체됩니다.</p>
+          </div>
+          <div class="card-grid card-grid--2">
+            <article class="example-card">
+              <div class="example-frame">
+                <div class="example-bar">
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                </div>
+                <div class="example-screen example-screen--img">
+                  <img src="./images/sample-image1.webp" alt="Dechive 디지털 매거진 사이트 디자인 샘플" />
+                </div>
+              </div>
+              <div class="example-info">
+                <span class="tag">샘플</span>
+                <h3>Dechive 디지털 매거진</h3>
+                <p>콘텐츠 구조와 레이아웃을 중심으로 설계한 디지털 매거진 사이트입니다.</p>
+              </div>
+            </article>
+
+            <article class="example-card">
+              <div class="example-frame">
+                <div class="example-bar">
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                </div>
+                <div class="example-screen example-screen--img">
+                  <img src="./images/sample-image2.svg" alt="문서24시 자동문서 발송 서비스 UI 샘플" />
+                </div>
+              </div>
+              <div class="example-info">
+                <span class="tag">자동화 샘플</span>
+                <h3>문서24시 자동문서 발송</h3>
+                <p>청구서·견적서·계약서를 조건에 맞게 자동으로 발송하는 업무 자동화 설계 샘플입니다.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================
+         7. FAQ SECTION
+         ================================================ -->
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title">자주 묻는 질문</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>GitHub Pages로 만든 홈페이지도 괜찮나요?</summary>
+              <p>
+                간단한 사업 소개와 문의 유도 페이지라면 충분합니다. 복잡한
+                회원가입, 결제, 관리자 기능이 필요한 경우에는 별도 서비스 구조를
+                제안합니다.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>AI로 자동 생성만 해주는 건가요?</summary>
+              <p>
+                아닙니다. AI를 활용하더라도 최종 구조, 문구, 흐름은 사람이
+                검토하고 정리합니다.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>어떤 분들에게 적합한가요?</summary>
+              <p>
+                강사, 작은 사업자, 프리랜서처럼 자신이 하는 일을 명확하게
+                소개하고 문의를 받고 싶은 분들에게 적합합니다.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>제작 전에 무엇을 준비해야 하나요?</summary>
+              <p>
+                현재 하는 일, 제공하는 서비스, 연락 방법, 참고하고 싶은 사이트
+                정도만 있어도 시작할 수 있습니다.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>자동화는 어떤 걸 만들어드리나요?</summary>
+              <p>
+                정해진 도구나 방법이 없습니다. 먼저 어떤 반복 업무에 시간이 가장
+                많이 들어가는지 함께 파악합니다. 그 다음, Notion · Google Sheets
+                · Make · ChatGPT 등을 상황에 맞게 조합해 실제로 쓸 수 있는
+                방법을 설계합니다. "자동화를 해드릴게요"보다 "지금 이게 자동화가
+                되면 얼마나 달라지는지"를 먼저 보는 방식입니다.
+              </p>
+            </details>
+
+            <details class="faq-item">
+              <summary>강의는 어떤 내용인가요?</summary>
+              <p>
+                정해진 커리큘럼이 없습니다. 같은 주제라도 대상이 달라지면 내용이
+                달라집니다. 지금 이 사람이 실제로 막히는 지점, 당장 써먹을 수
+                있는 것이 무엇인지를 먼저 파악하고 수업을 설계합니다. 일반론적인
+                강의가 아니라, 수업이 끝나고 나서 바로 적용할 수 있는 것을
+                목표로 합니다.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================
+         8. FINAL CTA SECTION
+         ================================================ -->
+      <section
+        class="section section--cta"
+        id="contact"
+        aria-labelledby="cta-title"
+      >
+        <div class="container cta-inner">
+          <p class="eyebrow">문의</p>
+          <h2 id="cta-title">무엇이 필요한지 모르겠어도 괜찮습니다</h2>
+          <p class="cta-desc">
+            홈페이지인지, 자동화인지, 강의인지 — 그것부터 함께 찾는 것이 첫 번째
+            작업입니다.
           </p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section current-focus" aria-labelledby="current-focus-title">
-      <div class="section-heading">
-        <p class="eyebrow">Current Focus</p>
-        <h2 id="current-focus-title">지금 검증하고 있는 네 가지 축</h2>
-      </div>
-
-      <div class="focus-grid">
-        <article class="focus-card">
-          <span class="tag">Information</span>
-          <h3>Instagram / dechiveyoon</h3>
-          <p>AI 정보 검증</p>
-          <small>빠르게 퍼지는 AI 소식이 실제로 쓸 수 있는 정보인지 확인합니다.</small>
-        </article>
-
-        <article class="focus-card">
-          <span class="tag">Knowledge</span>
-          <h3>Dechive</h3>
-          <p>AI 지식 검증</p>
-          <small>하나의 개념을 글로 구조화하며 이해가 재사용 가능한지 확인합니다.</small>
-        </article>
-
-        <article class="focus-card">
-          <span class="tag">Judgment</span>
-          <h3>Trading Lab</h3>
-          <p>투자 판단 검증</p>
-          <small>시장 해석과 매매 판단이 감정이 아니라 기준 위에 있는지 점검합니다.</small>
-        </article>
-
-        <article class="focus-card">
-          <span class="tag">Learning</span>
-          <h3>Woori-study</h3>
-          <p>자기주도 학습 검증</p>
-          <small>학습 계획, 실행, 회고가 실제 성장으로 이어지는지 기록합니다.</small>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="project-insight-title">
-      <div class="section-heading">
-        <p class="eyebrow">Project Insight</p>
-        <h2 id="project-insight-title">프로젝트별 검증 질문</h2>
-      </div>
-
-      <div class="insight-grid">
-        <article class="insight-card">
-          <div class="insight-topline">
-            <p class="label">Project</p>
-            <span class="status">Active</span>
+          <div class="cta-buttons">
+            <a href="https://open.kakao.com/me/dechive" target="_blank" rel="noreferrer" class="btn btn-white">카카오톡 문의</a>
+            <a href="mailto:heavenis0113@gmail.com" class="btn btn-outline-white"
+              >이메일 문의</a
+            >
           </div>
-          <h3>Instagram / dechiveyoon</h3>
-          <dl class="insight-list">
-            <div>
-              <dt>What I Verify</dt>
-              <dd>AI 정보가 과장, 반복, 홍보를 넘어 실제 판단에 도움이 되는지 검증합니다.</dd>
-            </div>
-            <div>
-              <dt>Current Question</dt>
-              <dd>짧은 콘텐츠 안에서도 출처, 맥락, 적용 가능성을 함께 전달할 수 있는가?</dd>
-            </div>
-            <div>
-              <dt>Latest Insight</dt>
-              <dd>AI 뉴스는 빠른 전달보다 무엇을 믿어도 되는지 구분하는 기준이 먼저 필요합니다.</dd>
-            </div>
-          </dl>
-        </article>
+        </div>
+      </section>
+    </main>
 
-        <article class="insight-card">
-          <div class="insight-topline">
-            <p class="label">Project</p>
-            <span class="status">Building</span>
-          </div>
-          <h3>Dechive</h3>
-          <dl class="insight-list">
-            <div>
-              <dt>What I Verify</dt>
-              <dd>AI, 데이터, 개발 지식을 다시 읽을 수 있는 짧은 지식 단위로 정리합니다.</dd>
-            </div>
-            <div>
-              <dt>Current Question</dt>
-              <dd>한 편의 글이 단순 요약이 아니라 다음 판단을 돕는 지식 카드가 될 수 있는가?</dd>
-            </div>
-            <div>
-              <dt>Latest Insight</dt>
-              <dd>좋은 기록은 긴 설명보다 질문, 개념, 적용 맥락이 분리되어 있을 때 다시 쓰기 쉽습니다.</dd>
-            </div>
-          </dl>
-        </article>
+    <!-- ================================================
+       FOOTER
+       ================================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <p class="footer-logo">Dechive Studio</p>
+          <p class="footer-tagline">
+            홈페이지 · 자동화 · 맞춤 강의 — 필요한 것부터 함께 찾습니다
+          </p>
+        </div>
 
-        <article class="insight-card">
-          <div class="insight-topline">
-            <p class="label">Project</p>
-            <span class="status">Research</span>
-          </div>
-          <h3>Trading Lab</h3>
-          <dl class="insight-list">
-            <div>
-              <dt>What I Verify</dt>
-              <dd>투자 판단이 뉴스 반응이나 감정이 아니라 시나리오와 리스크 기준에 근거하는지 확인합니다.</dd>
-            </div>
-            <div>
-              <dt>Current Question</dt>
-              <dd>진입 전 가설과 청산 후 회고를 분리하면 판단의 오류를 더 선명하게 볼 수 있는가?</dd>
-            </div>
-            <div>
-              <dt>Latest Insight</dt>
-              <dd>수익률보다 중요한 것은 같은 조건에서 같은 판단을 반복할 수 있는 구조입니다.</dd>
-            </div>
-          </dl>
-        </article>
+        <nav class="footer-nav" aria-label="푸터 메뉴">
+          <a href="#services">서비스</a>
+          <a href="#process">작업 방식</a>
+          <a href="#examples">작업 예시</a>
+          <a href="#contact">문의</a>
+        </nav>
 
-        <article class="insight-card">
-          <div class="insight-topline">
-            <p class="label">Project</p>
-            <span class="status">Manual Log</span>
-          </div>
-          <h3>Woori-study</h3>
-          <dl class="insight-list">
-            <div>
-              <dt>What I Verify</dt>
-              <dd>자기주도 학습이 계획표에서 끝나지 않고 실행, 피드백, 다음 행동으로 이어지는지 봅니다.</dd>
-            </div>
-            <div>
-              <dt>Current Question</dt>
-              <dd>매일의 작은 기록이 학습 지속성과 문제 해결력을 실제로 높이는가?</dd>
-            </div>
-            <div>
-              <dt>Latest Insight</dt>
-              <dd>학습 기록은 분량보다 다음에 무엇을 다르게 할지 남길 때 가치가 생깁니다.</dd>
-            </div>
-          </dl>
-        </article>
-      </div>
-    </section>
+        <div class="footer-contact">
+          <a href="mailto:heavenis0113@gmail.com">heavenis0113@gmail.com</a></div>
 
-    <section class="section" aria-labelledby="daily-log-title">
-      <div class="section-heading">
-        <p class="eyebrow">Daily Verification Log</p>
-        <h2 id="daily-log-title">매일 직접 추가하는 검증 기록</h2>
-        <p>
-          아래 기록은 자동으로 생성되지 않습니다. 하루의 작업, 검증한 것, 배운 인사이트를
-          직접 HTML 블록으로 추가해 쌓아갑니다.
-        </p>
-      </div>
-
-      <div class="log-list">
-        <article class="log-card">
-          <time datetime="2026-06-08">2026.06.08</time>
-          <div>
-            <h3>오늘 한 일</h3>
-            <p>검증형 포트폴리오 구조를 설계하고 네 개 프로젝트의 역할을 재정리했습니다.</p>
-          </div>
-          <div>
-            <h3>오늘 검증한 것</h3>
-            <p>프로젝트 소개가 아니라 무엇을 검증하는지 먼저 보여줄 때 방향성이 더 선명해지는지 확인했습니다.</p>
-          </div>
-          <div>
-            <h3>배운 인사이트</h3>
-            <p>포트폴리오는 결과물 목록보다 반복 가능한 판단 기준을 보여줄 때 신뢰를 만듭니다.</p>
-          </div>
-          <span class="project-chip">Portfolio</span>
-        </article>
-
-        <article class="log-card">
-          <time datetime="2026-06-07">2026.06.07</time>
-          <div>
-            <h3>오늘 한 일</h3>
-            <p>AI 관련 짧은 콘텐츠 후보를 정리하고, 전달할 정보와 보류할 정보를 구분했습니다.</p>
-          </div>
-          <div>
-            <h3>오늘 검증한 것</h3>
-            <p>출처가 불명확한 AI 트렌드 문장이 실제 사용자 판단에 도움이 되는지 검토했습니다.</p>
-          </div>
-          <div>
-            <h3>배운 인사이트</h3>
-            <p>빠르게 보이는 정보일수록 용어 정의와 적용 조건을 먼저 확인해야 합니다.</p>
-          </div>
-          <span class="project-chip">Instagram / dechiveyoon</span>
-        </article>
-
-        <article class="log-card">
-          <time datetime="2026-06-06">2026.06.06</time>
-          <div>
-            <h3>오늘 한 일</h3>
-            <p>Dechive 글 목록을 다시 보며 지식 기록의 제목과 검증 관점을 분리했습니다.</p>
-          </div>
-          <div>
-            <h3>오늘 검증한 것</h3>
-            <p>하나의 글이 단순 설명이 아니라 다음 질문으로 이어지는 구조를 갖는지 확인했습니다.</p>
-          </div>
-          <div>
-            <h3>배운 인사이트</h3>
-            <p>좋은 글 링크는 주제보다 어떤 판단을 돕는지 함께 적을 때 포트폴리오 자산이 됩니다.</p>
-          </div>
-          <span class="project-chip">Dechive</span>
-        </article>
-
-        <article class="log-card">
-          <time datetime="2026-06-05">2026.06.05</time>
-          <div>
-            <h3>오늘 한 일</h3>
-            <p>투자 판단 기록에서 진입 전 가설과 결과 회고를 분리하는 양식을 테스트했습니다.</p>
-          </div>
-          <div>
-            <h3>오늘 검증한 것</h3>
-            <p>같은 시장 상황을 사후 해석이 아니라 사전 기준으로 평가할 수 있는지 점검했습니다.</p>
-          </div>
-          <div>
-            <h3>배운 인사이트</h3>
-            <p>판단 기록은 맞고 틀림보다 왜 그렇게 봤는지를 남겨야 다음 판단을 개선합니다.</p>
-          </div>
-          <span class="project-chip">Trading Lab</span>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="proof-title">
-      <div class="section-heading">
-        <p class="eyebrow">Certificates &amp; Proof</p>
-        <h2 id="proof-title">배운 것과 적용한 곳</h2>
-      </div>
-
-      <div class="proof-grid">
-        <article class="proof-card">
-          <div class="proof-placeholder">Certificate</div>
-          <div class="proof-body">
-            <p class="label">Certificate</p>
-            <h3>AI / Data Course</h3>
-            <dl>
-              <div>
-                <dt>What I learned</dt>
-                <dd>데이터 기반 사고와 AI 도구를 문제 해결 과정에 연결하는 방법</dd>
-              </div>
-              <div>
-                <dt>Where I applied it</dt>
-                <dd>Dechive 글 구조와 AI 정보 검증 체크리스트 설계</dd>
-              </div>
-            </dl>
-          </div>
-        </article>
-
-        <article class="proof-card">
-          <div class="proof-placeholder">Proof Link</div>
-          <div class="proof-body">
-            <p class="label">Certificate</p>
-            <h3>Web / Product Practice</h3>
-            <dl>
-              <div>
-                <dt>What I learned</dt>
-                <dd>정적 웹 페이지를 정보 구조 중심으로 설계하고 유지하는 방법</dd>
-              </div>
-              <div>
-                <dt>Where I applied it</dt>
-                <dd>검증형 포트폴리오 메인 페이지와 프로젝트 기록 카드</dd>
-              </div>
-            </dl>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="writing-title">
-      <div class="section-heading">
-        <p class="eyebrow">Selected Writings</p>
-        <h2 id="writing-title">검증 관점으로 읽는 Dechive 글</h2>
-      </div>
-
-      <div class="writing-grid">
-        <a class="writing-card" href="https://dechive.dev/en/archive/what-null-leaves-behind" target="_blank" rel="noreferrer">
-          <span class="tag">Data / SQL</span>
-          <h3>SQL NULL is not an empty value</h3>
-          <p>검증 관점: 비어 있음과 알 수 없음을 구분해야 데이터 판단이 흔들리지 않습니다.</p>
-        </a>
-
-        <a class="writing-card" href="https://dechive.dev/en/archive/handing-over-thought-first" target="_blank" rel="noreferrer">
-          <span class="tag">AI / Prompt</span>
-          <h3>Before Asking AI for Answers, Hand Over Your Thinking</h3>
-          <p>검증 관점: AI 답변의 품질은 질문 전에 넘겨준 사고의 구조에서 시작됩니다.</p>
-        </a>
-
-        <a class="writing-card" href="https://dechive.dev/archive/asking-data-with-sql" target="_blank" rel="noreferrer">
-          <span class="tag">Data / SQL</span>
-          <h3>데이터를 묻는다는 것</h3>
-          <p>검증 관점: SQL은 데이터를 꺼내는 기술이 아니라 질문을 명확히 하는 도구입니다.</p>
-        </a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p>© Demian</p>
-      <div>
-        <a href="https://github.com/heavenis0113" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://dechive.dev" target="_blank" rel="noreferrer">Dechive</a>
-        <a href="mailto:heavenis0113@gmail.com">Email</a>
+        <p class="footer-copy">© 2026 Dechive Studio. All rights reserved.</p>
       </div>
     </footer>
-  </main>
-</body>
+
+    <script src="./script.js"></script>
+  </body>
 </html>
