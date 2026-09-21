@@ -27,9 +27,20 @@ h1{font-size:clamp(38px,6vw,68px);line-height:1.03;margin:13px 0 18px;letter-spa
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
 .btn{border:0;border-radius:12px;padding:12px 16px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .btn.primary{background:var(--ink);color:#fff}.btn.secondary{background:#fff;border:1px solid var(--line)}.btn.soft{background:var(--soft)}
-.hero-card{background:#111827;color:#fff;border-radius:24px;padding:24px;box-shadow:var(--shadow)}
-.flow{display:grid;gap:8px;margin-top:15px}.flow-row{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:13px;background:rgba(255,255,255,.045)}
-.flow-num{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.1);font-size:11px;font-weight:900}.flow-row strong{font-size:13px}.flow-row small{display:block;color:#aeb7c5;margin-top:3px}
+.hero-card{background:#fff;color:var(--text);border-radius:24px;padding:24px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.workflow-visual{position:relative;display:grid;gap:14px;margin-top:18px}
+.workflow-track{position:absolute;left:29px;top:28px;bottom:28px;width:2px;background:linear-gradient(to bottom,#d7dde5,#9ca8b7,#d7dde5);overflow:hidden}
+.workflow-track::after{content:"";position:absolute;left:0;top:-28px;width:2px;height:28px;background:#111827;animation:flowMove 2.6s linear infinite}
+@keyframes flowMove{0%{transform:translateY(0)}100%{transform:translateY(220px)}}
+.workflow-step{position:relative;display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:12px;border:1px solid var(--line);border-radius:15px;padding:13px 14px;background:#fff}
+.workflow-node{width:58px;height:58px;border-radius:17px;border:1px solid #d8dde4;background:#fafbfc;display:grid;place-items:center;font-size:12px;font-weight:950;z-index:1}
+.workflow-copy strong{font-size:14px}.workflow-copy small{display:block;color:var(--muted);margin-top:4px;line-height:1.4}
+.workflow-chip{font-size:10px;font-weight:900;color:var(--muted);background:var(--soft);border-radius:999px;padding:5px 7px}
+.workflow-step.active{border-color:#aeb8c5;background:#fbfcfd}
+.workflow-step.active .workflow-node{background:#111827;color:#fff;border-color:#111827}
+.workflow-arrow{font-size:18px;color:#a5adb8}
+@media(prefers-reduced-motion:reduce){.workflow-track::after{animation:none}}
+@media(max-width:520px){.workflow-step{grid-template-columns:50px 1fr}.workflow-node{width:50px;height:50px}.workflow-chip{display:none}.workflow-track{left:25px}}
 section{padding:38px 0}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:18px}.section-head h2{font-size:30px;letter-spacing:-.025em;margin:0}.section-head p{font-size:13px;color:var(--muted);line-height:1.6;max-width:560px;margin:0}
 @media(max-width:720px){.section-head{align-items:flex-start;flex-direction:column}}
 .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}@media(max-width:900px){.grid5{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid5{grid-template-columns:1fr}}
@@ -60,7 +71,7 @@ section{padding:38px 0}.section-head{display:flex;justify-content:space-between;
 <body>
 <nav class="nav">
  <div class="nav-in">
-   <div class="logo">DECHIVE AUTOMATION CLASS</div>
+   <div class="logo">DECHIVE CLASS</div>
    <div class="menu">
      <a href="#about">수업 소개</a>
      <a href="#structure">자동화 구조</a>
@@ -75,7 +86,7 @@ section{padding:38px 0}.section-head{display:flex;justify-content:space-between;
  <header class="hero" id="about">
    <div>
      <div class="eyebrow">SHORTFORM AUTOMATION · CLASS</div>
-     <h1>자동화를 쓰는 법이 아니라<br>자동화를 만드는 법.</h1>
+     <h1>자동화를<br>쓰는 법이 아닌 만드는 법</h1>
      <p>영상 하나를 여러 플랫폼에 보내는 프로그램을 직접 해부하면서, 반복되는 일을 입력·규칙·변환·실행·검증으로 나누고 프로그램으로 만드는 과정을 배웁니다.</p>
      <div class="hero-actions">
        <a class="btn primary" href="#demo">예시 먼저 보기</a>
@@ -83,13 +94,14 @@ section{padding:38px 0}.section-head{display:flex;justify-content:space-between;
      </div>
    </div>
    <div class="hero-card">
-     <div class="eyebrow" style="color:#9da8b8">TODAY'S CORE FLOW</div>
-     <div class="flow">
-       <div class="flow-row"><div class="flow-num">01</div><div><strong>입력</strong><small>무엇이 프로그램에 들어오는가?</small></div></div>
-       <div class="flow-row"><div class="flow-num">02</div><div><strong>규칙</strong><small>사람이 반복하던 판단은 무엇인가?</small></div></div>
-       <div class="flow-row"><div class="flow-num">03</div><div><strong>변환</strong><small>규칙을 적용하면 결과가 어떻게 달라지는가?</small></div></div>
-       <div class="flow-row"><div class="flow-num">04</div><div><strong>실행</strong><small>프로그램이 실제 행동을 한다.</small></div></div>
-       <div class="flow-row"><div class="flow-num">05</div><div><strong>검증</strong><small>원하는 결과가 실제로 나왔는지 확인한다.</small></div></div>
+     <div class="eyebrow">WORKFLOW</div>
+     <div class="workflow-visual" id="workflowVisual">
+       <div class="workflow-track"></div>
+       <div class="workflow-step active" data-workflow-step="0"><div class="workflow-node">01</div><div class="workflow-copy"><strong>입력</strong><small>영상·제목·본문이 들어옵니다.</small></div><span class="workflow-chip">INPUT</span></div>
+       <div class="workflow-step" data-workflow-step="1"><div class="workflow-node">02</div><div class="workflow-copy"><strong>규칙</strong><small>플랫폼별 판단 기준을 불러옵니다.</small></div><span class="workflow-chip">RULE</span></div>
+       <div class="workflow-step" data-workflow-step="2"><div class="workflow-node">03</div><div class="workflow-copy"><strong>변환</strong><small>영상과 글을 플랫폼에 맞게 바꿉니다.</small></div><span class="workflow-chip">TRANSFORM</span></div>
+       <div class="workflow-step" data-workflow-step="3"><div class="workflow-node">04</div><div class="workflow-copy"><strong>실행</strong><small>게시·예약·업로드 패키지를 실행합니다.</small></div><span class="workflow-chip">EXECUTE</span></div>
+       <div class="workflow-step" data-workflow-step="4"><div class="workflow-node">05</div><div class="workflow-copy"><strong>검증</strong><small>성공·실패와 실제 결과를 확인합니다.</small></div><span class="workflow-chip">VERIFY</span></div>
      </div>
    </div>
  </header>
@@ -214,6 +226,18 @@ TikTok:
 </div>
 
 <script>
+const workflowSteps=[...document.querySelectorAll('[data-workflow-step]')];
+let workflowIndex=0;
+let workflowTimer=null;
+function showWorkflowStep(index){
+  workflowSteps.forEach((el,i)=>el.classList.toggle('active',i===index));
+}
+if(workflowSteps.length){
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    workflowTimer=setInterval(()=>{workflowIndex=(workflowIndex+1)%workflowSteps.length;showWorkflowStep(workflowIndex)},1300);
+  }
+}
 const fileInput=document.getElementById('demoFile');
 const fileName=document.getElementById('demoFileName');
 const statuses=document.getElementById('demoStatuses');
