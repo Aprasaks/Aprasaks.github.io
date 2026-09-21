@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shortform Publisher</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#17191d;--muted:#707782;--line:#e2e5e9;--ink:#111827;--soft:#f0f2f5;--auto:#eef8f3;--manual:#fff8e9}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+.wrap{max-width:1040px;margin:auto;padding:36px 20px 64px}.head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:24px}.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;color:var(--muted)}h1{font-size:32px;line-height:1.15;margin:7px 0 8px}.sub{max-width:700px;color:var(--muted);line-height:1.55}.badge{padding:8px 10px;border:1px solid #cde6d8;background:#edf9f3;border-radius:999px;font-size:12px;color:#176a4a;white-space:nowrap}
+.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}@media(max-width:820px){.grid{grid-template-columns:1fr}.head{flex-direction:column}}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.card h2{font-size:16px;margin:0 0 14px}.label{display:block;font-size:13px;font-weight:800;margin:16px 0 7px}.input,.textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font:inherit;outline:none;background:#fff}.textarea{min-height:120px;resize:vertical}.input:focus,.textarea:focus{border-color:#9ca3af;box-shadow:0 0 0 3px rgba(17,24,39,.06)}
+.drop{border:1.5px dashed #c5cad1;border-radius:14px;padding:24px;text-align:center;background:#fafbfc;cursor:pointer}.drop strong{display:block;margin-bottom:5px}.drop small{color:var(--muted)}.preview{display:none;margin-top:12px;background:#000;border-radius:12px;overflow:hidden}.preview video{width:100%;display:block;max-height:340px}
+.platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}@media(max-width:500px){.platforms{grid-template-columns:1fr}}.platform{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer}.platform input{width:17px;height:17px}.platform.auto{background:var(--auto)}.platform.manual{background:var(--manual)}.name{font-size:14px;font-weight:800}.desc{font-size:11px;color:var(--muted);margin-top:2px}
+.btns{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:12px 15px;font:inherit;font-weight:800;cursor:pointer}.btn.primary{background:var(--ink);color:#fff;flex:1}.btn.secondary{background:var(--soft);color:var(--text)}.divider{height:1px;background:var(--line);margin:18px 0}.note{font-size:12px;color:var(--muted);line-height:1.55}
+.result{display:none;margin-top:18px}.row{border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-top:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}.row-title{font-size:13px;font-weight:800}.row-meta{font-size:11px;color:var(--muted);margin-top:2px}.tag{font-size:11px;border-radius:999px;padding:5px 8px;background:#eef2f7;color:#49515c;white-space:nowrap}.tag.ready{background:#eaf8f1;color:#16704f}
+.link{display:block;text-decoration:none;color:var(--text);background:var(--soft);border-radius:10px;padding:10px 11px;margin-top:8px;font-size:13px;font-weight:800}.link small{display:block;font-weight:400;color:var(--muted);margin-top:2px}.callout{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:12px;line-height:1.55;color:var(--muted)}.foot{margin-top:22px;color:var(--muted);font-size:11px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <div class="eyebrow">SHORTFORM PUBLISHER</div>
+      <h1>영상 하나로 여러 플랫폼에 배포 준비</h1>
+      <div class="sub">영상과 게시글을 한 번 준비하고 채널을 선택하세요. 오늘 수업에서는 이 베이스에 플랫폼별 제목, Hook, CTA, BGM, 커버 같은 컨셉을 하나씩 추가합니다.</div>
+    </div>
+    <div class="badge">Class Base v0.1</div>
+  </div>
+
+  <div class="grid">
+    <main class="card">
+      <h2>1. 콘텐츠 준비</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="video" accept="video/mp4,video/quicktime,video/webm" hidden>
+        <strong id="fileName">영상 선택</strong>
+        <small>MP4 · MOV · WebM</small>
+      </label>
+      <div class="preview" id="preview"><video id="player" controls></video></div>
+
+      <label class="label" for="text">게시글</label>
+      <textarea id="text" class="textarea" placeholder="영상과 함께 올릴 글을 입력하세요."></textarea>
+
+      <label class="label" for="schedule">예약 시간 <span style="font-weight:400;color:var(--muted)">(선택)</span></label>
+      <input id="schedule" class="input" type="datetime-local">
+
+      <div class="divider"></div>
+      <h2>2. 플랫폼 선택</h2>
+      <div class="platforms">
+        <label class="platform auto"><input type="checkbox" data-p="instagram"><div><div class="name">Instagram</div><div class="desc">자동 발행 연결 가능</div></div></label>
+        <label class="platform auto"><input type="checkbox" data-p="facebook"><div><div class="name">Facebook Page</div><div class="desc">자동 발행 연결 가능</div></div></label>
+        <label class="platform auto"><input type="checkbox" data-p="tiktok"><div><div class="name">TikTok</div><div class="desc">자동 발행 연결 가능</div></div></label>
+        <label class="platform auto"><input type="checkbox" data-p="threads"><div><div class="name">Threads</div><div class="desc">자동 발행 연결 가능</div></div></label>
+        <label class="platform manual"><input type="checkbox" data-p="naver"><div><div class="name">Naver Clip</div><div class="desc">업로드 준비 · 수동 게시</div></div></label>
+        <label class="platform manual"><input type="checkbox" data-p="kakao"><div><div class="name">Kakao 숏폼</div><div class="desc">업로드 준비 · 수동 게시</div></div></label>
+        <label class="platform manual"><input type="checkbox" data-p="x"><div><div class="name">X</div><div class="desc">v0.1은 게시 준비</div></div></label>
+      </div>
+
+      <div class="btns">
+        <button class="btn primary" id="prepare">선택 채널 준비</button>
+        <button class="btn secondary" id="reset">초기화</button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="label">준비 결과</div>
+        <div id="rows"></div>
+      </div>
+    </main>
+
+    <aside class="card">
+      <h2>오늘의 베이스 구조</h2>
+      <div class="callout">지금 버전은 <strong>업로드 → 게시글 → 채널 선택 → 게시 준비</strong>만 제공합니다. 오늘 수업에서 각 플랫폼 성격에 맞는 편집 컨셉을 여기에 추가합니다.</div>
+
+      <div class="divider"></div>
+      <h2>자동 발행 연결 대상</h2>
+      <div class="note">Instagram · Facebook Page · TikTok · Threads는 ANKK 같은 멀티채널 발행 엔진 또는 각 플랫폼 공식 API를 서버에서 연결할 수 있습니다. 공개 배포판에는 API 키를 넣지 않습니다.</div>
+
+      <div class="divider"></div>
+      <h2>수동 게시 채널</h2>
+      <a class="link" href="https://clip.naver.com/" target="_blank" rel="noreferrer">Naver Clip<small>완성 영상과 게시 정보를 직접 업로드</small></a>
+      <a class="link" href="https://shortform-studio.kakao.com/" target="_blank" rel="noreferrer">Kakao 숏폼 스튜디오<small>완성 영상과 썸네일을 직접 업로드</small></a>
+      <a class="link" href="https://x.com/compose/post" target="_blank" rel="noreferrer">X 게시 화면<small>영상과 게시글을 직접 업로드</small></a>
+
+      <div class="divider"></div>
+      <h2>오늘 추가할 컨셉</h2>
+      <div class="note">Instagram: 첫 화면 제목 · 저장 CTA<br>TikTok: Hook · 빠른 자막<br>Threads: 본문·질문 중심<br>Naver Clip: 정보형 제목 · 커버 · 태그<br>Kakao: 썸네일 · 공유 CTA<br>Facebook: 읽기 쉬운 설명형<br>X: 영상 수정 최소 · 짧은 게시 문구</div>
+    </aside>
+  </div>
+  <div class="foot">공개 수업용 베이스. SNS 비밀번호나 API 키를 이 페이지에 입력하지 마세요.</div>
+</div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let file=null;
+const names={instagram:'Instagram',facebook:'Facebook Page',tiktok:'TikTok',threads:'Threads',naver:'Naver Clip',kakao:'Kakao 숏폼',x:'X'};
+$('#drop').onclick=()=>$('#video').click();
+$('#video').onchange=e=>{file=e.target.files[0]||null;if(file){$('#fileName').textContent=file.name;$('#preview').style.display='block';$('#player').src=URL.createObjectURL(file)}};
+$('#prepare').onclick=()=>{if(!file)return alert('영상을 먼저 선택하세요.');const selected=$$('[data-p]:checked').map(x=>x.dataset.p);if(!selected.length)return alert('플랫폼을 하나 이상 선택하세요.');$('#result').style.display='block';$('#rows').innerHTML=selected.map(p=>`<div class="row"><div><div class="row-title">${names[p]}</div><div class="row-meta">${p==='naver'||p==='kakao'||p==='x'?'수동 업로드 준비':'서버 API 연결 시 자동 발행 가능'}</div></div><span class="tag ready">준비 완료</span></div>`).join('')};
+$('#reset').onclick=()=>{file=null;$('#video').value='';$('#fileName').textContent='영상 선택';$('#preview').style.display='none';$('#text').value='';$('#schedule').value='';$$('[data-p]').forEach(x=>x.checked=false);$('#result').style.display='none'};
+</script>
+</body>
+</html>
