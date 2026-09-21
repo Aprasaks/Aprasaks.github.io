@@ -4,17 +4,60 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DECHIVE MultiPost</title>
-<meta name="description" content="영상 하나를 여러 소셜 플랫폼에 배포하기 위한 멀티플랫폼 퍼블리싱 베이스">
+<meta name="description" content="내가 만든 멀티플랫폼 콘텐츠 자동화 프로그램을 직접 이해하고 확장하는 수업용 베이스">
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--text:#17191d;--muted:#717884;--line:#e2e5e9;--ink:#111827;--soft:#f1f3f5;--green:#eaf8f1;--greenText:#176c4b;--amber:#fff7e7;--amberText:#8b5a08}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
-.wrap{max-width:1120px;margin:auto;padding:34px 20px 64px}.top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:22px}.brand{font-size:12px;letter-spacing:.14em;font-weight:900;color:var(--muted)}h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:760px;color:var(--muted);line-height:1.6}.version{border:1px solid #d8dde3;background:#fff;border-radius:999px;padding:8px 11px;font-size:12px;color:var(--muted);white-space:nowrap}
-.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}@media(max-width:860px){.layout{grid-template-columns:1fr}.top{flex-direction:column}}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.card h2{font-size:16px;margin:0 0 14px}.section-title{font-size:13px;font-weight:900;margin:18px 0 8px}.input,.textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font:inherit;background:#fff;outline:none}.textarea{min-height:105px;resize:vertical}.input:focus,.textarea:focus{border-color:#9ca3af;box-shadow:0 0 0 3px rgba(17,24,39,.05)}
-.drop{display:block;border:1.5px dashed #c5cad1;border-radius:14px;padding:24px;text-align:center;background:#fafbfc;cursor:pointer}.drop strong{display:block}.drop small{display:block;margin-top:5px;color:var(--muted)}.preview{display:none;margin-top:12px;background:#000;border-radius:12px;overflow:hidden}.preview video{display:block;width:100%;max-height:360px}
-.platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}@media(max-width:520px){.platforms{grid-template-columns:1fr}}.platform{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer;background:#fff}.platform:has(input:checked){border-color:#afb6bf;background:#fafbfc}.platform input{width:17px;height:17px}.name{font-size:14px;font-weight:900}.desc{font-size:11px;color:var(--muted);margin-top:2px}
-.actions{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:12px 15px;font:inherit;font-weight:900;cursor:pointer}.primary{background:var(--ink);color:#fff;flex:1}.secondary{background:var(--soft);color:var(--text)}.ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
-.result{display:none;margin-top:18px}.result-card{border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:9px}.result-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.result-title{font-size:14px;font-weight:900}.status{font-size:11px;border-radius:999px;padding:5px 8px;background:var(--green);color:var(--greenText)}.manual{background:var(--amber);color:var(--amberText)}.result-body{font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px}.mini-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.mini{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer;text-decoration:none;color:var(--text)}
-.callout{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:12px;line-height:1.6;color:var(--muted)}.divider{height:1px;background:var(--line);margin:18px 0}.roadmap{display:grid;gap:8px}.road{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.5}.dot{width:8px;height:8px;border-radius:50%;background:#9ca3af;margin-top:5px;flex:0 0 auto}.foot{margin-top:22px;color:var(--muted);font-size:11px;line-height:1.55}
+:root{
+  --bg:#f6f7f9;--card:#fff;--text:#17191d;--muted:#717884;--line:#e2e5e9;
+  --ink:#111827;--soft:#f1f3f5;--green:#eaf8f1;--greenText:#176c4b;
+  --blue:#eef4ff;--blueText:#2f5fb3;--amber:#fff7e7;--amberText:#8b5a08
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea{font:inherit}
+.wrap{max-width:1160px;margin:auto;padding:30px 20px 64px}
+.top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:20px}
+.brand{font-size:12px;letter-spacing:.14em;font-weight:900;color:var(--muted)}
+h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(--muted);line-height:1.6}
+.version{border:1px solid #d8dde3;background:#fff;border-radius:999px;padding:8px 11px;font-size:12px;color:var(--muted);white-space:nowrap}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0 22px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.top{flex-direction:column}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.step{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;cursor:pointer;transition:.18s}
+.step:hover{transform:translateY(-1px);border-color:#bfc5cc}.step-num{font-size:11px;color:var(--muted);font-weight:800}.step-title{font-size:14px;font-weight:900;margin-top:5px}.step-desc{font-size:11px;line-height:1.45;color:var(--muted);margin-top:4px}
+.layout{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card h2{font-size:16px;margin:0 0 14px}.section-title{font-size:13px;font-weight:900;margin:18px 0 8px}
+.input,.textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;background:#fff;outline:none}
+.textarea{min-height:105px;resize:vertical}.input:focus,.textarea:focus{border-color:#9ca3af;box-shadow:0 0 0 3px rgba(17,24,39,.05)}
+.drop{display:block;border:1.5px dashed #c5cad1;border-radius:14px;padding:24px;text-align:center;background:#fafbfc;cursor:pointer}
+.drop strong{display:block}.drop small{display:block;margin-top:5px;color:var(--muted)}
+.preview{display:none;margin-top:12px;background:#000;border-radius:12px;overflow:hidden}.preview video{display:block;width:100%;max-height:360px}
+.platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+@media(max-width:520px){.platforms{grid-template-columns:1fr}}
+.platform{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff}
+.platform:has(input:checked){border-color:#afb6bf;background:#fafbfc}.platform input{width:17px;height:17px}
+.platform-main{flex:1;cursor:pointer}.name{font-size:14px;font-weight:900}.desc{font-size:11px;color:var(--muted);margin-top:2px}
+.info-btn{border:0;background:var(--soft);width:28px;height:28px;border-radius:9px;font-weight:900;cursor:pointer;color:var(--muted)}
+.actions{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:900;cursor:pointer}
+.primary{background:var(--ink);color:#fff;flex:1}.secondary{background:var(--soft);color:var(--text)}.ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
+.result{display:none;margin-top:18px}.result-card{border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:9px}
+.result-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.result-title{font-size:14px;font-weight:900}
+.status{font-size:11px;border-radius:999px;padding:5px 8px;background:var(--green);color:var(--greenText)}.manual{background:var(--amber);color:var(--amberText)}
+.result-body{font-size:12px;color:var(--muted);line-height:1.55;margin-top:8px}.mini-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.mini{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:800;cursor:pointer;text-decoration:none;color:var(--text)}
+.callout{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:12px;line-height:1.6;color:var(--muted)}
+.connect-list{display:grid;gap:9px}.connect-row{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.connect-left strong{display:block;font-size:13px}.connect-left small{color:var(--muted)}
+.connect-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:900;cursor:pointer}
+.divider{height:1px;background:var(--line);margin:18px 0}.foot{margin-top:22px;color:var(--muted);font-size:11px;line-height:1.55}
+.modal-backdrop{position:fixed;inset:0;background:rgba(17,24,39,.46);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal{width:min(620px,100%);max-height:82vh;overflow:auto;background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 22px 70px rgba(0,0,0,.22)}
+.modal-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:20px 20px 10px}.modal-title{font-size:20px;font-weight:900}.modal-sub{font-size:12px;color:var(--muted);margin-top:5px}
+.close{border:0;background:var(--soft);border-radius:10px;width:34px;height:34px;cursor:pointer;font-size:18px}
+.modal-body{padding:0 20px 20px;font-size:14px;line-height:1.7;color:#3e444c}.modal-body h3{font-size:14px;color:var(--text);margin:16px 0 6px}
+.modal-body ul{padding-left:20px;margin:8px 0}.modal-body .tip{margin-top:14px;background:var(--blue);color:var(--blueText);border-radius:12px;padding:12px;font-size:13px}
+.modal-actions{display:flex;gap:8px;padding:0 20px 20px}.modal-actions button{flex:1}
 </style>
 </head>
 <body>
@@ -22,15 +65,23 @@
   <div class="top">
     <div>
       <div class="brand">DECHIVE MULTIPOST</div>
-      <h1>하나의 영상을 여러 플랫폼에 배포 준비</h1>
-      <div class="sub">원본 영상과 기본 게시글을 한 번 준비한 뒤 배포할 플랫폼을 선택합니다. 플랫폼별 편집 컨셉과 실제 자동 게시 기능은 이 베이스 위에 독립 모듈로 확장합니다.</div>
+      <h1>내가 쓰는 자동화 프로그램을 직접 만들어가는 구조</h1>
+      <div class="sub">복잡한 기술 용어를 배우는 것이 목적이 아닙니다. 반복하던 일을 하나씩 규칙으로 만들고, 그 규칙을 프로그램에 넣어 자동화하는 흐름을 직접 경험합니다.</div>
     </div>
-    <div class="version">Independent Base · v0.2</div>
+    <div class="version">Class Base · v0.3</div>
+  </div>
+
+  <div class="steps">
+    <button class="step" data-step="connect"><div class="step-num">STEP 1</div><div class="step-title">계정 연결</div><div class="step-desc">처음 한 번 내 SNS를 연결합니다.</div></button>
+    <button class="step" data-step="upload"><div class="step-num">STEP 2</div><div class="step-title">영상 넣기</div><div class="step-desc">배포할 원본 영상을 한 번만 준비합니다.</div></button>
+    <button class="step" data-step="select"><div class="step-num">STEP 3</div><div class="step-title">플랫폼 선택</div><div class="step-desc">어디에 보낼지 선택합니다.</div></button>
+    <button class="step" data-step="rules"><div class="step-num">STEP 4</div><div class="step-title">규칙 만들기</div><div class="step-desc">플랫폼마다 어떻게 다르게 보여줄지 정합니다.</div></button>
+    <button class="step" data-step="run"><div class="step-num">STEP 5</div><div class="step-title">자동화 실행</div><div class="step-desc">컴퓨터가 정해둔 규칙을 반복합니다.</div></button>
   </div>
 
   <div class="layout">
     <main class="card">
-      <h2>콘텐츠</h2>
+      <h2>콘텐츠 준비</h2>
 
       <label class="drop" id="drop">
         <input type="file" id="video" accept="video/mp4,video/quicktime,video/webm" hidden>
@@ -40,7 +91,7 @@
       <div class="preview" id="preview"><video id="player" controls></video></div>
 
       <div class="section-title">기본 제목</div>
-      <input class="input" id="title" maxlength="120" placeholder="모든 플랫폼에 공통으로 사용할 기본 제목">
+      <input class="input" id="title" maxlength="120" placeholder="예: AI로 사진을 영상으로 만드는 방법">
 
       <div class="section-title">기본 게시글</div>
       <textarea class="textarea" id="body" placeholder="영상과 함께 올릴 기본 글을 입력하세요."></textarea>
@@ -50,15 +101,15 @@
 
       <div class="divider"></div>
 
-      <h2>배포 플랫폼</h2>
+      <h2>플랫폼 선택</h2>
       <div class="platforms">
-        <label class="platform"><input type="checkbox" data-p="instagram"><div><div class="name">Instagram Reels</div><div class="desc">자동 게시 모듈 예정</div></div></label>
-        <label class="platform"><input type="checkbox" data-p="facebook"><div><div class="name">Facebook Page</div><div class="desc">자동 게시 모듈 예정</div></div></label>
-        <label class="platform"><input type="checkbox" data-p="tiktok"><div><div class="name">TikTok</div><div class="desc">자동 게시 모듈 예정</div></div></label>
-        <label class="platform"><input type="checkbox" data-p="threads"><div><div class="name">Threads</div><div class="desc">자동 게시 모듈 예정</div></div></label>
-        <label class="platform"><input type="checkbox" data-p="naver"><div><div class="name">Naver Clip</div><div class="desc">게시 패키지 + 수동 업로드</div></div></label>
-        <label class="platform"><input type="checkbox" data-p="kakao"><div><div class="name">Kakao 숏폼</div><div class="desc">게시 패키지 + 수동 업로드</div></div></label>
-        <label class="platform"><input type="checkbox" data-p="x"><div><div class="name">X</div><div class="desc">게시 패키지 · API 검증 예정</div></div></label>
+        <div class="platform"><input type="checkbox" data-p="instagram"><div class="platform-main"><div class="name">Instagram Reels</div><div class="desc">비주얼 · 발견 · 저장/공유</div></div><button class="info-btn" data-info="instagram">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="facebook"><div class="platform-main"><div class="name">Facebook Page</div><div class="desc">공유 · 커뮤니티 · 원본성</div></div><button class="info-btn" data-info="facebook">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="tiktok"><div class="platform-main"><div class="name">TikTok</div><div class="desc">Hook · 사운드 · 빠른 몰입</div></div><button class="info-btn" data-info="tiktok">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="threads"><div class="platform-main"><div class="name">Threads</div><div class="desc">생각 · 질문 · 대화</div></div><button class="info-btn" data-info="threads">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="naver"><div class="platform-main"><div class="name">Naver Clip</div><div class="desc">정보 · 커버 · 태그</div></div><button class="info-btn" data-info="naver">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="kakao"><div class="platform-main"><div class="name">Kakao 숏폼</div><div class="desc">친근한 소비 · 공유 · 썸네일</div></div><button class="info-btn" data-info="kakao">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="x"><div class="platform-main"><div class="name">X</div><div class="desc">짧은 메시지 · 실시간 맥락</div></div><button class="info-btn" data-info="x">?</button></div>
       </div>
 
       <div class="actions">
@@ -77,31 +128,44 @@
     </main>
 
     <aside class="card">
-      <h2>이 프로그램의 구조</h2>
-      <div class="callout"><strong>오늘 버전은 우리 프로그램의 독립 베이스입니다.</strong><br>외부 멀티포스팅 서비스를 사용하거나 의존하지 않습니다. 이후 각 SNS의 공식 API 또는 허용된 게시 방식만 직접 연결합니다.</div>
+      <h2>내 채널</h2>
+      <div class="callout">여기서 어려운 기술 용어를 알 필요는 없습니다. 나중에는 각 버튼을 눌러 내 계정을 한 번 연결하고, 이후에는 연결된 채널을 선택해서 사용하게 됩니다.</div>
 
       <div class="divider"></div>
-      <h2>오늘 수업에서 확장할 영역</h2>
-      <div class="roadmap">
-        <div class="road"><span class="dot"></span><div><strong>Platform Preset</strong><br>제목, Hook, CTA, 자막 위치, 커버, BGM 규칙</div></div>
-        <div class="road"><span class="dot"></span><div><strong>Video Transform</strong><br>플랫폼별 영상 렌더링</div></div>
-        <div class="road"><span class="dot"></span><div><strong>Publisher Adapter</strong><br>Instagram, Facebook, TikTok, Threads 등 공식 게시 API 연결</div></div>
-        <div class="road"><span class="dot"></span><div><strong>Manual Package</strong><br>Naver Clip·Kakao처럼 공개 게시 API가 확인되지 않은 채널의 업로드 준비</div></div>
+
+      <div class="connect-list">
+        <div class="connect-row"><div class="connect-left"><strong>Instagram / Facebook</strong><small>Meta 계정 연결</small></div><button class="connect-btn" data-connect="meta">연결 설명</button></div>
+        <div class="connect-row"><div class="connect-left"><strong>TikTok</strong><small>내 TikTok 계정 연결</small></div><button class="connect-btn" data-connect="tiktok">연결 설명</button></div>
+        <div class="connect-row"><div class="connect-left"><strong>Threads</strong><small>내 Threads 계정 연결</small></div><button class="connect-btn" data-connect="threads">연결 설명</button></div>
+        <div class="connect-row"><div class="connect-left"><strong>Naver Clip</strong><small>현재는 직접 업로드</small></div><button class="connect-btn" data-connect="naver">왜 직접?</button></div>
+        <div class="connect-row"><div class="connect-left"><strong>Kakao 숏폼</strong><small>현재는 직접 업로드</small></div><button class="connect-btn" data-connect="kakao">왜 직접?</button></div>
       </div>
 
       <div class="divider"></div>
-      <h2>현재 원칙</h2>
-      <div class="callout">SNS 비밀번호나 API 키는 브라우저에 저장하지 않습니다. 자동 게시 기능은 서버에서 계정 인증과 권한을 처리하도록 확장합니다.</div>
-
-      <div class="foot">오늘은 “한 영상을 여러 채널에 보내는 공통 구조”를 직접 만져보고, 그 다음 플랫폼별 컨셉이 왜 필요한지 추가하는 수업용 배포 버전입니다.</div>
+      <h2>오늘의 핵심</h2>
+      <div class="callout"><strong>자동화 = 우리가 규칙을 먼저 정하고, 컴퓨터가 그 규칙을 반복하게 만드는 것.</strong><br><br>오늘은 “계정 연결 기술”보다 “어떤 규칙을 프로그램에 넣을 것인가”를 배우는 것이 중심입니다.</div>
     </aside>
+  </div>
+
+  <div class="foot">공개 수업용 베이스. 영상 파일은 현재 서버에 업로드되지 않으며, 작업 초안은 각자의 브라우저에만 저장됩니다.</div>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-head">
+      <div><div class="modal-title" id="modalTitle"></div><div class="modal-sub" id="modalSub"></div></div>
+      <button class="close" id="modalClose" aria-label="닫기">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-actions"><button class="btn primary" id="modalOk">이해했어요</button></div>
   </div>
 </div>
 
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let file=null;
-let objectUrl=null;
+let file=null, objectUrl=null;
+const draftKey='dechive-multipost-draft-v03';
+
 const platforms={
  instagram:{name:'Instagram Reels',mode:'future',url:'https://www.instagram.com/'},
  facebook:{name:'Facebook Page',mode:'future',url:'https://www.facebook.com/'},
@@ -111,66 +175,145 @@ const platforms={
  kakao:{name:'Kakao 숏폼',mode:'manual',url:'https://shortform-studio.kakao.com/'},
  x:{name:'X',mode:'manual',url:'https://x.com/compose/post'}
 };
-const draftKey='dechive-multipost-draft-v02';
+
+const modalData={
+  connect:{
+    title:'STEP 1 · 계정 연결',
+    sub:'처음 한 번만 연결하면 됩니다.',
+    body:'<h3>무엇을 하는 단계인가요?</h3><p>내 Instagram, TikTok 같은 계정을 이 프로그램에서 사용할 수 있게 연결하는 단계입니다.</p><h3>사용자가 알아야 할 것은?</h3><ul><li>연결 버튼을 누릅니다.</li><li>해당 SNS의 공식 로그인 화면에서 로그인합니다.</li><li>사용 허용을 누릅니다.</li><li>다시 프로그램으로 돌아오면 연결 완료입니다.</li></ul><div class="tip">복잡한 인증 기술을 외울 필요는 없습니다. 사용자는 “내 계정을 프로그램에 연결한다”만 이해하면 됩니다.</div>'
+  },
+  upload:{
+    title:'STEP 2 · 영상 넣기',
+    sub:'원본은 한 번만 준비합니다.',
+    body:'<p>매번 플랫폼마다 영상을 다시 고르는 대신, 원본 영상을 한 번 넣고 그 영상을 여러 플랫폼용으로 변환하는 구조입니다.</p><h3>왜 필요한가요?</h3><p>자동화의 시작은 반복되는 입력을 줄이는 것입니다. 같은 영상을 여러 번 선택하는 것부터 없애는 겁니다.</p>'
+  },
+  select:{
+    title:'STEP 3 · 플랫폼 선택',
+    sub:'어디에 보낼지 고릅니다.',
+    body:'<p>Instagram만 올릴 수도 있고, TikTok과 Naver Clip을 같이 선택할 수도 있습니다.</p><h3>중요한 점</h3><p>플랫폼을 여러 개 선택했다고 해서 똑같은 영상과 글을 그대로 보내야 한다는 뜻은 아닙니다. 다음 단계에서 각 플랫폼 규칙을 다르게 만들게 됩니다.</p>'
+  },
+  rules:{
+    title:'STEP 4 · 규칙 만들기',
+    sub:'이 수업에서 가장 중요한 단계입니다.',
+    body:'<p>플랫폼마다 사람들이 콘텐츠를 소비하는 방식이 다릅니다.</p><ul><li>Instagram: 첫 화면 제목과 저장/공유</li><li>TikTok: 초반 Hook과 사운드</li><li>Threads: 영상보다 본문과 질문</li><li>Naver Clip: 정보형 제목, 커버, 태그</li></ul><div class="tip">자동화에서 가장 중요한 것은 AI가 아닙니다. “무엇을 어떻게 반복할지” 사람이 규칙을 정하는 것입니다.</div>'
+  },
+  run:{
+    title:'STEP 5 · 자동화 실행',
+    sub:'컴퓨터가 규칙을 반복합니다.',
+    body:'<p>우리가 만든 규칙이 완성되면 프로그램이 플랫폼별로 반복 작업을 대신합니다.</p><p>최종적으로는 영상 변환 → 게시글 생성 → 가능한 플랫폼 자동 게시 → 나머지는 업로드 준비까지 이어집니다.</p>'
+  },
+  instagram:{
+    title:'Instagram Reels',
+    sub:'비주얼 · 발견 · 저장/공유',
+    body:'<h3>이 플랫폼에서는?</h3><p>첫 화면에서 내용을 바로 이해하고, 저장하거나 친구에게 공유하고 싶게 만드는 것이 중요합니다.</p><h3>우리 규칙 후보</h3><ul><li>첫 1~2초 큰 제목</li><li>깔끔한 자막</li><li>안전 영역 안에 핵심 텍스트</li><li>저장 또는 팔로우 CTA</li><li>별도 커버 이미지</li></ul>'
+  },
+  facebook:{
+    title:'Facebook Page',
+    sub:'공유 · 커뮤니티 · 원본성',
+    body:'<p>Facebook은 공유와 커뮤니티 반응, 그리고 직접 만든 원본 콘텐츠의 가치를 중요하게 봅니다.</p><h3>우리 규칙 후보</h3><ul><li>읽기 쉬운 제목</li><li>설명형 자막</li><li>과도하게 빠른 편집은 피하기</li><li>공유/팔로우 CTA</li></ul>'
+  },
+  tiktok:{
+    title:'TikTok',
+    sub:'Hook · 사운드 · 빠른 몰입',
+    body:'<p>첫 순간에 넘기지 않게 만드는 것이 특히 중요합니다.</p><h3>우리 규칙 후보</h3><ul><li>첫 0~1.5초 Hook</li><li>크고 빠른 자막</li><li>사운드/BGM 적극 활용</li><li>댓글과 반응을 유도하는 마무리</li></ul><div class="tip">Instagram의 “제목”과 TikTok의 “Hook”은 같은 역할이 아닙니다.</div>'
+  },
+  threads:{
+    title:'Threads',
+    sub:'생각 · 질문 · 대화',
+    body:'<p>여기서는 영상 자체를 화려하게 바꾸는 것보다 영상과 함께 쓰는 생각과 질문이 더 중요합니다.</p><h3>우리 규칙 후보</h3><ul><li>영상 수정 최소</li><li>본문에 내 생각 추가</li><li>마지막에 질문</li><li>팔로우 CTA는 기본 OFF</li></ul>'
+  },
+  naver:{
+    title:'Naver Clip',
+    sub:'정보 · 커버 · 카테고리 · 태그',
+    body:'<p>Naver Clip은 영상만 준비하면 끝나는 플랫폼이 아닙니다. 커버, 본문, 해시태그, 카테고리, 정보 태그가 함께 중요합니다.</p><h3>우리 규칙 후보</h3><ul><li>정보형 첫 제목</li><li>별도 커버</li><li>본문 300자 이내</li><li>해시태그 최대 5개</li><li>카테고리/정보 태그 확인</li></ul><div class="tip">현재 일반 개발자가 쓰는 공개 자동 게시 API가 확인되지 않아, 우리 프로그램은 게시 직전 패키지까지 만들어주는 방향입니다.</div>'
+  },
+  kakao:{
+    title:'Kakao 숏폼',
+    sub:'친근한 소비 · 공유 · 썸네일',
+    body:'<p>카카오톡 안에서 보고 친구에게 공유하거나 댓글로 반응하는 흐름을 고려합니다.</p><h3>우리 규칙 후보</h3><ul><li>읽기 쉬운 첫 제목</li><li>별도 썸네일</li><li>공유/댓글 CTA</li><li>BGM은 선택 옵션</li></ul><div class="tip">BGM은 카카오가 강제하는 규칙이 아니라 우리가 정할 수 있는 브랜드 규칙입니다.</div>'
+  },
+  x:{
+    title:'X',
+    sub:'짧은 메시지 · 실시간 맥락',
+    body:'<p>영상 자체보다 짧고 명확한 게시 문구와 현재 맥락이 중요합니다.</p><h3>우리 규칙 후보</h3><ul><li>영상 수정 최소</li><li>첫 화면 제목은 필요할 때만</li><li>짧은 핵심 문장</li><li>과도한 CTA 없음</li></ul>'
+  },
+  meta:{
+    title:'Instagram / Facebook 계정 연결',
+    sub:'사용자 입장에서는 “연결”만 알면 됩니다.',
+    body:'<p>나중에 실제 연결 기능이 들어가면 버튼을 누른 뒤 Meta 공식 로그인 화면에서 로그인하고 사용 허용을 누르게 됩니다.</p><p>그 이후에는 이 프로그램에서 연결된 Instagram과 Facebook Page를 선택해서 사용합니다.</p><div class="tip">아이디와 비밀번호를 우리 프로그램에 직접 입력하는 방식은 사용하지 않습니다.</div>'
+  },
+  'connect-tiktok':{
+    title:'TikTok 계정 연결',
+    sub:'처음 한 번 연결하고 계속 사용합니다.',
+    body:'<p>연결 버튼 → TikTok 공식 로그인 → 사용 허용 → 프로그램 복귀 순서입니다.</p><p>사용자는 이 흐름만 알면 되고, 내부 인증 방식은 프로그램이 처리합니다.</p>'
+  },
+  'connect-threads':{
+    title:'Threads 계정 연결',
+    sub:'계정 연결 후 게시 채널로 사용합니다.',
+    body:'<p>Threads 공식 로그인/허용 화면을 거쳐 내 계정을 연결하게 됩니다. 이후 프로그램에서는 연결된 계정만 선택하면 됩니다.</p>'
+  },
+  'connect-naver':{
+    title:'Naver Clip은 왜 직접 올리나요?',
+    sub:'자동 게시보다 “게시 직전 준비”가 현실적입니다.',
+    body:'<p>현재 일반 개발자가 Clip 영상을 자동 게시할 수 있는 공개 API가 확인되지 않았기 때문입니다.</p><p>그래서 우리 프로그램은 영상, 커버, 본문, 해시태그, 카테고리 정보를 준비하고 사용자가 Naver Clip에서 최종 게시하도록 설계합니다.</p>'
+  },
+  'connect-kakao':{
+    title:'Kakao 숏폼은 왜 직접 올리나요?',
+    sub:'현재는 게시 패키지를 만드는 방향입니다.',
+    body:'<p>현재 공개 개발자 문서에서 일반 사용자가 숏폼을 자동 게시할 수 있는 API가 확인되지 않았습니다.</p><p>우리 프로그램에서 영상과 썸네일, 게시 문구를 준비한 뒤 숏폼 스튜디오에서 최종 게시하는 구조로 갑니다.</p>'
+  }
+};
+
+function showModal(key){
+  const d=modalData[key]; if(!d)return;
+  $('#modalTitle').textContent=d.title; $('#modalSub').textContent=d.sub||''; $('#modalBody').innerHTML=d.body;
+  $('#modalBackdrop').style.display='flex'; $('#modalBackdrop').setAttribute('aria-hidden','false');
+}
+function closeModal(){ $('#modalBackdrop').style.display='none'; $('#modalBackdrop').setAttribute('aria-hidden','true'); }
+$('#modalClose').onclick=closeModal; $('#modalOk').onclick=closeModal;
+$('#modalBackdrop').onclick=e=>{if(e.target===$('#modalBackdrop'))closeModal()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+$$('[data-step]').forEach(el=>el.onclick=()=>showModal(el.dataset.step));
+$$('[data-info]').forEach(el=>el.onclick=e=>{e.stopPropagation();showModal(el.dataset.info)});
+$$('[data-connect]').forEach(el=>el.onclick=()=>{
+  const k=el.dataset.connect;
+  showModal(k==='meta'?'meta':k==='tiktok'?'connect-tiktok':k==='threads'?'connect-threads':k==='naver'?'connect-naver':'connect-kakao');
+});
 
 $('#drop').onclick=()=>$('#video').click();
 $('#video').onchange=e=>{
-  file=e.target.files[0]||null;
-  if(!file)return;
+  file=e.target.files[0]||null;if(!file)return;
   $('#fileName').textContent=file.name;
   if(objectUrl)URL.revokeObjectURL(objectUrl);
-  objectUrl=URL.createObjectURL(file);
-  $('#player').src=objectUrl;
-  $('#preview').style.display='block';
+  objectUrl=URL.createObjectURL(file);$('#player').src=objectUrl;$('#preview').style.display='block';
 };
 
 function selectedPlatforms(){return $$('[data-p]:checked').map(x=>x.dataset.p)}
-function baseText(){
- const title=$('#title').value.trim(), body=$('#body').value.trim();
- return [title,body].filter(Boolean).join('\n\n');
-}
-function copyText(text){
- navigator.clipboard.writeText(text).then(()=>alert('게시글을 복사했습니다.')).catch(()=>alert('복사에 실패했습니다.'));
-}
-window.copyPlatform=function(p){copyText(baseText())}
+function baseText(){const title=$('#title').value.trim(),body=$('#body').value.trim();return [title,body].filter(Boolean).join('\n\n')}
+function copyText(text){navigator.clipboard.writeText(text).then(()=>alert('게시글을 복사했습니다.')).catch(()=>alert('복사에 실패했습니다.'))}
+window.copyPlatform=()=>copyText(baseText());
 
 $('#build').onclick=()=>{
- if(!file)return alert('영상을 먼저 선택하세요.');
- const selected=selectedPlatforms();
- if(!selected.length)return alert('플랫폼을 하나 이상 선택하세요.');
- const text=baseText();
- $('#results').innerHTML=selected.map(p=>{
-   const info=platforms[p], isManual=info.mode==='manual';
-   return '<div class="result-card">'+
-     '<div class="result-head"><div class="result-title">'+info.name+'</div><span class="status '+(isManual?'manual':'')+'">'+(isManual?'수동 게시':'자동 게시 확장 예정')+'</span></div>'+
-     '<div class="result-body">영상: '+file.name+'<br>게시글: '+(text?text.replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0,160):'입력 없음')+(text.length>160?'…':'')+'</div>'+
-     '<div class="mini-actions"><button class="mini" onclick="copyPlatform(\''+p+'\')">게시글 복사</button><a class="mini" href="'+info.url+'" target="_blank" rel="noreferrer">업로드 화면 열기</a></div>'+
-   '</div>'
- }).join('');
- $('#result').style.display='block';
+  if(!file)return alert('영상을 먼저 선택하세요.');
+  const selected=selectedPlatforms();if(!selected.length)return alert('플랫폼을 하나 이상 선택하세요.');
+  const text=baseText();
+  $('#results').innerHTML=selected.map(p=>{
+    const info=platforms[p],manual=info.mode==='manual';
+    return '<div class="result-card"><div class="result-head"><div class="result-title">'+info.name+'</div><span class="status '+(manual?'manual':'')+'">'+(manual?'직접 업로드':'자동 게시 연결 예정')+'</span></div><div class="result-body">영상: '+file.name+'<br>기본 게시글: '+(text?text.replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0,160):'입력 없음')+(text.length>160?'…':'')+'</div><div class="mini-actions"><button class="mini" onclick="copyPlatform()">게시글 복사</button><button class="mini" onclick="showModal(\''+p+'\')">이 플랫폼 규칙 보기</button><a class="mini" href="'+info.url+'" target="_blank" rel="noreferrer">업로드 화면 열기</a></div></div>'
+  }).join('');
+  $('#result').style.display='block';
 };
 
 $('#saveDraft').onclick=()=>{
  const data={title:$('#title').value,body:$('#body').value,schedule:$('#schedule').value,platforms:selectedPlatforms()};
- localStorage.setItem(draftKey,JSON.stringify(data));
- alert('초안을 이 브라우저에 저장했습니다.');
+ localStorage.setItem(draftKey,JSON.stringify(data));alert('초안을 이 브라우저에 저장했습니다.');
 };
 
 $('#exportJson').onclick=()=>{
  if(!file)return;
- const data={
-   version:'0.2',
-   createdAt:new Date().toISOString(),
-   file:{name:file.name,type:file.type,size:file.size},
-   title:$('#title').value,
-   body:$('#body').value,
-   schedule:$('#schedule').value||null,
-   platforms:selectedPlatforms()
- };
- const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
- const url=URL.createObjectURL(blob);
- const a=document.createElement('a'); a.href=url;a.download='multipost-package.json';a.click();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+ const data={version:'0.3',createdAt:new Date().toISOString(),file:{name:file.name,type:file.type,size:file.size},title:$('#title').value,body:$('#body').value,schedule:$('#schedule').value||null,platforms:selectedPlatforms()};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='dechive-multipost-package.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
 
 $('#reset').onclick=()=>{
@@ -179,11 +322,7 @@ $('#reset').onclick=()=>{
 };
 
 (function restore(){
- try{
-   const data=JSON.parse(localStorage.getItem(draftKey)||'null'); if(!data)return;
-   $('#title').value=data.title||'';$('#body').value=data.body||'';$('#schedule').value=data.schedule||'';
-   (data.platforms||[]).forEach(p=>{const el=document.querySelector('[data-p="'+p+'"]');if(el)el.checked=true});
- }catch{}
+ try{const data=JSON.parse(localStorage.getItem(draftKey)||'null');if(!data)return;$('#title').value=data.title||'';$('#body').value=data.body||'';$('#schedule').value=data.schedule||'';(data.platforms||[]).forEach(p=>{const el=document.querySelector('[data-p="'+p+'"]');if(el)el.checked=true})}catch{}
 })();
 </script>
 </body>
