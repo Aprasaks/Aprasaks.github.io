@@ -58,6 +58,24 @@ h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(-
 .modal-body{padding:0 20px 20px;font-size:14px;line-height:1.7;color:#3e444c}.modal-body h3{font-size:14px;color:var(--text);margin:16px 0 6px}
 .modal-body ul{padding-left:20px;margin:8px 0}.modal-body .tip{margin-top:14px;background:var(--blue);color:var(--blueText);border-radius:12px;padding:12px;font-size:13px}
 .modal-actions{display:flex;gap:8px;padding:0 20px 20px}.modal-actions button{flex:1}
+.curriculum{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:18px}
+.curriculum-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.curriculum-head h2{font-size:16px;margin:0}.curriculum-head p{font-size:12px;color:var(--muted);margin:4px 0 0}
+.module-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media(max-width:960px){.module-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:560px){.module-grid{grid-template-columns:1fr 1fr}}
+.module{position:relative;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fafbfc;min-height:94px;cursor:pointer;text-align:left}
+.module.unlocked{background:#fff;border-color:#bdc7d2}.module.active{box-shadow:0 0 0 2px rgba(17,24,39,.05)}
+.module-no{font-size:10px;color:var(--muted);font-weight:900}.module-name{font-size:13px;font-weight:900;margin-top:6px}.module-state{font-size:11px;color:var(--muted);margin-top:5px}
+.lock-chip{position:absolute;right:8px;top:8px;font-size:10px;border-radius:999px;padding:4px 6px;background:#eef0f3;color:#69717c}
+.module.unlocked .lock-chip{background:var(--green);color:var(--greenText)}
+.feature-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:17px}
+.feature-head .section-title{margin:0}
+.feature-lock{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 9px;font-size:11px;font-weight:900;cursor:pointer}
+.feature-lock.open{background:var(--green);color:var(--greenText);border-color:#cfe8dc}
+.feature-block.locked{opacity:.48}.feature-block.locked input,.feature-block.locked textarea,.feature-block.locked .platform input{pointer-events:none}
+.rules-box{display:grid;gap:8px}.rule-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:11px;padding:10px 11px}
+.rule-row strong{font-size:12px}.rule-row select{border:1px solid var(--line);border-radius:8px;padding:7px;background:#fff;font-size:12px}
+.btn:disabled{opacity:.38;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -68,7 +86,7 @@ h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(-
       <h1>내가 쓰는 자동화 프로그램을 직접 만들어가는 구조</h1>
       <div class="sub">복잡한 기술 용어를 배우는 것이 목적이 아닙니다. 반복하던 일을 하나씩 규칙으로 만들고, 그 규칙을 프로그램에 넣어 자동화하는 흐름을 직접 경험합니다.</div>
     </div>
-    <div class="version">Class Base · v0.3</div>
+    <div class="version">Class Base · v0.4</div>
   </div>
 
   <div class="steps">
@@ -78,6 +96,21 @@ h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(-
     <button class="step" data-step="rules"><div class="step-num">STEP 4</div><div class="step-title">규칙 만들기</div><div class="step-desc">플랫폼마다 어떻게 다르게 보여줄지 정합니다.</div></button>
     <button class="step" data-step="run"><div class="step-num">STEP 5</div><div class="step-title">자동화 실행</div><div class="step-desc">컴퓨터가 정해둔 규칙을 반복합니다.</div></button>
   </div>
+
+  <section class="curriculum">
+    <div class="curriculum-head">
+      <div><h2>자동화를 한 단계씩 만들어봅니다</h2><p>처음부터 모든 기능을 넣지 않습니다. 기능이 왜 필요한지 이해한 뒤 하나씩 엽니다.</p></div>
+      <button class="btn ghost" id="resetLessons">수업 잠금 초기화</button>
+    </div>
+    <div class="module-grid">
+      <button class="module unlocked" data-module="video"><span class="lock-chip">열림</span><div class="module-no">01</div><div class="module-name">영상 입력</div><div class="module-state">자동화의 첫 입력</div></button>
+      <button class="module" data-module="title"><span class="lock-chip">잠김</span><div class="module-no">02</div><div class="module-name">제목 추가</div><div class="module-state">새 입력값 만들기</div></button>
+      <button class="module" data-module="body"><span class="lock-chip">잠김</span><div class="module-no">03</div><div class="module-name">게시글 추가</div><div class="module-state">텍스트 데이터 확장</div></button>
+      <button class="module" data-module="platforms"><span class="lock-chip">잠김</span><div class="module-no">04</div><div class="module-name">플랫폼 선택</div><div class="module-state">분기 만들기</div></button>
+      <button class="module" data-module="preset"><span class="lock-chip">잠김</span><div class="module-no">05</div><div class="module-name">규칙 추가</div><div class="module-state">판단을 규칙으로</div></button>
+      <button class="module" data-module="execute"><span class="lock-chip">잠김</span><div class="module-no">06</div><div class="module-name">실행·검증</div><div class="module-state">자동화 완성</div></button>
+    </div>
+  </section>
 
   <div class="layout">
     <main class="card">
@@ -90,30 +123,45 @@ h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(-
       </label>
       <div class="preview" id="preview"><video id="player" controls></video></div>
 
-      <div class="section-title">기본 제목</div>
-      <input class="input" id="title" maxlength="120" placeholder="예: AI로 사진을 영상으로 만드는 방법">
+      <div class="feature-block locked" data-feature="title">
+        <div class="feature-head"><div class="section-title">기본 제목</div><button class="feature-lock" data-open-module="title">🔒 기능 잠김</button></div>
+        <input class="input" id="title" maxlength="120" disabled placeholder="예: AI로 사진을 영상으로 만드는 방법">
+      </div>
 
-      <div class="section-title">기본 게시글</div>
-      <textarea class="textarea" id="body" placeholder="영상과 함께 올릴 기본 글을 입력하세요."></textarea>
+      <div class="feature-block locked" data-feature="body">
+        <div class="feature-head"><div class="section-title">기본 게시글</div><button class="feature-lock" data-open-module="body">🔒 기능 잠김</button></div>
+        <textarea class="textarea" id="body" disabled placeholder="영상과 함께 올릴 기본 글을 입력하세요."></textarea>
+      </div>
 
-      <div class="section-title">예약 시간 <span style="font-weight:400;color:var(--muted)">(선택)</span></div>
-      <input class="input" id="schedule" type="datetime-local">
+      <div class="section-title">예약 시간 <span style="font-weight:400;color:var(--muted)">(실행 단계에서 사용)</span></div>
+      <input class="input" id="schedule" type="datetime-local" disabled>
 
       <div class="divider"></div>
 
-      <h2>플랫폼 선택</h2>
+      <div class="feature-block locked" data-feature="platforms">
+      <div class="feature-head"><h2 style="margin:0">플랫폼 선택</h2><button class="feature-lock" data-open-module="platforms">🔒 기능 잠김</button></div>
       <div class="platforms">
-        <div class="platform"><input type="checkbox" data-p="instagram"><div class="platform-main"><div class="name">Instagram Reels</div><div class="desc">비주얼 · 발견 · 저장/공유</div></div><button class="info-btn" data-info="instagram">?</button></div>
-        <div class="platform"><input type="checkbox" data-p="facebook"><div class="platform-main"><div class="name">Facebook Page</div><div class="desc">공유 · 커뮤니티 · 원본성</div></div><button class="info-btn" data-info="facebook">?</button></div>
-        <div class="platform"><input type="checkbox" data-p="tiktok"><div class="platform-main"><div class="name">TikTok</div><div class="desc">Hook · 사운드 · 빠른 몰입</div></div><button class="info-btn" data-info="tiktok">?</button></div>
-        <div class="platform"><input type="checkbox" data-p="threads"><div class="platform-main"><div class="name">Threads</div><div class="desc">생각 · 질문 · 대화</div></div><button class="info-btn" data-info="threads">?</button></div>
-        <div class="platform"><input type="checkbox" data-p="naver"><div class="platform-main"><div class="name">Naver Clip</div><div class="desc">정보 · 커버 · 태그</div></div><button class="info-btn" data-info="naver">?</button></div>
-        <div class="platform"><input type="checkbox" data-p="kakao"><div class="platform-main"><div class="name">Kakao 숏폼</div><div class="desc">친근한 소비 · 공유 · 썸네일</div></div><button class="info-btn" data-info="kakao">?</button></div>
-        <div class="platform"><input type="checkbox" data-p="x"><div class="platform-main"><div class="name">X</div><div class="desc">짧은 메시지 · 실시간 맥락</div></div><button class="info-btn" data-info="x">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="instagram" disabled><div class="platform-main"><div class="name">Instagram Reels</div><div class="desc">비주얼 · 발견 · 저장/공유</div></div><button class="info-btn" data-info="instagram">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="facebook" disabled><div class="platform-main"><div class="name">Facebook Page</div><div class="desc">공유 · 커뮤니티 · 원본성</div></div><button class="info-btn" data-info="facebook">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="tiktok" disabled><div class="platform-main"><div class="name">TikTok</div><div class="desc">Hook · 사운드 · 빠른 몰입</div></div><button class="info-btn" data-info="tiktok">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="threads" disabled><div class="platform-main"><div class="name">Threads</div><div class="desc">생각 · 질문 · 대화</div></div><button class="info-btn" data-info="threads">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="naver" disabled><div class="platform-main"><div class="name">Naver Clip</div><div class="desc">정보 · 커버 · 태그</div></div><button class="info-btn" data-info="naver">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="kakao" disabled><div class="platform-main"><div class="name">Kakao 숏폼</div><div class="desc">친근한 소비 · 공유 · 썸네일</div></div><button class="info-btn" data-info="kakao">?</button></div>
+        <div class="platform"><input type="checkbox" data-p="x" disabled><div class="platform-main"><div class="name">X</div><div class="desc">짧은 메시지 · 실시간 맥락</div></div><button class="info-btn" data-info="x">?</button></div>
+      </div>
+      </div>
+
+      <div class="feature-block locked" data-feature="preset">
+        <div class="feature-head"><div class="section-title">플랫폼 규칙</div><button class="feature-lock" data-open-module="preset">🔒 기능 잠김</button></div>
+        <div class="rules-box">
+          <div class="rule-row"><strong>첫 화면 텍스트</strong><select id="ruleOpening" disabled><option>원본 유지</option><option>큰 제목</option><option>Hook</option><option>정보형 제목</option></select></div>
+          <div class="rule-row"><strong>마무리 행동 유도</strong><select id="ruleCta" disabled><option>없음</option><option>저장</option><option>공유</option><option>댓글</option><option>팔로우</option></select></div>
+          <div class="rule-row"><strong>BGM</strong><select id="ruleBgm" disabled><option>원본 유지</option><option>사용</option><option>사용 안 함</option></select></div>
+        </div>
       </div>
 
       <div class="actions">
-        <button class="btn primary" id="build">배포 패키지 만들기</button>
+        <button class="btn primary" id="build" disabled>배포 패키지 만들기</button>
         <button class="btn secondary" id="saveDraft">초안 저장</button>
         <button class="btn ghost" id="reset">초기화</button>
       </div>
@@ -122,7 +170,7 @@ h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(-
         <div class="section-title">플랫폼별 결과</div>
         <div id="results"></div>
         <div class="actions">
-          <button class="btn secondary" id="exportJson">배포 정보 JSON 저장</button>
+          <button class="btn secondary" id="exportJson" disabled>배포 정보 JSON 저장</button>
         </div>
       </section>
     </main>
@@ -164,7 +212,8 @@ h1{font-size:34px;line-height:1.12;margin:8px 0}.sub{max-width:780px;color:var(-
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 let file=null, objectUrl=null;
-const draftKey='dechive-multipost-draft-v03';
+const draftKey='dechive-multipost-draft-v04';
+const unlockKey='dechive-multipost-unlocks-v04';
 
 const platforms={
  instagram:{name:'Instagram Reels',mode:'future',url:'https://www.instagram.com/'},
@@ -174,6 +223,15 @@ const platforms={
  naver:{name:'Naver Clip',mode:'manual',url:'https://clip.naver.com/'},
  kakao:{name:'Kakao 숏폼',mode:'manual',url:'https://shortform-studio.kakao.com/'},
  x:{name:'X',mode:'manual',url:'https://x.com/compose/post'}
+};
+
+const moduleData={
+  video:{title:'01 · 영상 입력',sub:'자동화의 첫 번째 재료를 정합니다.',body:'<h3>왜 첫 단계인가요?</h3><p>자동화는 입력이 있어야 시작됩니다. 여기서는 원본 영상이 가장 먼저 들어오는 데이터입니다.</p><h3>프로그램에는 무엇을 추가했나요?</h3><ul><li>파일 선택 입력</li><li>선택한 파일 보관</li><li>미리보기</li></ul><div class="tip">새 자동화를 만들 때도 가장 먼저 “무엇이 들어오는가?”를 정의합니다.</div>'},
+  title:{title:'02 · 제목 기능 추가',sub:'자동화에 새로운 입력값 하나를 추가해봅니다.',body:'<h3>왜 제목을 추가하나요?</h3><p>영상 파일만으로는 게시할 때 필요한 설명이 부족합니다. 그래서 자동화의 입력 데이터를 하나 늘립니다.</p><h3>기능을 추가하는 순서</h3><ol><li>화면에 제목 입력칸을 만든다.</li><li>프로그램 상태에 title 값을 저장한다.</li><li>초안 저장 데이터에도 title을 넣는다.</li><li>최종 결과를 만들 때 title을 사용한다.</li><li>비어 있을 때 허용할지 검증한다.</li></ol><div class="tip">기능 하나를 추가한다는 것은 버튼 하나를 추가하는 게 아니라 입력 → 저장 → 처리 → 출력까지 데이터의 길을 하나 만드는 것입니다.</div>'},
+  body:{title:'03 · 게시글 기능 추가',sub:'텍스트 입력을 하나 더 확장합니다.',body:'<h3>제목 다음에 왜 게시글인가요?</h3><p>같은 “텍스트”라도 제목과 본문은 역할이 다릅니다. 데이터를 구분해서 저장해야 나중에 플랫폼별로 다르게 바꿀 수 있습니다.</p><h3>추가 순서</h3><ol><li>본문 입력 UI</li><li>body 상태값</li><li>저장 구조 확장</li><li>플랫폼 결과에 전달</li><li>플랫폼별 길이/형식 규칙은 나중에 Preset으로 분리</li></ol>'},
+  platforms:{title:'04 · 플랫폼 선택 기능 추가',sub:'자동화에 처음으로 “분기”가 생깁니다.',body:'<h3>여기서 구조가 달라집니다.</h3><p>지금까지는 입력을 모으기만 했습니다. 플랫폼을 선택하면 같은 입력이 여러 경로로 나뉘기 시작합니다.</p><pre>원본\n ├ Instagram\n ├ TikTok\n └ Naver Clip</pre><h3>구현할 것</h3><ul><li>플랫폼 체크박스</li><li>선택된 플랫폼 배열</li><li>선택되지 않은 플랫폼은 실행하지 않기</li><li>플랫폼별 처리기를 분리할 준비</li></ul>'},
+  preset:{title:'05 · 규칙 기능 추가',sub:'사람의 반복 판단을 프로그램 규칙으로 바꿉니다.',body:'<h3>자동화의 핵심 단계입니다.</h3><p>플랫폼만 나눠놓으면 아직 똑같은 결과가 나갑니다. 여기서 “Instagram은 큰 제목, TikTok은 Hook” 같은 판단을 규칙으로 만듭니다.</p><h3>규칙 추가 순서</h3><ol><li>바뀌어야 할 요소를 고른다.</li><li>항상 같은 값인지 사용자가 고를 값인지 구분한다.</li><li>Preset 데이터로 저장한다.</li><li>변환 엔진이 Preset을 읽게 한다.</li><li>플랫폼 정책이 바뀌면 Preset만 수정한다.</li></ol><div class="tip">여기서부터 단순 멀티업로드가 아니라 “우리만의 자동화”가 됩니다.</div>'},
+  execute:{title:'06 · 실행과 검증 추가',sub:'이제 자동화가 실제 행동을 합니다.',body:'<h3>실행만 만들면 끝일까요?</h3><p>아닙니다. 실행 요청, 처리 중, 성공, 실패를 구분해야 합니다.</p><h3>추가할 것</h3><ul><li>실행 버튼</li><li>예약 시간</li><li>중복 실행 방지</li><li>플랫폼별 상태</li><li>성공 URL 또는 실패 이유</li><li>자동 게시가 막힌 곳의 수동 Fallback</li></ul><div class="tip">자동화의 마지막 단계는 “실행했다”가 아니라 “원하는 결과가 나왔는지 확인했다”입니다.</div>'}
 };
 
 const modalData={
@@ -264,17 +322,52 @@ const modalData={
   }
 };
 
+let pendingUnlock=null;
+function getUnlocks(){
+  try{return Object.assign({video:true,title:false,body:false,platforms:false,preset:false,execute:false},JSON.parse(localStorage.getItem(unlockKey)||'{}'))}catch{return {video:true,title:false,body:false,platforms:false,preset:false,execute:false}}
+}
+function saveUnlocks(v){localStorage.setItem(unlockKey,JSON.stringify(v))}
+function applyUnlocks(){
+  const u=getUnlocks();
+  $('.module').forEach(el=>{const open=!!u[el.dataset.module];el.classList.toggle('unlocked',open);el.querySelector('.lock-chip').textContent=open?'열림':'잠김'});
+  const map={title:'#title',body:'#body',platforms:'[data-p]',preset:'#ruleOpening,#ruleCta,#ruleBgm'};
+  ['title','body','platforms','preset'].forEach(k=>{
+    const block=document.querySelector('[data-feature="'+k+'"]'); if(block)block.classList.toggle('locked',!u[k]);
+    const b=document.querySelector('[data-open-module="'+k+'"]'); if(b){b.textContent=u[k]?'✓ 기능 열림':'🔒 기능 잠김';b.classList.toggle('open',u[k])}
+  });
+  $('#title').disabled=!u.title; $('#body').disabled=!u.body;
+  $('[data-p]').forEach(x=>x.disabled=!u.platforms);
+  ['#ruleOpening','#ruleCta','#ruleBgm'].forEach(s=>$(s).disabled=!u.preset);
+  $('#schedule').disabled=!u.execute; $('#build').disabled=!u.execute; $('#exportJson').disabled=!u.execute;
+}
+function openModule(key){
+  const d=moduleData[key]; if(!d)return;
+  pendingUnlock=key;
+  $('#modalTitle').textContent=d.title;$('#modalSub').textContent=d.sub||'';$('#modalBody').innerHTML=d.body;
+  $('#modalOk').textContent=getUnlocks()[key]?'닫기':'이 기능 열기';
+  $('#modalBackdrop').style.display='flex';$('#modalBackdrop').setAttribute('aria-hidden','false');
+}
 function showModal(key){
   const d=modalData[key]; if(!d)return;
   $('#modalTitle').textContent=d.title; $('#modalSub').textContent=d.sub||''; $('#modalBody').innerHTML=d.body;
   $('#modalBackdrop').style.display='flex'; $('#modalBackdrop').setAttribute('aria-hidden','false');
 }
 function closeModal(){ $('#modalBackdrop').style.display='none'; $('#modalBackdrop').setAttribute('aria-hidden','true'); }
-$('#modalClose').onclick=closeModal; $('#modalOk').onclick=closeModal;
+$('#modalClose').onclick=()=>{pendingUnlock=null;$('#modalOk').textContent='이해했어요';closeModal()};
+$('#modalOk').onclick=()=>{
+  if(pendingUnlock){
+    const u=getUnlocks();u[pendingUnlock]=true;saveUnlocks(u);applyUnlocks();
+    pendingUnlock=null;$('#modalOk').textContent='이해했어요';
+  }
+  closeModal();
+};
 $('#modalBackdrop').onclick=e=>{if(e.target===$('#modalBackdrop'))closeModal()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-$$('[data-step]').forEach(el=>el.onclick=()=>showModal(el.dataset.step));
+$('[data-step]').forEach(el=>el.onclick=()=>showModal(el.dataset.step));
+$('[data-module]').forEach(el=>el.onclick=()=>openModule(el.dataset.module));
+$('[data-open-module]').forEach(el=>el.onclick=()=>openModule(el.dataset.openModule));
+$('#resetLessons').onclick=()=>{if(confirm('수업 기능 잠금을 처음 상태로 되돌릴까요?')){localStorage.removeItem(unlockKey);applyUnlocks();}};
 $$('[data-info]').forEach(el=>el.onclick=e=>{e.stopPropagation();showModal(el.dataset.info)});
 $$('[data-connect]').forEach(el=>el.onclick=()=>{
   const k=el.dataset.connect;
@@ -312,7 +405,7 @@ $('#saveDraft').onclick=()=>{
 
 $('#exportJson').onclick=()=>{
  if(!file)return;
- const data={version:'0.3',createdAt:new Date().toISOString(),file:{name:file.name,type:file.type,size:file.size},title:$('#title').value,body:$('#body').value,schedule:$('#schedule').value||null,platforms:selectedPlatforms()};
+ const data={version:'0.4',createdAt:new Date().toISOString(),file:{name:file.name,type:file.type,size:file.size},title:$('#title').value,body:$('#body').value,schedule:$('#schedule').value||null,platforms:selectedPlatforms(),rules:{opening:$('#ruleOpening').value,cta:$('#ruleCta').value,bgm:$('#ruleBgm').value}};
  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='dechive-multipost-package.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
 
@@ -324,6 +417,7 @@ $('#reset').onclick=()=>{
 (function restore(){
  try{const data=JSON.parse(localStorage.getItem(draftKey)||'null');if(!data)return;$('#title').value=data.title||'';$('#body').value=data.body||'';$('#schedule').value=data.schedule||'';(data.platforms||[]).forEach(p=>{const el=document.querySelector('[data-p="'+p+'"]');if(el)el.checked=true})}catch{}
 })();
+applyUnlocks();
 </script>
 </body>
 </html>
