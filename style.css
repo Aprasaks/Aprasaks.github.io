@@ -3498,16 +3498,16 @@ body {
   }
 
   .home-hero-line {
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .home-hero-line-small {
-    font-size: clamp(30px, 9.3vw, 38px);
+    font-size: clamp(27px, 8.2vw, 34px);
   }
 
   .home-hero-line-large {
     margin-top: 6px;
-    font-size: clamp(35px, 10.7vw, 44px);
+    font-size: clamp(30px, 9.2vw, 39px);
   }
 
   .home-hero-lead {
