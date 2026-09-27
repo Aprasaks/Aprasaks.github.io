@@ -2807,6 +2807,28 @@ body {
   box-shadow: 0 20px 55px rgba(47,39,28,.06);
 }
 
+.selected-work-heading {
+  max-width: 940px;
+}
+
+.work-heading-static {
+  display: block;
+  color: var(--ink);
+  font-size: .86em;
+  line-height: 1.18;
+  white-space: nowrap;
+}
+
+.work-heading-typing {
+  margin-top: 6px;
+  color: var(--accent);
+  font-family: "Noto Serif KR", Georgia, serif;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1.16;
+  white-space: nowrap;
+}
+
 .work-editorial-list {
   border-top: 1px solid var(--line);
 }
@@ -2821,7 +2843,7 @@ body {
   transition: padding .18s ease, color .18s ease;
 }
 
-.work-editorial-card:hover {
+a.work-editorial-card:hover {
   padding-left: 8px;
   color: var(--accent);
 }
@@ -3221,6 +3243,11 @@ body {
   .work-editorial-card i { grid-column: 2; justify-self:start; }
   .work-editorial-card div > span { font-size:12px; }
 
+  .work-heading-static,
+  .work-heading-typing {
+    white-space: normal;
+  }
+
   .case-v2-flow { padding:22px; }
   .case-v2-flow > div:not(.case-v2-divider) { grid-template-columns:1fr; gap:6px; }
   .case-v2-divider { padding:14px 0; }
@@ -3574,26 +3601,30 @@ body {
   margin-bottom: 10px;
 }
 
-.principles-typing {
+.principles-typing,
+.work-heading-typing {
   position: relative;
   display: block;
   font-style: normal;
 }
 
-.principles-typing-placeholder {
+.principles-typing-placeholder,
+.work-heading-typing-placeholder {
   display: block;
   visibility: hidden;
   pointer-events: none;
 }
 
-.principles-typing-output {
+.principles-typing-output,
+.work-heading-typing-output {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
 }
 
-.principles-typing.is-typing .principles-typing-output::after {
+.principles-typing.is-typing .principles-typing-output::after,
+.work-heading-typing.is-typing .work-heading-typing-output::after {
   content: "";
   display: inline-block;
   width: 1px;

@@ -82,17 +82,25 @@ if ('IntersectionObserver' in window) {
 }
 
 
-// Principles typewriter — runs once when the statement enters the viewport.
-(function initPrinciplesTypewriter() {
-  var lines = document.querySelectorAll('.principles-typing');
+// Shared typewriter — runs once when each statement enters the viewport.
+(function initTypewriters() {
+  var lines = document.querySelectorAll('.principles-typing, .work-heading-typing');
   if (!lines.length) return;
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  function getOutput(line) {
+    return line.querySelector('.principles-typing-output, .work-heading-typing-output');
+  }
+
+  function getText(line) {
+    return (line.getAttribute('data-typing') || '').replace(/\\n/g, '\n');
+  }
+
   function renderFull(line) {
-    var output = line.querySelector('.principles-typing-output');
+    var output = getOutput(line);
     if (!output) return;
-    output.textContent = (line.getAttribute('data-typing') || '').replace(/\\n/g, '\n');
+    output.textContent = getText(line);
     line.classList.remove('is-typing');
     line.dataset.typed = 'true';
   }
@@ -100,8 +108,10 @@ if ('IntersectionObserver' in window) {
   function typeLine(line) {
     if (line.dataset.typed === 'true') return;
 
-    var output = line.querySelector('.principles-typing-output');
-    var text = (line.getAttribute('data-typing') || '').replace(/\\n/g, '\n');
+    var output = getOutput(line);
+    var text = getText(line);
+    var configuredSpeed = Number(line.getAttribute('data-typing-speed'));
+    var typingSpeed = configuredSpeed > 0 ? configuredSpeed : 115;
     if (!output) return;
 
     if (reduceMotion) {
@@ -122,7 +132,7 @@ if ('IntersectionObserver' in window) {
       }
       index += 1;
       var currentChar = text.charAt(index - 1);
-      var delay = currentChar === '\n' ? 420 : 115;
+      var delay = currentChar === '\n' ? 420 : typingSpeed;
       window.setTimeout(tick, delay);
     }
 
