@@ -3696,17 +3696,6 @@ body {
   margin-bottom: 12px;
 }
 
-.principles-brand-line {
-  display: block;
-  margin-bottom: 4px;
-  font-family: "Noto Serif KR", Georgia, serif;
-  color: var(--accent);
-  font-size: .91em;
-  line-height: 1.14;
-  letter-spacing: -.035em;
-  font-weight: 500;
-  font-style: normal;
-}
 
 .principles-intro h2 .principles-typing {
   font-size: .96em;
@@ -3719,12 +3708,17 @@ body {
     margin-bottom: 10px;
   }
 
-  .principles-brand-line {
-    font-size: .93em;
-    margin-bottom: 3px;
-  }
-
   .principles-intro h2 .principles-typing {
     font-size: .96em;
   }
+}
+
+
+/* Principles full-line typewriter */
+.principles-typing-full .principles-typing-output {
+  white-space: pre-line;
+}
+
+.principles-typing-full .principles-typing-placeholder {
+  line-height: inherit;
 }

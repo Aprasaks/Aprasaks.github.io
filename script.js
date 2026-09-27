@@ -121,10 +121,12 @@ if ('IntersectionObserver' in window) {
         return;
       }
       index += 1;
-      window.setTimeout(tick, 58);
+      var currentChar = text.charAt(index - 1);
+      var delay = currentChar === '\n' ? 420 : 115;
+      window.setTimeout(tick, delay);
     }
 
-    window.setTimeout(tick, 220);
+    window.setTimeout(tick, 380);
   }
 
   if (!('IntersectionObserver' in window)) {
