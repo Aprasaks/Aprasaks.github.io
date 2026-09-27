@@ -2634,15 +2634,19 @@ body {
 }
 
 .principles-v2 {
-  padding: 112px 0;
+  padding: 76px 0 104px;
   background: var(--bg);
+}
+
+.principles-v2 .section-index {
+  margin-bottom: 18px;
 }
 
 .principles-intro {
   display: grid;
-  grid-template-columns: 1.25fr .75fr;
-  gap: 80px;
-  align-items: end;
+  grid-template-columns: minmax(0, 1.22fr) minmax(300px, .78fr);
+  gap: clamp(48px, 6vw, 88px);
+  align-items: start;
 }
 
 .principles-intro h2,
@@ -3595,5 +3599,90 @@ body {
   .brand-wordmark small {
     font-size: 7px;
     letter-spacing: 0.13em;
+  }
+}
+
+
+/* Principles statement + typewriter */
+.principles-title-line {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.principles-typing {
+  position: relative;
+  display: block;
+  font-style: normal;
+}
+
+.principles-typing-placeholder {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.principles-typing-output {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+}
+
+.principles-typing.is-typing .principles-typing-output::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: .9em;
+  margin-left: .08em;
+  background: currentColor;
+  vertical-align: -.08em;
+  animation: principles-caret .72s steps(1) infinite;
+}
+
+.principles-intro > p {
+  max-width: 460px;
+  margin-top: 66px;
+  justify-self: end;
+  line-height: 1.78;
+}
+
+@keyframes principles-caret {
+  0%, 48% { opacity: 1; }
+  49%, 100% { opacity: 0; }
+}
+
+@media (max-width: 980px) {
+  .principles-v2 {
+    padding-top: 64px;
+  }
+
+  .principles-intro > p {
+    max-width: 640px;
+    margin-top: -8px;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 680px) {
+  .principles-v2 {
+    padding: 56px 0 72px;
+  }
+
+  .principles-v2 .section-index {
+    margin-bottom: 14px;
+  }
+
+  .principles-title-line {
+    margin-bottom: 8px;
+  }
+
+  .principles-intro {
+    gap: 28px;
+  }
+
+  .principles-intro > p {
+    margin-top: 0;
+    font-size: 15px;
+    line-height: 1.72;
   }
 }

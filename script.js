@@ -80,3 +80,73 @@ if ('IntersectionObserver' in window) {
     element.classList.add('visible');
   });
 }
+
+
+// Principles typewriter — runs once when the statement enters the viewport.
+(function initPrinciplesTypewriter() {
+  var lines = document.querySelectorAll('.principles-typing');
+  if (!lines.length) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderFull(line) {
+    var output = line.querySelector('.principles-typing-output');
+    if (!output) return;
+    output.textContent = line.getAttribute('data-typing') || '';
+    line.classList.remove('is-typing');
+    line.dataset.typed = 'true';
+  }
+
+  function typeLine(line) {
+    if (line.dataset.typed === 'true') return;
+
+    var output = line.querySelector('.principles-typing-output');
+    var text = line.getAttribute('data-typing') || '';
+    if (!output) return;
+
+    if (reduceMotion) {
+      renderFull(line);
+      return;
+    }
+
+    line.dataset.typed = 'true';
+    line.classList.add('is-typing');
+    output.textContent = '';
+
+    var index = 0;
+    function tick() {
+      output.textContent = text.slice(0, index);
+      if (index >= text.length) {
+        line.classList.remove('is-typing');
+        return;
+      }
+      index += 1;
+      window.setTimeout(tick, 58);
+    }
+
+    window.setTimeout(tick, 220);
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    lines.forEach(typeLine);
+    return;
+  }
+
+  var typingObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        typeLine(entry.target);
+        typingObserver.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.45,
+      rootMargin: '0px 0px -8% 0px',
+    }
+  );
+
+  lines.forEach(function (line) {
+    typingObserver.observe(line);
+  });
+})();
