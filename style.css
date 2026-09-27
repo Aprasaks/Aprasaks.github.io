@@ -3546,12 +3546,12 @@ body {
    DECHIVE LOGO SYSTEM — 2026-09-27
    D + archive + infinity mark
    ===================================================== */
-.brand { gap: 10px; }
+.brand { gap: 8px; }
 
 .brand-logo-mark {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
   object-fit: contain;
   display: block;
 }
@@ -3559,40 +3559,40 @@ body {
 .brand-wordmark {
   display: flex;
   align-items: baseline;
-  gap: 9px;
+  gap: 8px;
   min-width: 0;
 }
 
 .brand-wordmark strong {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   color: var(--ink);
 }
 
 .brand-wordmark small {
-  font-size: 9px;
+  font-size: 8px;
   line-height: 1;
   font-weight: 650;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.17em;
   color: var(--accent);
 }
 
 @media (max-width: 420px) {
-  .brand { gap: 8px; }
+  .brand { gap: 7px; }
   .brand-logo-mark {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
   }
   .brand-wordmark strong {
-    font-size: 16px;
-    letter-spacing: 0.1em;
+    font-size: 15px;
+    letter-spacing: 0.09em;
   }
   .brand-wordmark small {
-    font-size: 8px;
-    letter-spacing: 0.14em;
+    font-size: 7px;
+    letter-spacing: 0.13em;
   }
 }
