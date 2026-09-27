@@ -92,7 +92,7 @@ if ('IntersectionObserver' in window) {
   function renderFull(line) {
     var output = line.querySelector('.principles-typing-output');
     if (!output) return;
-    output.textContent = line.getAttribute('data-typing') || '';
+    output.textContent = (line.getAttribute('data-typing') || '').replace(/\\n/g, '\n');
     line.classList.remove('is-typing');
     line.dataset.typed = 'true';
   }
@@ -101,7 +101,7 @@ if ('IntersectionObserver' in window) {
     if (line.dataset.typed === 'true') return;
 
     var output = line.querySelector('.principles-typing-output');
-    var text = line.getAttribute('data-typing') || '';
+    var text = (line.getAttribute('data-typing') || '').replace(/\\n/g, '\n');
     if (!output) return;
 
     if (reduceMotion) {
