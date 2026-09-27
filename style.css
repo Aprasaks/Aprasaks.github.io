@@ -3722,3 +3722,37 @@ body {
 .principles-typing-full .principles-typing-placeholder {
   line-height: inherit;
 }
+
+
+/* Static Dechive preview */
+.dechive-static-preview {
+  display: block;
+  margin-top: 46px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(28,29,31,.10);
+  background: #f4f1eb;
+  box-shadow: 0 26px 72px rgba(35,31,25,.10);
+}
+
+.dechive-static-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .28s ease, filter .28s ease;
+}
+
+.dechive-static-preview:hover img {
+  transform: scale(1.008);
+  filter: saturate(1.02) contrast(1.01);
+}
+
+@media (max-width: 680px) {
+  .dechive-static-preview {
+    margin-top: 30px;
+    border-radius: 14px;
+  }
+}
