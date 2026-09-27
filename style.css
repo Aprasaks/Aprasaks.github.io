@@ -3445,13 +3445,14 @@ body {
 .home-hero-visual img {
   display: block;
   width: 100%;
+  max-width: 680px;
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center;
   border-radius: 18px;
   border: 1px solid rgba(28, 29, 31, 0.08);
-  box-shadow: 0 24px 68px rgba(45, 36, 25, 0.10);
+  box-shadow: 0 20px 56px rgba(45, 36, 25, 0.10);
   image-rendering: auto;
 }
 
