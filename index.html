@@ -1,597 +1,330 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DECHIVE STUDIO | Learn. Verify. Build.</title>
+  <meta name="description" content="윤강혁의 Public HQ. AI를 배우고 그대로 믿지 않고, 직접 검증해 실제 서비스·교육·자동화로 만듭니다." />
+  <meta name="robots" content="index, follow" />
+  <meta name="naver-site-verification" content="e5f4e93941503c95634712aa25b235a583672cd4" />
+  <link rel="canonical" href="https://studio.dechive.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DECHIVE STUDIO | Learn. Verify. Build." />
+  <meta property="og:description" content="모두 검증하라고 말합니다. DECHIVE는 어떻게 검증하는지 보여주고, 검증한 것을 실제로 만듭니다." />
+  <meta property="og:url" content="https://studio.dechive.dev/" />
+  <meta property="og:site_name" content="DECHIVE STUDIO" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:image" content="https://studio.dechive.dev/images/dechive-studio-hero.webp" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64.png" />
+  <link rel="apple-touch-icon" href="/images/logo-512.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"윤강혁",
+    "url":"https://studio.dechive.dev/",
+    "jobTitle":"Educator, Builder, Author",
+    "description":"AI를 배우고 검증하며 실제 서비스와 업무에 적용하는 DECHIVE 운영자",
+    "sameAs":[
+      "https://dechive.dev/",
+      "https://www.youtube.com/@dechive",
+      "https://blog.naver.com/dehcive-ai",
+      "https://github.com/Aprasaks"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
 
-    <title>DECHIVE STUDIO | Learn. Verify. Build.</title>
-    <meta
-      name="description"
-      content="AI를 배우고 그대로 믿지 않습니다. 직접 검증하고 실제 서비스와 업무로 만듭니다. DECHIVE의 프로젝트, 책, 교육, 자동화 철학을 소개합니다."
-    />
-    <meta name="robots" content="index, follow" />
-    <meta
-      name="naver-site-verification"
-      content="e5f4e93941503c95634712aa25b235a583672cd4"
-    />
-    <link rel="canonical" href="https://studio.dechive.dev/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="DECHIVE STUDIO | Learn. Verify. Build." />
-    <meta
-      property="og:description"
-      content="모두 검증하라고 말합니다. DECHIVE는 어떻게 검증하는지 보여주고, 검증한 것을 실제로 만듭니다."
-    />
-    <meta property="og:url" content="https://studio.dechive.dev/" />
-    <meta property="og:site_name" content="DECHIVE STUDIO" />
-    <meta property="og:locale" content="ko_KR" />
-    <meta property="og:image" content="https://studio.dechive.dev/images/logo-512.png" />
-
-    <link rel="icon" type="image/png" sizes="64x64" href="./images/favicon-64.png" />
-    <link rel="apple-touch-icon" href="./images/logo-512.png" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "윤강혁",
-        "url": "https://studio.dechive.dev/",
-        "jobTitle": "Educator, Builder, Author",
-        "description": "AI를 배우고 검증하며 실제 서비스와 업무에 적용하는 DECHIVE 운영자",
-        "sameAs": [
-          "https://dechive.dev/",
-          "https://www.youtube.com/@dechive",
-          "https://blog.naver.com/dehcive-ai",
-          "https://github.com/Aprasaks"
-        ],
-        "knowsAbout": [
-          "AI education",
-          "AI verification",
-          "workflow automation",
-          "digital service planning",
-          "web development"
-        ]
-      }
-    </script>
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-
-  <body>
-    <a class="skip-link" href="#main">본문으로 바로가기</a>
-
-    <header class="site-header" role="banner">
-      <div class="shell header-inner">
-        <a href="#top" class="brand" aria-label="DECHIVE STUDIO 홈">
-          <span class="brand-mark">D</span>
-          <span>
-            <strong>DECHIVE</strong>
-            <small>STUDIO</small>
-          </span>
-        </a>
-
-        <nav class="desktop-nav" aria-label="주요 메뉴">
-          <a href="#principles">Principles</a>
-          <a href="/work/">Work</a>
-          <a href="/book/">Book</a>
-          <a href="/education/">Education</a>
-          <a href="/about/">About</a>
-          <a href="/resume/">Resume</a>
-        </nav>
-
-        <a class="header-link" href="https://dechive.dev" target="_blank" rel="noreferrer">
-          Read DECHIVE <span aria-hidden="true">↗</span>
-        </a>
-
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-label="메뉴 열기"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-
-      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <header class="site-header" role="banner">
+    <div class="shell header-inner">
+      <a href="#top" class="brand" aria-label="DECHIVE STUDIO 홈">
+        <span class="brand-mark">D</span>
+        <span><strong>DECHIVE</strong><small>STUDIO</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="주요 메뉴">
         <a href="#principles">Principles</a>
         <a href="/work/">Work</a>
         <a href="/book/">Book</a>
         <a href="/education/">Education</a>
         <a href="/about/">About</a>
         <a href="/resume/">Resume</a>
-        <a href="https://dechive.dev" target="_blank" rel="noreferrer">Read DECHIVE ↗</a>
+      </nav>
+      <a class="header-link" href="https://dechive.dev" target="_blank" rel="noreferrer">dechive.dev ↗</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <a href="#principles">Principles</a>
+      <a href="/work/">Work</a>
+      <a href="/book/">Book</a>
+      <a href="/education/">Education</a>
+      <a href="/about/">About</a>
+      <a href="/resume/">Resume</a>
+      <a href="https://dechive.dev" target="_blank" rel="noreferrer">dechive.dev ↗</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero-v2" id="top">
+      <div class="shell hero-v2-grid">
+        <div class="hero-copy reveal">
+          <p class="kicker">DECHIVE STUDIO · PUBLIC HQ</p>
+          <h1 class="hero-title-v2">Learn.<br /><em>Verify.</em><br />Build.</h1>
+          <p class="hero-lead-v2">
+            AI를 배우고 그대로 믿지 않습니다.<br />
+            직접 확인하고, 검증하고, 실제로 만듭니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="/work/">Work</a>
+            <a class="button button-ghost" href="/about/">About</a>
+          </div>
+          <div class="hero-proof-inline" aria-label="주요 이력">
+            <span>강사 경력 5년</span>
+            <span>Google AI Professional Certificate</span>
+            <span>《만들기전에 검증하라》 저자</span>
+          </div>
+        </div>
+
+        <figure class="hero-visual reveal">
+          <img src="/images/dechive-studio-hero.webp" alt="DECHIVE STUDIO의 Learn, Verify, Build 철학을 표현한 작업 공간" width="800" height="600" />
+          <figcaption>LEARN · VERIFY · BUILD</figcaption>
+        </figure>
       </div>
-    </header>
+    </section>
 
-    <main id="main">
-      <section class="hero" id="top">
-        <div class="shell hero-grid">
-          <div class="hero-copy reveal">
-            <p class="kicker">DECHIVE STUDIO · PERSONAL HQ</p>
-            <h1>
-              <span>LEARN.</span>
-              <span class="hero-verify">VERIFY.</span>
-              <span>BUILD.</span>
-            </h1>
-            <p class="hero-lead">
-              AI를 배우고 그대로 믿지 않습니다.<br />
-              직접 확인하고, 검증하고, 실제로 만듭니다.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-dark" href="/work/">Explore my work</a>
-              <a class="button button-ghost" href="#principles">Why DECHIVE?</a>
-            </div>
-          </div>
-
-          <aside class="hero-note reveal" aria-label="DECHIVE 핵심 철학">
-            <p class="note-label">CORE BELIEF</p>
-            <blockquote>
-              AI creates answers.<br />
-              <strong>Humans verify them.</strong>
-            </blockquote>
-            <p>
-              더 빨리 만드는 것보다 먼저,<br />
-              왜 만들고 무엇을 믿을지 확인합니다.
-            </p>
-          </aside>
-        </div>
-
-        <div class="shell proof-strip reveal" aria-label="주요 경력과 자산">
-          <div>
-            <strong>5 Years</strong>
-            <span>Teaching Experience</span>
-          </div>
-          <div>
-            <strong>Google AI</strong>
-            <span>Professional Certificate</span>
-          </div>
-          <div>
-            <strong>Published</strong>
-            <span>Author</span>
-          </div>
-          <div>
-            <strong>Real Work</strong>
-            <span>AI · Education · Automation</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="manifesto section-dark" id="principles">
-        <div class="shell">
-          <p class="section-index">01 · PRINCIPLES</p>
-          <div class="manifesto-grid">
-            <div class="manifesto-heading reveal">
-              <h2>
-                모두 검증하라고 말합니다.<br />
-                <em>DECHIVE는 어떻게 검증하는지 보여줍니다.</em>
-              </h2>
-            </div>
-
-            <div class="manifesto-copy reveal">
-              <p>
-                AI가 답을 만드는 것은 이제 어렵지 않습니다. 문제는 그 답을 왜 믿어야
-                하는지입니다.
-              </p>
-              <p>
-                출처가 있는지, 직접 확인할 수 있는지, 어디까지 맞는지, 무엇을 아직
-                모르는지. 저는 “검증하세요”라는 말에서 멈추지 않고 그 과정을 기록합니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="principle-cards">
-            <article class="principle-card reveal">
-              <span>01</span>
-              <p class="card-overline">BEFORE YOU BUILD</p>
-              <h3>만들기 전에 검증합니다.</h3>
-              <p>
-                만들 수 있다는 이유만으로 시작하지 않습니다. 해결하려는 문제가 실제로
-                존재하는지, 누구에게 필요한지, 지금 만들 이유가 있는지부터 확인합니다.
-              </p>
-            </article>
-
-            <article class="principle-card principle-card-accent reveal">
-              <span>02</span>
-              <p class="card-overline">START WITH FRICTION</p>
-              <h3>AI가 아니라 불편에서 시작합니다.</h3>
-              <p>
-                편하기 위해 AI를 쓰는 것이 아니라, 불편을 해결하기 위해 AI가 필요한지
-                봅니다. AI가 없어도 해결된다면 굳이 AI를 넣지 않습니다.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="method section-light">
-        <div class="shell">
-          <p class="section-index">02 · METHOD</p>
-          <div class="section-heading reveal">
-            <h2>기술보다 이유가 먼저입니다.</h2>
-            <p>
-              새로운 도구를 먼저 고르지 않습니다. 문제를 이해하고, 검증한 뒤,
-              필요한 만큼만 만듭니다.
-            </p>
-          </div>
-
-          <div class="method-steps">
-            <article class="method-step reveal">
-              <span class="method-no">01</span>
-              <p class="method-word">LEARN</p>
-              <h3>배웁니다.</h3>
-              <p>공식 자료, 교육, 실제 사용자와 현장을 통해 문제와 기술을 이해합니다.</p>
-            </article>
-            <div class="method-arrow" aria-hidden="true">→</div>
-            <article class="method-step method-step-focus reveal">
-              <span class="method-no">02</span>
-              <p class="method-word">VERIFY</p>
-              <h3>검증합니다.</h3>
-              <p>주장과 가정을 출처, 테스트, 실제 흐름과 대조해 확인합니다.</p>
-            </article>
-            <div class="method-arrow" aria-hidden="true">→</div>
-            <article class="method-step reveal">
-              <span class="method-no">03</span>
-              <p class="method-word">BUILD</p>
-              <h3>만듭니다.</h3>
-              <p>검증된 문제에 필요한 만큼의 서비스, 자동화, 교육을 실제로 구현합니다.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="work section-cream" id="work">
-        <div class="shell">
-          <p class="section-index">03 · SELECTED WORK</p>
-          <div class="section-heading section-heading-wide reveal">
-            <h2>말보다, 실제로 만든 것을 보여드립니다.</h2>
-            <p>
-              프로젝트는 기술 목록이 아니라 어떤 불편을 발견했고, 어떤 중간과정을
-              없앴는지부터 설명합니다.
-            </p>
-          </div>
-
-          <div class="project-grid">
-            <a
-              class="project-card project-card-featured reveal"
-              href="https://dechive.dev"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div class="project-meta">
-                <span>01</span><span>KNOWLEDGE · VERIFICATION</span>
-              </div>
-              <h3>DECHIVE</h3>
-              <p>
-                AI 시대의 정보와 지식을 출처, 검증, 버전과 함께 축적하는 개인 지식
-                시스템.
-              </p>
-              <span class="project-link">Visit dechive.dev ↗</span>
-            </a>
-
-            <a
-              class="project-card reveal"
-              href="/work/association-system/"
-            >
-              <div class="project-meta">
-                <span>02</span><span>PROCESS · AUTOMATION</span>
-              </div>
-              <h3>생활체육 협회 행정 시스템</h3>
-              <p>
-                회원등록, 이적, 승인, 문서 취합처럼 사람 사이를 반복해 오가던 행정
-                흐름을 한 번의 입력과 조회로 줄이는 시스템.
-              </p>
-              <span class="project-link">Read case study →</span>
-            </a>
-
-            <a
-              class="project-card reveal"
-              href="/work/#akashic"
-            >
-              <div class="project-meta">
-                <span>03</span><span>AI · PERSONAL DATA</span>
-              </div>
-              <h3>AKASHIC</h3>
-              <p>
-                일정, 재정, 생활 기록을 자연어 입력과 AI 분석으로 연결하는 개인 AI
-                시스템.
-              </p>
-              <span class="project-link">View project →</span>
-            </a>
-
-            <a
-              class="project-card reveal"
-              href="/work/#gunsan-com"
-            >
-              <div class="project-meta">
-                <span>04</span><span>LOCAL · PRODUCT</span>
-              </div>
-              <h3>GUNSAN.COM</h3>
-              <p>
-                장소를 나열하는 대신 처음 방문한 사람이 실제로 따라갈 수 있는 코스로
-                지역 정보를 재구성하는 관광 플랫폼.
-              </p>
-              <span class="project-link">View project →</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="case-study section-light">
-        <div class="shell">
-          <p class="section-index">04 · CASE STUDY</p>
-          <div class="case-intro reveal">
-            <p class="case-kicker">ASSOCIATION PROCESS</p>
-            <h2>
-              엑셀을 없애려고 만든 게 아닙니다.<br />
-              <em>엑셀이 사람 사이를 오가는 과정을 없애기 위해 만들었습니다.</em>
-            </h2>
-          </div>
-
-          <div class="flow-grid">
-            <article class="flow-panel flow-before reveal">
-              <p class="flow-label">BEFORE</p>
-              <ol>
-                <li>밴드에서 양식 다운로드</li>
-                <li>각 동호회가 회원명부 작성</li>
-                <li>협회 임원에게 파일 전달</li>
-                <li>여러 파일을 다시 취합</li>
-                <li>최신본과 누락 여부 확인</li>
-                <li>도 단위 협회 제출용으로 재정리</li>
-              </ol>
-            </article>
-
-            <div class="flow-change reveal" aria-hidden="true">
-              <span>REDESIGN</span>
-              <strong>→</strong>
-            </div>
-
-            <article class="flow-panel flow-after reveal">
-              <p class="flow-label">AFTER</p>
-              <ol>
-                <li>사이트에서 직접 등록·신청</li>
-                <li>데이터 자동 저장</li>
-                <li>필요한 승인과 알림 연결</li>
-                <li>협회가 한 화면에서 확인</li>
-                <li>필요한 시점에 Excel/HWP 생성</li>
-                <li>기존 제출 형식은 그대로 유지</li>
-              </ol>
-            </article>
-          </div>
-
-          <p class="case-conclusion reveal">
-            좋은 자동화는 사람을 없애는 것이 아니라,
-            <strong>사람이 굳이 할 필요 없는 전달과 반복을 없애는 것</strong>이라고
-            생각합니다.
+    <section class="principles-v2" id="principles">
+      <div class="shell">
+        <p class="section-index">01 · PRINCIPLES</p>
+        <div class="principles-intro reveal">
+          <h2>모두 검증하라고 말합니다.<br /><em>DECHIVE는 어떻게 검증하는지 보여줍니다.</em></h2>
+          <p>
+            AI가 답을 만드는 것은 어렵지 않습니다. 더 중요한 건 그 답이 어디에서 왔고,
+            어디까지 맞으며, 무엇을 아직 확인하지 못했는지 아는 일이라고 생각합니다.
           </p>
         </div>
-      </section>
 
-      <section class="automation-belief section-dark">
-        <div class="shell belief-layout">
-          <div class="belief-title reveal">
-            <p class="section-index">05 · AUTOMATION</p>
-            <h2>
-              편하기 위해<br />
-              AI를 쓰지 않습니다.
-            </h2>
-          </div>
-          <div class="belief-copy reveal">
-            <p class="belief-highlight">
-              <strong>불편하기 때문에</strong><br />
-              AI를 씁니다.
-            </p>
-            <p>
-              자동화 요청을 받으면 도구부터 고르지 않습니다. 무엇이 반복되고,
-              어디서 기다리고, 어떤 정보가 두 번 입력되고, 어떤 전달이 굳이 사람을
-              거쳐야 하는지부터 봅니다.
-            </p>
-            <div class="automation-process" aria-label="자동화 접근 방식">
-              <span>FRICTION</span><i>→</i>
-              <span>VERIFY</span><i>→</i>
-              <span>REDESIGN</span><i>→</i>
-              <span>AUTOMATE</span>
-            </div>
-          </div>
+        <div class="belief-grid">
+          <article class="belief-card reveal">
+            <p class="card-overline">BEFORE YOU BUILD</p>
+            <h3>만들기 전에 검증합니다.</h3>
+            <p>만들 수 있다는 이유보다, 해결해야 할 문제가 실제로 존재하는지부터 봅니다.</p>
+          </article>
+          <article class="belief-card belief-card-dark reveal">
+            <p class="card-overline">START WITH FRICTION</p>
+            <h3>AI가 아니라 불편에서 시작합니다.</h3>
+            <p>AI를 넣을 이유를 찾지 않습니다. 반복되는 불편이 있을 때 AI가 필요한지 판단합니다.</p>
+          </article>
         </div>
-      </section>
-
-      <section class="book section-cream" id="book">
-        <div class="shell book-layout">
-          <div class="book-mark reveal" aria-hidden="true">
-            <span>BOOK 01</span>
-            <strong>검</strong>
-          </div>
-
-          <div class="book-copy reveal">
-            <p class="section-index">06 · BOOK</p>
-            <h2>《만들기 전에 검증하라》</h2>
-            <p class="book-subtitle">
-              AI가 더 빠르게 만들어주는 시대일수록,<br />
-              만드는 속도보다 만들 이유를 먼저 묻습니다.
-            </p>
-            <p>
-              이 책은 DECHIVE의 철학을 가장 길게 풀어낸 첫 번째 기록입니다.
-              무엇을 만들 수 있는가보다 왜 만들어야 하는가, 무엇을 믿을 수 있는가를
-              먼저 확인하는 태도를 다룹니다.
-            </p>
-            <div class="book-meta">
-              <span>Author · 윤강혁</span>
-              <span>Published · 2026</span>
-            </div>
-            <a
-              class="text-link"
-              href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401737372"
-              target="_blank"
-              rel="noreferrer"
-            >
-              책 보기 <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="education section-light" id="education">
-        <div class="shell">
-          <p class="section-index">07 · EDUCATION & WORK</p>
-          <div class="section-heading section-heading-wide reveal">
-            <h2>배운 것을 설명하고, 설명한 것을 실제로 써봅니다.</h2>
-            <p>
-              AI 교육과 업무 자동화 모두 같은 기준에서 시작합니다. 대상과 목적,
-              실제 불편을 먼저 확인한 뒤 필요한 내용을 설계합니다.
-            </p>
-          </div>
-
-          <div class="service-grid">
-            <article class="service-card reveal">
-              <p class="card-overline">AI EDUCATION</p>
-              <h3>AI 활용 교육</h3>
-              <p>
-                기관, 기업, 학교, 소규모 그룹을 대상으로 수준과 목적에 맞춘 실습형
-                AI 교육을 설계합니다.
-              </p>
-              <ul>
-                <li>생성형 AI와 AI 리터러시</li>
-                <li>프롬프트와 검증</li>
-                <li>AI 콘텐츠 제작</li>
-                <li>바이브코딩과 실습</li>
-              </ul>
-              <span class="service-note">전북 전역 방문 출강 가능</span>
-            </article>
-
-            <article class="service-card reveal">
-              <p class="card-overline">AUTOMATION DESIGN</p>
-              <h3>업무 과정 개선</h3>
-              <p>
-                “AI를 넣자”에서 시작하지 않습니다. 반복 입력, 전달, 취합, 확인처럼
-                실제 시간을 빼앗는 지점을 먼저 찾습니다.
-              </p>
-              <ul>
-                <li>현재 업무 과정 파악</li>
-                <li>불필요한 중간과정 식별</li>
-                <li>자동화 필요성 검증</li>
-                <li>웹·AI·도구를 이용한 구현</li>
-              </ul>
-              <span class="service-note">AI가 필요 없으면 AI를 넣지 않습니다.</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="about section-cream" id="about">
-        <div class="shell about-layout">
-          <div class="about-heading reveal">
-            <p class="section-index">08 · ABOUT</p>
-            <h2>Who is behind DECHIVE?</h2>
-          </div>
-
-          <div class="about-copy reveal">
-            <p class="about-lead">
-              사람을 가르치는 일을 해왔고, AI를 만나면서 혼자서도 이전에는 어려웠던
-              것들을 만들 수 있게 됐습니다.
-            </p>
-            <p>
-              하지만 “만들 수 있다”와 “만들어야 한다”는 다른 문제였습니다. 그 질문이
-              DECHIVE와 여러 프로젝트, 그리고 《만들기 전에 검증하라》로 이어졌습니다.
-            </p>
-
-            <dl class="about-facts">
-              <div><dt>Experience</dt><dd>강사 경력 5년</dd></div>
-              <div><dt>Certificate</dt><dd>Google AI Professional Certificate</dd></div>
-              <div><dt>Qualification</dt><dd>사회복지사 2급</dd></div>
-              <div><dt>Focus</dt><dd>AI · Education · Verification · Automation</dd></div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section class="paths section-dark">
-        <div class="shell">
-          <p class="section-index">09 · WHERE NEXT?</p>
-          <h2 class="paths-title reveal">What brought you here?</h2>
-
-          <div class="path-grid">
-            <a class="path-card reveal" href="https://dechive.dev" target="_blank" rel="noreferrer">
-              <span>READ</span>
-              <h3>생각과 검증을 더 읽고 싶다면</h3>
-              <p>Knowledge · AI Update · Practice · Verification</p>
-              <strong>dechive.dev ↗</strong>
-            </a>
-
-            <a class="path-card reveal" href="https://github.com/Aprasaks" target="_blank" rel="noreferrer">
-              <span>CODE</span>
-              <h3>실제로 만든 것을 확인하고 싶다면</h3>
-              <p>Projects · Code · Architecture · Experiments</p>
-              <strong>GitHub ↗</strong>
-            </a>
-
-            <a class="path-card reveal" href="#contact">
-              <span>WORK</span>
-              <h3>강의·협업·업무 개선을 이야기하고 싶다면</h3>
-              <p>Education · Automation · Collaboration</p>
-              <strong>Contact ↓</strong>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact section-light" id="contact">
-        <div class="shell contact-layout">
-          <div class="contact-copy reveal">
-            <p class="section-index">10 · CONTACT</p>
-            <h2>
-              무엇을 자동화할지보다,<br />
-              <em>무엇이 불편한지</em>부터 들려주세요.
-            </h2>
-            <p>
-              AI 교육, 서비스 기획, 업무 흐름 개선, 프로젝트 협업 모두 문제를
-              이해하는 것에서 시작합니다.
-            </p>
-          </div>
-
-          <div class="contact-actions reveal">
-            <a
-              class="button button-dark button-wide"
-              href="https://open.kakao.com/me/dechive"
-              target="_blank"
-              rel="noreferrer"
-            >
-              카카오톡으로 이야기하기
-            </a>
-            <a class="button button-ghost button-wide" href="mailto:heavenis0113@gmail.com">
-              이메일 보내기
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-top">
-        <div>
-          <p class="footer-brand">DECHIVE</p>
-          <p>Learn · Verify · Build.</p>
-        </div>
-
-        <nav class="footer-links" aria-label="외부 링크">
-          <a href="https://dechive.dev" target="_blank" rel="noreferrer">Dechive</a>
-          <a href="https://www.youtube.com/@dechive" target="_blank" rel="noreferrer">YouTube</a>
-          <a href="https://blog.naver.com/dehcive-ai" target="_blank" rel="noreferrer">Naver Blog</a>
-          <a href="https://github.com/Aprasaks" target="_blank" rel="noreferrer">GitHub</a>
-        </nav>
       </div>
+    </section>
 
-      <div class="shell footer-bottom">
-        <span>AI creates answers. Humans verify them.</span>
-        <span>© 2026 DECHIVE STUDIO</span>
+    <section class="live-dechive section-white" aria-labelledby="live-dechive-title">
+      <div class="shell">
+        <div class="live-dechive-head reveal">
+          <div>
+            <p class="section-index">02 · KNOWLEDGE & VERIFICATION</p>
+            <h2 id="live-dechive-title">생각과 검증의 원본은<br /><em>dechive.dev</em>에 쌓입니다.</h2>
+          </div>
+          <div class="live-dechive-copy">
+            <p>
+              Studio가 ‘나와 실제 작업’을 보여주는 공개 허브라면,
+              dechive.dev는 매일 지식과 검증을 축적하는 본진입니다.
+            </p>
+            <a class="text-link" href="https://dechive.dev" target="_blank" rel="noreferrer">실제 사이트 열기 ↗</a>
+          </div>
+        </div>
+
+        <div class="browser-preview reveal">
+          <div class="browser-preview-bar">
+            <div class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span>https://dechive.dev</span>
+            <a href="https://dechive.dev" target="_blank" rel="noreferrer" aria-label="dechive.dev 새 창에서 열기">↗</a>
+          </div>
+          <div class="browser-preview-body">
+            <iframe
+              src="https://dechive.dev/"
+              title="실제 dechive.dev 사이트 미리보기"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+          <p class="browser-fallback">
+            미리보기가 브라우저 정책으로 표시되지 않을 경우
+            <a href="https://dechive.dev" target="_blank" rel="noreferrer">dechive.dev를 직접 열어주세요.</a>
+          </p>
+        </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="./script.js"></script>
-  </body>
+    <section class="method-v2 section-soft">
+      <div class="shell">
+        <p class="section-index">03 · METHOD</p>
+        <div class="section-heading-v2 reveal">
+          <h2>기술보다 이유가 먼저입니다.</h2>
+          <p>도구를 고른 뒤 문제를 찾지 않습니다. 문제를 이해하고, 확인하고, 필요한 만큼만 만듭니다.</p>
+        </div>
+        <div class="method-row">
+          <article class="method-card reveal"><span>01</span><strong>LEARN</strong><h3>먼저 배웁니다.</h3><p>공식 자료, 교육, 실제 사용자와 현장을 통해 맥락을 이해합니다.</p></article>
+          <article class="method-card method-card-focus reveal"><span>02</span><strong>VERIFY</strong><h3>그대로 믿지 않습니다.</h3><p>출처와 실제 흐름, 직접 테스트로 가정과 주장을 확인합니다.</p></article>
+          <article class="method-card reveal"><span>03</span><strong>BUILD</strong><h3>확인한 뒤 만듭니다.</h3><p>검증된 문제에 필요한 서비스, 자동화, 교육을 구현합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="selected-work-v2 section-white">
+      <div class="shell">
+        <div class="section-heading-v2 reveal">
+          <p class="section-index">04 · SELECTED WORK</p>
+          <h2>무엇을 만들었는지보다,<br /><em>왜 만들었는지</em> 먼저 보여드립니다.</h2>
+        </div>
+
+        <div class="work-editorial-list">
+          <a class="work-editorial-card reveal" href="/work/association-system/">
+            <span class="work-editorial-no">01</span>
+            <div>
+              <p>PROCESS · AUTOMATION</p>
+              <h3>생활체육 협회 행정 시스템</h3>
+              <span>여러 동호회와 임원 사이를 오가던 등록·이적·승인·문서 취합 과정을 한곳으로 줄였습니다.</span>
+            </div>
+            <i>Case study →</i>
+          </a>
+          <a class="work-editorial-card reveal" href="/work/#akashic">
+            <span class="work-editorial-no">02</span>
+            <div>
+              <p>AI · PERSONAL DATA</p>
+              <h3>AKASHIC</h3>
+              <span>개인의 일정·재정·생활 기록을 자연어 입력과 AI 분석으로 연결합니다.</span>
+            </div>
+            <i>View →</i>
+          </a>
+          <a class="work-editorial-card reveal" href="/work/#gunsan-com">
+            <span class="work-editorial-no">03</span>
+            <div>
+              <p>LOCAL · PRODUCT</p>
+              <h3>GUNSAN.COM</h3>
+              <span>지역 관광정보를 장소 목록이 아니라 실제로 따라갈 수 있는 코스로 재구성합니다.</span>
+            </div>
+            <i>View →</i>
+          </a>
+        </div>
+        <a class="small-cta" href="/work/">All work →</a>
+      </div>
+    </section>
+
+    <section class="case-v2 section-soft">
+      <div class="shell case-v2-grid">
+        <div class="case-v2-heading reveal">
+          <p class="section-index">05 · CASE STUDY</p>
+          <h2>엑셀을 없애려고 만든 게 아닙니다.</h2>
+          <p class="case-v2-quote">엑셀이 사람 사이를 오가는 과정을 없애기 위해 만들었습니다.</p>
+        </div>
+        <div class="case-v2-flow reveal">
+          <div>
+            <span>BEFORE</span>
+            <p>양식 다운로드 → 작성 → 전달 → 취합 → 누락 확인 → 재정리</p>
+          </div>
+          <div class="case-v2-divider">→</div>
+          <div>
+            <span>AFTER</span>
+            <p>사이트 등록 → 자동 저장 → 승인·알림 → 통합 조회 → Excel/HWP 생성</p>
+          </div>
+          <a href="/work/association-system/">전체 Case Study 읽기 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="automation-v2">
+      <div class="shell automation-v2-grid">
+        <div class="reveal">
+          <p class="section-index">06 · AUTOMATION</p>
+          <h2>편하기 위해<br />AI를 쓰지 않습니다.</h2>
+        </div>
+        <div class="automation-v2-copy reveal">
+          <p class="automation-v2-highlight">불편하기 때문에<br /><em>AI가 필요한지 봅니다.</em></p>
+          <p>
+            어떤 정보가 두 번 입력되는지, 누가 기다리고 있는지, 무엇이 계속 전달되는지부터 봅니다.
+            AI가 없어도 해결된다면 굳이 AI를 넣지 않습니다.
+          </p>
+          <div class="automation-v2-steps"><span>FRICTION</span><i>→</i><span>VERIFY</span><i>→</i><span>REDESIGN</span><i>→</i><span>AUTOMATE</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="book-v2 section-white" id="book">
+      <div class="shell book-v2-grid">
+        <figure class="book-cover-wrap reveal">
+          <img src="/images/validate-before-build-cover.webp" alt="윤강혁 저 《만들기전에 검증하라》 실제 전자책 표지" width="420" height="588" loading="lazy" />
+        </figure>
+        <div class="book-v2-copy reveal">
+          <p class="section-index">07 · BOOK</p>
+          <h2>《만들기전에 검증하라》</h2>
+          <p class="book-v2-deck">바이브코딩, 1인기업, AI SaaS의 착각들</p>
+          <p>
+            AI가 무엇이든 빠르게 만들어주는 시대에, 만드는 속도보다
+            왜 만드는지와 무엇을 검증해야 하는지를 먼저 묻는 책입니다.
+          </p>
+          <div class="book-v2-meta"><span>윤강혁 저</span><span>e퍼플</span><span>2026.09.04</span><span>PDF · 155쪽</span></div>
+          <div class="book-v2-actions">
+            <a class="button button-dark" href="/book/">Book details</a>
+            <a class="button button-ghost" href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=401737372" target="_blank" rel="noreferrer">Aladin ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-v2 section-soft">
+      <div class="shell profile-v2-grid">
+        <div class="reveal">
+          <p class="section-index">08 · ABOUT</p>
+          <h2>윤강혁<br /><span>Educator · Builder · Author</span></h2>
+        </div>
+        <div class="profile-v2-copy reveal">
+          <p>
+            사람을 가르치는 일을 해왔고, AI를 만나면서 직접 서비스와 자동화를 만들기 시작했습니다.
+            그 과정에서 “만들 수 있다”와 “만들어야 한다”는 다른 문제라는 걸 계속 확인하고 있습니다.
+          </p>
+          <div class="profile-v2-facts">
+            <span>강사 경력 5년</span>
+            <span>사회복지사 2급</span>
+            <span>Google AI Professional Certificate</span>
+            <span>DECHIVE 운영</span>
+          </div>
+          <a class="text-link" href="/about/">About me →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="next-v2">
+      <div class="shell">
+        <p class="section-index">09 · NEXT</p>
+        <div class="next-v2-grid">
+          <a href="https://dechive.dev" target="_blank" rel="noreferrer"><span>READ</span><strong>지식과 검증을 읽기</strong><i>dechive.dev ↗</i></a>
+          <a href="/work/"><span>WORK</span><strong>실제로 만든 것 보기</strong><i>Projects →</i></a>
+          <a href="/education/"><span>TOGETHER</span><strong>강의·업무 개선 이야기하기</strong><i>Contact →</i></a>
+          <a href="/resume/"><span>HIRE</span><strong>경력과 역량 확인하기</strong><i>Resume →</i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer-v2">
+    <div class="shell footer-top">
+      <div><p class="footer-brand">DECHIVE</p><p>Learn · Verify · Build.</p></div>
+      <nav class="footer-links" aria-label="외부 링크">
+        <a href="https://dechive.dev" target="_blank" rel="noreferrer">Dechive</a>
+        <a href="https://www.youtube.com/@dechive" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://blog.naver.com/dehcive-ai" target="_blank" rel="noreferrer">Naver Blog</a>
+        <a href="https://github.com/Aprasaks" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+    <div class="shell footer-bottom"><span>AI creates answers. Humans verify them.</span><span>© 2026 DECHIVE STUDIO</span></div>
+  </footer>
+  <script src="/script.js"></script>
+</body>
 </html>
