@@ -3686,3 +3686,45 @@ body {
     line-height: 1.72;
   }
 }
+
+
+/* Principles typography refinement */
+.principles-intro h2 .principles-title-line {
+  font-size: .88em;
+  line-height: 1.16;
+  letter-spacing: -.038em;
+  margin-bottom: 12px;
+}
+
+.principles-brand-line {
+  display: block;
+  margin-bottom: 4px;
+  font-family: "Noto Serif KR", Georgia, serif;
+  color: var(--accent);
+  font-size: .91em;
+  line-height: 1.14;
+  letter-spacing: -.035em;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.principles-intro h2 .principles-typing {
+  font-size: .96em;
+  line-height: 1.16;
+}
+
+@media (max-width: 680px) {
+  .principles-intro h2 .principles-title-line {
+    font-size: .9em;
+    margin-bottom: 10px;
+  }
+
+  .principles-brand-line {
+    font-size: .93em;
+    margin-bottom: 3px;
+  }
+
+  .principles-intro h2 .principles-typing {
+    font-size: .96em;
+  }
+}
