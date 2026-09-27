@@ -3270,3 +3270,71 @@ body {
     font-size: clamp(36px,11vw,51px);
   }
 }
+
+
+/* =====================================================
+   GLOBAL HEADER — identical on every public page
+   ===================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  inset: auto;
+  z-index: 100;
+  background: rgba(255, 253, 249, 0.94);
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.site-header.scrolled {
+  background: rgba(255, 253, 249, 0.94);
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.header-inner {
+  min-height: 68px;
+}
+
+.brand {
+  flex: 0 0 auto;
+}
+
+.desktop-nav {
+  margin-left: auto;
+  gap: 24px;
+}
+
+.desktop-nav a,
+.header-link {
+  font-size: 12px;
+  font-weight: 560;
+  color: var(--ink-soft);
+}
+
+.header-link {
+  margin-left: 6px;
+  color: var(--accent);
+}
+
+.desktop-nav a:hover,
+.header-link:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .desktop-nav,
+  .header-link {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .mobile-menu {
+    inset: 68px 0 auto 0;
+  }
+}
