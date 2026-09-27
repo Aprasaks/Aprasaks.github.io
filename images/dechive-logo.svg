@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 170" role="img" aria-labelledby="title desc">
+  <title id="title">DECHIVE</title>
+  <desc id="desc">Demian's Archive</desc>
+  <defs>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0b46d"/>
+      <stop offset="0.52" stop-color="#c58a39"/>
+      <stop offset="1" stop-color="#a96e2b"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 21) scale(1.18)">
+    <g fill="#1c1d1f">
+      <rect x="8" y="28" width="5" height="57" rx="1.5"/>
+      <rect x="16" y="22" width="5" height="68" rx="1.5"/>
+      <path d="M24 14h34c25 0 43 17 43 40s-18 40-43 40H24V14zm16 16v48h18c15 0 26-10 26-24S73 30 58 30H40z" fill-rule="evenodd"/>
+    </g>
+    <path d="M17 59C30 39 43 37 58 52c14 14 24 16 36-1-11-16-22-15-36 0-14 15-27 17-41-2" fill="none" stroke="url(#amber)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="155" y="91" fill="#1c1d1f" font-family="Georgia, 'Times New Roman', serif" font-size="67" letter-spacing="12">DECHIVE</text>
+  <text x="160" y="129" fill="#6a655d" font-family="Georgia, 'Times New Roman', serif" font-size="19" letter-spacing="7">Demian's Archive</text>
+</svg>
