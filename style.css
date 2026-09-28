@@ -4122,21 +4122,24 @@ a.work-editorial-card:hover {
 }
 
 .principles-typing,
-.work-heading-typing {
+.work-heading-typing,
+.about-heading-typing {
   position: relative;
   display: block;
   font-style: normal;
 }
 
 .principles-typing-placeholder,
-.work-heading-typing-placeholder {
+.work-heading-typing-placeholder,
+.about-heading-typing-placeholder {
   display: block;
   visibility: hidden;
   pointer-events: none;
 }
 
 .principles-typing-output,
-.work-heading-typing-output {
+.work-heading-typing-output,
+.about-heading-typing-output {
   position: absolute;
   inset: 0;
   display: block;
@@ -4144,7 +4147,8 @@ a.work-editorial-card:hover {
 }
 
 .principles-typing.is-typing .principles-typing-output::after,
-.work-heading-typing.is-typing .work-heading-typing-output::after {
+.work-heading-typing.is-typing .work-heading-typing-output::after,
+.about-heading-typing.is-typing .about-heading-typing-output::after {
   content: "";
   display: inline-block;
   width: 1px;
@@ -4237,4 +4241,50 @@ a.work-editorial-card:hover {
 
 .principles-typing-full .principles-typing-placeholder {
   line-height: inherit;
+}
+
+
+/* About hero statement */
+.sub-hero h1.about-hero-heading {
+  max-width: 900px;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.about-heading-static {
+  display: block;
+  color: var(--ink);
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 520;
+  line-height: 1.22;
+  letter-spacing: -.04em;
+  word-break: keep-all;
+}
+
+.about-heading-typing {
+  margin-top: 12px;
+  color: var(--accent);
+  font-family: "Noto Serif KR", Georgia, serif;
+  font-size: clamp(38px, 4.8vw, 60px);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -.04em;
+  word-break: keep-all;
+}
+
+@media (max-width: 680px) {
+  .about-heading-static {
+    font-size: clamp(25px, 7.4vw, 31px);
+    line-height: 1.28;
+  }
+
+  .about-heading-typing {
+    margin-top: 10px;
+    font-size: clamp(31px, 9.2vw, 39px);
+    line-height: 1.3;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
 }

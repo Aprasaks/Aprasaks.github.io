@@ -84,13 +84,17 @@ if ('IntersectionObserver' in window) {
 
 // Shared typewriter — runs once when each statement enters the viewport.
 (function initTypewriters() {
-  var lines = document.querySelectorAll('.principles-typing, .work-heading-typing');
+  var lines = document.querySelectorAll(
+    '.principles-typing, .work-heading-typing, .about-heading-typing'
+  );
   if (!lines.length) return;
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function getOutput(line) {
-    return line.querySelector('.principles-typing-output, .work-heading-typing-output');
+    return line.querySelector(
+      '.principles-typing-output, .work-heading-typing-output, .about-heading-typing-output'
+    );
   }
 
   function getText(line) {
