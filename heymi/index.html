@@ -111,6 +111,49 @@ body{font-size:15px;line-height:1.55}
 .mainHeaderVersion{font-size:13px;font-weight:800;color:#766b5d;background:#f4f0e9;border:1px solid #ddd4c7;border-radius:999px;padding:7px 10px;white-space:nowrap}
 @media(max-width:560px){.mainHeaderInner{padding:14px}.mainHeaderTitle{font-size:17px}.mainHeaderVersion{font-size:12px}}
 
+
+/* roadmap landing */
+.roadmapHero{max-width:760px;margin:8px auto 34px;text-align:center}
+.roadmapHero .kicker{font-size:12px;font-weight:900;letter-spacing:.12em;color:#8b7658}
+.roadmapHero h1{font-size:27px;line-height:1.3;margin:8px 0 10px;letter-spacing:-.03em}
+.roadmapHero p{margin:0;color:#6b6258;font-size:14px;line-height:1.7}
+.roadmap{position:relative;max-width:900px;margin:0 auto;padding:8px 0 30px}
+.roadmap:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,#d9c9ae,#b69d76,#d9c9ae);box-shadow:0 0 12px #b69d7660}
+.roadStep{position:relative;width:calc(50% - 34px);margin-bottom:24px}
+.roadStep:nth-child(odd){margin-right:auto;text-align:right}
+.roadStep:nth-child(even){margin-left:auto;text-align:left}
+.roadStepCard{position:relative;width:100%;border:1px solid #ddd4c7;background:#fff;border-radius:16px;padding:16px 18px;cursor:pointer;transition:.2s ease;box-shadow:0 8px 20px #2e26160a}
+.roadStepCard:hover{transform:translateY(-2px);border-color:#baa178;box-shadow:0 12px 30px #a7865220,0 0 0 1px #d9c39d}
+.roadStepCard small{display:block;font-size:11px;font-weight:900;letter-spacing:.08em;color:#9a8059;margin-bottom:5px}
+.roadStepCard b{display:block;font-size:16px;line-height:1.45;margin-bottom:4px}
+.roadStepCard span{font-size:13px;color:#6c645a;line-height:1.55}
+.roadNode{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #a98755;box-shadow:0 0 0 6px #f4f0e9,0 0 16px #b992557f;animation:roadPulse 2.4s ease-in-out infinite}
+.roadStep:nth-child(odd) .roadNode{right:-42px;transform:translate(50%,-50%)}
+.roadStep:nth-child(even) .roadNode{left:-42px;transform:translate(-50%,-50%)}
+.roadStep:nth-child(2n) .roadNode{animation-delay:.35s}.roadStep:nth-child(3n) .roadNode{animation-delay:.7s}
+@keyframes roadPulse{0%,100%{box-shadow:0 0 0 6px #f4f0e9,0 0 10px #b9925544}50%{box-shadow:0 0 0 6px #f4f0e9,0 0 22px #b99255aa}}
+.roadModalBack{position:fixed;inset:0;background:#17130fb8;display:none;place-items:center;padding:18px;z-index:250}
+.roadModalBack.open{display:grid}
+.roadModal{width:min(660px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:20px;padding:22px;color:#1f1c18;box-shadow:0 28px 80px #0005}
+.roadModalHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid #eee6db}
+.roadModalHead small{font-size:11px;font-weight:900;letter-spacing:.1em;color:#9a8059}
+.roadModalHead h2{font-size:22px;line-height:1.35;margin:5px 0 0}
+.roadModalClose{border:0;width:34px;height:34px;border-radius:50%;background:#f0ebe3;font-size:22px}
+.roadModalBody{padding-top:16px}
+.roadModalSummary{font-size:15px;line-height:1.7;color:#514b43;margin:0 0 14px}
+.roadModalSection{padding:13px 14px;border-radius:12px;background:#f7f3ed;margin-top:10px}
+.roadModalSection h3{font-size:14px;margin:0 0 7px}
+.roadModalSection p,.roadModalSection li{font-size:13px;line-height:1.65;color:#5c554d}
+.roadModalSection p{margin:0}.roadModalSection ol{margin:0;padding-left:20px}
+.roadModalDone{background:#edf6ed;border:1px solid #c6dac8}
+@media(max-width:720px){
+  .roadmap:before{left:18px}
+  .roadStep,.roadStep:nth-child(odd),.roadStep:nth-child(even){width:auto;margin-left:48px;margin-right:0;text-align:left}
+  .roadStep:nth-child(odd) .roadNode,.roadStep:nth-child(even) .roadNode{left:-38px;right:auto;transform:translate(-50%,-50%)}
+  .roadmapHero{text-align:left}
+  .roadmapHero h1{font-size:23px}
+}
+
 </style>
 </head>
 <body>
@@ -132,24 +175,12 @@ body{font-size:15px;line-height:1.55}
 
 <div class="wrap">
 <section id="intro" data-section="guideHome">
-<div class="top"><div><span class="eyebrow">처음부터 한 단계씩 따라가는 안내형 사이트</span><h1>SNS자동화 판매프로그램(사이트) <span>ver.헤이미</span></h1></div><span class="badge">수업용 v0.4</span></div>
-<div class="intro">
-<div class="panel"><span class="label">이 프로그램이 하는 일</span><h2>영상 하나를 올리면<br>판매 과정이 연결됩니다.</h2><p>영상을 준비하고 Instagram에 게시한 뒤, 구매 댓글을 순서대로 받고, 1순위에게 10분 구매권을 주고, 결제가 끝나면 판매를 종료합니다.</p><p style="font-size:13px;background:#f4f0e9;padding:10px 12px;border-radius:10px"><strong>핵심:</strong> 각 기능이 따로 움직이는 것이 아니라 한 흐름으로 연결됩니다.</p><button class="primary" onclick="start()">단계별 설명 보기</button></div>
-<div class="systemMap">
-  <div class="systemTitle"><div><span class="label">SYSTEM FLOW</span><h2>헤이미 자동화 구조</h2></div><span class="badge">6개 기능 연결</span></div>
-  <div class="systemStage">
-    <div class="connector c1"></div><div class="connector c2"></div><div class="connector c3"></div><div class="connector c4"></div><div class="connector c5"></div><div class="connector c6"></div>
-    <div class="hub"><div><b>HEYMI</b><span>판매 자동화 엔진</span></div></div>
-    <div class="node n1"><b>① 영상·상품</b><span>영상, 가격, 설명, 해시태그</span></div>
-    <div class="node n2"><b>② Instagram</b><span>계정 연결 · Reel 게시</span></div>
-    <div class="node n3"><b>③ 구매 댓글</b><span>“구매” 댓글만 감지</span></div>
-    <div class="node n4"><b>④ 대기열</b><span>1순위부터 순서 저장</span></div>
-    <div class="node n5"><b>⑤ 가상계좌</b><span>10분 입금기한 관리</span></div>
-    <div class="node n6"><b>⑥ 판매완료</b><span>결제 확인 후 종료</span></div>
+  <div class="roadmapHero">
+    <span class="kicker">AUTOMATION ROADMAP</span>
+    <h1>영상 한 개가 판매 완료까지 어떻게 이어지는지<br>단계별로 확인합니다.</h1>
+    <p>각 단계를 클릭하면 왜 필요한지, 무엇을 해야 하는지, 어디까지 되면 완료인지 확인할 수 있습니다.</p>
   </div>
-  <div class="flowLegend"><span>입력</span><span>게시</span><span>감지</span><span>순번</span><span>결제</span><span>종료</span></div>
-</div>
-</div>
+  <div class="roadmap" id="roadmap"></div>
 </section>
 <section id="guide" class="hidden" data-section="guideHome">
 <div class="guideHead"><button class="link" onclick="home()">← 처음으로</button><b>SNS자동화 판매프로그램(사이트) ver.헤이미</b><span></span></div>
@@ -257,6 +288,33 @@ const steps=[
 {t:'결제가 끝나면 판매를 종료합니다',s:'상품을 더 이상 구매할 수 없도록 판매완료로 바꿉니다.',w:'상품은 하나뿐이므로 한 명의 결제가 완료된 순간 다른 구매 요청은 더 이상 진행하면 안 됩니다.',a:['결제 완료 신호를 확인합니다.','상품 상태를 판매완료로 변경합니다.','Instagram에도 판매가 끝났음을 안내합니다.'],ok:'판매완료가 보이고 추가 구매 요청이 진행되지 않으면 됩니다.',n:'전체 흐름 확인 완료'}
 ];
 let i=0;
+
+function buildRoadmap(){
+  const root=document.getElementById('roadmap');
+  if(!root) return;
+  root.innerHTML=steps.map((s,idx)=>`
+    <div class="roadStep">
+      <button class="roadStepCard" onclick="openRoadModal(${idx})">
+        <small>STEP ${String(idx+1).padStart(2,'0')}</small>
+        <b>${s.t}</b>
+        <span>${s.s}</span>
+      </button>
+      <span class="roadNode" aria-hidden="true"></span>
+    </div>
+  `).join('');
+}
+function openRoadModal(idx){
+  const s=steps[idx];
+  document.getElementById('roadModalStep').textContent='STEP '+String(idx+1).padStart(2,'0');
+  document.getElementById('roadModalTitle').textContent=s.t;
+  document.getElementById('roadModalSummary').textContent=s.s;
+  document.getElementById('roadModalWhy').textContent=s.w;
+  document.getElementById('roadModalActions').innerHTML=s.a.map(x=>'<li>'+x+'</li>').join('');
+  document.getElementById('roadModalDone').textContent=s.ok;
+  document.getElementById('roadModalBack').classList.add('open');
+}
+function closeRoadModal(){document.getElementById('roadModalBack').classList.remove('open')}
+
 const demo=(i)=>[
 `<div class="white"><span>판매 상품</span><div class="product"><div class="shirt">👕</div><div><b>오늘 판매할 옷</b><p>재고 1개 · 한정 판매</p><strong>59,000원</strong></div></div><span class="pill">판매 준비</span></div>`,
 `<div class="phone"><div class="phoneIn">▶<span>옷 전체가 잘 보이는 짧은 영상</span></div></div>`,
@@ -272,7 +330,7 @@ const demo=(i)=>[
 function render(){const s=steps[i],p=Math.round((i+1)/steps.length*100);count.textContent=`${i+1}단계 / ${steps.length}단계`;pct.textContent=`${p}% 진행`;bar.style.width=p+'%';title.textContent=s.t;short.textContent=s.s;why.textContent=s.w;actions.innerHTML=s.a.map(x=>`<li>${x}</li>`).join('');success.textContent=s.ok;next.textContent=s.n;prev.disabled=i===0;stepNo.textContent='STEP '+String(i+1).padStart(2,'0');demoEl.innerHTML=demo(i);window.scrollTo({top:0,behavior:'smooth'})}
 const intro=document.getElementById('intro'),guide=document.getElementById('guide'),count=document.getElementById('count'),pct=document.getElementById('pct'),bar=document.getElementById('bar'),title=document.getElementById('title'),short=document.getElementById('short'),why=document.getElementById('why'),actions=document.getElementById('actions'),success=document.getElementById('success'),nextBtn=document.getElementById('next'),prevBtn=document.getElementById('prev'),stepNo=document.getElementById('stepNo'),demoEl=document.getElementById('demo');
 function start(){i=0;intro.classList.add('hidden');guide.classList.remove('hidden');render()} function home(){guide.classList.add('hidden');intro.classList.remove('hidden')} function prevStep(){if(i>0){i--;render()}} function nextStep(){if(i<steps.length-1){i++;render()}else alert('이제 실제 프로그램 화면으로 넘어갑니다.')}
-document.getElementById('miniFlow').innerHTML=steps.map((s,x)=>`<div><b>${x+1}</b><span>${s.t}</span></div>`).join('');
+buildRoadmap();
 
 
 let instagramConnected=false;
@@ -387,6 +445,34 @@ function resetSale(){
 renderQueue();logSale('판매 테스트 준비 완료');
 
 </script>
+
+
+<div id="roadModalBack" class="roadModalBack" onclick="closeRoadModal()">
+  <div class="roadModal" onclick="event.stopPropagation()">
+    <div class="roadModalHead">
+      <div>
+        <small id="roadModalStep">STEP 01</small>
+        <h2 id="roadModalTitle"></h2>
+      </div>
+      <button class="roadModalClose" onclick="closeRoadModal()">×</button>
+    </div>
+    <div class="roadModalBody">
+      <p class="roadModalSummary" id="roadModalSummary"></p>
+      <div class="roadModalSection">
+        <h3>왜 필요한가요?</h3>
+        <p id="roadModalWhy"></p>
+      </div>
+      <div class="roadModalSection">
+        <h3>이 단계에서 할 일</h3>
+        <ol id="roadModalActions"></ol>
+      </div>
+      <div class="roadModalSection roadModalDone">
+        <h3>완료 기준</h3>
+        <p id="roadModalDone"></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="helpModalBack" class="helpModalBack" onclick="closeHelpModal()">
   <div class="helpModal" onclick="event.stopPropagation()">
