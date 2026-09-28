@@ -983,6 +983,19 @@ function renderRealPost(media){
   if(!media){
     empty?.classList.remove('hidden');
     content?.classList.add('hidden');
+
+    const thumb=document.getElementById('realPostThumb');
+    if(thumb){
+      thumb.style.backgroundImage='';
+      thumb.textContent='Instagram';
+    }
+
+    const link=document.getElementById('realPostLink');
+    if(link) link.href='#';
+
+    const caption=document.getElementById('realPostCaption');
+    if(caption) caption.textContent='게시물 없음';
+
     return;
   }
   empty?.classList.add('hidden');
@@ -1005,23 +1018,49 @@ function renderRealPost(media){
 
 async function loadLatestInstagramMedia(){
   if(!instagramConnected){
-    await connectInstagram();
-    if(!instagramConnected)return;
+    connectInstagram();
+    return;
   }
-  setDbStatus(false,'게시물 조회 중');
+
+  setDbStatus(false,'Instagram 게시물 확인 중');
+
   try{
     const data=await heymiFunction('heymi-instagram-media',{connectionId:getConnectionId()});
-    const items=data.media||[];
-    if(!items.length) throw new Error('Instagram 게시물을 찾지 못했습니다.');
+    const items=Array.isArray(data.media)?data.media:[];
+
+    // Instagram에 실제 게시물이 하나도 없으면
+    // 브라우저에 남아 있던 이전 게시물 정보도 즉시 폐기한다.
+    if(!items.length){
+      currentInstagramMedia=null;
+      localStorage.removeItem(HEYMI_LAST_MEDIA_KEY);
+      renderRealPost(null);
+      resetRealMonitor();
+      renderPurchaseQueue([]);
+      setDbStatus(true,'Instagram 게시물 없음');
+      return;
+    }
+
+    // 저장된 ID는 "선택 정보"로만 사용한다.
+    // Instagram API가 돌려준 현재 목록 안에 실제로 존재할 때만 복원한다.
     const saved=JSON.parse(localStorage.getItem(HEYMI_LAST_MEDIA_KEY)||'null');
-    currentInstagramMedia=items.find(x=>x.id===saved?.id)||items[0];
+    currentInstagramMedia=items.find(x=>String(x.id)===String(saved?.id))||items[0];
+
     localStorage.setItem(HEYMI_LAST_MEDIA_KEY,JSON.stringify(currentInstagramMedia));
     renderRealPost(currentInstagramMedia);
+
     await syncInstagramComments(false);
-    setDbStatus(true,'실제 게시물 연결됨');
+    setDbStatus(true,'Instagram 최신 상태 확인됨');
   }catch(err){
     console.error(err);
+
+    // 조회 실패를 이전 캐시 화면으로 숨기지 않는다.
+    currentInstagramMedia=null;
+    localStorage.removeItem(HEYMI_LAST_MEDIA_KEY);
+    renderRealPost(null);
+    resetRealMonitor();
+    renderPurchaseQueue([]);
     setDbStatus(false,'게시물 조회 실패');
+
     alert(err.message||'Instagram 게시물을 불러오지 못했습니다.');
   }
 }
@@ -1141,17 +1180,15 @@ function toggleInstagramCommentPolling(){
 
 async function prepareRealTestPage(){
   renderRealConnectionStatus();
-  if(!instagramConnected) return;
-  try{
-    const saved=JSON.parse(localStorage.getItem(HEYMI_LAST_MEDIA_KEY)||'null');
-    if(saved?.id){
-      currentInstagramMedia=saved;
-      renderRealPost(saved);
-      await syncInstagramComments(false);
-    }else{
-      await loadLatestInstagramMedia();
-    }
-  }catch(err){console.error(err)}
+  if(!instagramConnected){
+    currentInstagramMedia=null;
+    renderRealPost(null);
+    return;
+  }
+
+  // 페이지를 열 때마다 Instagram의 현재 상태를 다시 확인한다.
+  // localStorage의 이전 게시물을 먼저 화면에 띄우지 않는다.
+  await loadLatestInstagramMedia();
 }
 
 function escapeHtml(v){
