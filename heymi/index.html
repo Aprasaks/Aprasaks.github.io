@@ -459,19 +459,19 @@ body{font-size:15px;line-height:1.55}
       <div class="heymiCore">
         <small>AUTOMATION</small>
         <strong>HEYMI</strong>
-        <span>판매 흐름을 연결</span>
+        <span>현재 구현과 다음 연동을 연결</span>
       </div>
 
       <div class="autoFlow">
-        <div><small>01</small><b>Instagram 게시</b></div>
+        <div><small>현재 구현</small><b>상품·영상 입력</b></div>
         <i>→</i>
-        <div><small>02</small><b>구매 댓글 감지</b></div>
+        <div><small>현재 구현</small><b>Supabase 저장</b></div>
         <i>→</i>
-        <div><small>03</small><b>대기열 정리</b></div>
+        <div><small>실계정 확인 전</small><b>Instagram 게시</b></div>
         <i>→</i>
-        <div><small>04</small><b>결제 안내</b></div>
+        <div><small>테스트 구현</small><b>구매 댓글 판별</b></div>
         <i>→</i>
-        <div><small>05</small><b>판매완료</b></div>
+        <div><small>다음 연동</small><b>결제·판매완료</b></div>
       </div>
     </div>
   </section>
@@ -589,10 +589,10 @@ body{font-size:15px;line-height:1.55}
   <div class="flowStrip">
   <div class="flowStep">Instagram 연결</div><span class="arrow">→</span>
   <div class="flowStep">영상·설명 입력</div><span class="arrow">→</span>
-  <div class="flowStep">게시</div><span class="arrow">→</span>
-  <div class="flowStep">구매 댓글</div><span class="arrow">→</span>
-  <div class="flowStep">대기열·10분</div>
+  <div class="flowStep">Supabase 영상 저장</div><span class="arrow">→</span>
+  <div class="flowStep">Instagram 게시</div>
 </div>
+<p class="smallNote" style="margin-top:6px"><strong>현재 범위:</strong> 이 프로그램 화면에서는 계정 연결·영상 저장·게시까지만 실제 연결 대상으로 둡니다. 실제 Instagram 댓글 Webhook과 결제 자동화는 아직 연결하지 않았습니다.</p>
 <div class="programGrid">
     <div class="programCard">
       <h2>0. Instagram 계정을 연결합니다</h2>
