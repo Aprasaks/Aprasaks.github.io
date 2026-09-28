@@ -3740,3 +3740,295 @@ a.work-editorial-card:hover {
 .principles-typing-full .principles-typing-placeholder {
   line-height: inherit;
 }
+
+
+/* =====================================================
+   RESUME V2 — 2026-09-28
+   web resume as the public source of truth
+   ===================================================== */
+.resume-v2 {
+  background: #fff;
+}
+
+.resume-v2-head {
+  padding: 92px 0 72px;
+  background: var(--bg-soft);
+}
+
+.resume-v2-head-grid {
+  display: grid;
+  grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr);
+  gap: clamp(48px,7vw,110px);
+  align-items: end;
+}
+
+.resume-v2-name h1 {
+  margin: 0;
+  font-size: clamp(52px,6vw,78px);
+  line-height: .98;
+  letter-spacing: -.055em;
+  font-weight: 620;
+}
+
+.resume-v2-name .resume-role {
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--accent);
+}
+
+.resume-v2-lead {
+  margin: 0;
+  font-size: clamp(24px,2.6vw,34px);
+  line-height: 1.46;
+  letter-spacing: -.035em;
+  font-weight: 560;
+  word-break: keep-all;
+}
+
+.resume-v2-contact {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+}
+
+.resume-v2-contact a,
+.resume-v2-contact span {
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.resume-v2-contact a {
+  border-bottom: 1px solid rgba(28,29,31,.35);
+}
+
+.resume-v2-summary {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.resume-v2-facts {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+.resume-v2-facts > div {
+  min-height: 118px;
+  padding: 24px 22px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.resume-v2-facts > div:first-child { padding-left: 0; }
+.resume-v2-facts > div:last-child { border-right: 0; }
+
+.resume-v2-facts span {
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.resume-v2-facts strong {
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 620;
+}
+
+.resume-v2-project-list {
+  border-top: 1px solid var(--line);
+}
+
+.resume-v2-project-list > a,
+.resume-v2-project-static {
+  display: grid;
+  grid-template-columns: 46px minmax(0,1fr) 88px;
+  gap: 18px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-v2-project-list > a {
+  transition: padding .18s ease, color .18s ease;
+}
+
+.resume-v2-project-list > a:hover {
+  padding-left: 7px;
+  color: var(--accent);
+}
+
+.resume-v2-project-no {
+  color: var(--ink-faint);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+}
+
+.resume-v2-project-list strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 620;
+  line-height: 1.4;
+}
+
+.resume-v2-project-list p {
+  max-width: 680px;
+  margin: 7px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.resume-v2-project-list i {
+  justify-self: end;
+  color: var(--ink-faint);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.resume-v2-end {
+  padding: 86px 0;
+  background: var(--dark);
+  color: var(--white);
+}
+
+.resume-v2-end-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 60px;
+  align-items: end;
+}
+
+.resume-v2-end h2 {
+  margin: 0;
+  font-size: clamp(30px,4vw,48px);
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  font-weight: 560;
+}
+
+.resume-v2-end .section-index {
+  color: var(--accent-soft);
+}
+
+.resume-v2-end-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .resume-v2-head-grid,
+  .resume-v2-end-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .resume-v2-facts {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .resume-v2-facts > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .resume-v2-facts > div:nth-child(-n+2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .resume-v2-facts > div:first-child {
+    padding-left: 22px;
+  }
+
+  .resume-v2-end-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .resume-v2-head {
+    padding: 64px 0 52px;
+  }
+
+  .resume-v2-name h1 {
+    font-size: clamp(46px,15vw,62px);
+  }
+
+  .resume-v2-lead {
+    font-size: clamp(22px,7vw,29px);
+  }
+
+  .resume-v2-lead br {
+    display: none;
+  }
+
+  .resume-v2-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-v2-facts > div,
+  .resume-v2-facts > div:first-child {
+    min-height: 88px;
+    padding: 18px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .resume-v2-facts > div:last-child {
+    border-bottom: 0;
+  }
+
+  .resume-v2-project-list > a,
+  .resume-v2-project-static {
+    grid-template-columns: 32px minmax(0,1fr);
+    gap: 10px;
+  }
+
+  .resume-v2-project-list i {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .resume-v2-end {
+    padding: 68px 0;
+  }
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .resume-v2-end {
+    display: none !important;
+  }
+
+  .resume-v2,
+  .resume-v2-head,
+  .resume-section,
+  .resume-section-alt,
+  .resume-v2-summary {
+    background: #fff !important;
+  }
+
+  .resume-v2-head {
+    padding-top: 0;
+  }
+
+  .resume-section {
+    break-inside: avoid;
+    padding: 34px 0;
+  }
+
+  .resume-v2-project-list > a,
+  .resume-v2-project-static {
+    color: #111 !important;
+    text-decoration: none;
+  }
+}
