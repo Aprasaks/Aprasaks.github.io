@@ -405,6 +405,27 @@ body{font-size:15px;line-height:1.55}
 @media(max-width:560px){.realPostContent{grid-template-columns:1fr}.realPostThumb{min-height:150px}.realControlBar{flex-direction:column}.realControlBar button{width:100%}}
 
 
+.paymentTestCard{
+  margin-top:18px;padding:22px 24px;border:1px solid #d9cdbd;border-radius:24px;background:#fff;
+}
+.paymentTestHead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.paymentTestHead h2{margin:4px 0 6px;font-size:22px}
+.paymentTestHead p{margin:0;color:#71695f;font-size:14px}
+.paymentTestControls{display:grid;grid-template-columns:minmax(180px,1fr) minmax(180px,1fr) auto;gap:12px;align-items:end;margin-top:18px}
+.paymentTestControls .field{margin:0}
+.paymentTestControls select{width:100%;box-sizing:border-box;border:1px solid #d8ccbc;border-radius:14px;padding:14px 15px;background:#fff;font:inherit}
+.paymentIssueBtn{min-height:50px}
+.virtualAccountResult{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;padding:16px;border-radius:18px;background:#f7f2ea}
+.virtualAccountResult>div{display:flex;flex-direction:column;gap:3px}
+.virtualAccountResult span{font-size:12px;color:#8a7b68}
+.virtualAccountResult b{font-size:16px;overflow-wrap:anywhere}
+.virtualAccountResult small{grid-column:1/-1;color:#8a7b68;margin-top:4px}
+@media(max-width:800px){
+  .paymentTestHead{display:block}
+  .paymentTestControls{grid-template-columns:1fr}
+  .virtualAccountResult{grid-template-columns:1fr 1fr}
+}
+
 /* compact program form */
 #programSection .formCard,
 #programSection .programCard{align-self:start}
@@ -639,7 +660,7 @@ body{font-size:15px;line-height:1.55}
   <div class="flowStep">Supabase 영상 저장</div><span class="arrow">→</span>
   <div class="flowStep">Instagram 게시</div>
 </div>
-<p class="smallNote" style="margin-top:6px"><strong>현재 실제 흐름:</strong> 계정 연결 → 영상 저장 → Reel 게시 → 테스트 메뉴에서 실제 Instagram 댓글 동기화 → “구매” 대기열과 10분 구매권까지 동작합니다. 가상계좌·입금 확인은 PG 연동 전이라 아직 실행하지 않습니다.</p>
+<p class="smallNote" style="margin-top:6px"><strong>현재 실제 흐름:</strong> 계정 연결 → 영상 저장 → Reel 게시 → 테스트 메뉴에서 실제 Instagram 댓글 동기화 → “구매” 대기열과 10분 구매권까지 동작합니다. 가상계좌는 현재 토스페이먼츠 테스트 모드로 실제 발급을 검증합니다. 입금 완료는 웹훅까지 확인한 뒤 판매 완료로 처리합니다.</p>
 <div class="programGrid">
     <div class="programCard">
       <h2>0. Instagram 계정을 연결합니다</h2>
@@ -685,6 +706,47 @@ body{font-size:15px;line-height:1.55}
       </div>
     </div>
   </div>
+
+  <section class="paymentTestCard">
+    <div class="paymentTestHead">
+      <div>
+        <span class="eyebrow">TOSS TEST MODE</span>
+        <h2>3. 10분 가상계좌를 실제로 발급해봅니다</h2>
+        <p>현재 상품명·가격을 사용합니다. 테스트 환경에서는 실제 송금하지 않고 토스 개발자센터에서 입금처리로 검증합니다.</p>
+      </div>
+      <span class="statusChip" id="virtualAccountStatus">발급 전</span>
+    </div>
+    <div class="paymentTestControls">
+      <label class="field">구매자명
+        <input id="virtualAccountCustomerName" value="헤이미테스트" maxlength="100" />
+      </label>
+      <label class="field">가상계좌 은행
+        <select id="virtualAccountBank">
+          <option value="06">KB국민은행</option>
+          <option value="03">IBK기업은행</option>
+          <option value="11">NH농협은행</option>
+          <option value="88">신한은행</option>
+          <option value="20">우리은행</option>
+          <option value="81">하나은행</option>
+          <option value="37">전북은행</option>
+          <option value="34">광주은행</option>
+          <option value="32">부산은행</option>
+          <option value="31">iM뱅크(대구)</option>
+          <option value="07">Sh수협은행</option>
+          <option value="71">우체국예금보험</option>
+          <option value="39">경남은행</option>
+        </select>
+      </label>
+      <button class="btnDark paymentIssueBtn" id="virtualAccountIssueBtn" onclick="issueVirtualAccountTest()">테스트 가상계좌 발급</button>
+    </div>
+    <div class="virtualAccountResult hidden" id="virtualAccountResult">
+      <div><span>은행</span><b id="vaBankName">-</b></div>
+      <div><span>계좌번호</span><b id="vaAccountNumber">-</b></div>
+      <div><span>입금금액</span><b id="vaAmount">-</b></div>
+      <div><span>입금기한</span><b id="vaDueAt">-</b></div>
+      <small id="vaOrderId">-</small>
+    </div>
+  </section>
 </section>
 
 <section id="testSection" class="hidden" data-section="test">
@@ -1141,6 +1203,64 @@ function renderStoredInstagramComments(rows){
   document.getElementById('receivedCount').textContent=liveReceived;
   document.getElementById('acceptedCount').textContent=liveAccepted;
   document.getElementById('queueCount').textContent=liveQueue;
+}
+
+const HEYMI_BANK_NAMES={
+  '39':'경남은행','34':'광주은행','06':'KB국민은행','03':'IBK기업은행',
+  '11':'NH농협은행','31':'iM뱅크(대구)','32':'부산은행','07':'Sh수협은행',
+  '88':'신한은행','20':'우리은행','71':'우체국예금보험','37':'전북은행','81':'하나은행'
+};
+
+async function issueVirtualAccountTest(){
+  const button=document.getElementById('virtualAccountIssueBtn');
+  const status=document.getElementById('virtualAccountStatus');
+  const result=document.getElementById('virtualAccountResult');
+
+  const amount=Number(document.getElementById('productPrice')?.value||0);
+  const orderName=(document.getElementById('productName')?.value||'').trim();
+  const customerName=(document.getElementById('virtualAccountCustomerName')?.value||'').trim();
+  const bank=document.getElementById('virtualAccountBank')?.value||'06';
+
+  if(!orderName){
+    alert('상품명을 먼저 입력해주세요.');
+    return;
+  }
+  if(!Number.isInteger(amount)||amount<100){
+    alert('가격을 100원 이상의 정수로 입력해주세요.');
+    return;
+  }
+  if(!customerName){
+    alert('구매자명을 입력해주세요.');
+    return;
+  }
+
+  button.disabled=true;
+  status.textContent='발급 중';
+  result.classList.add('hidden');
+
+  try{
+    const data=await heymiFunction('heymi-virtual-account-issue',{
+      amount,orderName,customerName,bank
+    });
+    const p=data.payment;
+    if(!p?.account_number) throw new Error('가상계좌 정보가 없습니다.');
+
+    document.getElementById('vaBankName').textContent=HEYMI_BANK_NAMES[p.bank_code]||HEYMI_BANK_NAMES[bank]||p.bank_code||'-';
+    document.getElementById('vaAccountNumber').textContent=p.account_number;
+    document.getElementById('vaAmount').textContent=Number(p.amount||amount).toLocaleString('ko-KR')+'원';
+    document.getElementById('vaDueAt').textContent=new Date(p.due_at).toLocaleString('ko-KR',{
+      year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'
+    });
+    document.getElementById('vaOrderId').textContent='주문번호 '+p.order_id+' · 상태 '+p.status;
+    result.classList.remove('hidden');
+    status.textContent='발급 성공';
+  }catch(err){
+    console.error(err);
+    status.textContent='발급 실패';
+    alert(err.message||'가상계좌 발급에 실패했습니다.');
+  }finally{
+    button.disabled=false;
+  }
 }
 
 function renderPurchaseQueue(rows){
