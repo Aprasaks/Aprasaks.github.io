@@ -571,65 +571,252 @@ function escapeHtml(v){
 
 loadSupabaseComments();
 
+
+const HEYMI_META_APP_KEY='heymi_meta_app_id_v1';
+const HEYMI_META_CONNECTION_KEY='heymi_meta_connection_v1';
+const HEYMI_META_VERSION='v26.0';
 let instagramConnected=false;
-function connectInstagram(){
-  const configured = false;
-  if(!configured){
-    document.getElementById('igStatus').textContent='서버 설정 필요';
-    document.getElementById('igStatus').className='statusChip wait';
-    document.getElementById('igAccountBox').innerHTML='<b>아직 실제 연결 전입니다.</b><br>Meta App ID, Redirect URI, 서버 OAuth 콜백이 준비되면 이 버튼이 실제 Instagram 로그인 화면으로 이동합니다.';
-    alert('실제 Instagram 연결을 위해서는 Meta 앱의 App ID와 서버 OAuth 콜백 설정이 필요합니다. 현재는 연결 구조까지 준비된 상태입니다.');
-    return;
-  }
-}
-function openHelpModal(){document.getElementById('helpModalBack').classList.add('open')}
-function closeHelpModal(){document.getElementById('helpModalBack').classList.remove('open')}
-function disconnectInstagram(){
-  instagramConnected=false;
-  document.getElementById('igStatus').textContent='연결 안 됨';
-  document.getElementById('igStatus').className='statusChip';
-  document.getElementById('igAccountBox').textContent='연결된 Instagram 계정이 없습니다.';
+let metaConnection=null;
+let fbSdkPromise=null;
+
+function getSavedMetaAppId(){
+  return localStorage.getItem(HEYMI_META_APP_KEY)||'';
 }
 
-let buyers=[], activeBuyer=null, expiresAt=null, timerHandle=null, virtualSeq=184000;
-function showSection(name){
-  document.querySelectorAll('[data-section]').forEach(el=>el.classList.add('hidden'));
-  if(name==='guideHome'){document.querySelectorAll('[data-section="guideHome"]').forEach((el,idx)=>{if(el.id==='intro')el.classList.remove('hidden')});}
-  if(name==='program')document.getElementById('programSection').classList.remove('hidden');
-  if(name==='test')document.getElementById('testSection').classList.remove('hidden');
-  ['Guide','Program','Test'].forEach(k=>document.getElementById('menu'+k).classList.remove('active'));
-  document.getElementById(name==='guideHome'?'menuGuide':name==='program'?'menuProgram':'menuTest').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+function updateInstagramConnectionUI(){
+  const status=document.getElementById('igStatus');
+  const box=document.getElementById('igAccountBox');
+  if(metaConnection?.instagramUserId){
+    instagramConnected=true;
+    status.textContent='Instagram 연결됨';
+    status.className='statusChip on';
+    box.innerHTML='<b>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+'</b><br>'+escapeHtml(metaConnection.pageName||'Facebook Page')+'와 연결됨';
+  }else{
+    instagramConnected=false;
+    status.textContent='연결 안 됨';
+    status.className='statusChip';
+    box.textContent='연결된 Instagram 계정이 없습니다.';
+  }
 }
-document.getElementById('videoInput').addEventListener('change',e=>{
-  const file=e.target.files[0]; if(!file)return;
-  const url=URL.createObjectURL(file),v=document.getElementById('videoPreview');
-  v.src=url;v.style.display='block';document.getElementById('videoPlaceholder').style.display='none';
-  const s=document.getElementById('videoStatus');s.textContent='영상 선택됨';s.className='statusChip on';
-});
-function money(n){return Number(n||0).toLocaleString('ko-KR')+'원'}
-function makePreview(){
-  const name=document.getElementById('productName').value.trim()||'상품명 없음';
-  const price=money(document.getElementById('productPrice').value);
-  const desc=document.getElementById('productDesc').value.trim();
-  const text=document.getElementById('postText').value.trim();
-  const tags=document.getElementById('hashtags').value.trim();
-  document.getElementById('postCaption').textContent=name+'\n'+price+'\n\n'+desc+'\n\n'+text+'\n\n'+tags;
-  document.getElementById('postMedia').textContent=document.getElementById('videoInput').files[0]?'선택한 영상이 게시됩니다':'영상 미선택';
+
+function restoreInstagramConnection(){
+  try{
+    metaConnection=JSON.parse(localStorage.getItem(HEYMI_META_CONNECTION_KEY)||'null');
+  }catch{
+    metaConnection=null;
+  }
+  updateInstagramConnectionUI();
 }
-function publishInstagram(){
-  makePreview();
-  if(!instagramConnected){
-    const s=document.getElementById('postStatus');
-    s.textContent='게시 대기 · Instagram 연결 필요';
-    s.className='statusChip wait';
-    alert('Instagram 계정이 아직 실제로 연결되지 않았습니다. 먼저 계정 연결을 완료해야 실제 게시할 수 있습니다.');
+
+function loadFacebookSdk(appId){
+  if(window.FB){
+    window.FB.init({appId,cookie:true,xfbml:false,version:HEYMI_META_VERSION});
+    return Promise.resolve();
+  }
+  if(fbSdkPromise) return fbSdkPromise;
+  fbSdkPromise=new Promise((resolve,reject)=>{
+    window.fbAsyncInit=function(){
+      window.FB.init({appId,cookie:true,xfbml:false,version:HEYMI_META_VERSION});
+      resolve();
+    };
+    const script=document.createElement('script');
+    script.id='facebook-jssdk';
+    script.async=true;
+    script.defer=true;
+    script.crossOrigin='anonymous';
+    script.src='https://connect.facebook.net/ko_KR/sdk.js';
+    script.onerror=()=>reject(new Error('Meta SDK를 불러오지 못했습니다.'));
+    document.body.appendChild(script);
+  });
+  return fbSdkPromise;
+}
+
+function fbApi(path,method='get',params={}){
+  return new Promise((resolve,reject)=>{
+    window.FB.api(path,method,params,(response)=>{
+      if(!response || response.error){
+        reject(new Error(response?.error?.message||'Meta API 요청 실패'));
+      }else resolve(response);
+    });
+  });
+}
+
+async function connectInstagram(){
+  const appId=getSavedMetaAppId();
+  if(!appId){
+    const input=document.getElementById('metaAppIdInput');
+    if(input) input.value='';
+    openHelpModal();
     return;
   }
-  const s=document.getElementById('postStatus');
-  s.textContent='게시 요청 중';
-  s.className='statusChip wait';
+  const status=document.getElementById('igStatus');
+  try{
+    status.textContent='Meta 로그인 중';
+    status.className='statusChip wait';
+    await loadFacebookSdk(appId);
+    const login=await new Promise((resolve,reject)=>{
+      window.FB.login((response)=>{
+        if(response?.authResponse?.accessToken) resolve(response);
+        else reject(new Error('Meta 로그인이 취소되었거나 권한이 허용되지 않았습니다.'));
+      },{
+        scope:'pages_show_list,pages_read_engagement,instagram_basic,instagram_content_publish',
+        return_scopes:true
+      });
+    });
+
+    const userAccessToken=login.authResponse.accessToken;
+    const pages=await fbApi('/me/accounts','get',{
+      fields:'id,name,access_token,instagram_business_account{id,username}',
+      access_token:userAccessToken
+    });
+
+    const connectedPage=(pages.data||[]).find(p=>p.instagram_business_account?.id && p.access_token);
+    if(!connectedPage){
+      throw new Error('연결된 Facebook Page에서 Instagram Professional 계정을 찾지 못했습니다.');
+    }
+
+    metaConnection={
+      userAccessToken,
+      pageId:connectedPage.id,
+      pageName:connectedPage.name||'Facebook Page',
+      pageAccessToken:connectedPage.access_token,
+      instagramUserId:connectedPage.instagram_business_account.id,
+      instagramUsername:connectedPage.instagram_business_account.username||'instagram'
+    };
+    localStorage.setItem(HEYMI_META_CONNECTION_KEY,JSON.stringify(metaConnection));
+    updateInstagramConnectionUI();
+    closeHelpModal();
+  }catch(err){
+    console.error(err);
+    status.textContent='연결 실패';
+    status.className='statusChip wait';
+    document.getElementById('igAccountBox').innerHTML='<b>연결하지 못했습니다.</b><br>'+escapeHtml(err.message||String(err));
+    alert(err.message||'Instagram 연결에 실패했습니다.');
+  }
 }
+
+function saveMetaAppIdAndConnect(){
+  const input=document.getElementById('metaAppIdInput');
+  const appId=(input?.value||'').trim();
+  if(!/^\d{6,}$/.test(appId)){
+    alert('Meta App ID 숫자를 입력해주세요.');
+    return;
+  }
+  localStorage.setItem(HEYMI_META_APP_KEY,appId);
+  fbSdkPromise=null;
+  document.getElementById('facebook-jssdk')?.remove();
+  void connectInstagram();
+}
+
+function openHelpModal(){
+  const input=document.getElementById('metaAppIdInput');
+  if(input) input.value=getSavedMetaAppId();
+  document.getElementById('helpModalBack').classList.add('open');
+}
+function closeHelpModal(){document.getElementById('helpModalBack').classList.remove('open')}
+
+function disconnectInstagram(){
+  localStorage.removeItem(HEYMI_META_CONNECTION_KEY);
+  metaConnection=null;
+  instagramConnected=false;
+  updateInstagramConnectionUI();
+  if(window.FB){
+    try{ window.FB.logout(()=>{}); }catch{}
+  }
+}
+
+async function uploadVideoToSupabase(file){
+  const safe=(file.name||'video.mp4').replace(/[^a-zA-Z0-9._-]/g,'_');
+  const path='classroom/'+Date.now()+'-'+crypto.randomUUID()+'-'+safe;
+  const url=HEYMI_SUPABASE_URL+'/storage/v1/object/heymi-videos/'+encodeURIComponent(path).replace(/%2F/g,'/');
+  const response=await fetch(url,{
+    method:'POST',
+    headers:{
+      'apikey':HEYMI_SUPABASE_KEY,
+      'Authorization':'Bearer '+HEYMI_SUPABASE_KEY,
+      'Content-Type':file.type||'video/mp4',
+      'x-upsert':'false'
+    },
+    body:file
+  });
+  if(!response.ok){
+    throw new Error('영상 업로드 실패: '+await response.text());
+  }
+  return HEYMI_SUPABASE_URL+'/storage/v1/object/public/heymi-videos/'+encodeURIComponent(path).replace(/%2F/g,'/');
+}
+
+async function waitForInstagramContainer(containerId,pageAccessToken){
+  for(let n=0;n<20;n++){
+    await new Promise(r=>setTimeout(r,3000));
+    const status=await fbApi('/'+containerId,'get',{
+      fields:'status_code,status',
+      access_token:pageAccessToken
+    });
+    if(status.status_code==='FINISHED') return;
+    if(status.status_code==='ERROR'||status.status_code==='EXPIRED'){
+      throw new Error(status.status||status.status_code);
+    }
+  }
+  throw new Error('Instagram 영상 처리 시간이 길어지고 있습니다. 잠시 후 다시 시도해주세요.');
+}
+
+async function publishInstagram(){
+  makePreview();
+  const status=document.getElementById('postStatus');
+  try{
+    if(!instagramConnected || !metaConnection?.instagramUserId){
+      status.textContent='Instagram 연결 필요';
+      status.className='statusChip wait';
+      await connectInstagram();
+      if(!instagramConnected) return;
+    }
+
+    const file=document.getElementById('videoInput').files[0];
+    if(!file) throw new Error('게시할 영상을 먼저 선택해주세요.');
+    if(file.size>64*1024*1024) throw new Error('수업용 영상은 64MB 이하로 선택해주세요.');
+
+    const name=document.getElementById('productName').value.trim();
+    const price=money(document.getElementById('productPrice').value);
+    const desc=document.getElementById('productDesc').value.trim();
+    const text=document.getElementById('postText').value.trim();
+    const tags=document.getElementById('hashtags').value.trim();
+    const caption=[name,price,desc,text,tags].filter(Boolean).join('\n\n');
+
+    status.textContent='영상 업로드 중';
+    status.className='statusChip wait';
+    const videoUrl=await uploadVideoToSupabase(file);
+
+    status.textContent='Instagram 영상 처리 중';
+    const created=await fbApi('/'+metaConnection.instagramUserId+'/media','post',{
+      media_type:'REELS',
+      video_url:videoUrl,
+      caption,
+      share_to_feed:true,
+      access_token:metaConnection.pageAccessToken
+    });
+    if(!created.id) throw new Error('Instagram 게시 컨테이너를 만들지 못했습니다.');
+
+    await waitForInstagramContainer(created.id,metaConnection.pageAccessToken);
+
+    status.textContent='Instagram 게시 중';
+    const published=await fbApi('/'+metaConnection.instagramUserId+'/media_publish','post',{
+      creation_id:created.id,
+      access_token:metaConnection.pageAccessToken
+    });
+
+    if(!published.id) throw new Error('Instagram 게시를 완료하지 못했습니다.');
+    status.textContent='Instagram 게시 완료';
+    status.className='statusChip on';
+    alert('Instagram Reel 게시가 완료되었습니다.');
+  }catch(err){
+    console.error(err);
+    status.textContent='게시 실패';
+    status.className='statusChip wait';
+    alert(err.message||'Instagram 게시에 실패했습니다.');
+  }
+}
+restoreInstagramConnection();
+
 function logSale(msg){const box=document.getElementById('saleLog');const d=document.createElement('div');d.textContent='['+new Date().toLocaleTimeString('ko-KR')+'] '+msg;box.prepend(d)}
 function addBuyer(){
   const user=document.getElementById('buyerName').value.trim()||'@unknown';
@@ -718,19 +905,23 @@ renderQueue();logSale('판매 테스트 준비 완료');
       <div><span class="label">처음 연결할 때 한 번만</span><h2>Instagram 계정 연결 방법</h2></div>
       <button onclick="closeHelpModal()">×</button>
     </div>
+    <div class="roadModalSection" style="margin-top:14px">
+      <h3>Meta App ID</h3>
+      <p>Meta for Developers의 <b>DECHIVE MultiPost Business</b> 앱에서 App ID 숫자를 확인해 입력하세요. App Secret은 입력하지 않습니다.</p>
+      <input id="metaAppIdInput" inputmode="numeric" placeholder="예: 123456789012345" style="width:100%;margin-top:10px;border:1px solid #cfc6b9;border-radius:10px;padding:11px;font:inherit" />
+      <button class="btnDark" style="width:100%;margin-top:9px" onclick="saveMetaAppIdAndConnect()">App ID 저장 후 Instagram 연결</button>
+    </div>
     <ol class="helpSteps">
-      <li><b>Instagram 계정 종류 확인</b><p>개인 계정이 아니라 Professional 계정이어야 합니다. Instagram 설정에서 Business 또는 Creator로 전환합니다.</p></li>
-      <li><b>Meta for Developers에서 앱 생성</b><p>Meta 개발자 사이트에서 앱을 만들고 Instagram API 사용 사례를 추가합니다.</p></li>
-      <li><b>Instagram API with Instagram Login 선택</b><p>Facebook Page를 반드시 연결하는 예전 방식이 아니라 Instagram 계정으로 직접 로그인하는 방식을 사용합니다.</p></li>
-      <li><b>권한 설정</b><p><code>instagram_business_basic</code>과 <code>instagram_business_content_publish</code> 권한을 사용합니다.</p></li>
-      <li><b>Redirect URI 등록</b><p>Meta 앱의 Valid OAuth Redirect URI에 실제 프로그램 주소의 <code>/api/instagram/callback</code>을 정확히 등록합니다. 주소가 한 글자라도 다르면 연결되지 않습니다.</p></li>
-      <li><b>서버 환경변수 입력</b><p><code>INSTAGRAM_APP_ID</code>, <code>INSTAGRAM_APP_SECRET</code>, <code>INSTAGRAM_REDIRECT_URI</code>, <code>SESSION_SECRET</code>을 서버 환경변수에 넣습니다.</p></li>
-      <li><b>영상 저장소 연결</b><p>Supabase Storage에 <code>instagram-videos</code> 버킷을 만들고 URL과 키를 서버에 설정합니다.</p></li>
-      <li><b>이 화면에서 Instagram 계정 연결</b><p>Instagram 로그인 → 권한 허용 → 프로그램으로 돌아오면 계정 연결이 완료됩니다.</p></li>
-      <li><b>영상·설명·해시태그 입력 후 게시</b><p>프로그램이 영상을 Storage에 올리고, Instagram이 영상을 처리한 뒤 실제 Reel을 게시합니다.</p></li>
+      <li><b>Instagram 계정 종류 확인</b><p>Business 또는 Creator인 Professional 계정이어야 합니다. Meta Verified 파란 배지는 필요하지 않습니다.</p></li>
+      <li><b>Facebook Page 연결 확인</b><p>이번 수업에서는 Facebook Login 방식의 Instagram API를 사용합니다. Instagram Professional 계정이 관리 중인 Facebook Page에 연결돼 있어야 합니다.</p></li>
+      <li><b>Meta 앱 권한</b><p><code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>instagram_basic</code>, <code>instagram_content_publish</code> 권한을 사용합니다.</p></li>
+      <li><b>Meta 앱 도메인</b><p>앱의 App Domains / JavaScript SDK 허용 도메인에 <code>studio.dechive.dev</code>를 등록합니다.</p></li>
+      <li><b>이 화면에서 연결</b><p>Instagram 계정 연결 버튼 → Meta 로그인 → 권한 허용 순서로 진행합니다.</p></li>
+      <li><b>연결 완료 확인</b><p>프로그램 화면에 Facebook Page 이름과 <code>@Instagram계정</code>이 표시되면 연결 완료입니다.</p></li>
+      <li><b>영상 게시</b><p>영상은 Supabase Storage에 업로드한 뒤 공개 URL을 Instagram에 전달해 Reel을 게시합니다.</p></li>
     </ol>
-    <div class="helpWarn">App Secret과 Supabase Service Role Key는 브라우저 코드에 넣지 않습니다. 서버 환경변수에만 저장해야 합니다.</div>
-    <button class="btnDark" style="width:100%" onclick="closeHelpModal()">확인했습니다</button>
+    <div class="helpWarn">App Secret은 이 사이트에 입력하지 않습니다. 오늘 수업은 본인 계정 테스트용으로 Meta JavaScript SDK의 사용자 토큰을 브라우저에만 보관합니다.</div>
+    <button class="btnLight" style="width:100%" onclick="closeHelpModal()">닫기</button>
   </div>
 </div>
 
