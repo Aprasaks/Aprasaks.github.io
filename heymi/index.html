@@ -491,7 +491,7 @@ body{font-size:15px;line-height:1.55}
       </div>
 
       <div class="guideRailProgress">
-        <div><span>진행 위치</span><b id="guideProgressText">1 / 10</b></div>
+        <div><span>진행 위치</span><b id="guideProgressText">1 / 6</b></div>
         <div class="guideProgressTrack"><i id="guideProgressBar"></i></div>
       </div>
 
@@ -512,17 +512,15 @@ body{font-size:15px;line-height:1.55}
       </div>
 
       <div class="guideSystemMap">
-        <div class="systemNode" data-flow-node="product"><span>01</span><b>상품 입력</b><small>영상 · 정보</small></div>
+        <div class="systemNode" data-flow-node="product"><span>01</span><b>상품 입력</b><small>실제 동작</small></div>
         <div class="systemWire">→</div>
-        <div class="systemNode" data-flow-node="instagram"><span>02</span><b>Instagram</b><small>자동 게시</small></div>
+        <div class="systemNode" data-flow-node="storage"><span>02</span><b>영상 저장</b><small>Supabase</small></div>
         <div class="systemWire">→</div>
-        <div class="systemNode" data-flow-node="comment"><span>03</span><b>댓글 감지</b><small>구매 판별</small></div>
+        <div class="systemNode" data-flow-node="instagram"><span>03</span><b>Instagram</b><small>실계정 확인 필요</small></div>
         <div class="systemWire">→</div>
-        <div class="systemNode" data-flow-node="queue"><span>04</span><b>대기열</b><small>선착순</small></div>
+        <div class="systemNode" data-flow-node="test"><span>04</span><b>판매테스트</b><small>실제 DB 저장</small></div>
         <div class="systemWire">→</div>
-        <div class="systemNode" data-flow-node="payment"><span>05</span><b>결제</b><small>10분 예약</small></div>
-        <div class="systemWire">→</div>
-        <div class="systemNode" data-flow-node="done"><span>06</span><b>판매완료</b><small>종료</small></div>
+        <div class="systemNode" data-flow-node="queue"><span>05</span><b>구매 판별</b><small>실제 동작</small></div>
       </div>
 
       <div class="guideRoute">
@@ -579,7 +577,7 @@ body{font-size:15px;line-height:1.55}
 
       <div class="guideControls">
         <button id="guidePrev" onclick="guidePrev()">← 이전</button>
-        <span id="guideControlLabel">STEP 01 / 10</span>
+        <span id="guideControlLabel">STEP 01 / 6</span>
         <button id="guideNext" onclick="guideNext()">다음 →</button>
       </div>
     </main>
@@ -587,7 +585,7 @@ body{font-size:15px;line-height:1.55}
 </section>
 
 <section id="programSection" class="hidden" data-section="program">
-  <div class="top"><div><span class="eyebrow">실제 작업 화면</span><h1>SNS자동화 판매프로그램 <span>ver.헤이미</span></h1></div><span class="badge">테스트 모드</span></div>
+  <div class="top"><div><span class="eyebrow">실제 작업 화면</span><h1>SNS자동화 판매프로그램 <span>ver.헤이미</span></h1></div><span class="badge">실연동 확인 모드</span></div>
   <div class="flowStrip">
   <div class="flowStep">Instagram 연결</div><span class="arrow">→</span>
   <div class="flowStep">영상·설명 입력</div><span class="arrow">→</span>
@@ -602,7 +600,7 @@ body{font-size:15px;line-height:1.55}
         <span id="igStatus" class="statusChip">연결 안 됨</span>
         <span class="statusChip">Professional 계정 필요</span>
       </div>
-      <p class="smallNote">실제 게시를 하려면 Instagram Professional 계정과 Meta 앱 연결이 필요합니다. 연결이 완료되면 아래 게시 버튼이 실제 게시 기능으로 바뀝니다.</p>
+      <p class="smallNote">이 화면은 실제 Meta 로그인 성공 여부를 확인합니다. 프로그램에 실제 @Instagram 계정명이 표시되기 전에는 게시 단계로 진행하지 않습니다.</p>
       <div class="controlRow">
         <button class="btnDark" id="connectInstagramBtn" onclick="connectInstagram()">Instagram 계정 연결</button>
         <button class="helpBtn" onclick="openHelpModal()">계정 연결 방법 보기</button>
@@ -625,7 +623,7 @@ body{font-size:15px;line-height:1.55}
         <button class="btnDark" onclick="makePreview()">게시물 미리보기 만들기</button>
         <button class="btnLight" id="publishBtn" onclick="publishInstagram()">Instagram에 게시</button>
       </div>
-      <p class="smallNote"><strong>중요:</strong> 이 버튼은 계정 연결과 게시 서버가 준비된 경우에만 실제 Instagram에 게시합니다. 서버가 준비되지 않았다면 게시를 실행하지 않고 필요한 설정을 안내합니다.</p>
+      <p class="smallNote"><strong>확인 기준:</strong> 실제 계정 연결 성공 → 영상 Storage 업로드 성공 → Instagram 처리 완료 → 게시 ID 반환까지 모두 성공해야 “게시 완료”로 표시합니다.</p>
     </div>
     <div class="programCard">
       <h2>2. Instagram 게시물 미리보기</h2>
@@ -645,8 +643,8 @@ body{font-size:15px;line-height:1.55}
 <section id="testSection" class="hidden" data-section="test">
   <div class="roadmapHero" style="margin-bottom:22px">
     <span class="kicker">LIVE COMMENT TEST</span>
-    <h1>Instagram 댓글이 HEYMI로 어떻게 들어오는지 확인합니다.</h1>
-    <p>왼쪽에서 실제 Instagram처럼 댓글을 달면, 오른쪽에서 HEYMI가 댓글을 감지하고 구매 요청인지 판단합니다.</p>
+    <h1>판매 댓글 저장과 구매 판별이 실제로 동작하는지 확인합니다.</h1>
+    <p>왼쪽은 Instagram 형태의 테스트 입력 화면입니다. 입력한 댓글은 실제 Supabase에 저장되고, HEYMI가 “구매” 여부와 대기 순번을 판별합니다.</p>
   </div>
 
   <div class="liveTestGrid">
@@ -701,9 +699,9 @@ body{font-size:15px;line-height:1.55}
       </div>
 
       <div class="monitorFlow">
-        <div><span>Instagram</span><b>댓글 작성</b></div>
+        <div><span>TEST UI</span><b>댓글 입력</b></div>
         <span class="monitorArrow">→</span>
-        <div><span>Webhook</span><b>댓글 감지</b></div>
+        <div><span>Supabase</span><b>실제 DB 저장</b></div>
         <span class="monitorArrow">→</span>
         <div><span>HEYMI</span><b>구매 판별</b></div>
       </div>
@@ -727,19 +725,14 @@ body{font-size:15px;line-height:1.55}
 </div>
 <script>
 const steps=[
-{t:'오늘 판매할 물건 한 개를 준비합니다',s:'하나밖에 없는 옷이나 물건을 한 개 정합니다.',w:'이 프로그램은 같은 상품을 여러 개 파는 쇼핑몰이 아니라, 딱 하나뿐인 상품을 순서대로 판매하기 위해 만들었습니다.',a:['오늘 판매할 옷이나 물건 한 개를 준비합니다.','가격을 미리 정합니다.','상품이 실제로 한 개만 있는지 확인합니다.'],ok:'팔 물건 한 개와 판매 가격이 정해져 있으면 됩니다.',n:'물건을 준비했습니다 → 다음'},
-{t:'물건을 보여주는 영상을 준비합니다',s:'구매자가 상품을 잘 볼 수 있는 짧은 영상을 준비합니다.',w:'사진 한 장보다 영상으로 상품의 모양과 상태를 보여주면 구매자가 상품을 이해하기 쉽습니다.',a:['휴대폰으로 상품을 앞·뒤·옆에서 보여주는 영상을 찍습니다.','이미 만든 영상이 있다면 그대로 사용합니다.','영상 파일을 찾기 쉬운 곳에 저장합니다.'],ok:'휴대폰이나 컴퓨터에 사용할 영상 파일 한 개가 있으면 됩니다.',n:'영상을 준비했습니다 → 다음'},
-{t:'영상과 상품 설명을 프로그램에 넣습니다',s:'준비한 영상과 판매에 필요한 내용을 입력합니다.',w:'여기에 넣은 영상과 설명이 나중에 Instagram 게시물에 사용됩니다.',a:['영상 선택 버튼으로 파일을 고릅니다.','상품 이름과 가격을 입력합니다.','구매자가 볼 자세한 설명을 적습니다.'],ok:'선택한 영상 이름과 상품 설명이 화면에 보이면 됩니다.',n:'영상과 설명을 넣었습니다 → 다음'},
-{t:'Instagram에 자동으로 게시합니다',s:'매번 직접 영상을 올리고 글을 쓰지 않아도 되도록 연결합니다.',w:'판매자는 영상과 설명을 한 번만 준비하고, 게시 작업은 프로그램이 대신하도록 만듭니다.',a:['Instagram 계정을 프로그램과 연결합니다.','게시할 영상과 설명을 마지막으로 확인합니다.','게시하기 버튼을 누릅니다.'],ok:'Instagram에서 영상 게시물이 정상적으로 보이면 됩니다.',n:'게시 방법을 확인했습니다 → 다음'},
-{t:'구매 방법을 아주 간단하게 안내합니다',s:'구매를 원하는 사람은 댓글에 정확히 “구매”라고만 적습니다.',w:'사고 싶어요, 저요, 찜처럼 표현이 달라지면 자동으로 순서를 정하기 어렵습니다. 구매 두 글자로 통일하면 실수가 줄어듭니다.',a:['영상이나 게시글 설명에 구매 방법을 적습니다.','고정댓글에도 구매라고만 적어달라고 안내합니다.','프로그램은 정확히 구매인 댓글만 받습니다.'],ok:'구매 방법이 “댓글에 구매 두 글자 입력”으로 명확하면 됩니다.',n:'구매 안내를 이해했습니다 → 다음'},
-{t:'누군가 “구매”라고 댓글을 남깁니다',s:'프로그램이 구매 댓글을 발견하고 순서를 기록합니다.',w:'여러 사람이 거의 동시에 구매를 원할 수 있으므로 사람이 눈으로 순서를 정하지 않고 프로그램이 접수 순서를 기록합니다.',a:['고객이 Instagram 댓글에 구매라고 작성합니다.','프로그램이 새 구매 요청을 받습니다.','구매 요청 시간과 순번을 저장합니다.'],ok:'구매 대기열에 구매자와 순번이 표시되면 됩니다.',n:'구매 순서를 확인했습니다 → 다음'},
-{t:'첫 번째 구매자에게 먼저 구매 기회를 줍니다',s:'가장 먼저 접수된 한 명만 먼저 결제를 진행합니다.',w:'상품이 하나뿐이기 때문에 여러 사람이 동시에 결제하지 못하도록 한 사람에게만 구매 기회를 잠시 줍니다.',a:['프로그램이 1순위 구매자를 선택합니다.','상품 상태를 예약중으로 바꿉니다.','2순위부터는 대기 상태로 유지합니다.'],ok:'현재 예약자는 한 명만 표시되고 나머지는 대기 중이면 됩니다.',n:'예약 순서를 이해했습니다 → 다음'},
-{t:'1순위 구매자에게 10분짜리 가상계좌를 발급합니다',s:'일반 계좌번호가 아니라 이번 주문에만 사용하는 가상계좌를 새로 발급합니다.',w:'내 실제 계좌번호를 QR에 넣으면 구매자가 저장하거나 기억한 뒤 10분이 지나서도 송금할 수 있습니다. 가상계좌는 주문마다 다른 계좌번호를 발급하고, 입금기한을 정할 수 있어 이 문제를 줄일 수 있습니다.',a:['프로그램이 1순위 구매자의 주문번호를 만듭니다.','PG사의 가상계좌 발급을 요청합니다.','입금기한(dueDate)을 발급 시각에서 10분 뒤로 설정합니다.','발급된 은행·가상계좌번호·금액·입금기한을 구매자에게 DM으로 안내합니다.','공개 댓글에는 계좌번호를 쓰지 않고 “결제 안내가 발송되었습니다. 10분 이내 입금해주세요.”라고만 남깁니다.'],ok:'1순위 구매자에게만 주문 전용 가상계좌와 정확한 입금기한이 표시되면 됩니다.',n:'가상계좌 방식을 이해했습니다 → 다음'},
-{t:'10분 동안 입금을 기다립니다',s:'입금 완료 신호가 오면 판매를 끝내고, 시간이 지나면 다음 구매자에게 새 가상계좌를 발급합니다.',w:'가상계좌 입금이 완료되면 결제사의 웹훅으로 확인할 수 있습니다. 다만 가상계좌가 만료됐다는 별도 웹훅은 오지 않을 수 있으므로 프로그램이 dueDate를 저장하고 직접 만료를 확인합니다.',a:['가상계좌 발급 시각과 dueDate를 데이터베이스에 저장합니다.','입금 완료 웹훅이 오면 즉시 판매완료로 바꿉니다.','dueDate까지 입금이 없으면 1순위 예약을 만료 처리합니다.','2순위 구매자에게는 완전히 새로운 주문과 새로운 가상계좌를 발급합니다.'],ok:'현재 예약자, 가상계좌 입금기한, 남은 시간이 보이고 미입금 시 자동으로 다음 순번으로 넘어가면 됩니다.',n:'10분 입금 규칙을 이해했습니다 → 다음'},
-{t:'결제가 끝나면 판매를 종료합니다',s:'상품을 더 이상 구매할 수 없도록 판매완료로 바꿉니다.',w:'상품은 하나뿐이므로 한 명의 결제가 완료된 순간 다른 구매 요청은 더 이상 진행하면 안 됩니다.',a:['결제 완료 신호를 확인합니다.','상품 상태를 판매완료로 변경합니다.','Instagram에도 판매가 끝났음을 안내합니다.'],ok:'판매완료가 보이고 추가 구매 요청이 진행되지 않으면 됩니다.',n:'전체 흐름 확인 완료'}
+{t:'판매할 상품 정보를 입력합니다',s:'상품명, 가격, 설명과 해시태그를 실제 프로그램에 입력합니다.',w:'이 정보가 게시물 미리보기와 Instagram 게시 문구에 그대로 사용됩니다.',a:['프로그램 메뉴를 엽니다.','상품명과 가격을 입력합니다.','설명과 해시태그를 입력합니다.'],ok:'프로그램 화면에 입력한 상품 정보가 남아 있고 미리보기에 같은 내용이 보이면 완료입니다.',n:'다음'},
+{t:'게시할 영상을 선택합니다',s:'노트북의 실제 영상 파일을 프로그램에 불러옵니다.',w:'Instagram 게시에는 실제 영상 파일이 필요합니다. 선택한 영상은 게시 단계에서 Supabase Storage로 업로드됩니다.',a:['영상 선택을 누릅니다.','64MB 이하 MP4, MOV 또는 WebM 영상을 선택합니다.','화면에서 영상 미리보기가 재생되는지 확인합니다.'],ok:'선택한 영상이 프로그램 안에서 재생되면 완료입니다.',n:'다음'},
+{t:'영상 저장소 연결을 사용합니다',s:'선택한 영상은 실제 Dechive Supabase의 heymi-videos 버킷으로 전송됩니다.',w:'Instagram 게시 API가 영상을 가져가려면 외부에서 읽을 수 있는 영상 URL이 필요합니다.',a:['Instagram 게시를 실행하면 영상 업로드가 먼저 시작됩니다.','업로드에 성공하면 Instagram이 읽을 수 있는 공개 URL이 생성됩니다.'],ok:'게시 과정에서 “영상 업로드 중” 다음 단계로 넘어가면 Storage 업로드가 성공한 것입니다.',n:'다음'},
+{t:'Instagram 실계정을 연결합니다',s:'이 단계는 Meta 앱 설정과 실제 Professional 계정으로 성공 확인한 뒤 사용합니다.',w:'Instagram 게시 API는 Professional 계정과 Meta 앱 권한이 실제로 연결돼 있어야 동작합니다.',a:['Meta App ID를 입력합니다.','Meta 로그인에서 권한을 허용합니다.','프로그램 화면에 실제 @Instagram계정명이 표시되는지 확인합니다.'],ok:'실제 Instagram 사용자명이 화면에 “연결됨”으로 표시되어야 합니다. 표시되지 않으면 다음 단계로 진행하지 않습니다.',n:'다음'},
+{t:'판매테스트 댓글을 저장합니다',s:'테스트 화면에서 입력한 댓글은 실제 Supabase DB에 저장됩니다.',w:'실제 Instagram Webhook을 붙이기 전에 댓글 판별과 저장 구조가 제대로 동작하는지 먼저 검증합니다.',a:['테스트 메뉴를 엽니다.','사용자명과 댓글을 입력합니다.','게시 버튼을 누릅니다.','오른쪽에 “Supabase 저장됨” 상태를 확인합니다.'],ok:'새로고침 후에도 같은 테스트 세션의 댓글이 다시 표시되면 실제 DB 저장이 확인된 것입니다.',n:'다음'},
+{t:'“구매” 댓글을 구매 요청으로 판별합니다',s:'정확히 “구매”라고 입력한 댓글만 구매 요청으로 기록합니다.',w:'자유로운 표현을 모두 해석하지 않고 명확한 규칙 하나로 먼저 검증하기 위해서입니다.',a:['댓글에 정확히 “구매”를 입력합니다.','오른쪽 HEYMI 화면에서 “구매 인정”을 확인합니다.','대기 순번이 증가하는지 확인합니다.'],ok:'수신 댓글, 구매 인정, 대기 순번이 모두 증가하면 현재 테스트 흐름이 정상입니다.',n:'현재 검증 완료'}
 ];
 let i=0;
-
 function buildRoadmap(){
   const root=document.getElementById('roadmap');
   if(!root) return;
@@ -768,19 +761,14 @@ function closeRoadModal(){document.getElementById('roadModalBack').classList.rem
 
 
 const guideFlow=[
-  {node:'product',input:'상품 1개 + 판매 가격',process:'판매 세션을 생성하고 상품 상태를 준비합니다.',output:'판매 준비 상태',events:['상품 정보 입력 대기','재고 1개 확인','판매 세션 준비 완료']},
-  {node:'product',input:'촬영한 상품 영상',process:'게시에 사용할 영상 파일을 불러옵니다.',output:'미디어 준비 완료',events:['영상 파일 선택','파일 형식 확인','미디어 준비 완료']},
-  {node:'product',input:'영상 + 상품명 + 가격 + 설명',process:'게시에 필요한 상품 데이터를 하나로 묶습니다.',output:'게시 데이터 완성',events:['상품 정보 수신','설명·가격 결합','게시 데이터 생성']},
-  {node:'instagram',input:'게시 실행 명령',process:'Instagram 게시 API로 영상과 설명을 전달합니다.',output:'Instagram Reel 게시',events:['Instagram 연결 확인','영상 URL 전달','Reel 게시 요청']},
-  {node:'comment',input:'구매 키워드 규칙',process:'댓글이 정확히 “구매”인지 판별 조건을 적용합니다.',output:'구매 댓글만 통과',events:['댓글 규칙 등록','키워드 “구매” 활성화','일반 댓글 제외']},
-  {node:'comment',input:'Instagram 새 댓글',process:'댓글 내용과 접수 시간을 읽고 구매 요청을 판별합니다.',output:'구매 요청 생성',events:['댓글 이벤트 수신','구매 여부 판별','접수 시간 기록']},
-  {node:'queue',input:'구매 요청 목록',process:'가장 먼저 들어온 한 명을 1순위로 잠급니다.',output:'1순위 예약중',events:['대기열 정렬','1순위 선택','나머지 구매자 대기']},
-  {node:'payment',input:'1순위 주문 정보',process:'주문 전용 가상계좌와 10분 입금기한을 생성합니다.',output:'결제 안내 발송',events:['주문번호 생성','가상계좌 발급 요청','10분 타이머 시작']},
-  {node:'payment',input:'입금 이벤트 + 남은 시간',process:'입금 여부를 확인하고 만료 시 다음 순번으로 넘깁니다.',output:'결제완료 또는 다음 예약',events:['입금 상태 확인','dueDate 비교','미입금 시 다음 순번 승계']},
-  {node:'done',input:'결제 완료 신호',process:'상품을 판매완료로 잠그고 추가 구매를 종료합니다.',output:'판매완료',events:['결제 완료 확인','상품 상태 변경','추가 구매 요청 종료']}
+  {node:'product',input:'상품명 · 가격 · 설명 · 해시태그',process:'입력값을 게시 데이터로 정리합니다.',output:'게시물 미리보기',events:['상품 정보 입력','게시 문구 구성','미리보기 준비']},
+  {node:'product',input:'노트북의 영상 파일',process:'브라우저에서 실제 영상 파일을 읽고 미리보기를 생성합니다.',output:'영상 선택 완료',events:['파일 선택','영상 미리보기 생성','파일 준비 완료']},
+  {node:'storage',input:'선택한 영상 파일',process:'Supabase heymi-videos 버킷에 영상을 업로드합니다.',output:'공개 영상 URL',events:['Storage 업로드 시작','파일 형식·용량 검사','공개 URL 생성']},
+  {node:'instagram',input:'Meta App ID + Professional 계정',process:'Meta 로그인 후 연결된 Instagram 계정을 조회합니다.',output:'@Instagram 계정 연결 상태',events:['Meta 로그인','권한 확인','Instagram 계정 조회']},
+  {node:'test',input:'테스트 사용자명 + 댓글',process:'댓글을 heymi_test_comments 테이블에 실제 저장합니다.',output:'Supabase 저장 완료',events:['테스트 댓글 입력','DB INSERT','저장 결과 표시']},
+  {node:'queue',input:'저장된 댓글 내용',process:'댓글이 정확히 “구매”인지 판별하고 순번을 기록합니다.',output:'구매 인정 + 대기 순번',events:['댓글 내용 확인','구매 키워드 판별','대기 순번 반영']}
 ];
 let guideIndex=0;
-
 function buildGuideSteps(){
   const root=document.getElementById('guideStepList');
   if(!root) return;
@@ -1236,9 +1224,6 @@ async function publishInstagram(){
 
 restoreInstagramConnection();
 
-let buyers=[], activeBuyer=null, expiresAt=null, timerHandle=null, virtualSeq=184000;
-
-
 function toggleHeaderMenu(event){
   if(event) event.stopPropagation();
   const wrap=document.querySelector('.headerMenuWrap');
@@ -1339,57 +1324,8 @@ function makePreview(){
   }
 }
 
-function logSale(msg){const box=document.getElementById('saleLog');const d=document.createElement('div');d.textContent='['+new Date().toLocaleTimeString('ko-KR')+'] '+msg;box.prepend(d)}
-function addBuyer(){
-  const user=document.getElementById('buyerName').value.trim()||'@unknown';
-  const comment=document.getElementById('buyerComment').value.trim();
-  if(comment!=='구매'){logSale(user+' 댓글 "'+comment+'" → 구매 키워드 불일치로 제외');alert('정확히 “구매” 두 글자만 구매 요청으로 인정합니다.');return}
-  if(document.getElementById('saleStatus').textContent==='판매완료'){alert('이미 판매가 완료되었습니다.');return}
-  buyers.push({user,status:'대기',time:new Date()});logSale(user+' 구매 요청 접수');if(!activeBuyer)activateNext();renderQueue();
-}
-function addDemoBuyers(){
-  ['@buyer01','@buyer02','@buyer03'].forEach((u,idx)=>setTimeout(()=>{if(!buyers.some(b=>b.user===u)&&document.getElementById('saleStatus').textContent!=='판매완료'){buyers.push({user:u,status:'대기',time:new Date()});logSale(u+' 예시 구매 요청 접수');if(!activeBuyer)activateNext();renderQueue()}},idx*120));
-}
-function activateNext(){
-  const next=buyers.find(b=>b.status==='대기'); if(!next){activeBuyer=null;renderReservation();return}
-  activeBuyer=next;next.status='예약중';virtualSeq+=Math.floor(Math.random()*700)+1;
-  next.account='신한 562-***-'+virtualSeq;expiresAt=Date.now()+10*60*1000;
-  document.getElementById('saleStatus').textContent='예약중';document.getElementById('saleStatus').className='statusChip wait';
-  document.getElementById('accountStatus').textContent='가상계좌 발급됨';document.getElementById('accountStatus').className='statusChip on';
-  logSale(next.user+' 1순위 예약 → 주문 전용 가상계좌 발급 → 10분 시작');
-  startTimer();renderReservation();renderQueue();
-}
-function startTimer(){clearInterval(timerHandle);updateTimer();timerHandle=setInterval(()=>{if(!expiresAt)return; if(Date.now()>=expiresAt){expireNow(true)}else updateTimer()},1000)}
-function updateTimer(){if(!expiresAt){document.getElementById('timerText').textContent='10:00';return}const sec=Math.max(0,Math.ceil((expiresAt-Date.now())/1000));document.getElementById('timerText').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
-function renderQueue(){const q=document.getElementById('queueList');q.innerHTML=buyers.length?buyers.map((b,idx)=>'<div class="queueItem"><span class="queueNum">'+(idx+1)+'</span><span><b>'+b.user+'</b><br><small>'+b.status+'</small></span><span>'+b.time.toLocaleTimeString('ko-KR')+'</span></div>').join(''):'<p class="smallNote">아직 구매 요청이 없습니다.</p>'}
-function renderReservation(){
- const box=document.getElementById('reservationBox');
- if(!activeBuyer){box.innerHTML='<span>현재 예약자</span><strong>없음</strong><p>다음 구매자를 기다리고 있습니다.</p>';return}
- box.innerHTML='<span>현재 예약자</span><strong>'+activeBuyer.user+'</strong><p>'+activeBuyer.account+'<br>입금기한: '+new Date(expiresAt).toLocaleTimeString('ko-KR')+'</p>';
-}
-function expireNow(auto=false){
- if(!activeBuyer)return;
- const old=activeBuyer;old.status='만료';logSale(old.user+' '+(auto?'10분 자동 만료':'수업용 강제 만료')+' → 구매대기 취소');
- activeBuyer=null;expiresAt=null;clearInterval(timerHandle);document.getElementById('accountStatus').textContent='가상계좌 만료';document.getElementById('accountStatus').className='statusChip';
- activateNext();renderQueue();renderReservation();
- if(!activeBuyer){document.getElementById('saleStatus').textContent='판매중';document.getElementById('saleStatus').className='statusChip on'}
-}
-function completePayment(){
- if(!activeBuyer){alert('현재 예약자가 없습니다.');return}
- activeBuyer.status='결제완료';logSale(activeBuyer.user+' 입금 확인 → 판매완료');clearInterval(timerHandle);expiresAt=null;
- document.getElementById('saleStatus').textContent='판매완료';document.getElementById('saleStatus').className='statusChip on';
- document.getElementById('accountStatus').textContent='입금 완료';document.getElementById('accountStatus').className='statusChip on';
- document.getElementById('timerText').textContent='완료';
- document.getElementById('reservationBox').innerHTML='<span>구매자</span><strong>'+activeBuyer.user+'</strong><p>결제가 완료되었습니다.<br>Instagram: 판매가 완료되었습니다.</p>';
- buyers.forEach(b=>{if(b.status==='대기')b.status='판매종료'});renderQueue();
-}
-function resetSale(){
- buyers=[];activeBuyer=null;expiresAt=null;clearInterval(timerHandle);
- document.getElementById('saleStatus').textContent='판매중';document.getElementById('saleStatus').className='statusChip on';
- document.getElementById('accountStatus').textContent='가상계좌 없음';document.getElementById('accountStatus').className='statusChip';
- document.getElementById('timerText').textContent='10:00';document.getElementById('saleLog').innerHTML='';renderQueue();renderReservation();logSale('판매 테스트 초기화');
-}
-renderQueue();logSale('판매 테스트 준비 완료');
+
+
 
 </script>
 
