@@ -624,7 +624,7 @@ body{font-size:15px;line-height:1.55}
 </section>
 
 <section id="programSection" class="hidden" data-section="program">
-  <div class="top"><div><span class="eyebrow">실제 작업 화면</span><h1>SNS자동화 판매프로그램 <span>ver.헤이미</span></h1></div><span class="badge">실연동 확인 모드</span></div>
+  <div class="top"><div><span class="eyebrow">실제 작업 화면</span><h1>SNS자동화 판매프로그램 <span>ver.헤이미</span></h1></div><span class="badge">실사용 모드</span></div>
   <div class="flowStrip">
   <div class="flowStep">Instagram 연결</div><span class="arrow">→</span>
   <div class="flowStep">영상·설명 입력</div><span class="arrow">→</span>
@@ -905,7 +905,10 @@ function home(){showSection('home')}
 
 const HEYMI_SUPABASE_URL='https://pexoeftnkbcowauxhopf.supabase.co';
 const HEYMI_SUPABASE_KEY='sb_publishable_l_wSycnldZk5Q_-9PZQegA_Gvx8ibSh';
-const HEYMI_LAST_MEDIA_KEY='heymi_last_instagram_media_v1';
+const HEYMI_FUNCTIONS_URL=HEYMI_SUPABASE_URL+'/functions/v1';
+const HEYMI_CONNECTION_KEY='heymi_connection_id_v2';
+const HEYMI_LAST_MEDIA_KEY='heymi_last_instagram_media_v2';
+
 let currentInstagramMedia=null;
 let commentPollTimer=null;
 let reservationTickTimer=null;
@@ -920,6 +923,30 @@ async function heymiDb(path,options={}){
   }
   if(res.status===204)return null;
   return res.json();
+}
+
+async function heymiFunction(name,body,options={}){
+  const isForm=body instanceof FormData;
+  const headers={...options.headers};
+  if(!isForm) headers['Content-Type']='application/json';
+  const res=await fetch(HEYMI_FUNCTIONS_URL+'/'+name,{
+    method:'POST',
+    headers,
+    body:isForm?body:JSON.stringify(body||{})
+  });
+  let data=null;
+  try{data=await res.json()}catch{}
+  if(!res.ok || data?.error) throw new Error(data?.error||('서버 요청 실패: '+res.status));
+  return data;
+}
+
+async function getConfiguredMetaAppId(){
+  const rows=await heymiDb('heymi_public_config?key=eq.meta_app_id&select=value&limit=1');
+  return String(rows?.[0]?.value||'').trim();
+}
+
+function getConnectionId(){
+  return localStorage.getItem(HEYMI_CONNECTION_KEY)||'';
 }
 
 function setDbStatus(ok,text){
@@ -977,34 +1004,20 @@ function renderRealPost(media){
 }
 
 async function loadLatestInstagramMedia(){
-  if(!metaConnection?.instagramUserId){
+  if(!instagramConnected){
     await connectInstagram();
-    if(!metaConnection?.instagramUserId)return;
+    if(!instagramConnected)return;
   }
   setDbStatus(false,'게시물 조회 중');
   try{
-    let result;
-    try{
-      result=await fbApi('/'+metaConnection.instagramUserId+'/media','get',{
-        fields:'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp',
-        limit:10,
-        access_token:metaConnection.pageAccessToken
-      });
-    }catch{
-      result=await fbApi('/'+metaConnection.instagramUserId+'/media','get',{
-        fields:'id,caption,media_type,permalink,timestamp',
-        limit:10,
-        access_token:metaConnection.pageAccessToken
-      });
-    }
-    const items=result.data||[];
-    if(!items.length)throw new Error('Instagram 게시물을 찾지 못했습니다.');
+    const data=await heymiFunction('heymi-instagram-media',{connectionId:getConnectionId()});
+    const items=data.media||[];
+    if(!items.length) throw new Error('Instagram 게시물을 찾지 못했습니다.');
     const saved=JSON.parse(localStorage.getItem(HEYMI_LAST_MEDIA_KEY)||'null');
     currentInstagramMedia=items.find(x=>x.id===saved?.id)||items[0];
     localStorage.setItem(HEYMI_LAST_MEDIA_KEY,JSON.stringify(currentInstagramMedia));
     renderRealPost(currentInstagramMedia);
-    await loadStoredInstagramComments();
-    await refreshPurchaseQueue();
+    await syncInstagramComments(false);
     setDbStatus(true,'실제 게시물 연결됨');
   }catch(err){
     console.error(err);
@@ -1013,23 +1026,10 @@ async function loadLatestInstagramMedia(){
   }
 }
 
-async function fetchInstagramComments(mediaId){
-  const base={limit:100,access_token:metaConnection.pageAccessToken};
-  try{
-    return await fbApi('/'+mediaId+'/comments','get',{...base,fields:'id,text,timestamp,username,from'});
-  }catch{
-    try{
-      return await fbApi('/'+mediaId+'/comments','get',{...base,fields:'id,text,timestamp,from'});
-    }catch{
-      return await fbApi('/'+mediaId+'/comments','get',{...base,fields:'id,text,timestamp'});
-    }
-  }
-}
-
-async function syncInstagramComments(){
-  if(!metaConnection?.instagramUserId){
+async function syncInstagramComments(showAlert=true){
+  if(!instagramConnected){
     await connectInstagram();
-    if(!metaConnection?.instagramUserId)return;
+    if(!instagramConnected)return;
   }
   if(!currentInstagramMedia){
     await loadLatestInstagramMedia();
@@ -1037,78 +1037,21 @@ async function syncInstagramComments(){
   }
   setDbStatus(false,'Instagram 댓글 조회 중');
   try{
-    const response=await fetchInstagramComments(currentInstagramMedia.id);
-    const comments=(response.data||[]).slice().sort((a,b)=>new Date(a.timestamp||0)-new Date(b.timestamp||0));
-
-    const existing=await heymiDb(
-      'heymi_instagram_comments?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=instagram_comment_id,is_purchase,queue_position'
-    );
-    const known=new Set((existing||[]).map(x=>x.instagram_comment_id));
-
-    const queueRows=await heymiDb(
-      'heymi_purchase_queue?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=queue_position&order=queue_position.desc&limit=1'
-    );
-    let nextPosition=Number(queueRows?.[0]?.queue_position||0);
-
-    for(const comment of comments){
-      if(!comment?.id||known.has(String(comment.id)))continue;
-      const text=String(comment.text||'').trim();
-      if(!text)continue;
-      const isPurchase=text==='구매';
-      const username=comment.username||comment.from?.username||comment.from?.name||'instagram_user';
-      let queuePosition=null;
-      if(isPurchase)queuePosition=++nextPosition;
-
-      await heymiDb('heymi_instagram_comments',{
-        method:'POST',
-        headers:{'Prefer':'return=minimal'},
-        body:JSON.stringify({
-          instagram_comment_id:String(comment.id),
-          instagram_media_id:String(currentInstagramMedia.id),
-          instagram_username:String(username),
-          comment_text:text,
-          is_purchase:isPurchase,
-          queue_position:queuePosition,
-          commented_at:comment.timestamp||null
-        })
-      });
-
-      if(isPurchase){
-        await heymiDb('heymi_purchase_queue',{
-          method:'POST',
-          headers:{'Prefer':'return=minimal'},
-          body:JSON.stringify({
-            instagram_media_id:String(currentInstagramMedia.id),
-            instagram_comment_id:String(comment.id),
-            instagram_username:String(username),
-            queue_position:queuePosition,
-            status:'waiting'
-          })
-        });
-      }
-      known.add(String(comment.id));
-    }
-
-    await loadStoredInstagramComments();
-    await refreshPurchaseQueue();
+    const data=await heymiFunction('heymi-instagram-comments',{
+      connectionId:getConnectionId(),
+      mediaId:currentInstagramMedia.id
+    });
+    renderStoredInstagramComments(data.comments||[]);
+    renderPurchaseQueue(data.queue||[]);
     setDbStatus(true,'실제 댓글 동기화됨');
   }catch(err){
     console.error(err);
     setDbStatus(false,'댓글 동기화 실패');
-    const message=String(err.message||err);
-    if(/permission|OAuth|Unsupported|get comments|access/i.test(message)){
-      alert('Instagram 댓글 권한을 확인해주세요. Meta 앱에 instagram_manage_comments 권한이 필요합니다.\n\n'+message);
-    }else{
-      alert('실제 Instagram 댓글 동기화에 실패했습니다.\n\n'+message);
-    }
+    if(showAlert) alert(err.message||'실제 Instagram 댓글 동기화에 실패했습니다.');
   }
 }
 
-async function loadStoredInstagramComments(){
-  if(!currentInstagramMedia)return;
-  const rows=await heymiDb(
-    'heymi_instagram_comments?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=*&order=commented_at.asc,synced_at.asc&limit=200'
-  );
+function renderStoredInstagramComments(rows){
   resetRealMonitor();
   const list=document.getElementById('commentMonitorList');
   if(rows.length)list.innerHTML='';
@@ -1134,37 +1077,6 @@ async function loadStoredInstagramComments(){
   document.getElementById('queueCount').textContent=liveQueue;
 }
 
-async function patchQueueRow(id,payload){
-  await heymiDb('heymi_purchase_queue?id=eq.'+encodeURIComponent(id),{
-    method:'PATCH',
-    headers:{'Prefer':'return=minimal'},
-    body:JSON.stringify(payload)
-  });
-}
-
-async function refreshPurchaseQueue(){
-  if(!currentInstagramMedia)return;
-  let rows=await heymiDb(
-    'heymi_purchase_queue?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=*&order=queue_position.asc'
-  );
-  const now=Date.now();
-  const reserved=rows.find(x=>x.status==='reserved');
-  if(reserved?.due_at && new Date(reserved.due_at).getTime()<=now){
-    await patchQueueRow(reserved.id,{status:'expired'});
-    rows=rows.map(x=>x.id===reserved.id?{...x,status:'expired'}:x);
-  }
-  if(!rows.some(x=>x.status==='reserved')){
-    const next=rows.find(x=>x.status==='waiting');
-    if(next){
-      const reservedAt=new Date();
-      const dueAt=new Date(reservedAt.getTime()+10*60*1000);
-      await patchQueueRow(next.id,{status:'reserved',reserved_at:reservedAt.toISOString(),due_at:dueAt.toISOString()});
-      rows=rows.map(x=>x.id===next.id?{...x,status:'reserved',reserved_at:reservedAt.toISOString(),due_at:dueAt.toISOString()}:x);
-    }
-  }
-  renderPurchaseQueue(rows);
-}
-
 function renderPurchaseQueue(rows){
   const list=document.getElementById('realQueueList');
   const current=rows.find(x=>x.status==='reserved');
@@ -1183,7 +1095,7 @@ function renderPurchaseQueue(rows){
   const message=document.getElementById('reservationMessage');
   if(current){
     buyer.textContent='@'+(current.instagram_username||'instagram_user');
-    message.textContent='실제 구매댓글 '+current.queue_position+'순위 · 10분 구매권 진행 중. 결제 PG는 아직 연결하지 않았습니다.';
+    message.textContent='실제 구매댓글 '+current.queue_position+'순위 · 10분 구매권 진행 중. 가상계좌·실입금 확인은 PG 연결 후 진행합니다.';
     startReservationTicker(current.due_at);
   }else{
     buyer.textContent='대기 중';
@@ -1204,7 +1116,7 @@ function startReservationTicker(dueAt){
     if(remaining<=0){
       document.getElementById('reservationTimer').textContent='00:00';
       clearInterval(reservationTickTimer);
-      await refreshPurchaseQueue();
+      await syncInstagramComments(false);
       return;
     }
     const sec=Math.ceil(remaining/1000);
@@ -1223,75 +1135,38 @@ function toggleInstagramCommentPolling(){
     return;
   }
   void syncInstagramComments();
-  commentPollTimer=setInterval(()=>void syncInstagramComments(),5000);
+  commentPollTimer=setInterval(()=>void syncInstagramComments(false),5000);
   btn.textContent='자동 동기화 중지';
 }
 
 async function prepareRealTestPage(){
   renderRealConnectionStatus();
+  if(!instagramConnected) return;
   try{
     const saved=JSON.parse(localStorage.getItem(HEYMI_LAST_MEDIA_KEY)||'null');
     if(saved?.id){
       currentInstagramMedia=saved;
       renderRealPost(saved);
-      await loadStoredInstagramComments();
-      await refreshPurchaseQueue();
-    }else if(metaConnection?.instagramUserId){
+      await syncInstagramComments(false);
+    }else{
       await loadLatestInstagramMedia();
     }
-  }catch(err){
-    console.error(err);
-  }
+  }catch(err){console.error(err)}
 }
 
 function escapeHtml(v){
   return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-const HEYMI_META_APP_KEY='heymi_meta_app_id_v1';
-const HEYMI_META_CONNECTION_KEY='heymi_meta_connection_v1';
 const HEYMI_META_VERSION='v26.0';
 let instagramConnected=false;
 let metaConnection=null;
 let fbSdkPromise=null;
 
-function getSavedMetaAppId(){
-  return localStorage.getItem(HEYMI_META_APP_KEY)||'';
-}
-
-function updateInstagramConnectionUI(){
-  const status=document.getElementById('igStatus');
-  const box=document.getElementById('igAccountBox');
-  if(metaConnection?.instagramUserId){
-    instagramConnected=true;
-    status.textContent='Instagram 연결됨';
-    status.className='statusChip on';
-    const commentReady=Array.isArray(metaConnection.grantedPermissions)&&metaConnection.grantedPermissions.includes('instagram_manage_comments');
-    box.innerHTML='<b>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+'</b><br>'+escapeHtml(metaConnection.pageName||'Facebook Page')+'와 연결됨<br><small>게시 권한 연결됨 · 댓글 권한 '+(commentReady?'연결됨':'확인 필요')+'</small>';
-    renderRealConnectionStatus();
-    if(document.getElementById('testSection') && !document.getElementById('testSection').classList.contains('hidden')) void prepareRealTestPage();
-  }else{
-    instagramConnected=false;
-    status.textContent='연결 안 됨';
-    status.className='statusChip';
-    box.textContent='연결된 Instagram 계정이 없습니다.';
-    renderRealConnectionStatus();
-  }
-}
-
-function restoreInstagramConnection(){
-  try{
-    metaConnection=JSON.parse(localStorage.getItem(HEYMI_META_CONNECTION_KEY)||'null');
-  }catch{
-    metaConnection=null;
-  }
-  updateInstagramConnectionUI();
-}
-
-function loadFacebookSdk(appId){
+async function loadFacebookSdk(appId){
   if(window.FB){
     window.FB.init({appId,cookie:true,xfbml:false,version:HEYMI_META_VERSION});
-    return Promise.resolve();
+    return;
   }
   if(fbSdkPromise) return fbSdkPromise;
   fbSdkPromise=new Promise((resolve,reject)=>{
@@ -1305,39 +1180,68 @@ function loadFacebookSdk(appId){
     script.defer=true;
     script.crossOrigin='anonymous';
     script.src='https://connect.facebook.net/ko_KR/sdk.js';
-    script.onerror=()=>reject(new Error('Meta SDK를 불러오지 못했습니다.'));
+    script.onerror=()=>reject(new Error('Meta 로그인 모듈을 불러오지 못했습니다.'));
     document.body.appendChild(script);
   });
   return fbSdkPromise;
 }
 
-async function fbApi(path,method='get',params={}){
-  if(!window.FB){
-    const appId=getSavedMetaAppId();
-    if(!appId) throw new Error('Meta App ID가 없습니다. Instagram 계정을 다시 연결해주세요.');
-    await loadFacebookSdk(appId);
+function updateInstagramConnectionUI(){
+  const status=document.getElementById('igStatus');
+  const box=document.getElementById('igAccountBox');
+  if(metaConnection?.instagramUserId){
+    instagramConnected=true;
+    status.textContent='Instagram 연결됨';
+    status.className='statusChip on';
+    const commentsReady=(metaConnection.grantedPermissions||[]).includes('instagram_manage_comments');
+    box.innerHTML='<b>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+'</b><br>'+
+      escapeHtml(metaConnection.facebook_page_name||metaConnection.pageName||'Facebook Page')+
+      '와 연결됨<br><small>게시 권한 연결됨 · 댓글 권한 '+(commentsReady?'연결됨':'확인 필요')+'</small>';
+  }else{
+    instagramConnected=false;
+    status.textContent='연결 안 됨';
+    status.className='statusChip';
+    box.textContent='연결된 Instagram 계정이 없습니다.';
   }
-  return new Promise((resolve,reject)=>{
-    window.FB.api(path,method,params,(response)=>{
-      if(!response || response.error){
-        reject(new Error(response?.error?.message||'Meta API 요청 실패'));
-      }else resolve(response);
-    });
-  });
+  renderRealConnectionStatus();
+}
+
+async function restoreInstagramConnection(){
+  const connectionId=getConnectionId();
+  if(!connectionId){
+    metaConnection=null;
+    updateInstagramConnectionUI();
+    return;
+  }
+  try{
+    const data=await heymiFunction('heymi-meta-status',{connectionId});
+    metaConnection={
+      connectionId:data.id,
+      pageName:data.facebook_page_name,
+      instagramUserId:data.instagram_user_id,
+      instagramUsername:data.instagram_username,
+      grantedPermissions:data.granted_permissions||[],
+      lastMediaId:data.last_media_id||null
+    };
+    updateInstagramConnectionUI();
+  }catch{
+    localStorage.removeItem(HEYMI_CONNECTION_KEY);
+    metaConnection=null;
+    updateInstagramConnectionUI();
+  }
 }
 
 async function connectInstagram(){
-  const appId=getSavedMetaAppId();
-  if(!appId){
-    const input=document.getElementById('metaAppIdInput');
-    if(input) input.value='';
-    openHelpModal();
-    return;
-  }
   const status=document.getElementById('igStatus');
   try{
-    status.textContent='Meta 로그인 중';
+    status.textContent='Meta 로그인 준비 중';
     status.className='statusChip wait';
+
+    const appId=await getConfiguredMetaAppId();
+    if(!appId){
+      throw new Error('관리자 설정에 Meta App ID가 아직 등록되지 않았습니다.');
+    }
+
     await loadFacebookSdk(appId);
     const login=await new Promise((resolve,reject)=>{
       window.FB.login((response)=>{
@@ -1349,119 +1253,73 @@ async function connectInstagram(){
       });
     });
 
-    const userAccessToken=login.authResponse.accessToken;
-    const permissionResponse=await fbApi('/me/permissions','get',{access_token:userAccessToken});
-    const grantedPermissions=(permissionResponse.data||[]).filter(x=>x.status==='granted').map(x=>x.permission);
-    const pages=await fbApi('/me/accounts','get',{
-      fields:'id,name,access_token,instagram_business_account{id,username}',
-      access_token:userAccessToken
+    status.textContent='Instagram 계정 확인 중';
+    const result=await heymiFunction('heymi-meta-connect',{
+      accessToken:login.authResponse.accessToken
     });
 
-    const connectedPage=(pages.data||[]).find(p=>p.instagram_business_account?.id && p.access_token);
-    if(!connectedPage){
-      throw new Error('연결된 Facebook Page에서 Instagram Professional 계정을 찾지 못했습니다.');
-    }
-
+    localStorage.setItem(HEYMI_CONNECTION_KEY,result.connectionId);
     metaConnection={
-      userAccessToken,
-      pageId:connectedPage.id,
-      pageName:connectedPage.name||'Facebook Page',
-      pageAccessToken:connectedPage.access_token,
-      instagramUserId:connectedPage.instagram_business_account.id,
-      instagramUsername:connectedPage.instagram_business_account.username||'instagram',
-      grantedPermissions
+      connectionId:result.connectionId,
+      pageName:result.pageName,
+      instagramUserId:result.instagramUserId,
+      instagramUsername:result.instagramUsername,
+      grantedPermissions:result.grantedPermissions||[]
     };
-    localStorage.setItem(HEYMI_META_CONNECTION_KEY,JSON.stringify(metaConnection));
+
     updateInstagramConnectionUI();
     closeHelpModal();
   }catch(err){
     console.error(err);
+    instagramConnected=false;
     status.textContent='연결 실패';
     status.className='statusChip wait';
-    document.getElementById('igAccountBox').innerHTML='<b>연결하지 못했습니다.</b><br>'+escapeHtml(err.message||String(err));
+    const box=document.getElementById('igAccountBox');
+    box.innerHTML='<b>연결하지 못했습니다.</b><br>'+escapeHtml(err.message||String(err));
     alert(err.message||'Instagram 연결에 실패했습니다.');
   }
 }
 
-function saveMetaAppIdAndConnect(){
-  const input=document.getElementById('metaAppIdInput');
-  const appId=(input?.value||'').trim();
-  if(!/^\d{6,}$/.test(appId)){
-    alert('Meta App ID 숫자를 입력해주세요.');
-    return;
-  }
-  localStorage.setItem(HEYMI_META_APP_KEY,appId);
-  fbSdkPromise=null;
-  document.getElementById('facebook-jssdk')?.remove();
-  void connectInstagram();
-}
-
 function openHelpModal(){
-  const input=document.getElementById('metaAppIdInput');
-  if(input) input.value=getSavedMetaAppId();
   document.getElementById('helpModalBack').classList.add('open');
 }
-function closeHelpModal(){document.getElementById('helpModalBack').classList.remove('open')}
+function closeHelpModal(){
+  document.getElementById('helpModalBack').classList.remove('open');
+}
 
-function disconnectInstagram(){
-  localStorage.removeItem(HEYMI_META_CONNECTION_KEY);
+async function disconnectInstagram(){
+  localStorage.removeItem(HEYMI_CONNECTION_KEY);
+  localStorage.removeItem(HEYMI_LAST_MEDIA_KEY);
   metaConnection=null;
   instagramConnected=false;
+  currentInstagramMedia=null;
   updateInstagramConnectionUI();
   if(window.FB){
-    try{ window.FB.logout(()=>{}); }catch{}
+    try{window.FB.logout(()=>{})}catch{}
   }
 }
 
 async function uploadVideoToSupabase(file){
-  const safe=(file.name||'video.mp4').replace(/[^a-zA-Z0-9._-]/g,'_');
-  const path='classroom/'+Date.now()+'-'+crypto.randomUUID()+'-'+safe;
-  const url=HEYMI_SUPABASE_URL+'/storage/v1/object/heymi-videos/'+encodeURIComponent(path).replace(/%2F/g,'/');
-  const response=await fetch(url,{
-    method:'POST',
-    headers:{
-      'apikey':HEYMI_SUPABASE_KEY,
-      'Authorization':'Bearer '+HEYMI_SUPABASE_KEY,
-      'Content-Type':file.type||'video/mp4',
-      'x-upsert':'false'
-    },
-    body:file
-  });
-  if(!response.ok){
-    throw new Error('영상 업로드 실패: '+await response.text());
-  }
-  return HEYMI_SUPABASE_URL+'/storage/v1/object/public/heymi-videos/'+encodeURIComponent(path).replace(/%2F/g,'/');
-}
-
-async function waitForInstagramContainer(containerId,pageAccessToken){
-  for(let n=0;n<20;n++){
-    await new Promise(r=>setTimeout(r,3000));
-    const status=await fbApi('/'+containerId,'get',{
-      fields:'status_code,status',
-      access_token:pageAccessToken
-    });
-    if(status.status_code==='FINISHED') return;
-    if(status.status_code==='ERROR'||status.status_code==='EXPIRED'){
-      throw new Error(status.status||status.status_code);
-    }
-  }
-  throw new Error('Instagram 영상 처리 시간이 길어지고 있습니다. 잠시 후 다시 시도해주세요.');
+  const connectionId=getConnectionId();
+  if(!connectionId) throw new Error('Instagram 계정을 먼저 연결해주세요.');
+  const form=new FormData();
+  form.append('connectionId',connectionId);
+  form.append('file',file);
+  return await heymiFunction('heymi-upload-video',form);
 }
 
 async function publishInstagram(){
   makePreview();
   const status=document.getElementById('postStatus');
   try{
-    if(!instagramConnected || !metaConnection?.instagramUserId){
-      status.textContent='Instagram 연결 필요';
-      status.className='statusChip wait';
+    if(!instagramConnected){
       await connectInstagram();
       if(!instagramConnected) return;
     }
 
     const file=document.getElementById('videoInput').files[0];
     if(!file) throw new Error('게시할 영상을 먼저 선택해주세요.');
-    if(file.size>64*1024*1024) throw new Error('수업용 영상은 64MB 이하로 선택해주세요.');
+    if(file.size>64*1024*1024) throw new Error('영상은 64MB 이하로 선택해주세요.');
 
     const name=document.getElementById('productName').value.trim();
     const price=money(document.getElementById('productPrice').value);
@@ -1470,43 +1328,24 @@ async function publishInstagram(){
     const tags=document.getElementById('hashtags').value.trim();
     const caption=[name,price,desc,text,tags].filter(Boolean).join('\n\n');
 
-    status.textContent='영상 업로드 중';
+    status.textContent='영상 서버 업로드 중';
     status.className='statusChip wait';
-    const videoUrl=await uploadVideoToSupabase(file);
+    const uploaded=await uploadVideoToSupabase(file);
 
-    status.textContent='Instagram 영상 처리 중';
-    const created=await fbApi('/'+metaConnection.instagramUserId+'/media','post',{
-      media_type:'REELS',
-      video_url:videoUrl,
-      caption,
-      share_to_feed:true,
-      access_token:metaConnection.pageAccessToken
-    });
-    if(!created.id) throw new Error('Instagram 게시 컨테이너를 만들지 못했습니다.');
-
-    await waitForInstagramContainer(created.id,metaConnection.pageAccessToken);
-
-    status.textContent='Instagram 게시 중';
-    const published=await fbApi('/'+metaConnection.instagramUserId+'/media_publish','post',{
-      creation_id:created.id,
-      access_token:metaConnection.pageAccessToken
+    status.textContent='Instagram 게시 처리 중';
+    const result=await heymiFunction('heymi-instagram-publish',{
+      connectionId:getConnectionId(),
+      videoUrl:uploaded.publicUrl,
+      caption
     });
 
-    if(!published.id) throw new Error('Instagram 게시를 완료하지 못했습니다.');
-    let publishedMedia={id:String(published.id),media_type:'REELS',caption};
-    try{
-      const mediaInfo=await fbApi('/'+published.id,'get',{
-        fields:'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp',
-        access_token:metaConnection.pageAccessToken
-      });
-      publishedMedia={...publishedMedia,...mediaInfo};
-    }catch{}
-    currentInstagramMedia=publishedMedia;
-    localStorage.setItem(HEYMI_LAST_MEDIA_KEY,JSON.stringify(publishedMedia));
-    renderRealPost(publishedMedia);
+    currentInstagramMedia=result.media;
+    localStorage.setItem(HEYMI_LAST_MEDIA_KEY,JSON.stringify(result.media));
+    renderRealPost(result.media);
+
     status.textContent='Instagram 게시 완료';
     status.className='statusChip on';
-    alert('Instagram Reel 게시가 완료되었습니다. 이제 테스트 메뉴에서 실제 댓글을 동기화할 수 있습니다.');
+    alert('Instagram Reel 게시가 완료되었습니다. 테스트 메뉴에서 실제 댓글을 확인할 수 있습니다.');
   }catch(err){
     console.error(err);
     status.textContent='게시 실패';
@@ -1515,7 +1354,7 @@ async function publishInstagram(){
   }
 }
 
-restoreInstagramConnection();
+void restoreInstagramConnection();
 
 function toggleHeaderMenu(event){
   if(event) event.stopPropagation();
@@ -1654,27 +1493,28 @@ function makePreview(){
 <div id="helpModalBack" class="helpModalBack" onclick="closeHelpModal()">
   <div class="helpModal" onclick="event.stopPropagation()">
     <div class="helpModalHead">
-      <div><span class="label">처음 연결할 때 한 번만</span><h2>Instagram 계정 연결 방법</h2></div>
+      <div>
+        <span class="label">처음 연결할 때 한 번만</span>
+        <h2>Instagram 계정 연결</h2>
+      </div>
       <button onclick="closeHelpModal()">×</button>
     </div>
+
     <div class="roadModalSection" style="margin-top:14px">
-      <h3>Meta App ID</h3>
-      <p>Meta for Developers의 <b>DECHIVE MultiPost Business</b> 앱에서 App ID 숫자를 확인해 입력하세요. App Secret은 입력하지 않습니다.</p>
-      <input id="metaAppIdInput" inputmode="numeric" placeholder="예: 123456789012345" style="width:100%;margin-top:10px;border:1px solid #cfc6b9;border-radius:10px;padding:11px;font:inherit" />
-      <button class="btnDark" style="width:100%;margin-top:9px" onclick="saveMetaAppIdAndConnect()">App ID 저장 후 Instagram 연결</button>
+      <h3>사용자가 준비할 것</h3>
+      <p>Instagram 계정이 <b>Business 또는 Creator</b>인 Professional 계정이고, 관리 중인 Facebook Page와 연결되어 있어야 합니다.</p>
     </div>
+
     <ol class="helpSteps">
-      <li><b>Instagram 계정 종류 확인</b><p>Business 또는 Creator인 Professional 계정이어야 합니다. Meta Verified 파란 배지는 필요하지 않습니다.</p></li>
-      <li><b>Facebook Page 연결 확인</b><p>이번 수업에서는 Facebook Login 방식의 Instagram API를 사용합니다. Instagram Professional 계정이 관리 중인 Facebook Page에 연결돼 있어야 합니다.</p></li>
-      <li><b>Meta 앱 권한</b><p><code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>instagram_basic</code>, <code>instagram_content_publish</code>, <code>instagram_manage_comments</code> 권한을 사용합니다.</p></li>
-      <li><b>Meta 앱 도메인</b><p>앱의 App Domains / JavaScript SDK 허용 도메인에 <code>studio.dechive.dev</code>를 등록합니다.</p></li>
-      <li><b>이 화면에서 연결</b><p>Instagram 계정 연결 버튼 → Meta 로그인 → 권한 허용 순서로 진행합니다.</p></li>
-      <li><b>연결 완료 확인</b><p>프로그램 화면에 Facebook Page 이름과 <code>@Instagram계정</code>이 표시되면 연결 완료입니다.</p></li>
-      <li><b>영상 게시</b><p>영상은 Supabase Storage에 업로드한 뒤 공개 URL을 Instagram에 전달해 Reel을 게시합니다.</p></li>
-      <li><b>실제 댓글 확인</b><p>게시 후 테스트 메뉴에서 실제 Instagram 게시물을 불러오고, 실제 댓글을 5초마다 동기화해 “구매” 댓글의 순서를 확인합니다.</p></li>
+      <li><b>Instagram 계정 연결 버튼을 누릅니다.</b><p>Meta 로그인 창이 열립니다. 개발자 App ID나 Secret을 직접 입력할 필요는 없습니다.</p></li>
+      <li><b>판매에 사용할 Facebook/Instagram 계정으로 로그인합니다.</b><p>프로그램이 필요한 게시·댓글 권한을 요청합니다.</p></li>
+      <li><b>권한을 허용합니다.</b><p>연결이 성공하면 프로그램 화면에 실제 <code>@Instagram계정명</code>이 표시됩니다.</p></li>
+      <li><b>영상을 선택하고 게시합니다.</b><p>영상은 서버를 통해 Supabase Storage에 저장되고, Instagram Reel 게시도 서버가 처리합니다.</p></li>
+      <li><b>테스트 메뉴에서 실제 댓글을 확인합니다.</b><p>게시물에 실제 댓글을 남긴 뒤 동기화하면 “구매” 댓글이 구매 대기열에 들어갑니다.</p></li>
     </ol>
-    <div class="helpWarn">App Secret은 이 사이트에 입력하지 않습니다. 오늘 수업은 본인 계정 테스트용으로 Meta JavaScript SDK의 사용자 토큰을 브라우저에만 보관합니다.</div>
-    <button class="btnLight" style="width:100%" onclick="closeHelpModal()">닫기</button>
+
+    <div class="helpWarn">App Secret, Page Access Token, Instagram 토큰은 브라우저에 저장하지 않습니다. 서버에서만 관리합니다.</div>
+    <button class="btnDark" style="width:100%" onclick="closeHelpModal();connectInstagram()">Instagram 연결 시작</button>
   </div>
 </div>
 
