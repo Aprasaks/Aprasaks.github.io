@@ -3178,6 +3178,21 @@ a.work-editorial-card:hover {
   font-weight: 600;
 }
 
+.book-thesis-line {
+  display: block;
+}
+
+.book-thesis-line-top {
+  font-size: clamp(28px,3.3vw,40px);
+  font-weight: 560;
+}
+
+.book-thesis-line-emphasis {
+  margin-top: 6px;
+  font-size: clamp(32px,3.8vw,48px);
+  font-weight: 620;
+}
+
 .story-copy blockquote,
 .case-story blockquote {
   font-size: clamp(20px,2.4vw,29px);
