@@ -1666,11 +1666,12 @@ function makePreview(){
     <ol class="helpSteps">
       <li><b>Instagram 계정 종류 확인</b><p>Business 또는 Creator인 Professional 계정이어야 합니다. Meta Verified 파란 배지는 필요하지 않습니다.</p></li>
       <li><b>Facebook Page 연결 확인</b><p>이번 수업에서는 Facebook Login 방식의 Instagram API를 사용합니다. Instagram Professional 계정이 관리 중인 Facebook Page에 연결돼 있어야 합니다.</p></li>
-      <li><b>Meta 앱 권한</b><p><code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>instagram_basic</code>, <code>instagram_content_publish</code> 권한을 사용합니다.</p></li>
+      <li><b>Meta 앱 권한</b><p><code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>instagram_basic</code>, <code>instagram_content_publish</code>, <code>instagram_manage_comments</code> 권한을 사용합니다.</p></li>
       <li><b>Meta 앱 도메인</b><p>앱의 App Domains / JavaScript SDK 허용 도메인에 <code>studio.dechive.dev</code>를 등록합니다.</p></li>
       <li><b>이 화면에서 연결</b><p>Instagram 계정 연결 버튼 → Meta 로그인 → 권한 허용 순서로 진행합니다.</p></li>
       <li><b>연결 완료 확인</b><p>프로그램 화면에 Facebook Page 이름과 <code>@Instagram계정</code>이 표시되면 연결 완료입니다.</p></li>
       <li><b>영상 게시</b><p>영상은 Supabase Storage에 업로드한 뒤 공개 URL을 Instagram에 전달해 Reel을 게시합니다.</p></li>
+      <li><b>실제 댓글 확인</b><p>게시 후 테스트 메뉴에서 실제 Instagram 게시물을 불러오고, 실제 댓글을 5초마다 동기화해 “구매” 댓글의 순서를 확인합니다.</p></li>
     </ol>
     <div class="helpWarn">App Secret은 이 사이트에 입력하지 않습니다. 오늘 수업은 본인 계정 테스트용으로 Meta JavaScript SDK의 사용자 토큰을 브라우저에만 보관합니다.</div>
     <button class="btnLight" style="width:100%" onclick="closeHelpModal()">닫기</button>
