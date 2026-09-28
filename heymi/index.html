@@ -73,6 +73,19 @@
   <div class="top"><div><span class="eyebrow">실제 작업 화면</span><h1>SNS자동화 판매프로그램 <span>ver.헤이미</span></h1></div><span class="badge">테스트 모드</span></div>
   <div class="programGrid">
     <div class="programCard">
+      <h2>0. Instagram 계정을 연결합니다</h2>
+      <div class="statusLine">
+        <span id="igStatus" class="statusChip">연결 안 됨</span>
+        <span class="statusChip">Professional 계정 필요</span>
+      </div>
+      <p class="smallNote">실제 게시를 하려면 Instagram Professional 계정과 Meta 앱 연결이 필요합니다. 연결이 완료되면 아래 게시 버튼이 실제 게시 기능으로 바뀝니다.</p>
+      <div class="controlRow">
+        <button class="btnDark" id="connectInstagramBtn" onclick="connectInstagram()">Instagram 계정 연결</button>
+        <button class="btnLight" onclick="disconnectInstagram()">연결 해제</button>
+      </div>
+      <div id="igAccountBox" class="fakeField" style="margin-top:12px">연결된 Instagram 계정이 없습니다.</div>
+    </div>
+    <div class="programCard">
       <h2>1. 영상과 상품 정보를 준비합니다</h2>
       <label class="field">판매 영상
         <input type="file" id="videoInput" accept="video/*" />
@@ -81,12 +94,13 @@
       <label class="field">상품명<input id="productName" value="헤이미 빈티지 재킷" /></label>
       <label class="field">가격<input id="productPrice" value="59000" type="number" /></label>
       <label class="field">자세한 설명<textarea id="productDesc">한 벌만 판매합니다. 상태와 사이즈를 확인해주세요.</textarea></label>
-      <label class="field">게시 문구<textarea id="postText">구매를 원하시면 댓글에 정확히 “구매”라고 적어주세요.</textarea></label>
+      <label class="field">게시 설명<textarea id="postText">구매를 원하시면 댓글에 정확히 “구매”라고 적어주세요.</textarea></label>
+      <label class="field">해시태그<input id="hashtags" value="#헤이미 #빈티지 #한정판매" /></label>
       <div class="controlRow">
         <button class="btnDark" onclick="makePreview()">게시물 미리보기 만들기</button>
-        <button class="btnLight" onclick="simulatePublish()">Instagram 게시 테스트</button>
+        <button class="btnLight" id="publishBtn" onclick="publishInstagram()">Instagram에 게시</button>
       </div>
-      <p class="smallNote">현재 수업 사이트에서는 실제 Instagram 계정으로 게시하지 않고 게시 직전 화면까지 테스트합니다. Meta API 연결 후 같은 버튼이 실제 게시 기능으로 바뀝니다.</p>
+      <p class="smallNote"><strong>중요:</strong> 이 버튼은 계정 연결과 게시 서버가 준비된 경우에만 실제 Instagram에 게시합니다. 서버가 준비되지 않았다면 게시를 실행하지 않고 필요한 설정을 안내합니다.</p>
     </div>
     <div class="programCard">
       <h2>2. Instagram 게시물 미리보기</h2>
@@ -163,6 +177,25 @@ const intro=document.getElementById('intro'),guide=document.getElementById('guid
 function start(){i=0;intro.classList.add('hidden');guide.classList.remove('hidden');render()} function home(){guide.classList.add('hidden');intro.classList.remove('hidden')} function prevStep(){if(i>0){i--;render()}} function nextStep(){if(i<steps.length-1){i++;render()}else alert('이제 실제 프로그램 화면으로 넘어갑니다.')}
 document.getElementById('miniFlow').innerHTML=steps.map((s,x)=>`<div><b>${x+1}</b><span>${s.t}</span></div>`).join('');
 
+
+let instagramConnected=false;
+function connectInstagram(){
+  const configured = false;
+  if(!configured){
+    document.getElementById('igStatus').textContent='서버 설정 필요';
+    document.getElementById('igStatus').className='statusChip wait';
+    document.getElementById('igAccountBox').innerHTML='<b>아직 실제 연결 전입니다.</b><br>Meta App ID, Redirect URI, 서버 OAuth 콜백이 준비되면 이 버튼이 실제 Instagram 로그인 화면으로 이동합니다.';
+    alert('실제 Instagram 연결을 위해서는 Meta 앱의 App ID와 서버 OAuth 콜백 설정이 필요합니다. 현재는 연결 구조까지 준비된 상태입니다.');
+    return;
+  }
+}
+function disconnectInstagram(){
+  instagramConnected=false;
+  document.getElementById('igStatus').textContent='연결 안 됨';
+  document.getElementById('igStatus').className='statusChip';
+  document.getElementById('igAccountBox').textContent='연결된 Instagram 계정이 없습니다.';
+}
+
 let buyers=[], activeBuyer=null, expiresAt=null, timerHandle=null, virtualSeq=184000;
 function showSection(name){
   document.querySelectorAll('[data-section]').forEach(el=>el.classList.add('hidden'));
@@ -185,13 +218,22 @@ function makePreview(){
   const price=money(document.getElementById('productPrice').value);
   const desc=document.getElementById('productDesc').value.trim();
   const text=document.getElementById('postText').value.trim();
-  document.getElementById('postCaption').textContent=name+'\n'+price+'\n\n'+desc+'\n\n'+text;
+  const tags=document.getElementById('hashtags').value.trim();
+  document.getElementById('postCaption').textContent=name+'\n'+price+'\n\n'+desc+'\n\n'+text+'\n\n'+tags;
   document.getElementById('postMedia').textContent=document.getElementById('videoInput').files[0]?'선택한 영상이 게시됩니다':'영상 미선택';
 }
-function simulatePublish(){
+function publishInstagram(){
   makePreview();
-  const s=document.getElementById('postStatus');s.textContent='게시 테스트 완료';s.className='statusChip on';
-  alert('수업용 테스트: 게시 준비가 완료되었습니다. 실제 Instagram 연결 후 이 버튼이 실제 게시를 실행합니다.');
+  if(!instagramConnected){
+    const s=document.getElementById('postStatus');
+    s.textContent='게시 대기 · Instagram 연결 필요';
+    s.className='statusChip wait';
+    alert('Instagram 계정이 아직 실제로 연결되지 않았습니다. 먼저 계정 연결을 완료해야 실제 게시할 수 있습니다.');
+    return;
+  }
+  const s=document.getElementById('postStatus');
+  s.textContent='게시 요청 중';
+  s.className='statusChip wait';
 }
 function logSale(msg){const box=document.getElementById('saleLog');const d=document.createElement('div');d.textContent='['+new Date().toLocaleTimeString('ko-KR')+'] '+msg;box.prepend(d)}
 function addBuyer(){
