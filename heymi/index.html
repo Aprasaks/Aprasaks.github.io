@@ -350,7 +350,7 @@ body{font-size:15px;line-height:1.55}
           <span class="label">HEYMI COMMENT MONITOR</span>
           <h2>댓글 수신 화면</h2>
         </div>
-        <span class="liveBadge"><i></i> LIVE</span>
+        <span class="liveBadge" id="dbStatus"><i></i> Supabase 연결 중</span>
       </div>
 
       <div class="monitorFlow">
@@ -438,25 +438,56 @@ buildRoadmap();
 
 
 
+
+const HEYMI_SUPABASE_URL='https://pexoeftnkbcowauxhopf.supabase.co';
+const HEYMI_SUPABASE_KEY='sb_publishable_l_wSycnldZk5Q_-9PZQegA_Gvx8ibSh';
+const HEYMI_SESSION_KEY='heymi_test_session_v1';
+let heymiSessionId=localStorage.getItem(HEYMI_SESSION_KEY);
+if(!heymiSessionId){
+  heymiSessionId='heymi-'+crypto.randomUUID();
+  localStorage.setItem(HEYMI_SESSION_KEY,heymiSessionId);
+}
 let liveReceived=0, liveAccepted=0, liveQueue=0;
-function submitInstagramTestComment(){
-  const userInput=document.getElementById('igTestUser');
-  const commentInput=document.getElementById('igTestComment');
-  const user=(userInput.value||'buyer01').trim().replace(/^@/,'');
-  const comment=commentInput.value.trim();
-  if(!comment){alert('댓글 내용을 입력해주세요.');return;}
 
-  const igComments=document.getElementById('igComments');
-  const row=document.createElement('div');
-  row.className='igComment';
-  row.innerHTML='<b>'+escapeHtml(user)+'</b><span>'+escapeHtml(comment)+'</span>';
-  igComments.appendChild(row);
-  igComments.scrollTop=igComments.scrollHeight;
+async function heymiDb(path, options={}){
+  const headers={
+    'apikey':HEYMI_SUPABASE_KEY,
+    'Content-Type':'application/json',
+    ...options.headers
+  };
+  const res=await fetch(HEYMI_SUPABASE_URL+'/rest/v1/'+path,{...options,headers});
+  if(!res.ok){
+    const msg=await res.text();
+    throw new Error(msg||('Supabase '+res.status));
+  }
+  if(res.status===204) return null;
+  return res.json();
+}
 
-  const accepted=comment==='구매';
+function setDbStatus(ok,text){
+  const el=document.getElementById('dbStatus');
+  if(!el) return;
+  el.innerHTML='<i></i> '+text;
+  el.style.background=ok?'#edf8ef':'#fff1e6';
+  el.style.color=ok?'#2f753a':'#9a5c20';
+}
+
+function resetCommentMonitor(){
+  liveReceived=0;liveAccepted=0;liveQueue=0;
+  document.getElementById('receivedCount').textContent='0';
+  document.getElementById('acceptedCount').textContent='0';
+  document.getElementById('queueCount').textContent='0';
+  document.getElementById('commentMonitorList').innerHTML=
+    '<div class="monitorEmpty"><b>아직 수신된 댓글이 없습니다.</b><span>왼쪽 Instagram 화면에서 댓글을 입력해보세요.</span></div>';
+}
+
+function appendTestComment(row,prepend=false){
+  const user=String(row.username||'buyer01').replace(/^@/,'');
+  const comment=String(row.comment_text||'');
+  const accepted=Boolean(row.is_purchase);
+
   liveReceived++;
-  if(accepted){liveAccepted++;liveQueue++;}
-
+  if(accepted){liveAccepted++;liveQueue=Math.max(liveQueue,Number(row.queue_position||liveAccepted));}
   document.getElementById('receivedCount').textContent=liveReceived;
   document.getElementById('acceptedCount').textContent=liveAccepted;
   document.getElementById('queueCount').textContent=liveQueue;
@@ -466,19 +497,79 @@ function submitInstagramTestComment(){
 
   const item=document.createElement('div');
   item.className='monitorItem '+(accepted?'accepted':'ignored');
-  const now=new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const dt=row.created_at?new Date(row.created_at):new Date();
+  const now=dt.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   item.innerHTML=
     '<span class="monitorDot"></span>'+
-    '<div><b>@'+escapeHtml(user)+'</b><p>'+escapeHtml(comment)+'</p><span class="monitorMeta">Instagram 댓글 수신 · '+now+(accepted?' · 대기 '+liveQueue+'번':'')+'</span></div>'+
+    '<div><b>@'+escapeHtml(user)+'</b><p>'+escapeHtml(comment)+'</p><span class="monitorMeta">Supabase 저장 · '+now+(accepted?' · 대기 '+Number(row.queue_position||liveAccepted)+'번':'')+'</span></div>'+
     '<span class="monitorResult">'+(accepted?'구매 인정':'일반 댓글')+'</span>';
-  list.prepend(item);
 
-  commentInput.value='';
-  commentInput.focus();
+  if(prepend) list.prepend(item); else list.appendChild(item);
 }
+
+async function loadSupabaseComments(){
+  try{
+    setDbStatus(false,'Supabase 연결 중');
+    const rows=await heymiDb(
+      'heymi_test_comments?session_id=eq.'+encodeURIComponent(heymiSessionId)+'&select=*&order=created_at.asc&limit=100'
+    );
+    resetCommentMonitor();
+    rows.forEach(row=>appendTestComment(row,false));
+    setDbStatus(true,'Supabase 연결됨');
+  }catch(err){
+    console.error(err);
+    setDbStatus(false,'Supabase 연결 오류');
+  }
+}
+
+async function submitInstagramTestComment(){
+  const userInput=document.getElementById('igTestUser');
+  const commentInput=document.getElementById('igTestComment');
+  const user=(userInput.value||'buyer01').trim().replace(/^@/,'');
+  const comment=commentInput.value.trim();
+  if(!comment){alert('댓글 내용을 입력해주세요.');return;}
+
+  const accepted=comment==='구매';
+  const nextQueue=accepted ? liveQueue+1 : null;
+
+  try{
+    setDbStatus(false,'저장 중');
+    const rows=await heymiDb('heymi_test_comments',{
+      method:'POST',
+      headers:{'Prefer':'return=representation'},
+      body:JSON.stringify({
+        session_id:heymiSessionId,
+        username:user,
+        comment_text:comment,
+        is_purchase:accepted,
+        queue_position:nextQueue
+      })
+    });
+    const saved=rows[0];
+
+    const igComments=document.getElementById('igComments');
+    const row=document.createElement('div');
+    row.className='igComment';
+    row.innerHTML='<b>'+escapeHtml(user)+'</b><span>'+escapeHtml(comment)+'</span>';
+    igComments.appendChild(row);
+    igComments.scrollTop=igComments.scrollHeight;
+
+    appendTestComment(saved,true);
+    commentInput.value='';
+    commentInput.focus();
+    setDbStatus(true,'Supabase 저장됨');
+  }catch(err){
+    console.error(err);
+    setDbStatus(false,'저장 실패');
+    alert('Supabase 저장에 실패했습니다. 잠시 후 다시 시도해주세요.');
+  }
+}
+
 function escapeHtml(v){
   return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
+
+loadSupabaseComments();
 
 let instagramConnected=false;
 function connectInstagram(){
