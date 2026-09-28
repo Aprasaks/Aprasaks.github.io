@@ -104,9 +104,23 @@ body{font-size:15px;line-height:1.55}
 .flowStrip .arrow{color:#98866d;font-weight:900}
 @media(max-width:900px){.programLayout{grid-template-columns:1fr}.systemStage{min-height:640px}.hub{top:50%}.node{width:42%}.node.n1{left:4%;top:5%}.node.n2{right:4%;top:5%}.node.n3{right:4%;top:27%}.node.n4{right:4%;bottom:5%}.node.n5{left:4%;bottom:5%}.node.n6{left:4%;top:27%}.connector{display:none}}
 
+
+.mainHeader{background:#fff;border-bottom:1px solid #ded7cc}
+.mainHeaderInner{max-width:1220px;margin:0 auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mainHeaderTitle{font-size:20px;line-height:1.2;letter-spacing:-.02em;color:#1d1b18}
+.mainHeaderVersion{font-size:13px;font-weight:800;color:#766b5d;background:#f4f0e9;border:1px solid #ddd4c7;border-radius:999px;padding:7px 10px;white-space:nowrap}
+@media(max-width:560px){.mainHeaderInner{padding:14px}.mainHeaderTitle{font-size:17px}.mainHeaderVersion{font-size:12px}}
+
 </style>
 </head>
 <body>
+
+<header class="mainHeader">
+  <div class="mainHeaderInner">
+    <strong class="mainHeaderTitle">SNS자동화 판매프로그램</strong>
+    <span class="mainHeaderVersion">ver.헤이미</span>
+  </div>
+</header>
 
 <div class="appMenu">
   <div class="appMenuInner">
