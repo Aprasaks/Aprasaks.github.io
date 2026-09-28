@@ -1158,33 +1158,8 @@ function escapeHtml(v){
   return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-const HEYMI_META_VERSION='v26.0';
 let instagramConnected=false;
 let metaConnection=null;
-let fbSdkPromise=null;
-
-async function loadFacebookSdk(appId){
-  if(window.FB){
-    window.FB.init({appId,cookie:true,xfbml:false,version:HEYMI_META_VERSION});
-    return;
-  }
-  if(fbSdkPromise) return fbSdkPromise;
-  fbSdkPromise=new Promise((resolve,reject)=>{
-    window.fbAsyncInit=function(){
-      window.FB.init({appId,cookie:true,xfbml:false,version:HEYMI_META_VERSION});
-      resolve();
-    };
-    const script=document.createElement('script');
-    script.id='facebook-jssdk';
-    script.async=true;
-    script.defer=true;
-    script.crossOrigin='anonymous';
-    script.src='https://connect.facebook.net/ko_KR/sdk.js';
-    script.onerror=()=>reject(new Error('Meta 로그인 모듈을 불러오지 못했습니다.'));
-    document.body.appendChild(script);
-  });
-  return fbSdkPromise;
-}
 
 function updateInstagramConnectionUI(){
   const status=document.getElementById('igStatus');
@@ -1193,10 +1168,11 @@ function updateInstagramConnectionUI(){
     instagramConnected=true;
     status.textContent='Instagram 연결됨';
     status.className='statusChip on';
-    const commentsReady=(metaConnection.grantedPermissions||[]).includes('instagram_manage_comments');
+    const commentsReady=(metaConnection.grantedPermissions||[]).includes('instagram_business_manage_comments');
+    const publishReady=(metaConnection.grantedPermissions||[]).includes('instagram_business_content_publish');
     box.innerHTML='<b>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+'</b><br>'+
-      escapeHtml(metaConnection.facebook_page_name||metaConnection.pageName||'Facebook Page')+
-      '와 연결됨<br><small>게시 권한 연결됨 · 댓글 권한 '+(commentsReady?'연결됨':'확인 필요')+'</small>';
+      '<small>Instagram 직접 로그인 · 게시 '+(publishReady?'연결됨':'확인 필요')+
+      ' · 댓글 '+(commentsReady?'연결됨':'확인 필요')+'</small>';
   }else{
     instagramConnected=false;
     status.textContent='연결 안 됨';
@@ -1207,21 +1183,50 @@ function updateInstagramConnectionUI(){
 }
 
 async function restoreInstagramConnection(){
+  const params=new URLSearchParams(location.search);
+  const returnedConnection=params.get('connection_id');
+  const returnedUser=params.get('instagram_username');
+  const oauthError=params.get('instagram_error');
+
+  if(oauthError){
+    alert(decodeURIComponent(oauthError));
+  }
+
+  if(returnedConnection){
+    localStorage.setItem(HEYMI_CONNECTION_KEY,returnedConnection);
+    if(returnedUser){
+      metaConnection={
+        connectionId:returnedConnection,
+        instagramUserId:'pending',
+        instagramUsername:returnedUser,
+        grantedPermissions:[
+          'instagram_business_basic',
+          'instagram_business_content_publish',
+          'instagram_business_manage_comments'
+        ]
+      };
+      updateInstagramConnectionUI();
+    }
+    history.replaceState({},'',location.pathname);
+  }
+
   const connectionId=getConnectionId();
   if(!connectionId){
     metaConnection=null;
     updateInstagramConnectionUI();
     return;
   }
+
   try{
     const data=await heymiFunction('heymi-meta-status',{connectionId});
     metaConnection={
       connectionId:data.id,
-      pageName:data.facebook_page_name,
       instagramUserId:data.instagram_user_id,
       instagramUsername:data.instagram_username,
       grantedPermissions:data.granted_permissions||[],
-      lastMediaId:data.last_media_id||null
+      lastMediaId:data.last_media_id||null,
+      tokenExpiresAt:data.token_expires_at||null,
+      authMethod:data.auth_method||'instagram_login'
     };
     updateInstagramConnectionUI();
   }catch{
@@ -1231,53 +1236,8 @@ async function restoreInstagramConnection(){
   }
 }
 
-async function connectInstagram(){
-  const status=document.getElementById('igStatus');
-  try{
-    status.textContent='Meta 로그인 준비 중';
-    status.className='statusChip wait';
-
-    const appId=await getConfiguredMetaAppId();
-    if(!appId){
-      throw new Error('관리자 설정에 Meta App ID가 아직 등록되지 않았습니다.');
-    }
-
-    await loadFacebookSdk(appId);
-    const login=await new Promise((resolve,reject)=>{
-      window.FB.login((response)=>{
-        if(response?.authResponse?.accessToken) resolve(response);
-        else reject(new Error('Meta 로그인이 취소되었거나 권한이 허용되지 않았습니다.'));
-      },{
-        scope:'pages_show_list,pages_read_engagement,instagram_basic,instagram_content_publish,instagram_manage_comments',
-        return_scopes:true
-      });
-    });
-
-    status.textContent='Instagram 계정 확인 중';
-    const result=await heymiFunction('heymi-meta-connect',{
-      accessToken:login.authResponse.accessToken
-    });
-
-    localStorage.setItem(HEYMI_CONNECTION_KEY,result.connectionId);
-    metaConnection={
-      connectionId:result.connectionId,
-      pageName:result.pageName,
-      instagramUserId:result.instagramUserId,
-      instagramUsername:result.instagramUsername,
-      grantedPermissions:result.grantedPermissions||[]
-    };
-
-    updateInstagramConnectionUI();
-    closeHelpModal();
-  }catch(err){
-    console.error(err);
-    instagramConnected=false;
-    status.textContent='연결 실패';
-    status.className='statusChip wait';
-    const box=document.getElementById('igAccountBox');
-    box.innerHTML='<b>연결하지 못했습니다.</b><br>'+escapeHtml(err.message||String(err));
-    alert(err.message||'Instagram 연결에 실패했습니다.');
-  }
+function connectInstagram(){
+  window.location.href=HEYMI_FUNCTIONS_URL+'/heymi-instagram-oauth-start';
 }
 
 function openHelpModal(){
@@ -1294,9 +1254,6 @@ async function disconnectInstagram(){
   instagramConnected=false;
   currentInstagramMedia=null;
   updateInstagramConnectionUI();
-  if(window.FB){
-    try{window.FB.logout(()=>{})}catch{}
-  }
 }
 
 async function uploadVideoToSupabase(file){
@@ -1313,8 +1270,8 @@ async function publishInstagram(){
   const status=document.getElementById('postStatus');
   try{
     if(!instagramConnected){
-      await connectInstagram();
-      if(!instagramConnected) return;
+      connectInstagram();
+      return;
     }
 
     const file=document.getElementById('videoInput').files[0];
@@ -1506,8 +1463,8 @@ function makePreview(){
     </div>
 
     <ol class="helpSteps">
-      <li><b>Instagram 계정 연결 버튼을 누릅니다.</b><p>Meta 로그인 창이 열립니다. 개발자 App ID나 Secret을 직접 입력할 필요는 없습니다.</p></li>
-      <li><b>판매에 사용할 Facebook/Instagram 계정으로 로그인합니다.</b><p>프로그램이 필요한 게시·댓글 권한을 요청합니다.</p></li>
+      <li><b>Instagram 계정 연결 버튼을 누릅니다.</b><p>Instagram 로그인 화면이 열립니다. Facebook Page 연결은 필요하지 않습니다.</p></li>
+      <li><b>판매에 사용할 Instagram Professional 계정으로 직접 로그인합니다.</b><p>프로그램이 필요한 게시·댓글 권한을 요청합니다.</p></li>
       <li><b>권한을 허용합니다.</b><p>연결이 성공하면 프로그램 화면에 실제 <code>@Instagram계정명</code>이 표시됩니다.</p></li>
       <li><b>영상을 선택하고 게시합니다.</b><p>영상은 서버를 통해 Supabase Storage에 저장되고, Instagram Reel 게시도 서버가 처리합니다.</p></li>
       <li><b>테스트 메뉴에서 실제 댓글을 확인합니다.</b><p>게시물에 실제 댓글을 남긴 뒤 동기화하면 “구매” 댓글이 구매 대기열에 들어갑니다.</p></li>
