@@ -206,14 +206,7 @@ body{font-size:15px;line-height:1.55}
 
 
 .mainHeaderInner{position:relative}
-.mainHeaderNav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:24px}
-.mainHeaderNav button{border:0;background:transparent;padding:4px 0;font-size:13px;font-weight:700;color:#746b60;cursor:pointer}
-.mainHeaderNav button:hover{color:#1d1b18}
-.mainHeaderNav button.active{color:#1d1b18}
-@media(max-width:720px){
-  .mainHeaderNav{position:static;transform:none;order:3;width:100%;justify-content:center;gap:18px;margin-top:10px}
-  .mainHeaderInner{flex-wrap:wrap}
-}
+
 
 
 /* main - why automation */
@@ -284,6 +277,25 @@ body{font-size:15px;line-height:1.55}
   .homeConclusion b{font-size:19px}
 }
 
+
+/* header dropdown navigation */
+.mainHeaderInner{position:relative}
+.headerMenuWrap{position:relative;margin-left:auto}
+.mainHeaderVersion{border:0;background:transparent;padding:6px 0;font-size:11px;font-weight:700;color:#8a8176;letter-spacing:.01em;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px}
+.mainHeaderVersion:hover{color:#1d1b18}
+.headerChevron{font-size:12px;transition:transform .18s ease}
+.headerMenuWrap.open .headerChevron{transform:rotate(180deg)}
+.headerDropdown{position:absolute;right:0;top:calc(100% + 10px);width:190px;background:#fff;border:1px solid #ded6ca;border-radius:13px;padding:6px;box-shadow:0 16px 42px #241b101f;z-index:100;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .16s ease,transform .16s ease,visibility .16s ease}
+.headerMenuWrap.open .headerDropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.headerDropdown button{width:100%;border:0;background:transparent;border-radius:9px;padding:11px 12px;display:grid;grid-template-columns:24px 1fr;align-items:center;text-align:left;cursor:pointer;color:#2a2723}
+.headerDropdown button:hover,.headerDropdown button.active{background:#f4f0e9}
+.headerDropdown button span{font-size:9px;font-weight:900;color:#aa9270;letter-spacing:.06em}
+.headerDropdown button b{font-size:13px;font-weight:750}
+@media(max-width:560px){
+  .mainHeaderVersion{font-size:10px}
+  .headerDropdown{width:170px;right:-2px}
+}
+
 </style>
 </head>
 <body>
@@ -293,12 +305,24 @@ body{font-size:15px;line-height:1.55}
     <button class="mainHeaderHome" onclick="showSection('home')" aria-label="메인으로">
       <strong class="mainHeaderTitle">SNS자동화 판매프로그램</strong>
     </button>
-    <nav class="mainHeaderNav" aria-label="주요 메뉴">
-      <button id="menuGuide" onclick="showSection('guide')">사용안내</button>
-      <button id="menuTest" onclick="showSection('test')">테스트</button>
-      <button id="menuProgram" onclick="showSection('program')">프로그램</button>
-    </nav>
-    <span class="mainHeaderVersion">ver.헤이미</span>
+
+    <div class="headerMenuWrap">
+      <button class="mainHeaderVersion" id="headerMenuTrigger" onclick="toggleHeaderMenu(event)" aria-expanded="false" aria-controls="headerDropdown">
+        ver.헤이미 <span class="headerChevron">⌄</span>
+      </button>
+
+      <nav class="headerDropdown" id="headerDropdown" aria-label="주요 메뉴">
+        <button id="menuGuide" onclick="selectHeaderMenu('guide')">
+          <span>01</span><b>사용안내</b>
+        </button>
+        <button id="menuTest" onclick="selectHeaderMenu('test')">
+          <span>02</span><b>테스트</b>
+        </button>
+        <button id="menuProgram" onclick="selectHeaderMenu('program')">
+          <span>03</span><b>프로그램</b>
+        </button>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -976,7 +1000,39 @@ restoreInstagramConnection();
 
 let buyers=[], activeBuyer=null, expiresAt=null, timerHandle=null, virtualSeq=184000;
 
+
+function toggleHeaderMenu(event){
+  if(event) event.stopPropagation();
+  const wrap=document.querySelector('.headerMenuWrap');
+  const trigger=document.getElementById('headerMenuTrigger');
+  const open=!wrap.classList.contains('open');
+  wrap.classList.toggle('open',open);
+  trigger?.setAttribute('aria-expanded',String(open));
+}
+
+function closeHeaderMenu(){
+  const wrap=document.querySelector('.headerMenuWrap');
+  const trigger=document.getElementById('headerMenuTrigger');
+  wrap?.classList.remove('open');
+  trigger?.setAttribute('aria-expanded','false');
+}
+
+function selectHeaderMenu(name){
+  closeHeaderMenu();
+  showSection(name);
+}
+
+document.addEventListener('click',(event)=>{
+  const wrap=document.querySelector('.headerMenuWrap');
+  if(wrap && !wrap.contains(event.target)) closeHeaderMenu();
+});
+
+document.addEventListener('keydown',(event)=>{
+  if(event.key==='Escape') closeHeaderMenu();
+});
+
 function showSection(name){
+  closeHeaderMenu();
   document.querySelectorAll('[data-section]').forEach(el=>el.classList.add('hidden'));
 
   const map={
