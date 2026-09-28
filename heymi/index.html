@@ -204,6 +204,17 @@ body{font-size:15px;line-height:1.55}
 @media(max-width:900px){.liveTestGrid{grid-template-columns:1fr}.igMock{margin:0 auto}.heymiMonitor{min-height:0}}
 @media(max-width:560px){.igCommentInput{grid-template-columns:28px 1fr auto}.igCommentInput #igTestUser{display:none}.monitorStats{grid-template-columns:1fr 1fr 1fr}}
 
+
+.mainHeaderInner{position:relative}
+.mainHeaderNav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:24px}
+.mainHeaderNav button{border:0;background:transparent;padding:4px 0;font-size:13px;font-weight:700;color:#746b60;cursor:pointer}
+.mainHeaderNav button:hover{color:#1d1b18}
+.mainHeaderNav button.active{color:#1d1b18}
+@media(max-width:720px){
+  .mainHeaderNav{position:static;transform:none;order:3;width:100%;justify-content:center;gap:18px;margin-top:10px}
+  .mainHeaderInner{flex-wrap:wrap}
+}
+
 </style>
 </head>
 <body>
@@ -211,17 +222,14 @@ body{font-size:15px;line-height:1.55}
 <header class="mainHeader">
   <div class="mainHeaderInner">
     <strong class="mainHeaderTitle">SNS자동화 판매프로그램</strong>
+    <nav class="mainHeaderNav" aria-label="주요 메뉴">
+      <button id="menuGuide" class="active" onclick="showSection('guideHome')">사용안내</button>
+      <button id="menuTest" onclick="showSection('test')">테스트</button>
+      <button id="menuProgram" onclick="showSection('program')">프로그램</button>
+    </nav>
     <span class="mainHeaderVersion">ver.헤이미</span>
   </div>
 </header>
-
-<div class="appMenu">
-  <div class="appMenuInner">
-    <button id="menuGuide" class="active" onclick="showSection('guideHome')">사용 안내</button>
-    <button id="menuProgram" onclick="showSection('program')">실제 프로그램</button>
-    <button id="menuTest" onclick="showSection('test')">판매테스트</button>
-  </div>
-</div>
 
 <div class="wrap">
 <section id="intro" data-section="guideHome">
