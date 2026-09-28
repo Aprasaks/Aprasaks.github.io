@@ -365,6 +365,45 @@ body{font-size:15px;line-height:1.55}
   .guideWorkspaceTop h1{font-size:18px}
 }
 
+
+/* real instagram test */
+.realTestHead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:18px}
+.realTestHead h1{font-size:23px;line-height:1.35;margin:6px 0 5px;letter-spacing:-.03em}
+.realTestHead p{font-size:12px;color:#776e64;margin:0;line-height:1.6;max-width:720px}
+.realTestConnection{display:flex;align-items:center;gap:7px;border:1px solid #d7cfc4;background:#fff;border-radius:999px;padding:8px 10px;font-size:10px;font-weight:850;white-space:nowrap}
+.realTestConnection i{width:7px;height:7px;border-radius:50%;background:#b9afa3}
+.realTestConnection.connected i{background:#45a459;box-shadow:0 0 0 4px #45a4591e}
+.realTestGrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:start}
+.realPostPanel,.realQueuePanel{background:#fff;border:1px solid #ddd5ca;border-radius:16px;padding:16px}
+.realPanelHead{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee8df;padding-bottom:11px}
+.realPanelHead>div span{display:block;font-size:9px;font-weight:900;letter-spacing:.12em;color:#a08661}
+.realPanelHead>div b{display:block;font-size:13px;margin-top:3px}
+.realPanelHead button{border:1px solid #d6cec3;background:#f8f5f0;border-radius:8px;padding:7px 9px;font-size:10px;font-weight:800}
+.realPostCard{margin-top:12px;border:1px solid #e3dcd2;border-radius:13px;overflow:hidden;min-height:250px}
+.realPostEmpty{min-height:250px;display:grid;place-content:center;text-align:center;padding:24px;color:#81786e}
+.realPostEmpty b{font-size:12px}.realPostEmpty span{font-size:10px;margin-top:5px}
+.realPostContent{display:grid;grid-template-columns:145px 1fr;min-height:250px}
+.realPostThumb{background:#292621;color:#fff;display:grid;place-items:center;font-size:12px;background-size:cover;background-position:center}
+.realPostInfo{padding:16px}.realPostInfo>span{font-size:9px;font-weight:900;color:#9a805d}.realPostInfo>b{display:block;font-size:13px;margin:6px 0 8px}
+.realPostInfo p{font-size:11px;line-height:1.6;color:#675f56;max-height:95px;overflow:auto;margin:0 0 12px;white-space:pre-wrap}
+.realPostInfo a{font-size:10px;color:#765e3c;text-decoration:none;font-weight:800}
+.realControlBar{display:flex;gap:8px;margin-top:12px}.realControlBar button{font-size:11px;padding:9px 11px}
+.realMonitor{min-height:420px}
+.realQueuePanel{margin-top:16px}
+.queuePaymentNote{font-size:9px;background:#fff0dc;color:#93632a;padding:6px 8px;border-radius:999px;font-weight:850}
+.realQueueGrid{display:grid;grid-template-columns:230px 1fr;gap:14px;margin-top:14px}
+.currentReservation{background:#27241f;color:#fff;border-radius:13px;padding:16px;min-height:170px}
+.currentReservation>span{font-size:9px;color:#c7b79e;font-weight:900;letter-spacing:.1em}.currentReservation>b{display:block;font-size:14px;margin:10px 0 3px}.currentReservation>strong{display:block;font-size:34px;letter-spacing:-.04em;color:#d7b57c}.currentReservation p{font-size:10px;line-height:1.55;color:#bcb4aa;margin:8px 0 0}
+.realQueueList{display:grid;gap:7px}
+.realQueueRow{display:grid;grid-template-columns:30px 1fr auto;gap:9px;align-items:center;border:1px solid #e0d8cd;border-radius:10px;padding:9px 10px}
+.realQueueRow>span:first-child{width:25px;height:25px;border-radius:50%;background:#26231f;color:#fff;display:grid;place-items:center;font-size:9px;font-weight:900}
+.realQueueRow b{display:block;font-size:11px}.realQueueRow small{display:block;font-size:9px;color:#8b8176;margin-top:2px}
+.realQueueState{font-size:9px;font-weight:850;padding:5px 7px;border-radius:999px;background:#efebe5;color:#776f65}
+.realQueueRow.reserved .realQueueState{background:#fff0d8;color:#8c5e23}
+.realQueueRow.expired .realQueueState{background:#eee;color:#888}
+@media(max-width:850px){.realTestGrid,.realQueueGrid{grid-template-columns:1fr}.realTestHead{display:block}.realTestConnection{width:max-content;margin-top:12px}.realPostContent{grid-template-columns:110px 1fr}}
+@media(max-width:560px){.realPostContent{grid-template-columns:1fr}.realPostThumb{min-height:150px}.realControlBar{flex-direction:column}.realControlBar button{width:100%}}
+
 </style>
 </head>
 <body>
@@ -641,69 +680,66 @@ body{font-size:15px;line-height:1.55}
 </section>
 
 <section id="testSection" class="hidden" data-section="test">
-  <div class="roadmapHero" style="margin-bottom:22px">
-    <span class="kicker">LIVE COMMENT TEST</span>
-    <h1>판매 댓글 저장과 구매 판별이 실제로 동작하는지 확인합니다.</h1>
-    <p>왼쪽은 Instagram 형태의 테스트 입력 화면입니다. 입력한 댓글은 실제 Supabase에 저장되고, HEYMI가 “구매” 여부와 대기 순번을 판별합니다.</p>
+  <div class="realTestHead">
+    <div>
+      <span class="guideMiniLabel">REAL INSTAGRAM MONITOR</span>
+      <h1>실제 Instagram 댓글을 읽어 구매 순번을 잡습니다.</h1>
+      <p>가짜 댓글 입력은 사용하지 않습니다. 연결된 Professional 계정의 실제 게시물을 읽고, 새 댓글을 Supabase에 저장합니다.</p>
+    </div>
+    <div class="realTestConnection" id="realTestConnection">
+      <i></i><span>Instagram 연결 확인 중</span>
+    </div>
   </div>
 
-  <div class="liveTestGrid">
-    <div class="igMock">
-      <div class="igMockTop">
-        <div class="igWordmark">Instagram</div>
-        <div class="igTopIcons">⌂　♡　✉</div>
+  <div class="realTestGrid">
+    <section class="realPostPanel">
+      <div class="realPanelHead">
+        <div>
+          <span>INSTAGRAM POST</span>
+          <b>감시할 실제 게시물</b>
+        </div>
+        <button onclick="loadLatestInstagramMedia()">게시물 불러오기</button>
       </div>
 
-      <div class="igPostHeader">
-        <div class="igAvatar">H</div>
-        <div><b>heymi_shop</b><span>Sponsored · 테스트 게시물</span></div>
-        <div class="igDots">•••</div>
-      </div>
-
-      <div class="igMedia">
-        <div class="productVisual">
-          <div class="hanger">⌁</div>
-          <div class="jacket">🧥</div>
-          <div class="visualText"><b>HEYMI VINTAGE JACKET</b><span>1 ITEM ONLY · ₩59,000</span></div>
+      <div class="realPostCard" id="realPostCard">
+        <div class="realPostEmpty" id="realPostEmpty">
+          <b>아직 게시물을 불러오지 않았습니다.</b>
+          <span>Instagram 연결 후 최근 게시물을 불러오세요.</span>
+        </div>
+        <div class="realPostContent hidden" id="realPostContent">
+          <div class="realPostThumb" id="realPostThumb">Instagram</div>
+          <div class="realPostInfo">
+            <span id="realPostType">REEL</span>
+            <b id="realPostAccount">@instagram</b>
+            <p id="realPostCaption">게시물 설명</p>
+            <a id="realPostLink" href="#" target="_blank" rel="noopener">Instagram에서 게시물 열기 ↗</a>
+          </div>
         </div>
       </div>
 
-      <div class="igActions">
-        <div>♡　◯　➤</div><div>▢</div>
+      <div class="realControlBar">
+        <button class="btnDark" id="syncCommentsBtn" onclick="syncInstagramComments()">지금 댓글 동기화</button>
+        <button class="btnLight" id="autoSyncBtn" onclick="toggleInstagramCommentPolling()">5초 자동 동기화 시작</button>
       </div>
 
-      <div class="igPostBody">
-        <b>heymi_shop</b>
-        <span>빈티지 재킷 한 벌만 판매합니다.<br>구매를 원하시면 댓글에 <strong>구매</strong>라고 입력해주세요.<br><br>#헤이미 #빈티지 #한정판매</span>
-      </div>
+      <p class="smallNote"><strong>실제 동작:</strong> 이 화면은 Instagram Graph API에서 게시물과 댓글을 직접 읽습니다. 댓글 권한이 없으면 동기화가 중단되고 필요한 권한을 표시합니다.</p>
+    </section>
 
-      <div class="igComments" id="igComments">
-        <div class="igComment"><b>buyer_sample</b><span>예뻐요!</span></div>
-      </div>
-
-      <div class="igCommentInput">
-        <div class="igMiniAvatar">나</div>
-        <input id="igTestUser" value="buyer01" aria-label="Instagram 사용자 이름" />
-        <input id="igTestComment" value="구매" aria-label="Instagram 댓글" placeholder="댓글 달기..." />
-        <button onclick="submitInstagramTestComment()">게시</button>
-      </div>
-    </div>
-
-    <div class="heymiMonitor">
+    <section class="heymiMonitor realMonitor">
       <div class="monitorHead">
         <div>
           <span class="label">HEYMI COMMENT MONITOR</span>
-          <h2>댓글 수신 화면</h2>
+          <h2>실제 댓글 수신</h2>
         </div>
-        <span class="liveBadge" id="dbStatus"><i></i> Supabase 연결 중</span>
+        <span class="liveBadge" id="dbStatus"><i></i> 대기 중</span>
       </div>
 
       <div class="monitorFlow">
-        <div><span>TEST UI</span><b>댓글 입력</b></div>
+        <div><span>Instagram API</span><b>실제 댓글 조회</b></div>
         <span class="monitorArrow">→</span>
-        <div><span>Supabase</span><b>실제 DB 저장</b></div>
+        <div><span>Supabase</span><b>댓글 저장</b></div>
         <span class="monitorArrow">→</span>
-        <div><span>HEYMI</span><b>구매 판별</b></div>
+        <div><span>HEYMI</span><b>“구매” 판별</b></div>
       </div>
 
       <div class="monitorStats">
@@ -714,12 +750,34 @@ body{font-size:15px;line-height:1.55}
 
       <div class="monitorList" id="commentMonitorList">
         <div class="monitorEmpty">
-          <b>아직 수신된 댓글이 없습니다.</b>
-          <span>왼쪽 Instagram 화면에서 댓글을 입력해보세요.</span>
+          <b>실제 댓글을 기다리고 있습니다.</b>
+          <span>Instagram 게시물에서 댓글을 작성한 뒤 동기화하세요.</span>
         </div>
       </div>
-    </div>
+    </section>
   </div>
+
+  <section class="realQueuePanel">
+    <div class="realPanelHead">
+      <div>
+        <span>PURCHASE QUEUE</span>
+        <b>실제 “구매” 댓글 순번</b>
+      </div>
+      <span class="queuePaymentNote">결제 PG 미연동</span>
+    </div>
+
+    <div class="realQueueGrid">
+      <div class="currentReservation">
+        <span>현재 구매권</span>
+        <b id="currentBuyer">대기 중</b>
+        <strong id="reservationTimer">--:--</strong>
+        <p id="reservationMessage">실제 “구매” 댓글이 들어오면 1순위에게 10분 구매권을 부여합니다.</p>
+      </div>
+      <div class="realQueueList" id="realQueueList">
+        <div class="monitorEmpty"><b>구매 대기열이 없습니다.</b><span>실제 댓글 “구매”가 들어오면 여기에 표시됩니다.</span></div>
+      </div>
+    </div>
+  </section>
 </section>
 
 </div>
@@ -847,136 +905,348 @@ function home(){showSection('home')}
 
 const HEYMI_SUPABASE_URL='https://pexoeftnkbcowauxhopf.supabase.co';
 const HEYMI_SUPABASE_KEY='sb_publishable_l_wSycnldZk5Q_-9PZQegA_Gvx8ibSh';
-const HEYMI_SESSION_KEY='heymi_test_session_v1';
-let heymiSessionId=localStorage.getItem(HEYMI_SESSION_KEY);
-if(!heymiSessionId){
-  heymiSessionId='heymi-'+crypto.randomUUID();
-  localStorage.setItem(HEYMI_SESSION_KEY,heymiSessionId);
-}
-let liveReceived=0, liveAccepted=0, liveQueue=0;
+const HEYMI_LAST_MEDIA_KEY='heymi_last_instagram_media_v1';
+let currentInstagramMedia=null;
+let commentPollTimer=null;
+let reservationTickTimer=null;
+let liveReceived=0,liveAccepted=0,liveQueue=0;
 
-async function heymiDb(path, options={}){
-  const headers={
-    'apikey':HEYMI_SUPABASE_KEY,
-    'Content-Type':'application/json',
-    ...options.headers
-  };
+async function heymiDb(path,options={}){
+  const headers={'apikey':HEYMI_SUPABASE_KEY,'Content-Type':'application/json',...options.headers};
   const res=await fetch(HEYMI_SUPABASE_URL+'/rest/v1/'+path,{...options,headers});
   if(!res.ok){
     const msg=await res.text();
     throw new Error(msg||('Supabase '+res.status));
   }
-  if(res.status===204) return null;
+  if(res.status===204)return null;
   return res.json();
 }
 
 function setDbStatus(ok,text){
   const el=document.getElementById('dbStatus');
-  if(!el) return;
+  if(!el)return;
   el.innerHTML='<i></i> '+text;
   el.style.background=ok?'#edf8ef':'#fff1e6';
   el.style.color=ok?'#2f753a':'#9a5c20';
 }
 
-function resetCommentMonitor(){
+function resetRealMonitor(){
   liveReceived=0;liveAccepted=0;liveQueue=0;
   document.getElementById('receivedCount').textContent='0';
   document.getElementById('acceptedCount').textContent='0';
   document.getElementById('queueCount').textContent='0';
-  document.getElementById('commentMonitorList').innerHTML=
-    '<div class="monitorEmpty"><b>아직 수신된 댓글이 없습니다.</b><span>왼쪽 Instagram 화면에서 댓글을 입력해보세요.</span></div>';
+  document.getElementById('commentMonitorList').innerHTML='<div class="monitorEmpty"><b>실제 댓글을 기다리고 있습니다.</b><span>Instagram 게시물에서 댓글을 작성한 뒤 동기화하세요.</span></div>';
 }
 
-function appendTestComment(row,prepend=false){
-  const user=String(row.username||'buyer01').replace(/^@/,'');
-  const comment=String(row.comment_text||'');
-  const accepted=Boolean(row.is_purchase);
-
-  liveReceived++;
-  if(accepted){liveAccepted++;liveQueue=Math.max(liveQueue,Number(row.queue_position||liveAccepted));}
-  document.getElementById('receivedCount').textContent=liveReceived;
-  document.getElementById('acceptedCount').textContent=liveAccepted;
-  document.getElementById('queueCount').textContent=liveQueue;
-
-  const list=document.getElementById('commentMonitorList');
-  if(list.querySelector('.monitorEmpty')) list.innerHTML='';
-
-  const item=document.createElement('div');
-  item.className='monitorItem '+(accepted?'accepted':'ignored');
-  const dt=row.created_at?new Date(row.created_at):new Date();
-  const now=dt.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  item.innerHTML=
-    '<span class="monitorDot"></span>'+
-    '<div><b>@'+escapeHtml(user)+'</b><p>'+escapeHtml(comment)+'</p><span class="monitorMeta">Supabase 저장 · '+now+(accepted?' · 대기 '+Number(row.queue_position||liveAccepted)+'번':'')+'</span></div>'+
-    '<span class="monitorResult">'+(accepted?'구매 인정':'일반 댓글')+'</span>';
-
-  if(prepend) list.prepend(item); else list.appendChild(item);
-}
-
-async function loadSupabaseComments(){
-  try{
-    setDbStatus(false,'Supabase 연결 중');
-    const rows=await heymiDb(
-      'heymi_test_comments?session_id=eq.'+encodeURIComponent(heymiSessionId)+'&select=*&order=created_at.asc&limit=100'
-    );
-    resetCommentMonitor();
-    rows.forEach(row=>appendTestComment(row,false));
-    setDbStatus(true,'Supabase 연결됨');
-  }catch(err){
-    console.error(err);
-    setDbStatus(false,'Supabase 연결 오류');
+function renderRealConnectionStatus(){
+  const box=document.getElementById('realTestConnection');
+  if(!box)return;
+  if(metaConnection?.instagramUserId){
+    box.classList.add('connected');
+    box.innerHTML='<i></i><span>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+' 연결됨</span>';
+  }else{
+    box.classList.remove('connected');
+    box.innerHTML='<i></i><span>Instagram 연결 필요</span>';
   }
 }
 
-async function submitInstagramTestComment(){
-  const userInput=document.getElementById('igTestUser');
-  const commentInput=document.getElementById('igTestComment');
-  const user=(userInput.value||'buyer01').trim().replace(/^@/,'');
-  const comment=commentInput.value.trim();
-  if(!comment){alert('댓글 내용을 입력해주세요.');return;}
+function renderRealPost(media){
+  const empty=document.getElementById('realPostEmpty');
+  const content=document.getElementById('realPostContent');
+  if(!media){
+    empty?.classList.remove('hidden');
+    content?.classList.add('hidden');
+    return;
+  }
+  empty?.classList.add('hidden');
+  content?.classList.remove('hidden');
+  document.getElementById('realPostType').textContent=media.media_type||'MEDIA';
+  document.getElementById('realPostAccount').textContent='@'+(metaConnection?.instagramUsername||'instagram');
+  document.getElementById('realPostCaption').textContent=media.caption||'설명 없음';
+  const link=document.getElementById('realPostLink');
+  link.href=media.permalink||'#';
+  const thumb=document.getElementById('realPostThumb');
+  const image=media.thumbnail_url||media.media_url||'';
+  if(image){
+    thumb.style.backgroundImage='linear-gradient(#0002,#0002),url("'+image.replace(/"/g,'%22')+'")';
+    thumb.textContent='';
+  }else{
+    thumb.style.backgroundImage='';
+    thumb.textContent=media.media_type||'Instagram';
+  }
+}
 
-  const accepted=comment==='구매';
-  const nextQueue=accepted ? liveQueue+1 : null;
-
+async function loadLatestInstagramMedia(){
+  if(!metaConnection?.instagramUserId){
+    await connectInstagram();
+    if(!metaConnection?.instagramUserId)return;
+  }
+  setDbStatus(false,'게시물 조회 중');
   try{
-    setDbStatus(false,'저장 중');
-    const rows=await heymiDb('heymi_test_comments',{
-      method:'POST',
-      headers:{'Prefer':'return=representation'},
-      body:JSON.stringify({
-        session_id:heymiSessionId,
-        username:user,
-        comment_text:comment,
-        is_purchase:accepted,
-        queue_position:nextQueue
-      })
-    });
-    const saved=rows[0];
-
-    const igComments=document.getElementById('igComments');
-    const row=document.createElement('div');
-    row.className='igComment';
-    row.innerHTML='<b>'+escapeHtml(user)+'</b><span>'+escapeHtml(comment)+'</span>';
-    igComments.appendChild(row);
-    igComments.scrollTop=igComments.scrollHeight;
-
-    appendTestComment(saved,true);
-    commentInput.value='';
-    commentInput.focus();
-    setDbStatus(true,'Supabase 저장됨');
+    let result;
+    try{
+      result=await fbApi('/'+metaConnection.instagramUserId+'/media','get',{
+        fields:'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp',
+        limit:10,
+        access_token:metaConnection.pageAccessToken
+      });
+    }catch{
+      result=await fbApi('/'+metaConnection.instagramUserId+'/media','get',{
+        fields:'id,caption,media_type,permalink,timestamp',
+        limit:10,
+        access_token:metaConnection.pageAccessToken
+      });
+    }
+    const items=result.data||[];
+    if(!items.length)throw new Error('Instagram 게시물을 찾지 못했습니다.');
+    const saved=JSON.parse(localStorage.getItem(HEYMI_LAST_MEDIA_KEY)||'null');
+    currentInstagramMedia=items.find(x=>x.id===saved?.id)||items[0];
+    localStorage.setItem(HEYMI_LAST_MEDIA_KEY,JSON.stringify(currentInstagramMedia));
+    renderRealPost(currentInstagramMedia);
+    await loadStoredInstagramComments();
+    await refreshPurchaseQueue();
+    setDbStatus(true,'실제 게시물 연결됨');
   }catch(err){
     console.error(err);
-    setDbStatus(false,'저장 실패');
-    alert('Supabase 저장에 실패했습니다. 잠시 후 다시 시도해주세요.');
+    setDbStatus(false,'게시물 조회 실패');
+    alert(err.message||'Instagram 게시물을 불러오지 못했습니다.');
+  }
+}
+
+async function fetchInstagramComments(mediaId){
+  const base={limit:100,access_token:metaConnection.pageAccessToken};
+  try{
+    return await fbApi('/'+mediaId+'/comments','get',{...base,fields:'id,text,timestamp,username,from'});
+  }catch{
+    try{
+      return await fbApi('/'+mediaId+'/comments','get',{...base,fields:'id,text,timestamp,from'});
+    }catch{
+      return await fbApi('/'+mediaId+'/comments','get',{...base,fields:'id,text,timestamp'});
+    }
+  }
+}
+
+async function syncInstagramComments(){
+  if(!metaConnection?.instagramUserId){
+    await connectInstagram();
+    if(!metaConnection?.instagramUserId)return;
+  }
+  if(!currentInstagramMedia){
+    await loadLatestInstagramMedia();
+    if(!currentInstagramMedia)return;
+  }
+  setDbStatus(false,'Instagram 댓글 조회 중');
+  try{
+    const response=await fetchInstagramComments(currentInstagramMedia.id);
+    const comments=(response.data||[]).slice().sort((a,b)=>new Date(a.timestamp||0)-new Date(b.timestamp||0));
+
+    const existing=await heymiDb(
+      'heymi_instagram_comments?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=instagram_comment_id,is_purchase,queue_position'
+    );
+    const known=new Set((existing||[]).map(x=>x.instagram_comment_id));
+
+    const queueRows=await heymiDb(
+      'heymi_purchase_queue?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=queue_position&order=queue_position.desc&limit=1'
+    );
+    let nextPosition=Number(queueRows?.[0]?.queue_position||0);
+
+    for(const comment of comments){
+      if(!comment?.id||known.has(String(comment.id)))continue;
+      const text=String(comment.text||'').trim();
+      if(!text)continue;
+      const isPurchase=text==='구매';
+      const username=comment.username||comment.from?.username||comment.from?.name||'instagram_user';
+      let queuePosition=null;
+      if(isPurchase)queuePosition=++nextPosition;
+
+      await heymiDb('heymi_instagram_comments',{
+        method:'POST',
+        headers:{'Prefer':'return=minimal'},
+        body:JSON.stringify({
+          instagram_comment_id:String(comment.id),
+          instagram_media_id:String(currentInstagramMedia.id),
+          instagram_username:String(username),
+          comment_text:text,
+          is_purchase:isPurchase,
+          queue_position:queuePosition,
+          commented_at:comment.timestamp||null
+        })
+      });
+
+      if(isPurchase){
+        await heymiDb('heymi_purchase_queue',{
+          method:'POST',
+          headers:{'Prefer':'return=minimal'},
+          body:JSON.stringify({
+            instagram_media_id:String(currentInstagramMedia.id),
+            instagram_comment_id:String(comment.id),
+            instagram_username:String(username),
+            queue_position:queuePosition,
+            status:'waiting'
+          })
+        });
+      }
+      known.add(String(comment.id));
+    }
+
+    await loadStoredInstagramComments();
+    await refreshPurchaseQueue();
+    setDbStatus(true,'실제 댓글 동기화됨');
+  }catch(err){
+    console.error(err);
+    setDbStatus(false,'댓글 동기화 실패');
+    const message=String(err.message||err);
+    if(/permission|OAuth|Unsupported|get comments|access/i.test(message)){
+      alert('Instagram 댓글 권한을 확인해주세요. Meta 앱에 instagram_manage_comments 권한이 필요합니다.\n\n'+message);
+    }else{
+      alert('실제 Instagram 댓글 동기화에 실패했습니다.\n\n'+message);
+    }
+  }
+}
+
+async function loadStoredInstagramComments(){
+  if(!currentInstagramMedia)return;
+  const rows=await heymiDb(
+    'heymi_instagram_comments?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=*&order=commented_at.asc,synced_at.asc&limit=200'
+  );
+  resetRealMonitor();
+  const list=document.getElementById('commentMonitorList');
+  if(rows.length)list.innerHTML='';
+  rows.forEach(row=>{
+    liveReceived++;
+    if(row.is_purchase){
+      liveAccepted++;
+      liveQueue=Math.max(liveQueue,Number(row.queue_position||liveAccepted));
+    }
+    const item=document.createElement('div');
+    item.className='monitorItem '+(row.is_purchase?'accepted':'ignored');
+    const dt=new Date(row.commented_at||row.synced_at);
+    item.innerHTML=
+      '<span class="monitorDot"></span>'+
+      '<div><b>@'+escapeHtml(row.instagram_username||'instagram_user')+'</b><p>'+escapeHtml(row.comment_text)+'</p>'+
+      '<span class="monitorMeta">Instagram 실제 댓글 · '+dt.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+
+      (row.is_purchase?' · 대기 '+Number(row.queue_position||0)+'번':'')+'</span></div>'+
+      '<span class="monitorResult">'+(row.is_purchase?'구매 인정':'일반 댓글')+'</span>';
+    list.appendChild(item);
+  });
+  document.getElementById('receivedCount').textContent=liveReceived;
+  document.getElementById('acceptedCount').textContent=liveAccepted;
+  document.getElementById('queueCount').textContent=liveQueue;
+}
+
+async function patchQueueRow(id,payload){
+  await heymiDb('heymi_purchase_queue?id=eq.'+encodeURIComponent(id),{
+    method:'PATCH',
+    headers:{'Prefer':'return=minimal'},
+    body:JSON.stringify(payload)
+  });
+}
+
+async function refreshPurchaseQueue(){
+  if(!currentInstagramMedia)return;
+  let rows=await heymiDb(
+    'heymi_purchase_queue?instagram_media_id=eq.'+encodeURIComponent(currentInstagramMedia.id)+'&select=*&order=queue_position.asc'
+  );
+  const now=Date.now();
+  const reserved=rows.find(x=>x.status==='reserved');
+  if(reserved?.due_at && new Date(reserved.due_at).getTime()<=now){
+    await patchQueueRow(reserved.id,{status:'expired'});
+    rows=rows.map(x=>x.id===reserved.id?{...x,status:'expired'}:x);
+  }
+  if(!rows.some(x=>x.status==='reserved')){
+    const next=rows.find(x=>x.status==='waiting');
+    if(next){
+      const reservedAt=new Date();
+      const dueAt=new Date(reservedAt.getTime()+10*60*1000);
+      await patchQueueRow(next.id,{status:'reserved',reserved_at:reservedAt.toISOString(),due_at:dueAt.toISOString()});
+      rows=rows.map(x=>x.id===next.id?{...x,status:'reserved',reserved_at:reservedAt.toISOString(),due_at:dueAt.toISOString()}:x);
+    }
+  }
+  renderPurchaseQueue(rows);
+}
+
+function renderPurchaseQueue(rows){
+  const list=document.getElementById('realQueueList');
+  const current=rows.find(x=>x.status==='reserved');
+  if(!rows.length){
+    list.innerHTML='<div class="monitorEmpty"><b>구매 대기열이 없습니다.</b><span>실제 댓글 “구매”가 들어오면 여기에 표시됩니다.</span></div>';
+  }else{
+    list.innerHTML=rows.map(row=>
+      '<div class="realQueueRow '+escapeHtml(row.status)+'">'+
+        '<span>'+Number(row.queue_position)+'</span>'+
+        '<div><b>@'+escapeHtml(row.instagram_username||'instagram_user')+'</b><small>실제 Instagram 댓글</small></div>'+
+        '<em class="realQueueState">'+queueStateLabel(row.status)+'</em>'+
+      '</div>'
+    ).join('');
+  }
+  const buyer=document.getElementById('currentBuyer');
+  const message=document.getElementById('reservationMessage');
+  if(current){
+    buyer.textContent='@'+(current.instagram_username||'instagram_user');
+    message.textContent='실제 구매댓글 '+current.queue_position+'순위 · 10분 구매권 진행 중. 결제 PG는 아직 연결하지 않았습니다.';
+    startReservationTicker(current.due_at);
+  }else{
+    buyer.textContent='대기 중';
+    document.getElementById('reservationTimer').textContent='--:--';
+    message.textContent='실제 “구매” 댓글이 들어오면 1순위에게 10분 구매권을 부여합니다.';
+    clearInterval(reservationTickTimer);
+  }
+}
+
+function queueStateLabel(status){
+  return status==='reserved'?'구매권 진행':status==='waiting'?'대기':status==='expired'?'만료':status==='paid'?'결제완료':'종료';
+}
+
+function startReservationTicker(dueAt){
+  clearInterval(reservationTickTimer);
+  const tick=async()=>{
+    const remaining=new Date(dueAt).getTime()-Date.now();
+    if(remaining<=0){
+      document.getElementById('reservationTimer').textContent='00:00';
+      clearInterval(reservationTickTimer);
+      await refreshPurchaseQueue();
+      return;
+    }
+    const sec=Math.ceil(remaining/1000);
+    document.getElementById('reservationTimer').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  };
+  tick();
+  reservationTickTimer=setInterval(tick,1000);
+}
+
+function toggleInstagramCommentPolling(){
+  const btn=document.getElementById('autoSyncBtn');
+  if(commentPollTimer){
+    clearInterval(commentPollTimer);
+    commentPollTimer=null;
+    btn.textContent='5초 자동 동기화 시작';
+    return;
+  }
+  void syncInstagramComments();
+  commentPollTimer=setInterval(()=>void syncInstagramComments(),5000);
+  btn.textContent='자동 동기화 중지';
+}
+
+async function prepareRealTestPage(){
+  renderRealConnectionStatus();
+  try{
+    const saved=JSON.parse(localStorage.getItem(HEYMI_LAST_MEDIA_KEY)||'null');
+    if(saved?.id){
+      currentInstagramMedia=saved;
+      renderRealPost(saved);
+      await loadStoredInstagramComments();
+      await refreshPurchaseQueue();
+    }else if(metaConnection?.instagramUserId){
+      await loadLatestInstagramMedia();
+    }
+  }catch(err){
+    console.error(err);
   }
 }
 
 function escapeHtml(v){
   return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
-
-loadSupabaseComments();
-
 
 const HEYMI_META_APP_KEY='heymi_meta_app_id_v1';
 const HEYMI_META_CONNECTION_KEY='heymi_meta_connection_v1';
@@ -996,12 +1266,15 @@ function updateInstagramConnectionUI(){
     instagramConnected=true;
     status.textContent='Instagram 연결됨';
     status.className='statusChip on';
-    box.innerHTML='<b>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+'</b><br>'+escapeHtml(metaConnection.pageName||'Facebook Page')+'와 연결됨';
+    const commentReady=Array.isArray(metaConnection.grantedPermissions)&&metaConnection.grantedPermissions.includes('instagram_manage_comments');
+    box.innerHTML='<b>@'+escapeHtml(metaConnection.instagramUsername||'instagram')+'</b><br>'+escapeHtml(metaConnection.pageName||'Facebook Page')+'와 연결됨<br><small>게시 권한 연결됨 · 댓글 권한 '+(commentReady?'연결됨':'확인 필요')+'</small>';
+    renderRealConnectionStatus();
   }else{
     instagramConnected=false;
     status.textContent='연결 안 됨';
     status.className='statusChip';
     box.textContent='연결된 Instagram 계정이 없습니다.';
+    renderRealConnectionStatus();
   }
 }
 
@@ -1065,12 +1338,14 @@ async function connectInstagram(){
         if(response?.authResponse?.accessToken) resolve(response);
         else reject(new Error('Meta 로그인이 취소되었거나 권한이 허용되지 않았습니다.'));
       },{
-        scope:'pages_show_list,pages_read_engagement,instagram_basic,instagram_content_publish',
+        scope:'pages_show_list,pages_read_engagement,instagram_basic,instagram_content_publish,instagram_manage_comments',
         return_scopes:true
       });
     });
 
     const userAccessToken=login.authResponse.accessToken;
+    const permissionResponse=await fbApi('/me/permissions','get',{access_token:userAccessToken});
+    const grantedPermissions=(permissionResponse.data||[]).filter(x=>x.status==='granted').map(x=>x.permission);
     const pages=await fbApi('/me/accounts','get',{
       fields:'id,name,access_token,instagram_business_account{id,username}',
       access_token:userAccessToken
@@ -1087,7 +1362,8 @@ async function connectInstagram(){
       pageName:connectedPage.name||'Facebook Page',
       pageAccessToken:connectedPage.access_token,
       instagramUserId:connectedPage.instagram_business_account.id,
-      instagramUsername:connectedPage.instagram_business_account.username||'instagram'
+      instagramUsername:connectedPage.instagram_business_account.username||'instagram',
+      grantedPermissions
     };
     localStorage.setItem(HEYMI_META_CONNECTION_KEY,JSON.stringify(metaConnection));
     updateInstagramConnectionUI();
@@ -1211,9 +1487,20 @@ async function publishInstagram(){
     });
 
     if(!published.id) throw new Error('Instagram 게시를 완료하지 못했습니다.');
+    let publishedMedia={id:String(published.id),media_type:'REELS',caption};
+    try{
+      const mediaInfo=await fbApi('/'+published.id,'get',{
+        fields:'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp',
+        access_token:metaConnection.pageAccessToken
+      });
+      publishedMedia={...publishedMedia,...mediaInfo};
+    }catch{}
+    currentInstagramMedia=publishedMedia;
+    localStorage.setItem(HEYMI_LAST_MEDIA_KEY,JSON.stringify(publishedMedia));
+    renderRealPost(publishedMedia);
     status.textContent='Instagram 게시 완료';
     status.className='statusChip on';
-    alert('Instagram Reel 게시가 완료되었습니다.');
+    alert('Instagram Reel 게시가 완료되었습니다. 이제 테스트 메뉴에서 실제 댓글을 동기화할 수 있습니다.');
   }catch(err){
     console.error(err);
     status.textContent='게시 실패';
@@ -1267,6 +1554,7 @@ function showSection(name){
   const target=document.getElementById(map[name]);
   if(target) target.classList.remove('hidden');
   if(name==='guide') renderGuide();
+  if(name==='test') void prepareRealTestPage();
 
   ['Guide','Program','Test'].forEach(k=>{
     const btn=document.getElementById('menu'+k);
