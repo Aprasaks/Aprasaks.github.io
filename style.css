@@ -2811,21 +2811,32 @@ body {
   max-width: 940px;
 }
 
+.selected-work-v2 .section-index {
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+
 .work-heading-static {
   display: block;
   color: var(--ink);
-  font-size: .86em;
-  line-height: 1.18;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: .78em;
+  font-weight: 540;
+  line-height: 1.22;
+  letter-spacing: -.035em;
   white-space: nowrap;
 }
 
 .work-heading-typing {
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--accent);
   font-family: "Noto Serif KR", Georgia, serif;
-  font-size: 1em;
+  font-size: .95em;
   font-weight: 500;
-  line-height: 1.16;
+  line-height: 1.18;
+  letter-spacing: -.035em;
   white-space: nowrap;
 }
 
@@ -2850,22 +2861,28 @@ a.work-editorial-card:hover {
 
 .work-editorial-no {
   color: var(--ink-faint);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
 }
 
 .work-editorial-card p {
   margin: 0 0 6px;
   color: var(--accent);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: 9px;
-  letter-spacing: .13em;
-  font-weight: 650;
+  letter-spacing: .16em;
+  font-weight: 700;
 }
 
 .work-editorial-card h3 {
   margin: 0;
-  font-size: clamp(23px, 2.6vw, 32px);
-  font-weight: 600;
-  letter-spacing: -.035em;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-size: clamp(21px, 2.15vw, 27px);
+  font-weight: 560;
+  line-height: 1.3;
+  letter-spacing: -.03em;
 }
 
 .work-editorial-card div > span {
@@ -2873,12 +2890,17 @@ a.work-editorial-card:hover {
   margin-top: 8px;
   color: var(--ink-soft);
   font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
 }
 
 .work-editorial-card i {
   justify-self: end;
   color: var(--ink-faint);
-  font-size: 11px;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
   font-style: normal;
 }
 
