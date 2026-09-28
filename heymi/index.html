@@ -815,7 +815,80 @@ async function publishInstagram(){
     alert(err.message||'Instagram 게시에 실패했습니다.');
   }
 }
+
 restoreInstagramConnection();
+
+let buyers=[], activeBuyer=null, expiresAt=null, timerHandle=null, virtualSeq=184000;
+
+function showSection(name){
+  document.querySelectorAll('[data-section]').forEach(el=>el.classList.add('hidden'));
+
+  if(name==='guideHome'){
+    const introEl=document.getElementById('intro');
+    if(introEl) introEl.classList.remove('hidden');
+  }
+  if(name==='program'){
+    const programEl=document.getElementById('programSection');
+    if(programEl) programEl.classList.remove('hidden');
+  }
+  if(name==='test'){
+    const testEl=document.getElementById('testSection');
+    if(testEl) testEl.classList.remove('hidden');
+  }
+
+  ['Guide','Program','Test'].forEach(k=>{
+    const btn=document.getElementById('menu'+k);
+    if(btn) btn.classList.remove('active');
+  });
+
+  const activeId=name==='guideHome'?'menuGuide':name==='program'?'menuProgram':'menuTest';
+  const activeBtn=document.getElementById(activeId);
+  if(activeBtn) activeBtn.classList.add('active');
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const videoInputEl=document.getElementById('videoInput');
+if(videoInputEl){
+  videoInputEl.addEventListener('change',e=>{
+    const file=e.target.files?.[0];
+    if(!file) return;
+    const url=URL.createObjectURL(file);
+    const v=document.getElementById('videoPreview');
+    const placeholder=document.getElementById('videoPlaceholder');
+    if(v){
+      v.src=url;
+      v.style.display='block';
+    }
+    if(placeholder) placeholder.style.display='none';
+    const s=document.getElementById('videoStatus');
+    if(s){
+      s.textContent='영상 선택됨';
+      s.className='statusChip on';
+    }
+  });
+}
+
+function money(n){
+  return Number(n||0).toLocaleString('ko-KR')+'원';
+}
+
+function makePreview(){
+  const name=document.getElementById('productName')?.value.trim()||'상품명 없음';
+  const price=money(document.getElementById('productPrice')?.value);
+  const desc=document.getElementById('productDesc')?.value.trim()||'';
+  const text=document.getElementById('postText')?.value.trim()||'';
+  const tags=document.getElementById('hashtags')?.value.trim()||'';
+
+  const caption=document.getElementById('postCaption');
+  if(caption) caption.textContent=name+'\n'+price+'\n\n'+desc+'\n\n'+text+'\n\n'+tags;
+
+  const media=document.getElementById('postMedia');
+  if(media){
+    const selected=document.getElementById('videoInput')?.files?.[0];
+    media.textContent=selected?'선택한 영상이 게시됩니다':'영상 미선택';
+  }
+}
 
 function logSale(msg){const box=document.getElementById('saleLog');const d=document.createElement('div');d.textContent='['+new Date().toLocaleTimeString('ko-KR')+'] '+msg;box.prepend(d)}
 function addBuyer(){
