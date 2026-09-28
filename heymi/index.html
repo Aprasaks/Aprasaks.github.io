@@ -42,6 +42,21 @@
 .log div{margin-bottom:7px}
 @media(max-width:900px){.programGrid,.testArea{grid-template-columns:1fr}}
 
+
+.helpBtn{border:1px solid #cfc6b9;background:#fff;border-radius:11px;padding:10px 14px;font-weight:900}
+.helpModalBack{position:fixed;inset:0;background:#0008;display:none;place-items:center;padding:20px;z-index:200}
+.helpModalBack.open{display:grid}
+.helpModal{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:22px;padding:24px;color:#1f1c18}
+.helpModalHead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.helpModalHead h2{margin:4px 0 0;font-size:28px}
+.helpModalHead button{border:0;background:#eee7dc;width:36px;height:36px;border-radius:50%;font-size:24px}
+.helpSteps{padding-left:24px}
+.helpSteps li{padding:10px 4px}
+.helpSteps b{font-size:17px}
+.helpSteps p{margin:6px 0 0;line-height:1.6;color:#574f47}
+.helpSteps code{background:#f2eee8;padding:2px 5px;border-radius:5px}
+.helpWarn{background:#fff1e6;border:1px solid #e9b98c;padding:13px;border-radius:11px;margin:15px 0;font-weight:800;line-height:1.55}
+
 </style>
 </head>
 <body>
@@ -81,6 +96,7 @@
       <p class="smallNote">실제 게시를 하려면 Instagram Professional 계정과 Meta 앱 연결이 필요합니다. 연결이 완료되면 아래 게시 버튼이 실제 게시 기능으로 바뀝니다.</p>
       <div class="controlRow">
         <button class="btnDark" id="connectInstagramBtn" onclick="connectInstagram()">Instagram 계정 연결</button>
+        <button class="helpBtn" onclick="openHelpModal()">계정 연결 방법 보기</button>
         <button class="btnLight" onclick="disconnectInstagram()">연결 해제</button>
       </div>
       <div id="igAccountBox" class="fakeField" style="margin-top:12px">연결된 Instagram 계정이 없습니다.</div>
@@ -189,6 +205,8 @@ function connectInstagram(){
     return;
   }
 }
+function openHelpModal(){document.getElementById('helpModalBack').classList.add('open')}
+function closeHelpModal(){document.getElementById('helpModalBack').classList.remove('open')}
 function disconnectInstagram(){
   instagramConnected=false;
   document.getElementById('igStatus').textContent='연결 안 됨';
@@ -288,5 +306,28 @@ function resetSale(){
 renderQueue();logSale('판매 테스트 준비 완료');
 
 </script>
+
+<div id="helpModalBack" class="helpModalBack" onclick="closeHelpModal()">
+  <div class="helpModal" onclick="event.stopPropagation()">
+    <div class="helpModalHead">
+      <div><span class="label">처음 연결할 때 한 번만</span><h2>Instagram 계정 연결 방법</h2></div>
+      <button onclick="closeHelpModal()">×</button>
+    </div>
+    <ol class="helpSteps">
+      <li><b>Instagram 계정 종류 확인</b><p>개인 계정이 아니라 Professional 계정이어야 합니다. Instagram 설정에서 Business 또는 Creator로 전환합니다.</p></li>
+      <li><b>Meta for Developers에서 앱 생성</b><p>Meta 개발자 사이트에서 앱을 만들고 Instagram API 사용 사례를 추가합니다.</p></li>
+      <li><b>Instagram API with Instagram Login 선택</b><p>Facebook Page를 반드시 연결하는 예전 방식이 아니라 Instagram 계정으로 직접 로그인하는 방식을 사용합니다.</p></li>
+      <li><b>권한 설정</b><p><code>instagram_business_basic</code>과 <code>instagram_business_content_publish</code> 권한을 사용합니다.</p></li>
+      <li><b>Redirect URI 등록</b><p>Meta 앱의 Valid OAuth Redirect URI에 실제 프로그램 주소의 <code>/api/instagram/callback</code>을 정확히 등록합니다. 주소가 한 글자라도 다르면 연결되지 않습니다.</p></li>
+      <li><b>서버 환경변수 입력</b><p><code>INSTAGRAM_APP_ID</code>, <code>INSTAGRAM_APP_SECRET</code>, <code>INSTAGRAM_REDIRECT_URI</code>, <code>SESSION_SECRET</code>을 서버 환경변수에 넣습니다.</p></li>
+      <li><b>영상 저장소 연결</b><p>Supabase Storage에 <code>instagram-videos</code> 버킷을 만들고 URL과 키를 서버에 설정합니다.</p></li>
+      <li><b>이 화면에서 Instagram 계정 연결</b><p>Instagram 로그인 → 권한 허용 → 프로그램으로 돌아오면 계정 연결이 완료됩니다.</p></li>
+      <li><b>영상·설명·해시태그 입력 후 게시</b><p>프로그램이 영상을 Storage에 올리고, Instagram이 영상을 처리한 뒤 실제 Reel을 게시합니다.</p></li>
+    </ol>
+    <div class="helpWarn">App Secret과 Supabase Service Role Key는 브라우저 코드에 넣지 않습니다. 서버 환경변수에만 저장해야 합니다.</div>
+    <button class="btnDark" style="width:100%" onclick="closeHelpModal()">확인했습니다</button>
+  </div>
+</div>
+
 </body>
 </html>
