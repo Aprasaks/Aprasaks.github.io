@@ -154,6 +154,56 @@ body{font-size:15px;line-height:1.55}
   .roadmapHero h1{font-size:23px}
 }
 
+
+/* Instagram comment live test */
+.liveTestGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.igMock,.heymiMonitor{background:#fff;border:1px solid #ddd7ce;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px #2e26160b}
+.igMock{max-width:560px;margin-left:auto;width:100%;color:#111}
+.igMockTop{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;border-bottom:1px solid #efefef}
+.igWordmark{font-family:Georgia,serif;font-style:italic;font-size:21px;font-weight:700}
+.igTopIcons{font-size:18px;letter-spacing:.02em}
+.igPostHeader{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:12px 14px}
+.igAvatar,.igMiniAvatar{border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ff9f43,#e1306c,#833ab4);color:#fff;font-weight:800}
+.igAvatar{width:36px;height:36px}.igMiniAvatar{width:28px;height:28px;font-size:11px}
+.igPostHeader b{font-size:13px;display:block}.igPostHeader span{font-size:11px;color:#777;display:block;margin-top:2px}
+.igDots{font-weight:900}
+.igMedia{aspect-ratio:1/1;background:#e9e4dc;display:grid;place-items:center;overflow:hidden}
+.productVisual{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#f7f2e9,#d8c8b0 68%,#b69e7a);position:relative}
+.hanger{position:absolute;top:11%;font-size:48px;color:#6d5a42}.jacket{font-size:122px;filter:drop-shadow(0 16px 22px #0003)}
+.visualText{position:absolute;bottom:8%;left:8%;right:8%;background:#ffffffd9;backdrop-filter:blur(6px);padding:12px 14px;border-radius:10px}
+.visualText b{display:block;font-size:13px}.visualText span{display:block;font-size:11px;color:#6b6257;margin-top:3px}
+.igActions{display:flex;justify-content:space-between;padding:12px 14px 6px;font-size:21px}
+.igPostBody{padding:3px 14px 10px;font-size:12px;line-height:1.55}.igPostBody b{margin-right:6px}.igPostBody span{color:#333}
+.igComments{border-top:1px solid #f0f0f0;padding:9px 14px;display:grid;gap:8px;max-height:160px;overflow:auto}
+.igComment{display:flex;gap:7px;font-size:12px}.igComment b{flex:none}.igComment span{color:#333}
+.igCommentInput{border-top:1px solid #ececec;padding:10px 12px;display:grid;grid-template-columns:28px 90px 1fr auto;gap:8px;align-items:center}
+.igCommentInput input{min-width:0;border:0;background:#f7f7f7;border-radius:8px;padding:9px 10px;font-size:12px;outline:none}
+.igCommentInput button{border:0;background:none;color:#0095f6;font-weight:800;font-size:12px;padding:7px}
+.heymiMonitor{padding:18px;min-height:610px}
+.monitorHead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #ece5da;padding-bottom:14px}
+.monitorHead h2{font-size:20px;margin:4px 0 0}
+.liveBadge{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;background:#edf8ef;color:#2f753a;border-radius:999px;padding:7px 9px}
+.liveBadge i{width:7px;height:7px;border-radius:50%;background:#39a24a;box-shadow:0 0 0 4px #39a24a22}
+.monitorFlow{display:flex;align-items:center;gap:7px;margin:15px 0;overflow:auto}
+.monitorFlow div{min-width:105px;border:1px solid #ddd6cc;border-radius:11px;padding:10px;background:#faf8f4}
+.monitorFlow span{display:block;font-size:10px;color:#8d7d68}.monitorFlow b{display:block;font-size:12px;margin-top:2px}
+.monitorArrow{color:#a58b66;font-weight:900}
+.monitorStats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.monitorStats div{background:#f5f1eb;border-radius:11px;padding:10px}.monitorStats span{display:block;font-size:10px;color:#827667}.monitorStats b{display:block;font-size:20px;margin-top:2px}
+.monitorList{display:grid;gap:9px}
+.monitorEmpty{padding:34px 16px;text-align:center;border:1px dashed #d7cec2;border-radius:12px;color:#7a7065}
+.monitorEmpty b{display:block;font-size:13px}.monitorEmpty span{display:block;font-size:11px;margin-top:5px}
+.monitorItem{display:grid;grid-template-columns:10px 1fr auto;gap:10px;align-items:start;border:1px solid #ded7cd;border-radius:12px;padding:12px;background:#fff}
+.monitorDot{width:9px;height:9px;border-radius:50%;margin-top:5px;background:#aaa}
+.monitorItem.accepted .monitorDot{background:#3e9c50;box-shadow:0 0 10px #3e9c5066}
+.monitorItem.ignored .monitorDot{background:#b8b1a8}
+.monitorItem b{font-size:12px;display:block}.monitorItem p{font-size:12px;margin:4px 0;color:#403b35}.monitorMeta{font-size:10px;color:#887d70}
+.monitorResult{font-size:10px;font-weight:900;border-radius:999px;padding:5px 7px;white-space:nowrap}
+.monitorItem.accepted .monitorResult{background:#e5f4e8;color:#2e743a}
+.monitorItem.ignored .monitorResult{background:#efede9;color:#7b736b}
+@media(max-width:900px){.liveTestGrid{grid-template-columns:1fr}.igMock{margin:0 auto}.heymiMonitor{min-height:0}}
+@media(max-width:560px){.igCommentInput{grid-template-columns:28px 1fr auto}.igCommentInput #igTestUser{display:none}.monitorStats{grid-template-columns:1fr 1fr 1fr}}
+
 </style>
 </head>
 <body>
@@ -169,7 +219,7 @@ body{font-size:15px;line-height:1.55}
   <div class="appMenuInner">
     <button id="menuGuide" class="active" onclick="showSection('guideHome')">사용 안내</button>
     <button id="menuProgram" onclick="showSection('program')">실제 프로그램</button>
-    <button id="menuTest" onclick="showSection('test')">판매 테스트</button>
+    <button id="menuTest" onclick="showSection('test')">판매테스트</button>
   </div>
 </div>
 
@@ -246,30 +296,84 @@ body{font-size:15px;line-height:1.55}
 </section>
 
 <section id="testSection" class="hidden" data-section="test">
-  <div class="top"><div><span class="eyebrow">판매 흐름 직접 체험</span><h1>구매 댓글부터 <span>10분 예약</span>까지</h1></div><span class="badge">시뮬레이션</span></div>
-  <div class="testArea">
-    <div class="programCard">
-      <h2>1. 구매 댓글을 넣어봅니다</h2>
-      <p class="smallNote">정확히 “구매”라고 입력한 댓글만 구매 요청으로 인정합니다.</p>
-      <div class="commentForm"><input id="buyerName" placeholder="@buyer01" value="@buyer01"><input id="buyerComment" placeholder="구매" value="구매"><button class="btnDark" onclick="addBuyer()">댓글 접수</button></div>
-      <div class="queueList" id="queueList"></div>
-      <div class="controlRow"><button class="btnLight" onclick="addDemoBuyers()">예시 구매자 3명 넣기</button><button class="btnDanger" onclick="resetSale()">전체 초기화</button></div>
-    </div>
-    <div class="programCard">
-      <h2>2. 현재 예약 상태</h2>
-      <div class="statusLine"><span id="saleStatus" class="statusChip on">판매중</span><span id="accountStatus" class="statusChip">가상계좌 없음</span></div>
-      <div id="reservationBox" class="white reservation"><span>현재 예약자</span><strong>없음</strong><p>첫 구매 댓글을 기다리고 있습니다.</p></div>
-      <div class="timerBig" id="timerText">10:00</div>
-      <div class="controlRow">
-        <button class="btnGreen" onclick="completePayment()">입금 완료 테스트</button>
-        <button class="btnDanger" onclick="expireNow()">10분 만료 테스트</button>
-      </div>
-      <p class="smallNote">실서비스에서는 PG사의 가상계좌 발급과 입금 웹훅이 이 버튼을 대신합니다. 수업에서는 동작 원리를 먼저 확인합니다.</p>
-    </div>
+  <div class="roadmapHero" style="margin-bottom:22px">
+    <span class="kicker">LIVE COMMENT TEST</span>
+    <h1>Instagram 댓글이 HEYMI로 어떻게 들어오는지 확인합니다.</h1>
+    <p>왼쪽에서 실제 Instagram처럼 댓글을 달면, 오른쪽에서 HEYMI가 댓글을 감지하고 구매 요청인지 판단합니다.</p>
   </div>
-  <div class="programCard" style="margin-top:18px">
-    <h3>자동화 로그</h3>
-    <div id="saleLog" class="log"></div>
+
+  <div class="liveTestGrid">
+    <div class="igMock">
+      <div class="igMockTop">
+        <div class="igWordmark">Instagram</div>
+        <div class="igTopIcons">⌂　♡　✉</div>
+      </div>
+
+      <div class="igPostHeader">
+        <div class="igAvatar">H</div>
+        <div><b>heymi_shop</b><span>Sponsored · 테스트 게시물</span></div>
+        <div class="igDots">•••</div>
+      </div>
+
+      <div class="igMedia">
+        <div class="productVisual">
+          <div class="hanger">⌁</div>
+          <div class="jacket">🧥</div>
+          <div class="visualText"><b>HEYMI VINTAGE JACKET</b><span>1 ITEM ONLY · ₩59,000</span></div>
+        </div>
+      </div>
+
+      <div class="igActions">
+        <div>♡　◯　➤</div><div>▢</div>
+      </div>
+
+      <div class="igPostBody">
+        <b>heymi_shop</b>
+        <span>빈티지 재킷 한 벌만 판매합니다.<br>구매를 원하시면 댓글에 <strong>구매</strong>라고 입력해주세요.<br><br>#헤이미 #빈티지 #한정판매</span>
+      </div>
+
+      <div class="igComments" id="igComments">
+        <div class="igComment"><b>buyer_sample</b><span>예뻐요!</span></div>
+      </div>
+
+      <div class="igCommentInput">
+        <div class="igMiniAvatar">나</div>
+        <input id="igTestUser" value="buyer01" aria-label="Instagram 사용자 이름" />
+        <input id="igTestComment" value="구매" aria-label="Instagram 댓글" placeholder="댓글 달기..." />
+        <button onclick="submitInstagramTestComment()">게시</button>
+      </div>
+    </div>
+
+    <div class="heymiMonitor">
+      <div class="monitorHead">
+        <div>
+          <span class="label">HEYMI COMMENT MONITOR</span>
+          <h2>댓글 수신 화면</h2>
+        </div>
+        <span class="liveBadge"><i></i> LIVE</span>
+      </div>
+
+      <div class="monitorFlow">
+        <div><span>Instagram</span><b>댓글 작성</b></div>
+        <span class="monitorArrow">→</span>
+        <div><span>Webhook</span><b>댓글 감지</b></div>
+        <span class="monitorArrow">→</span>
+        <div><span>HEYMI</span><b>구매 판별</b></div>
+      </div>
+
+      <div class="monitorStats">
+        <div><span>수신 댓글</span><b id="receivedCount">0</b></div>
+        <div><span>구매 인정</span><b id="acceptedCount">0</b></div>
+        <div><span>대기 순번</span><b id="queueCount">0</b></div>
+      </div>
+
+      <div class="monitorList" id="commentMonitorList">
+        <div class="monitorEmpty">
+          <b>아직 수신된 댓글이 없습니다.</b>
+          <span>왼쪽 Instagram 화면에서 댓글을 입력해보세요.</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -332,6 +436,49 @@ const intro=document.getElementById('intro'),guide=document.getElementById('guid
 function start(){i=0;intro.classList.add('hidden');guide.classList.remove('hidden');render()} function home(){guide.classList.add('hidden');intro.classList.remove('hidden')} function prevStep(){if(i>0){i--;render()}} function nextStep(){if(i<steps.length-1){i++;render()}else alert('이제 실제 프로그램 화면으로 넘어갑니다.')}
 buildRoadmap();
 
+
+
+let liveReceived=0, liveAccepted=0, liveQueue=0;
+function submitInstagramTestComment(){
+  const userInput=document.getElementById('igTestUser');
+  const commentInput=document.getElementById('igTestComment');
+  const user=(userInput.value||'buyer01').trim().replace(/^@/,'');
+  const comment=commentInput.value.trim();
+  if(!comment){alert('댓글 내용을 입력해주세요.');return;}
+
+  const igComments=document.getElementById('igComments');
+  const row=document.createElement('div');
+  row.className='igComment';
+  row.innerHTML='<b>'+escapeHtml(user)+'</b><span>'+escapeHtml(comment)+'</span>';
+  igComments.appendChild(row);
+  igComments.scrollTop=igComments.scrollHeight;
+
+  const accepted=comment==='구매';
+  liveReceived++;
+  if(accepted){liveAccepted++;liveQueue++;}
+
+  document.getElementById('receivedCount').textContent=liveReceived;
+  document.getElementById('acceptedCount').textContent=liveAccepted;
+  document.getElementById('queueCount').textContent=liveQueue;
+
+  const list=document.getElementById('commentMonitorList');
+  if(list.querySelector('.monitorEmpty')) list.innerHTML='';
+
+  const item=document.createElement('div');
+  item.className='monitorItem '+(accepted?'accepted':'ignored');
+  const now=new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  item.innerHTML=
+    '<span class="monitorDot"></span>'+
+    '<div><b>@'+escapeHtml(user)+'</b><p>'+escapeHtml(comment)+'</p><span class="monitorMeta">Instagram 댓글 수신 · '+now+(accepted?' · 대기 '+liveQueue+'번':'')+'</span></div>'+
+    '<span class="monitorResult">'+(accepted?'구매 인정':'일반 댓글')+'</span>';
+  list.prepend(item);
+
+  commentInput.value='';
+  commentInput.focus();
+}
+function escapeHtml(v){
+  return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
 
 let instagramConnected=false;
 function connectInstagram(){
