@@ -296,6 +296,75 @@ body{font-size:15px;line-height:1.55}
   .headerDropdown{width:170px;right:-2px}
 }
 
+
+/* guide automation console */
+.guideApp{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:720px;background:#ebe6de;border:1px solid #d8d0c4;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px #32291c0c}
+.guideRail{background:#23211e;color:#eee9e1;padding:20px 14px;min-width:0}
+.guideRailHead{padding:5px 7px 18px;border-bottom:1px solid #3d3934}
+.guideMiniLabel{display:block;font-size:9px;font-weight:900;letter-spacing:.15em;color:#a98b60}
+.guideRailHead>b{display:block;font-size:15px;margin:7px 0 5px}.guideRailHead p{font-size:11px;line-height:1.55;color:#9f978d;margin:0}
+.guideRailProgress{padding:15px 7px 12px}
+.guideRailProgress>div:first-child{display:flex;justify-content:space-between;font-size:10px;color:#a9a096}
+.guideRailProgress b{color:#e9dfd0;font-size:10px}
+.guideProgressTrack{height:3px;background:#3c3935;margin-top:8px;overflow:hidden;border-radius:99px}
+.guideProgressTrack i{display:block;height:100%;width:10%;background:#b48d57;transition:width .25s ease;box-shadow:0 0 10px #b48d57aa}
+.guideStepList{display:grid;gap:3px;margin-top:5px;max-height:535px;overflow:auto;padding-right:2px}
+.guideStepBtn{width:100%;border:0;background:transparent;color:#aaa39a;border-radius:9px;padding:9px 8px;display:grid;grid-template-columns:25px 1fr;gap:8px;text-align:left;align-items:start}
+.guideStepBtn span{font-size:9px;color:#746d64;margin-top:2px}.guideStepBtn b{font-size:11px;line-height:1.35;font-weight:650}
+.guideStepBtn:hover{background:#2d2a26;color:#eee8df}.guideStepBtn.active{background:#35312b;color:#fff}.guideStepBtn.active span{color:#d6b17c}
+
+.guideWorkspace{padding:22px;background:#f7f4ef;min-width:0}
+.guideWorkspaceTop{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;padding-bottom:17px;border-bottom:1px solid #ddd5ca}
+.guideWorkspaceTop h1{font-size:21px;line-height:1.35;margin:5px 0 4px;letter-spacing:-.025em}
+.guideWorkspaceTop p{font-size:12px;color:#736b62;margin:0;line-height:1.55}
+.guideStatus{display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #d6cec2;background:#fff;border-radius:999px;font-size:9px;font-weight:900;color:#746a5d;white-space:nowrap}
+.guideStatus i{width:6px;height:6px;border-radius:50%;background:#49a45b;box-shadow:0 0 0 4px #49a45b1e}
+
+.guideSystemMap{display:flex;align-items:stretch;gap:6px;margin:20px 0 14px;overflow:auto;padding:4px 1px 8px}
+.systemNode{min-width:112px;flex:1;border:1px solid #ddd4c8;background:#fff;border-radius:12px;padding:12px;transition:.2s ease;position:relative}
+.systemNode span{font-size:9px;font-weight:900;color:#aaa095}.systemNode b{display:block;font-size:12px;margin:8px 0 3px}.systemNode small{font-size:10px;color:#8a8177}
+.systemNode.active{background:#27241f;color:#fff;border-color:#27241f;box-shadow:0 0 0 3px #b4915b22,0 10px 25px #33251620}
+.systemNode.active span{color:#d0aa73}.systemNode.active small{color:#bbb3a8}
+.systemWire{display:grid;place-items:center;color:#b2a38d;font-size:13px;flex:none}
+
+.guideRoute{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;align-items:center;background:#fff;border:1px solid #ddd5ca;border-radius:14px;padding:15px;margin-bottom:14px}
+.routeBlock{min-height:104px;border-radius:11px;padding:14px;display:flex;flex-direction:column;justify-content:center}
+.routeBlock>span{font-size:9px;font-weight:900;letter-spacing:.12em}.routeBlock>b{font-size:13px;line-height:1.4;margin:8px 0 3px}.routeBlock>small{font-size:10px;color:#81786e}
+.routeInput{background:#f1ede7}.routeInput>span{color:#8f795b}
+.routeCore{background:#27241f;color:#fff;box-shadow:0 0 24px #b38a4d1c}.routeCore>span{color:#c49a61}.routeCore>small{color:#aaa299}
+.routeOutput{background:#edf4ed}.routeOutput>span{color:#56805b}
+.routeConnector{display:flex;align-items:center}.routeConnector i{height:1px;flex:1;background:#c7baaa}.routeConnector b{font-size:12px;color:#99866c}
+
+.guideLower{display:grid;grid-template-columns:1.3fr .7fr;gap:14px}
+.guideInspector,.guideEventPanel{background:#fff;border:1px solid #ddd5ca;border-radius:14px;padding:16px}
+.guidePanelHead{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee8df;padding-bottom:10px}
+.guidePanelHead span,.guidePanelHead b{font-size:9px;letter-spacing:.1em}.guidePanelHead span{font-weight:900;color:#9d815c}.guidePanelHead b{color:#857b6e}
+.guideDetailBlock{padding:12px 0;border-bottom:1px solid #f0ebe4}.guideDetailBlock>span,.guideComplete>span{font-size:10px;font-weight:900;color:#8c7960}
+.guideDetailBlock p{font-size:12px;line-height:1.65;color:#59534b;margin:6px 0 0}.guideDetailBlock ol{margin:6px 0 0;padding-left:18px}.guideDetailBlock li{font-size:11px;line-height:1.65;color:#59534b;margin:2px 0}
+.guideComplete{margin-top:12px;padding:11px 12px;background:#edf5ee;border-radius:10px}.guideComplete span{display:block;color:#598060}.guideComplete b{display:block;font-size:11px;line-height:1.55;margin-top:5px;color:#375b3d}
+.eventLog{display:grid;gap:7px;margin-top:12px}
+.eventRow{display:grid;grid-template-columns:7px 1fr;gap:8px;align-items:start;padding:8px 0;border-bottom:1px solid #f1ece5}.eventRow:last-child{border-bottom:0}
+.eventDot{width:6px;height:6px;border-radius:50%;background:#b38c57;margin-top:4px;box-shadow:0 0 8px #b38c5766}
+.eventRow b{display:block;font-size:10px}.eventRow span{display:block;font-size:9px;color:#91887e;margin-top:3px;line-height:1.45}
+.guideControls{display:flex;align-items:center;justify-content:space-between;margin-top:14px;border-top:1px solid #ded6cc;padding-top:13px}
+.guideControls button{border:1px solid #d3cbc0;background:#fff;border-radius:9px;padding:8px 11px;font-size:10px;font-weight:800}.guideControls button:disabled{opacity:.35;cursor:not-allowed}
+.guideControls span{font-size:9px;font-weight:900;color:#857a6d;letter-spacing:.08em}
+
+@media(max-width:900px){
+  .guideApp{grid-template-columns:210px minmax(0,1fr)}
+  .guideLower{grid-template-columns:1fr}
+  .guideRoute{grid-template-columns:1fr 28px 1fr 28px 1fr}
+}
+@media(max-width:680px){
+  .guideApp{display:block}
+  .guideRail{padding:12px}.guideRailHead{padding-bottom:10px}.guideRailProgress{padding:10px 6px}
+  .guideStepList{display:flex;overflow:auto;max-height:none;gap:5px}.guideStepBtn{min-width:145px;grid-template-columns:22px 1fr;background:#2b2925}
+  .guideWorkspace{padding:14px}
+  .guideSystemMap{margin-top:14px}.systemNode{min-width:105px}
+  .guideRoute{grid-template-columns:1fr;gap:7px}.routeConnector{height:18px;transform:rotate(90deg);width:28px;margin:auto}
+  .guideWorkspaceTop h1{font-size:18px}
+}
+
 </style>
 </head>
 <body>
@@ -413,10 +482,108 @@ body{font-size:15px;line-height:1.55}
   </div>
 </section>
 <section id="guide" class="hidden" data-section="guide">
-<div class="guideHead"><button class="link" onclick="home()">← 처음으로</button><b>SNS자동화 판매프로그램(사이트) ver.헤이미</b><span></span></div>
-<div class="progress"><div class="row"><b id="count"></b><span id="pct"></span></div><div class="track"><div class="bar" id="bar"></div></div></div>
-<div class="split"><div class="left"><span class="label">왼쪽 설명을 먼저 읽어주세요</span><h2 id="title"></h2><p class="summary" id="short"></p><div class="box why"><strong>왜 이걸 하나요?</strong><p id="why"></p></div><div class="box how"><h3>지금 내가 할 일</h3><ol id="actions"></ol></div><div class="box ok"><strong>여기까지 되면 다음으로 넘어갑니다</strong><p id="success"></p></div></div><div class="right"><div class="demoTop"><span>프로그램에서는 이렇게 보입니다</span><b id="stepNo"></b></div><div class="demo" id="demo"></div></div></div>
-<div class="nav"><button class="secondary" id="prev" onclick="prevStep()">이전 단계</button><button class="primary" id="next" onclick="nextStep()"></button></div>
+  <div class="guideApp">
+    <aside class="guideRail">
+      <div class="guideRailHead">
+        <span class="guideMiniLabel">HEYMI FLOW</span>
+        <b>판매 자동화 워크플로우</b>
+        <p>단계를 누르면 실제 시스템 흐름이 바뀝니다.</p>
+      </div>
+
+      <div class="guideRailProgress">
+        <div><span>진행 위치</span><b id="guideProgressText">1 / 10</b></div>
+        <div class="guideProgressTrack"><i id="guideProgressBar"></i></div>
+      </div>
+
+      <div class="guideStepList" id="guideStepList"></div>
+    </aside>
+
+    <main class="guideWorkspace">
+      <div class="guideWorkspaceTop">
+        <div>
+          <span class="guideMiniLabel">AUTOMATION CONSOLE</span>
+          <h1 id="guideTitle">판매할 물건 준비</h1>
+          <p id="guideSummary"></p>
+        </div>
+        <div class="guideStatus">
+          <i></i>
+          <span>GUIDE MODE</span>
+        </div>
+      </div>
+
+      <div class="guideSystemMap">
+        <div class="systemNode" data-flow-node="product"><span>01</span><b>상품 입력</b><small>영상 · 정보</small></div>
+        <div class="systemWire">→</div>
+        <div class="systemNode" data-flow-node="instagram"><span>02</span><b>Instagram</b><small>자동 게시</small></div>
+        <div class="systemWire">→</div>
+        <div class="systemNode" data-flow-node="comment"><span>03</span><b>댓글 감지</b><small>구매 판별</small></div>
+        <div class="systemWire">→</div>
+        <div class="systemNode" data-flow-node="queue"><span>04</span><b>대기열</b><small>선착순</small></div>
+        <div class="systemWire">→</div>
+        <div class="systemNode" data-flow-node="payment"><span>05</span><b>결제</b><small>10분 예약</small></div>
+        <div class="systemWire">→</div>
+        <div class="systemNode" data-flow-node="done"><span>06</span><b>판매완료</b><small>종료</small></div>
+      </div>
+
+      <div class="guideRoute">
+        <div class="routeBlock routeInput">
+          <span>INPUT</span>
+          <b id="guideInput"></b>
+          <small>사람이 준비하는 것</small>
+        </div>
+        <div class="routeConnector"><i></i><b>→</b></div>
+        <div class="routeBlock routeCore">
+          <span>HEYMI CORE</span>
+          <b id="guideProcess"></b>
+          <small>프로그램이 처리하는 것</small>
+        </div>
+        <div class="routeConnector"><i></i><b>→</b></div>
+        <div class="routeBlock routeOutput">
+          <span>OUTPUT</span>
+          <b id="guideOutput"></b>
+          <small>화면에서 확인할 결과</small>
+        </div>
+      </div>
+
+      <div class="guideLower">
+        <section class="guideInspector">
+          <div class="guidePanelHead">
+            <span>STEP DETAIL</span>
+            <b id="guideStepNo">STEP 01</b>
+          </div>
+
+          <div class="guideDetailBlock">
+            <span>왜 필요한가요?</span>
+            <p id="guideWhy"></p>
+          </div>
+
+          <div class="guideDetailBlock">
+            <span>사용자가 할 일</span>
+            <ol id="guideActions"></ol>
+          </div>
+
+          <div class="guideComplete">
+            <span>완료 조건</span>
+            <b id="guideComplete"></b>
+          </div>
+        </section>
+
+        <section class="guideEventPanel">
+          <div class="guidePanelHead">
+            <span>EVENT LOG</span>
+            <b>LIVE FLOW</b>
+          </div>
+          <div class="eventLog" id="guideEventLog"></div>
+        </section>
+      </div>
+
+      <div class="guideControls">
+        <button id="guidePrev" onclick="guidePrev()">← 이전</button>
+        <span id="guideControlLabel">STEP 01 / 10</span>
+        <button id="guideNext" onclick="guideNext()">다음 →</button>
+      </div>
+    </main>
+  </div>
 </section>
 
 <section id="programSection" class="hidden" data-section="program">
@@ -599,22 +766,93 @@ function openRoadModal(idx){
 }
 function closeRoadModal(){document.getElementById('roadModalBack').classList.remove('open')}
 
-const demo=(i)=>[
-`<div class="white"><span>판매 상품</span><div class="product"><div class="shirt">👕</div><div><b>오늘 판매할 옷</b><p>재고 1개 · 한정 판매</p><strong>59,000원</strong></div></div><span class="pill">판매 준비</span></div>`,
-`<div class="phone"><div class="phoneIn">▶<span>옷 전체가 잘 보이는 짧은 영상</span></div></div>`,
-`<div class="white form"><label>영상 파일<div class="fakeField">heymi-jacket.mp4 · 선택됨</div></label><label>상품명<div class="fakeField">헤이미 빈티지 재킷</div></label><label>가격<div class="fakeField">59,000원</div></label><label>자세한 설명<div class="fakeField">한 벌만 판매합니다. 상태와 사이즈를 확인해주세요.</div></label></div>`,
-`<div class="white ig"><div class="igHead"><span class="avatar">H</span><b>@heymi</b><span>•••</span></div><div class="igVideo">영상 자동 게시</div><div class="igText"><b>헤이미 빈티지 재킷</b><br>59,000원 · 한 벌만 판매<br><br>구매를 원하시면 댓글에 <b>구매</b>라고 적어주세요.</div></div>`,
-`<div class="white keyword"><p>구매를 원하시면 댓글에</p><strong>구매</strong><p>두 글자만 적어주세요.</p></div><div class="rules"><span>구매 <b class="yes">✓ 인정</b></span><span>저 구매할게요 <b class="no">× 제외</b></span><span>사고 싶어요 <b class="no">× 제외</b></span></div>`,
-`<div class="queue"><div><b>1</b><span>@buyer01</span><em>18:01:03</em></div><div><b>2</b><span>@buyer02</span><em>18:01:08</em></div><div><b>3</b><span>@buyer03</span><em>18:01:12</em></div></div>`,
-`<div class="white reservation"><span>현재 상태</span><strong>예약중</strong><h2>@buyer01</h2><p>2번과 3번은 대기 중입니다.</p></div>`,
-`<div class="white warning"><b>사용하지 않을 방법</b><p><strong>내 실제 계좌번호 QR</strong>을 보내면 구매자가 저장할 수 있고 10분이 지나도 송금이 가능합니다.</p></div><div class="down">↓</div><div class="white solution"><b>헤이미가 사용할 방법</b><p>1순위 주문에만 쓰는 <strong>가상계좌</strong>를 새로 발급합니다.</p><div class="payLink">신한 562-***-184029 <span>09:58 남음</span></div><p style="margin-top:10px;font-size:14px">입금기한: 오늘 17:40 → 17:50<br>공개 댓글에는 계좌번호를 표시하지 않습니다.</p></div>`,
-`<div class="white timer"><span>@buyer01 가상계좌 입금 대기</span><strong>09:42</strong><p>입금기한이 지나면 이 주문은 종료됩니다.</p></div><div class="flow2"><span>입금 없음</span><b>→</b><span>1순위 만료</span><b>→</b><span>@buyer02 새 가상계좌 발급</span></div>`,
-`<div class="white sold"><span>결제 확인</span><strong>판매완료</strong><p>@buyer01 님의 결제가 완료되었습니다.</p><div class="fakeField">Instagram: 판매가 완료되었습니다.</div></div>`
-][i];
-function render(){const s=steps[i],p=Math.round((i+1)/steps.length*100);count.textContent=`${i+1}단계 / ${steps.length}단계`;pct.textContent=`${p}% 진행`;bar.style.width=p+'%';title.textContent=s.t;short.textContent=s.s;why.textContent=s.w;actions.innerHTML=s.a.map(x=>`<li>${x}</li>`).join('');success.textContent=s.ok;next.textContent=s.n;prev.disabled=i===0;stepNo.textContent='STEP '+String(i+1).padStart(2,'0');demoEl.innerHTML=demo(i);window.scrollTo({top:0,behavior:'smooth'})}
-const intro=document.getElementById('intro'),guide=document.getElementById('guide'),count=document.getElementById('count'),pct=document.getElementById('pct'),bar=document.getElementById('bar'),title=document.getElementById('title'),short=document.getElementById('short'),why=document.getElementById('why'),actions=document.getElementById('actions'),success=document.getElementById('success'),nextBtn=document.getElementById('next'),prevBtn=document.getElementById('prev'),stepNo=document.getElementById('stepNo'),demoEl=document.getElementById('demo');
-function start(){i=0;showSection('guide');render()} function home(){showSection('home')} function prevStep(){if(i>0){i--;render()}} function nextStep(){if(i<steps.length-1){i++;render()}else alert('이제 실제 프로그램 화면으로 넘어갑니다.')}
-buildRoadmap();
+
+const guideFlow=[
+  {node:'product',input:'상품 1개 + 판매 가격',process:'판매 세션을 생성하고 상품 상태를 준비합니다.',output:'판매 준비 상태',events:['상품 정보 입력 대기','재고 1개 확인','판매 세션 준비 완료']},
+  {node:'product',input:'촬영한 상품 영상',process:'게시에 사용할 영상 파일을 불러옵니다.',output:'미디어 준비 완료',events:['영상 파일 선택','파일 형식 확인','미디어 준비 완료']},
+  {node:'product',input:'영상 + 상품명 + 가격 + 설명',process:'게시에 필요한 상품 데이터를 하나로 묶습니다.',output:'게시 데이터 완성',events:['상품 정보 수신','설명·가격 결합','게시 데이터 생성']},
+  {node:'instagram',input:'게시 실행 명령',process:'Instagram 게시 API로 영상과 설명을 전달합니다.',output:'Instagram Reel 게시',events:['Instagram 연결 확인','영상 URL 전달','Reel 게시 요청']},
+  {node:'comment',input:'구매 키워드 규칙',process:'댓글이 정확히 “구매”인지 판별 조건을 적용합니다.',output:'구매 댓글만 통과',events:['댓글 규칙 등록','키워드 “구매” 활성화','일반 댓글 제외']},
+  {node:'comment',input:'Instagram 새 댓글',process:'댓글 내용과 접수 시간을 읽고 구매 요청을 판별합니다.',output:'구매 요청 생성',events:['댓글 이벤트 수신','구매 여부 판별','접수 시간 기록']},
+  {node:'queue',input:'구매 요청 목록',process:'가장 먼저 들어온 한 명을 1순위로 잠급니다.',output:'1순위 예약중',events:['대기열 정렬','1순위 선택','나머지 구매자 대기']},
+  {node:'payment',input:'1순위 주문 정보',process:'주문 전용 가상계좌와 10분 입금기한을 생성합니다.',output:'결제 안내 발송',events:['주문번호 생성','가상계좌 발급 요청','10분 타이머 시작']},
+  {node:'payment',input:'입금 이벤트 + 남은 시간',process:'입금 여부를 확인하고 만료 시 다음 순번으로 넘깁니다.',output:'결제완료 또는 다음 예약',events:['입금 상태 확인','dueDate 비교','미입금 시 다음 순번 승계']},
+  {node:'done',input:'결제 완료 신호',process:'상품을 판매완료로 잠그고 추가 구매를 종료합니다.',output:'판매완료',events:['결제 완료 확인','상품 상태 변경','추가 구매 요청 종료']}
+];
+let guideIndex=0;
+
+function buildGuideSteps(){
+  const root=document.getElementById('guideStepList');
+  if(!root) return;
+  root.innerHTML=steps.map((step,index)=>
+    '<button class="guideStepBtn '+(index===guideIndex?'active':'')+'" onclick="setGuideStep('+index+')">'+
+      '<span>'+String(index+1).padStart(2,'0')+'</span>'+
+      '<b>'+step.t+'</b>'+
+    '</button>'
+  ).join('');
+}
+
+function renderGuide(){
+  const step=steps[guideIndex];
+  const flow=guideFlow[guideIndex];
+  if(!step||!flow) return;
+
+  buildGuideSteps();
+
+  document.getElementById('guideProgressText').textContent=(guideIndex+1)+' / '+steps.length;
+  document.getElementById('guideProgressBar').style.width=((guideIndex+1)/steps.length*100)+'%';
+  document.getElementById('guideTitle').textContent=step.t;
+  document.getElementById('guideSummary').textContent=step.s;
+  document.getElementById('guideStepNo').textContent='STEP '+String(guideIndex+1).padStart(2,'0');
+  document.getElementById('guideWhy').textContent=step.w;
+  document.getElementById('guideActions').innerHTML=step.a.map(x=>'<li>'+x+'</li>').join('');
+  document.getElementById('guideComplete').textContent=step.ok;
+  document.getElementById('guideInput').textContent=flow.input;
+  document.getElementById('guideProcess').textContent=flow.process;
+  document.getElementById('guideOutput').textContent=flow.output;
+  document.getElementById('guideControlLabel').textContent='STEP '+String(guideIndex+1).padStart(2,'0')+' / '+steps.length;
+
+  document.querySelectorAll('.systemNode').forEach(node=>{
+    node.classList.toggle('active',node.dataset.flowNode===flow.node);
+  });
+
+  document.getElementById('guideEventLog').innerHTML=flow.events.map((event,index)=>
+    '<div class="eventRow"><i class="eventDot"></i><div><b>'+event+'</b><span>'+
+    (index===flow.events.length-1?'상태 확인 완료':'자동 처리 단계')+
+    '</span></div></div>'
+  ).join('');
+
+  const prev=document.getElementById('guidePrev');
+  const next=document.getElementById('guideNext');
+  prev.disabled=guideIndex===0;
+  next.textContent=guideIndex===steps.length-1?'완료':'다음 →';
+}
+
+function setGuideStep(index){
+  guideIndex=Math.max(0,Math.min(steps.length-1,index));
+  renderGuide();
+}
+
+function guidePrev(){
+  if(guideIndex>0){guideIndex--;renderGuide();}
+}
+
+function guideNext(){
+  if(guideIndex<steps.length-1){
+    guideIndex++;
+    renderGuide();
+  }else{
+    showSection('program');
+  }
+}
+
+function start(){
+  guideIndex=0;
+  showSection('guide');
+  renderGuide();
+}
+function home(){showSection('home')}
+
 
 
 
@@ -1043,6 +1281,7 @@ function showSection(name){
   };
   const target=document.getElementById(map[name]);
   if(target) target.classList.remove('hidden');
+  if(name==='guide') renderGuide();
 
   ['Guide','Program','Test'].forEach(k=>{
     const btn=document.getElementById('menu'+k);
