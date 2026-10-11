@@ -3,7 +3,7 @@
   var year = document.getElementById('copyright-year');
   if (year) year.textContent = String(new Date().getFullYear());
 
-  var nav = document.querySelector('.mobile-nav');
+  var nav = document.querySelector('.studio-mobile-nav');
   if (nav) {
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () { nav.open = false; });
