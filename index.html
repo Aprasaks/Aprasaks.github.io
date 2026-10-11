@@ -24,23 +24,24 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://studio.dechive.dev/#website","url":"https://studio.dechive.dev/","name":"DECHIVE STUDIO","inLanguage":"ko-KR"},{"@type":"Organization","name":"DECHIVE","url":"https://studio.dechive.dev/","sameAs":["https://dechive.dev/","https://www.youtube.com/@dechive"]}]}
   </script>
+  <link rel="stylesheet" href="/studio-v2-shell.css">
 </head>
 <body>
 <a class="skip-link" href="#main">본문으로 바로가기</a>
-<header class="site-header">
-  <div class="wrap header-inner">
-    <a class="wordmark" href="/" aria-label="DECHIVE STUDIO 홈"><strong>DECHIVE</strong><span>STUDIO</span></a>
-    <nav class="desktop-nav" aria-label="주요 메뉴">
-      <a class="is-current" href="#explore">Explore</a>
+<header class="studio-header" role="banner">
+  <div class="studio-frame studio-header-inner">
+    <a class="studio-wordmark" href="/" aria-label="DECHIVE STUDIO 홈"><strong>DECHIVE</strong><span>STUDIO</span></a>
+    <nav class="studio-desktop-nav" aria-label="주요 메뉴">
+      <a class="is-current" aria-current="page" href="/#explore">Explore</a>
       <a href="/work/">Work</a>
       <a href="/education/">Education</a>
       <a href="/about/">About</a>
     </nav>
-    <a class="header-home-link" href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">dechive.dev <span aria-hidden="true">↗</span></a>
-    <details class="mobile-nav">
+    <a class="studio-header-home-link" href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">dechive.dev <span aria-hidden="true">↗</span></a>
+    <details class="studio-mobile-nav">
       <summary aria-label="메뉴 열기"><span></span><span></span><span></span></summary>
       <nav aria-label="모바일 메뉴">
-        <a href="#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">dechive.dev ↗</a>
+        <a href="/#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">dechive.dev ↗</a>
       </nav>
     </details>
   </div>
@@ -170,11 +171,11 @@
     <a href="/about/">DECHIVE에 대해 더 알아보기 <span aria-hidden="true">↗</span></a>
   </section>
 </main>
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <div><a class="footer-wordmark" href="/">DECHIVE <span>STUDIO</span></a><span class="footer-tagline">Ideas for a More Open Tomorrow.</span></div>
-    <nav aria-label="하단 메뉴"><a href="#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="/book/">Book</a></nav>
-    <p>© <span id="copyright-year">2026</span> DECHIVE.</p>
+<footer class="studio-footer" role="contentinfo">
+  <div class="studio-frame studio-footer-inner">
+    <div class="studio-footer-identity"><a class="studio-footer-wordmark" href="/">DECHIVE <span>STUDIO</span></a><span class="studio-footer-tagline">Ideas for a More Open Tomorrow.</span></div>
+    <nav aria-label="하단 메뉴"><a href="/#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="/book/">Book</a></nav>
+    <p class="studio-copyright">© <span id="copyright-year">2026</span> DECHIVE.</p>
   </div>
 </footer>
 <script src="/studio-v2.js" defer></script>

@@ -1,0 +1,58 @@
+/* DECHIVE STUDIO v2 — Shared public header and footer.
+   Keep selectors scoped to the shared chrome so legacy inner-page designs stay intact.
+   This is the single source for header/footer styling across home and subpages. */
+.studio-header,.studio-footer{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#101f37;font-size:14px;font-weight:400;line-height:1.4;letter-spacing:normal;box-sizing:border-box}
+.studio-header *,.studio-footer *{box-sizing:border-box}
+.studio-header a,.studio-footer a{color:inherit;text-decoration:none}
+.studio-header a:focus-visible,.studio-footer a:focus-visible,.studio-header summary:focus-visible{outline:3px solid #c78f46;outline-offset:4px}
+.studio-frame{width:min(1460px,calc(100% - 112px));margin-inline:auto}
+.studio-header{height:75px;background:rgba(251,250,247,.94);border-bottom:1px solid #dfe2e4;position:relative;z-index:100}
+.studio-header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:36px}
+.studio-wordmark{display:inline-flex;align-items:baseline;gap:9px;white-space:nowrap;letter-spacing:.19em;font-size:18px}
+.studio-wordmark strong{font-weight:730;letter-spacing:.23em}
+.studio-wordmark span{font-size:12px;letter-spacing:.22em;color:#586579}
+.studio-desktop-nav{display:flex;align-items:center;gap:40px;margin-left:auto}
+.studio-desktop-nav a{font-size:14px;color:#374457;position:relative;padding:10px 0;transition:color .2s;font-weight:400;white-space:nowrap}
+.studio-desktop-nav a.is-current:after,.studio-desktop-nav a:hover:after{content:"";height:1px;left:0;right:0;bottom:1px;position:absolute;background:#101f37}
+.studio-desktop-nav a:hover{color:#101f37}
+.studio-header-home-link{font-family:Georgia,serif;font-size:14px;letter-spacing:.01em;white-space:nowrap;margin-left:40px}
+.studio-header-home-link span{font-family:"Pretendard Variable",sans-serif}
+.studio-mobile-nav{display:none}
+.studio-footer{border-top:1px solid #e4e6e8;background:#fff;padding:0}
+.studio-footer-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.studio-footer-identity{display:flex;align-items:baseline;gap:18px}
+.studio-footer-wordmark{font-size:14px;font-weight:800;letter-spacing:.19em;white-space:nowrap}
+.studio-footer-wordmark span{font-size:11px;font-weight:450;letter-spacing:.17em}
+.studio-footer-tagline{font-family:Georgia,serif;font-size:11px;color:#7d8891;font-style:italic;white-space:nowrap}
+.studio-footer nav{display:flex;gap:21px}
+.studio-footer nav a,.studio-footer .studio-copyright{font-size:11px;color:#657180;white-space:nowrap}
+.studio-footer nav a:hover{text-decoration:underline}
+.studio-footer .studio-copyright{margin:0}
+@media(max-width:1200px){
+ .studio-frame{width:min(1460px,calc(100% - 60px))}
+ .studio-desktop-nav{gap:26px}
+ .studio-header-home-link{margin-left:10px}
+}
+@media(max-width:920px){
+ .studio-header{height:66px}
+ .studio-desktop-nav,.studio-header-home-link{display:none}
+ .studio-wordmark{font-size:16px}
+ .studio-mobile-nav{display:block;position:relative;margin-left:auto}
+ .studio-mobile-nav summary{width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;list-style:none}
+ .studio-mobile-nav summary::-webkit-details-marker{display:none}
+ .studio-mobile-nav summary span{display:block;width:21px;height:1.5px;background:#1a2a40}
+ .studio-mobile-nav nav{position:absolute;right:0;top:49px;display:flex;flex-direction:column;min-width:200px;padding:10px;background:#fff;box-shadow:0 12px 35px #10203422;border:1px solid #e6e6e6;border-radius:9px;z-index:101}
+ .studio-mobile-nav nav a{display:block;padding:10px;font-size:14px;color:#26364b}
+ .studio-footer-tagline{display:none}
+}
+@media(max-width:620px){
+ .studio-frame{width:calc(100% - 34px)}
+ .studio-footer-inner{padding-block:24px;align-items:flex-start;flex-direction:column;gap:14px}
+ .studio-footer nav{gap:17px;flex-wrap:wrap}
+}
+@media print {
+ .studio-header,.studio-footer{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .studio-desktop-nav a{transition:none}
+}

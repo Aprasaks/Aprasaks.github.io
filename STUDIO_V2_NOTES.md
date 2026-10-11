@@ -19,10 +19,20 @@
 - 원격 이미지 URL 의존성은 추후 라이선스 확인 후 적절한 로컬 이미지 파일 배치로 해소.
 - 모바일 또는 이미지 로딩 실패 시 흰색/중립 배경과 텍스트·링크가 남도록 설계.
 
+## 공통 헤더·푸터 (2026-10-11)
+- `studio-v2-shell.css`: 홈과 내부 페이지가 공유하는 헤더·푸터 **단일 스타일 소스**. 내부 페이지의 기존 `style.css`는 본문 디자인에만 계속 사용.
+- 적용: `/`, `/work/`, `/work/association-system/`, `/education/`, `/about/`, `/book/`, `/resume/`.
+- 헤더: DECHIVE STUDIO / Explore / Work / Education / About / dechive.dev. 모바일에서도 동일 메뉴, 현재 페이지 활성 표시.
+- 푸터: DECHIVE STUDIO / Ideas for a More Open Tomorrow / Explore·Work·Education·About·Book / 자동 갱신 연도.
+- `studio-v2.js`: 공통 `studio-mobile-nav` 메뉴의 열기·닫기, ESC·외부 클릭 닫기 및 © 연도 업데이트.
+- 이 사이트는 정적 HTML이므로 위 7개 파일에 헤더·푸터 **같은 구조의 HTML**을 두고 스타일은 `studio-v2-shell.css`로 통합 관리한다. 메뉴 항목을 변경하면 공통 HTML을 함께 수정해야 한다.
+- 기존 `/card/`는 별도의 명함 QR 전용 화면으로 현재 공통 헤더/푸터 적용 대상에서 제외. `/heymi/` 역시 별도 독립 경로라 이번 변경 범위에 포함하지 않음.
+- **검증:** 7개 페이지에서 헤더/푸터, 링크, 공통 CSS/JS 및 본문 `main` 보존 정적 검사 통과. 실제 브라우저 PC·모바일 시각 확인은 별도 점검 필요.
+
 ## 후속 작업
 1. 디자인 및 텍스트 피드백 수렴.
 2. Instagram/Threads/X 계정 실주소 확인 및 CTA 연결.
-3. Work·Education·About·Book·Resume 페이지를 새 브랜드 스타일에 맞춰 **차례로 전면 재설계**. 기존 하위 페이지는 현재 버전이 남아 있어 스타일이 다를 수 있음.
+3. Work·Education·About·Book·Resume의 헤더·푸터는 v2로 통일 완료. **본문 디자인**은 아직 기존 버전이므로 차례로 전면 재설계할 필요가 있음.
 4. 책 소개, 명함 QR, 기존 SEO URL, OG 이미지, 모바일 실브라우저 검수.
 5. 최신 게시물 노출은 실제 데이터 연동·운영 계획 검증 후 추가. 현재 더미 실적·가짜 지표·가짜 자동 업데이트는 없음.
 
