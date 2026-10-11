@@ -1,0 +1,106 @@
+/* DECHIVE Studio v2 — About: knowledge should be accessible.
+ * Editorial, type-first page. Shared header/footer live in studio-v2-shell.css.
+ */
+:root{
+  --about-ink:#101f37;
+  --about-soft:#526173;
+  --about-faint:#86909a;
+  --about-cream:#fbfaf7;
+  --about-paper:#f2f0eb;
+  --about-rule:#e0e1df;
+  --about-amber:#9e784d;
+  --about-serif:"Noto Serif KR",Georgia,serif;
+  --about-sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body.about-v2-body{margin:0;background:var(--about-cream);color:var(--about-ink);font:400 16px/1.7 var(--about-sans);letter-spacing:-.018em;-webkit-font-smoothing:antialiased}
+.about-v2-body a{color:inherit;text-decoration:none}
+.about-v2-body a:focus-visible{outline:3px solid #c78f46;outline-offset:4px}
+.about-skip-link{position:absolute;left:15px;top:-80px;z-index:200;background:var(--about-ink);padding:11px 16px;color:white!important}
+.about-skip-link:focus{top:15px}
+.about-wrap{width:min(1160px,calc(100% - 112px));margin:0 auto}
+.about-label{color:var(--about-amber);font-size:10px;line-height:1.5;letter-spacing:.28em;font-weight:750;margin:0}
+.about-section-intro{display:flex;justify-content:space-between;gap:35px;align-items:end;margin-bottom:39px}
+.about-section-intro h2{font:500 clamp(25px,3vw,36px)/1.5 var(--about-serif);letter-spacing:-.065em;margin:13px 0 0;word-break:keep-all}
+.about-section-intro>p{color:var(--about-soft);font-size:13px;margin:0 0 5px;max-width:280px;line-height:1.8}
+.about-hero{position:relative;background:linear-gradient(111deg,#fbfaf7 0%,#f6f4ef 64%,#eeeae3 100%);overflow:hidden;border-bottom:1px solid var(--about-rule)}
+.about-hero::before{content:"";pointer-events:none;position:absolute;width:500px;height:500px;border:1px solid rgba(129,111,91,.12);border-radius:50%;top:-235px;right:-110px}
+.about-hero::after{content:"";pointer-events:none;position:absolute;width:650px;height:650px;border:1px solid rgba(129,111,91,.08);border-radius:50%;top:-305px;right:-175px}
+.about-hero-inner{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(230px,.52fr);align-items:end;gap:75px;padding-top:94px;padding-bottom:106px;position:relative;z-index:1}
+.about-hero h1{font:500 clamp(38px,4.7vw,63px)/1.4 var(--about-serif);letter-spacing:-.07em;word-break:keep-all;margin:20px 0 26px}
+.about-hero h1 em{color:var(--about-amber);font-style:normal}
+.about-hero-lead{max-width:750px;font-size:17px;line-height:1.95;word-break:keep-all;color:#485567;margin:0}
+.about-hero-aside{align-self:center;border-left:1px solid #cdcac3;padding-left:27px;color:#6c7780}
+.about-hero-aside span{font:13px Georgia,serif;letter-spacing:.23em;color:var(--about-amber)}
+.about-hero-aside p{font-family:var(--about-serif);font-weight:500;letter-spacing:-.04em;font-size:20px;line-height:1.75;word-break:keep-all;margin:22px 0 0}
+.about-intro{padding:91px 0 84px}
+.about-intro-inner{display:grid;grid-template-columns:180px 1fr;gap:95px}
+.about-intro-lead{font:500 clamp(23px,2.5vw,30px)/1.65 var(--about-serif);letter-spacing:-.065em;margin:0 0 25px;word-break:keep-all}
+.about-intro-body{font-size:16px;line-height:2;color:var(--about-soft);margin:0;max-width:790px;word-break:keep-all}
+.about-intro-body+.about-intro-body{margin-top:16px}
+.about-principles{padding:89px 0 106px;background:#fff;border-block:1px solid var(--about-rule)}
+.about-principle{display:grid;grid-template-columns:120px minmax(0,.94fr) minmax(0,1.06fr);gap:40px;align-items:start;border-top:1px solid var(--about-rule);padding:38px 4px 45px}
+.about-principle:last-child{border-bottom:1px solid var(--about-rule)}
+.about-principle-number{font:400 29px Georgia,serif;color:#b4aaa0;letter-spacing:-.06em;line-height:1.25}
+.about-principle h3{font:550 clamp(23px,2.35vw,30px)/1.55 var(--about-serif);letter-spacing:-.055em;word-break:keep-all;margin:0}
+.about-principle p{color:var(--about-soft);line-height:1.95;max-width:450px;margin:0;font-size:15px;word-break:keep-all}
+.about-principle strong{color:var(--about-ink);font-weight:650}
+.about-quote{padding:76px 0 80px;background:#eae9e5}
+.about-quote-inner{display:grid;grid-template-columns:1fr auto;gap:50px;align-items:end}
+.about-quote blockquote{font:500 clamp(22px,2.75vw,36px)/1.65 var(--about-serif);letter-spacing:-.065em;margin:23px 0 0;max-width:800px;word-break:keep-all}
+.about-quote-mark{font:400 clamp(50px,7vw,100px)/1 Georgia,serif;color:#d2ccc2;align-self:start}
+.about-dechive{padding:105px 0 110px;background:var(--about-cream)}
+.about-dechive-inner{display:grid;grid-template-columns:1fr 1fr;gap:90px}
+.about-dechive h2{font:500 clamp(28px,3.3vw,41px)/1.55 var(--about-serif);letter-spacing:-.065em;word-break:keep-all;margin:20px 0}
+.about-dechive h2 em{color:var(--about-amber);font-style:normal}
+.about-dechive-copy{padding-top:34px}
+.about-dechive-copy p{font-size:16px;line-height:1.95;color:var(--about-soft);margin:0 0 18px;word-break:keep-all}
+.about-dechive-copy strong{color:var(--about-ink);font-weight:650}
+.about-dechive-mantra{display:block;font:italic 16px Georgia,serif;color:var(--about-amber);margin-top:26px}
+.about-person{background:#fff;padding:67px 0 75px;border-top:1px solid var(--about-rule)}
+.about-person-inner{display:grid;grid-template-columns:1fr 1.25fr;gap:80px}
+.about-person h2{font:500 31px/1.4 var(--about-serif);letter-spacing:-.05em;margin:10px 0 7px}
+.about-person-role{font-size:13px;color:var(--about-soft);margin:0}
+.about-person-copy p{font-size:14px;color:var(--about-soft);line-height:1.9;margin:0 0 18px}
+.about-person-links{display:flex;flex-wrap:wrap;gap:11px 22px}
+.about-person-links a{font-size:12px;font-weight:650;border-bottom:1px solid #b3bbc2;padding-bottom:5px;transition:color .2s,border-color .2s}
+.about-person-links a:hover{color:var(--about-amber);border-color:var(--about-amber)}
+@media(max-width:1050px){
+ .about-wrap{width:calc(100% - 64px)}
+ .about-hero-inner{gap:42px}
+ .about-intro-inner{grid-template-columns:130px 1fr;gap:50px}
+ .about-principle{grid-template-columns:75px minmax(0,1fr) minmax(0,1fr);gap:24px}
+ .about-dechive-inner{gap:50px}
+}
+@media(max-width:760px){
+ .about-wrap{width:calc(100% - 36px)}
+ .about-hero-inner{grid-template-columns:1fr;gap:35px;padding:60px 0 65px}
+ .about-hero h1{font-size:clamp(34px,8.3vw,49px);line-height:1.43;margin:16px 0 23px}
+ .about-hero-lead{font-size:15px}
+ .about-hero-aside{max-width:410px;align-self:initial;padding-left:20px}
+ .about-hero-aside p{font-size:16px;margin:13px 0 0}
+ .about-intro{padding:65px 0}
+ .about-intro-inner{grid-template-columns:1fr;gap:19px}
+ .about-intro-lead{font-size:23px}
+ .about-intro-body{font-size:14px}
+ .about-principles{padding:68px 0 73px}
+ .about-section-intro{display:block;margin-bottom:25px}
+ .about-section-intro h2{font-size:25px}
+ .about-section-intro>p{margin-top:14px}
+ .about-principle{grid-template-columns:45px 1fr;column-gap:15px;row-gap:11px;padding:26px 0 31px}
+ .about-principle-number{font-size:22px}
+ .about-principle h3{font-size:22px}
+ .about-principle p{grid-column:2;font-size:14px}
+ .about-quote{padding:58px 0}
+ .about-quote blockquote{font-size:25px}
+ .about-quote-mark{display:none}
+ .about-dechive{padding:75px 0 80px}
+ .about-dechive-inner{grid-template-columns:1fr;gap:0}
+ .about-dechive h2{font-size:30px}
+ .about-dechive-copy{padding-top:0}
+ .about-dechive-copy p{font-size:14px}
+ .about-person{padding:58px 0}
+ .about-person-inner{grid-template-columns:1fr;gap:25px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto} .about-person-links a{transition:none}}
