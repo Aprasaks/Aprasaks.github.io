@@ -1,0 +1,42 @@
+/* Regional education landing enhancement; preserves the original education/automation content. */
+.education-local-hero{background:linear-gradient(110deg,#fbfaf7 0%,#f7f5f0 70%,#efede6 100%);padding:85px 0 90px}
+.education-local-hero-inner{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(220px,.45fr);gap:75px;align-items:end}
+.education-local-hero h1{max-width:800px;font-family:"Noto Serif KR",Georgia,serif;font-size:clamp(36px,4.6vw,60px);line-height:1.4;letter-spacing:-.055em;font-weight:500;margin:19px 0 24px;word-break:keep-all}
+.education-local-hero h1 em{color:#987446;font-style:normal}
+.education-local-lead{max-width:675px;line-height:1.85;color:#4e5c6d;font-size:16px;word-break:keep-all;margin:0}
+.education-local-cta{margin-top:28px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.education-local-button{display:inline-flex;align-items:center;gap:16px;background:#152943;color:#fff!important;padding:11px 20px;border-radius:4px;font-size:13px;font-weight:650;text-decoration:none}
+.education-local-button:hover{background:#253d5b}
+.education-local-textlink{font-size:13px;color:#425366!important;font-weight:600;border-bottom:1px solid #9ba5ab;text-decoration:none;padding-bottom:4px}
+.education-local-side{border-left:1px solid #d1cfc9;padding-left:25px;margin-bottom:16px}
+.education-local-aside-label{letter-spacing:.2em;color:#a18462;font-size:10px;font-weight:750}
+.education-local-side>p:not(.education-local-aside-label){font-family:"Noto Serif KR",Georgia,serif;line-height:1.65;letter-spacing:-.035em;font-size:20px;color:#37475a;word-break:keep-all}
+.education-local-side>span{font-size:11px;color:#8a929b}
+.education-local-intro{padding:67px 0 71px;background:#fff}
+.education-local-intro h2{font-family:"Noto Serif KR",Georgia,serif;font-size:clamp(23px,2.7vw,34px);font-weight:500;line-height:1.5;letter-spacing:-.055em;margin:13px 0;word-break:keep-all}
+.education-local-intro-summary{color:#586677;font-size:15px;line-height:1.85;margin:0;max-width:780px;word-break:keep-all}
+.education-local-audiences{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:35px}
+.education-local-audiences>div{border-top:1px solid #d8dce0;padding-top:17px}
+.education-local-audiences span{color:#9a794f;font:15px Georgia,serif}
+.education-local-audiences h3{font-size:18px;font-weight:650;margin:8px 0;letter-spacing:-.035em}
+.education-local-audiences p{font-size:13px;line-height:1.85;color:#607080;margin:0;word-break:keep-all}
+.education-local-region{border-top:1px solid #e3e5e7;padding-top:17px;margin:35px 0 0;color:#667382;font-size:13px;line-height:1.85}
+.education-local-region strong{color:#1f334d;margin-right:9px}
+.education-local-contact-note{color:rgba(255,255,255,.75);font-size:14px;line-height:1.8;margin:17px 0 15px;max-width:590px}
+.education-local-resume-link{color:#f3e7d9!important;display:inline-block;font-weight:650;font-size:12px;border-bottom:1px solid #c4c0b8;padding-bottom:5px;text-decoration:none}
+@media(max-width:950px){
+ .education-local-hero-inner{grid-template-columns:1fr;gap:32px}
+ .education-local-side{max-width:520px;margin:0}
+ .education-local-audiences{gap:16px}
+}
+@media(max-width:680px){
+ .education-local-hero{padding:57px 0 61px}
+ .education-local-hero h1{font-size:clamp(32px,8vw,41px);line-height:1.45}
+ .education-local-lead{font-size:14px}
+ .education-local-side>p:not(.education-local-aside-label){font-size:17px}
+ .education-local-intro{padding:53px 0 57px}
+ .education-local-intro h2{font-size:24px}
+ .education-local-intro-summary{font-size:14px}
+ .education-local-audiences{grid-template-columns:1fr;gap:22px}
+ .education-local-region{font-size:12px}
+}
