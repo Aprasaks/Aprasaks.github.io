@@ -1,18 +1,27 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work | DECHIVE STUDIO</title>
-  <meta name="description" content="DECHIVE, 생활체육 협회 행정 시스템, Gunsan.com 등 실제 문제에서 시작한 프로젝트를 소개합니다." />
-  <link rel="canonical" href="https://studio.dechive.dev/work/" />
-  <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <link rel="stylesheet" href="/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work — 불편함을 어떻게 바꾸었는가 | DECHIVE STUDIO</title>
+  <meta name="description" content="DECHIVE STUDIO는 작업 결과물을 나열하기보다 실제 불편함, 해결을 위한 판단, 변경한 흐름을 기록합니다. 문서 취합의 반복과 검증 가능한 지식 기록 사례를 소개합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="무엇을 만들었는가보다, 왜 바꾸어야 했는가 — DECHIVE">
+  <meta property="og:description" content="DECHIVE STUDIO는 작업 결과물을 나열하기보다 실제 불편함, 해결을 위한 판단, 변경한 흐름을 기록합니다. 문서 취합의 반복과 검증 가능한 지식 기록 사례를 소개합니다.">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="canonical" href="https://studio.dechive.dev/work/">
+  <meta property="og:url" content="https://studio.dechive.dev/work/">
+  <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/studio-v2-shell.css">
+  <link rel="stylesheet" href="/studio-work.css">
 </head>
-<body>
-  <header class="studio-header" role="banner">
+<body class="work-v2-page">
+  <a class="work-skip" href="#work-main">본문으로 바로가기</a>
+<header class="studio-header" role="banner">
   <div class="studio-frame studio-header-inner">
     <a class="studio-wordmark" href="/" aria-label="DECHIVE STUDIO 홈"><strong>DECHIVE</strong><span>STUDIO</span></a>
     <nav class="studio-desktop-nav" aria-label="주요 메뉴">
@@ -30,73 +39,86 @@
     </details>
   </div>
 </header>
-
-  <main class="sub-main">
-    <section class="sub-hero">
-      <div class="shell sub-hero-grid">
-        <div><p class="section-index">WORK</p><h1>기술보다 먼저,<br /><em>어떤 불편이 있었는지</em> 설명합니다.</h1></div>
-        <p class="sub-hero-lead">
-          프로젝트는 기능 목록이 아닙니다. 어떤 문제를 발견했고, 무엇을 확인했고,
-          어떤 중간과정을 줄였는지가 먼저입니다.
-        </p>
+  <main id="work-main">
+    <section class="work-hero" aria-labelledby="work-page-title">
+      <div class="work-shell work-hero-inner">
+        <div>
+          <p class="work-kicker">WORK / THINGS WORTH CHANGING</p>
+          <h1 id="work-page-title">무엇을 만들었는가보다,<br><em>왜 바꾸어야 했는가.</em></h1>
+          <p class="work-hero-lead">작업은 불편함을 발견하는 데서 시작합니다. 무엇이 반복되고, 어디에서 시간이 낭비되는지 확인한 뒤 필요한 부분만 바꿉니다. 여기는 그 판단과 수정 과정을 남기는 곳입니다.</p>
+        </div>
+        <aside class="work-hero-aside" aria-label="작업의 기준">
+          <span>OUR WAY OF WORKING</span>
+          <p>불편함을 발견하고,<br>원인을 확인하고,<br>필요한 만큼 고칩니다.</p>
+        </aside>
       </div>
     </section>
 
-    <section class="sub-section sub-section-cream">
-      <div class="shell work-list">
-        <article class="work-item">
-          <div class="work-no">01</div>
-          <div class="work-body">
-            <div class="work-head"><div><p>KNOWLEDGE · VERIFICATION</p><h2>DECHIVE</h2></div><span>LIVE</span></div>
-            <p class="work-question">“AI가 만든 답을 어떻게 검증 가능한 지식으로 남길 수 있을까?”</p>
-            <p>출처, 버전, 게시 검증, 콘텐츠 구조를 함께 관리하는 개인 지식 시스템을 만들고 운영합니다.</p>
-            <div class="work-actions"><a href="https://dechive.dev" target="_blank" rel="noreferrer">Visit site ↗</a><a href="https://github.com/Aprasaks/dechive" target="_blank" rel="noreferrer">Code ↗</a></div>
+    <section class="work-intro" aria-labelledby="work-selected-title">
+      <div class="work-shell work-intro-inner">
+        <div><p class="work-kicker">SELECTED PROCESS NOTES</p><h2 id="work-selected-title">작업을 소개하는 두 가지 방식</h2></div>
+        <p class="work-intro-desc">모든 사이트나 코드를 공개하기보다 문제와 선택, 실제 변경 내용을 중심으로 정리했습니다.</p>
+      </div>
+    </section>
+
+    <section class="work-cases" aria-label="선별한 작업 사례">
+      <div class="work-shell">
+        <article class="work-case" aria-labelledby="work-case-one-title">
+          <div class="work-case-heading">
+            <span class="work-case-number" aria-hidden="true">01</span>
+            <div><p class="work-case-category">PROCESS / MEMBER REGISTRATION</p><h3 id="work-case-one-title">회원등록과 문서 취합의 반복</h3>
+            <p class="work-case-summary">한 번의 신청보다 어려운 것은 여러 곳에서 보낸 파일을 모으고, 확인하고, 다시 정리하는 과정이었습니다.</p></div>
+          </div>
+          <div class="work-case-sequence">
+            <div class="work-sequence-item"><span>PROBLEM · 불편함</span><h4>파일이 사람 사이를 오갔습니다.</h4><p>동호회마다 회원명부를 작성해 전달하고, 담당자가 누락과 최신본을 확인해 하나로 취합해야 했습니다.</p></div>
+            <div class="work-sequence-item"><span>DECISION · 해결 방향</span><h4>입력과 확인은 한곳에서.</h4><p>사람이 해야 할 승인과 판단은 남기고, 반복적인 파일 전달과 재입력을 줄이는 구조로 방향을 잡았습니다.</p></div>
+            <div class="work-sequence-item"><span>CHANGE · 바꾼 부분</span><h4>등록·상태·문서를 연결했습니다.</h4><p>회원정보 입력과 신청 상태 확인을 중심으로 흐름을 다시 구성하고, 필요한 제출 문서 형식은 유지하도록 설계했습니다.</p></div>
+          </div>
+          <div class="work-case-bottom">
+            <a class="work-case-link" href="/work/association-system/">판단과 변경 과정 읽기 <span aria-hidden="true">↗</span></a>
+            <span class="work-case-progress">기능과 운영 흐름은 계속 점검·개선 중</span>
           </div>
         </article>
 
-        <article class="work-item">
-          <div class="work-no">02</div>
-          <div class="work-body">
-            <div class="work-head"><div><p>PROCESS · AUTOMATION</p><h2>생활체육 협회 행정 시스템</h2></div><span>IN USE / BUILDING</span></div>
-            <p class="work-question">“사람이 판단해야 할 일은 남기고, 굳이 오가야 하는 파일과 전달은 없앨 수 없을까?”</p>
-            <p>
-              상·하반기 회원등록, 이적 신청, 승인, 엑셀·HWP 문서 생성, 대회정보 확인처럼
-              여러 동호회와 임원 사이를 오가던 행정 과정을 하나의 시스템으로 재설계했습니다.
-            </p>
-            <div class="work-actions"><a href="/work/association-system/">Case study →</a><a href="https://github.com/Aprasaks/gunsan-table-tennis-association" target="_blank" rel="noreferrer">Code ↗</a></div>
+        <article class="work-case" aria-labelledby="work-case-two-title">
+          <div class="work-case-heading">
+            <span class="work-case-number" aria-hidden="true">02</span>
+            <div><p class="work-case-category">KNOWLEDGE / EDITORIAL SYSTEM</p><h3 id="work-case-two-title">쌓이는 지식을 다시 확인하기 어려운 문제</h3>
+            <p class="work-case-summary">기록이 많아질수록 내용뿐 아니라 무엇을 근거로 썼는지, 언제 달라졌는지를 확인할 수 있어야 했습니다.</p></div>
           </div>
-        </article>
-
-        <article class="work-item" id="gunsan-com">
-          <div class="work-no">03</div>
-          <div class="work-body">
-            <div class="work-head"><div><p>LOCAL · PRODUCT</p><h2>GUNSAN.COM</h2></div><span>BUILDING</span></div>
-            <p class="work-question">“관광객에게 더 많은 장소가 아니라, 더 적은 결정이 필요하지 않을까?”</p>
-            <p>지역 장소를 나열하는 대신 처음 방문한 사람이 실제로 따라갈 수 있는 코스로 정보를 재구성하는 관광 플랫폼입니다.</p>
-            <div class="work-actions"><a href="https://github.com/Aprasaks/gunsan-com" target="_blank" rel="noreferrer">Code ↗</a></div>
+          <div class="work-case-sequence">
+            <div class="work-sequence-item"><span>PROBLEM · 불편함</span><h4>답은 빠르게 쌓였습니다.</h4><p>AI와 검색으로 얻은 설명을 보관하는 것만으로는 출처와 최신성, 검토 기준을 놓치기 쉬웠습니다.</p></div>
+            <div class="work-sequence-item"><span>DECISION · 해결 방향</span><h4>기록보다 검증을 먼저.</h4><p>자료의 출처와 확인할 질문을 남기고, 깊이 있는 지식과 새 소식은 서로 다른 방식으로 정리하기로 했습니다.</p></div>
+            <div class="work-sequence-item"><span>CHANGE · 바꾼 부분</span><h4>기록의 목적을 분리했습니다.</h4><p>DECHIVE의 Knowledge와 AI Update를 구분하고, 작성·검토·발행 기준을 다듬는 작업을 이어가고 있습니다.</p></div>
+          </div>
+          <div class="work-case-bottom">
+            <span class="work-case-progress">발행과 검증 기준을 계속 보완 중</span>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="sub-section">
-      <div class="shell centered-cta">
-        <p class="section-index">HOW I DOCUMENT</p>
-        <h2 class="sub-title">Problem → Assumption → Verification → Build → Evidence</h2>
-        <p>앞으로 모든 대표 프로젝트는 이 순서로 Case Study를 정리합니다.</p>
-        <a class="button button-dark" href="https://github.com/Aprasaks" target="_blank" rel="noreferrer">GitHub 전체 보기</a>
+    <section class="work-note" aria-labelledby="work-note-title">
+      <div class="work-shell work-note-inner">
+        <div><p class="work-kicker">A NOTE ON WORK</p><h2 id="work-note-title">모든 것을 공개하는 것이<br>좋은 설명은 아닙니다.</h2></div>
+        <div class="work-note-copy">
+          <p>누구의 작업이든 공개하기 어려운 정보가 있습니다. 이곳에서는 사이트 주소나 내부 데이터를 전부 드러내는 대신, <strong>어떤 불편함을 어떻게 판단하고 수정했는지</strong>를 설명합니다.</p>
+          <p>진행 중인 일은 진행 중이라고 적고, 실제로 확인하지 못한 성과는 숫자로 꾸미지 않습니다. 새로운 사례도 충분히 정리할 수 있을 때 하나씩 추가합니다.</p>
+          <div class="work-note-actions">
+            <a href="/about/">일하는 기준 알아보기 ↗</a>
+            <a href="mailto:heavenis0113@gmail.com?subject=DECHIVE%20Studio%20Work%20%EB%AC%B8%EC%9D%98">작업 관련 문의 ↗</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-
-  <footer class="studio-footer" role="contentinfo">
+<footer class="studio-footer" role="contentinfo">
   <div class="studio-frame studio-footer-inner">
     <div class="studio-footer-identity"><a class="studio-footer-wordmark" href="/">DECHIVE <span>STUDIO</span></a><span class="studio-footer-tagline">Ideas for a More Open Tomorrow.</span></div>
     <nav aria-label="하단 메뉴"><a href="/#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="/book/">Book</a></nav>
     <p class="studio-copyright">© <span id="copyright-year">2026</span> DECHIVE.</p>
   </div>
 </footer>
-  <script src="/script.js"></script>
   <script src="/studio-v2.js" defer></script>
 </body>
 </html>
