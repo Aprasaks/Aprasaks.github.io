@@ -27,6 +27,72 @@
 .cta{background:linear-gradient(110deg,#26231f,#1a1a1b);padding:90px 0;color:#f5f2ec}.cta-inner{display:flex;justify-content:space-between;gap:30px;align-items:center}.cta h2{font-family:var(--serif);font-weight:500;line-height:1.45;font-size:clamp(31px,2.9vw,44px);margin:0 0 15px}.cta p{color:#bfbdb9;font-size:15px;line-height:1.85;margin:0}.cta .button{white-space:nowrap}.footer{background:#141516;color:#999994;border-top:1px solid var(--hair)}.footer .shell{min-height:93px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:12px}.footer .logo{font-size:18px;color:#fff}.footer-links{display:flex;align-items:center;gap:20px}.footer-links a:hover{color:var(--white)}
 @media(max-width:1180px){.shell{width:calc(100% - 70px)}.header .nav{gap:18px}.hero-grid{grid-template-columns:55% 45%}.hero h1{font-size:clamp(38px,4.3vw,56px)}.hero-art{margin-right:-85px;margin-left:-60px}.interaction-hint{right:45px}}@media(max-width:780px){.shell{width:calc(100% - 38px)}.header{height:68px}.logo{font-size:20px}.menu-toggle{display:block}.nav{display:none!important;position:absolute;top:68px;left:0;right:0;background:#1b1c1d;border-bottom:1px solid var(--hair);padding:22px;flex-direction:column;align-items:stretch!important;gap:19px!important}.nav.open{display:flex!important}.hero-grid{grid-template-columns:1fr;min-height:0}.hero-copy{padding:60px 0 0}.hero h1{font-size:clamp(35px,8.4vw,50px);margin:27px 0 22px;line-height:1.48}.hero h1 em{white-space:normal}.hero-lead{font-size:15px;line-height:1.83;margin-bottom:25px}.button{font-size:13px;gap:16px;min-height:52px}.hero-art{height:340px;margin:-15px -30px 0;overflow:visible}.interaction-hint{bottom:14px;right:35px;font-size:10px}.hero-steps .shell{grid-template-columns:repeat(2,1fr)}.step-mini{padding:14px 6px;min-height:92px;gap:10px}.step-mini:nth-child(2){border-right:0}.step-mini:nth-child(-n+2){border-bottom:1px solid var(--hair)}.step-mini span{font-size:11px}.section{padding:76px 0}.section-top,.method-grid,.trust-grid{display:block}.section h2{font-size:32px}.section-top p{margin-top:20px!important;font-size:14px!important}.method-tabs{display:grid;grid-template-columns:1fr 1fr}.method-tab{min-height:132px;padding:19px 13px;display:block;border-right:1px solid #d9d2c5}.method-tab:nth-child(2){border-right:0}.method-tab strong{font-size:17px}.method-visual{height:300px;border-left:0;border-top:1px solid #d9d2c5}.offer-grid{grid-template-columns:1fr}.offer-card{min-height:0;padding:30px 15px}.offer-card:not(:last-child){border-right:0;border-bottom:1px solid var(--hair)}.offer-card p{flex:auto}.trust .trust-content{padding-left:0;border-left:0;margin-top:23px}.cta-inner{display:block}.cta .button{margin-top:27px}.footer .shell{min-height:125px;display:flex;flex-wrap:wrap;padding:20px 0}.footer-links{gap:13px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Quiet editorial design: restrained typography, low-chrome actions, meaningful motion. */
+:root{--bg:#17181a;--bg2:#1b1c1e;--white:#f0eee9;--gold:#d3bfa3;--gold2:#baa68b;--muted:#b9b6af;--hair:rgba(235,230,220,.13)}
+body{letter-spacing:-.025em}
+.header{height:76px;background:#17181a;border-bottom-color:rgba(235,230,220,.1)}
+.logo{font-size:20px;letter-spacing:.18em}
+.nav{gap:28px;font-size:13px}
+.nav-cta{border:1px solid #756e65;border-radius:3px;background:transparent;color:#ddd7ce;padding:10px 19px;font-weight:500}
+.nav-cta:hover{background:rgba(243,237,227,.06);color:#f6f1e8;transform:none}
+.hero{background:radial-gradient(ellipse at 76% 67%,rgba(187,167,142,.095),transparent 40%),linear-gradient(115deg,#17181a,#1c1d1f 64%,#171819)}
+.hero-grid{grid-template-columns:49% 51%;min-height:550px}
+.hero-copy{padding:14px 0}
+.hero .eyebrow{font-size:12px;letter-spacing:.02em;color:#c7b69e;gap:13px}
+.hero .eyebrow::before{width:25px;opacity:.75}
+.hero h1{font-size:clamp(32px,3.1vw,45px);font-weight:500;line-height:1.53;letter-spacing:-.055em;margin:27px 0 24px;max-width:640px}
+.hero h1 em{color:#d8c2a4;white-space:normal}
+.hero-lead{font-size:14px;max-width:450px;line-height:1.92;color:#bab9b5;margin-bottom:28px}
+.actions{gap:12px}
+.button{gap:18px;min-height:43px;padding:0 16px;font-size:12.5px;font-weight:500;border-radius:3px;border-color:#6d6b66;background:transparent;transition:background .2s,border-color .2s,color .2s}
+.button:hover{transform:none;border-color:#c4b7a5;background:rgba(244,239,230,.05)}
+.button.primary{background:#d5c3a7;border-color:#d5c3a7;color:#242322;font-weight:600}
+.button.primary:hover{background:#e0d1b9;border-color:#e0d1b9}
+.hero-art{height:550px;margin-right:-54px;margin-left:-32px}
+.hero-art::after{opacity:.54;filter:blur(48px)}
+.interaction-hint{right:22px;bottom:32px;color:#aeaaa3;font-size:11px}
+.interaction-hint:empty{display:none}
+.hero-steps .step-mini{min-height:83px;padding:14px 18px;gap:15px}
+.step-mini svg{width:23px;height:23px;flex-basis:23px}
+.step-mini strong{font-size:13px}
+.step-mini span{font-size:11px}
+.section{padding:88px 0}
+.section h2{font-size:clamp(29px,2.7vw,38px);line-height:1.5}
+.section-top p{font-size:14px}
+.method-grid{margin-top:38px;min-height:360px}
+.method-tab{padding:20px 27px}
+.method-tab strong{font-size:18px}
+.method-tab small{font-size:12px}
+.offer-grid{margin-top:36px}
+.offer-card{min-height:256px;padding:32px 24px;gap:15px}
+.offer-card h3{font-size:22px}
+.offer-card p{font-size:13px}
+.trust p{font-size:14px}
+.cta{padding:76px 0}
+.cta h2{font-size:clamp(27px,2.6vw,37px)}
+@media(max-width:1180px){
+ .hero-grid{grid-template-columns:51% 49%}
+ .hero h1{font-size:clamp(30px,3.7vw,40px)}
+ .hero-art{margin-right:-65px;margin-left:-35px}
+}
+@media(max-width:780px){
+ .header{height:68px}
+ .logo{font-size:19px}
+ .nav{top:68px}
+ .hero-grid{grid-template-columns:1fr;min-height:0}
+ .hero-copy{padding:51px 0 10px}
+ .hero h1{font-size:clamp(29px,7.5vw,36px);line-height:1.49;margin:23px 0 19px}
+ .hero-lead{font-size:14px;line-height:1.82;margin-bottom:25px}
+ .hero-art{height:305px;margin:-5px -24px 0}
+ .button{min-height:44px;font-size:12px}
+ .step-mini{min-height:78px}
+ .section{padding:70px 0}
+ .section h2{font-size:28px}
+ .method-tab strong{font-size:17px}
+ .cta h2{font-size:28px}
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -37,7 +103,7 @@
  <a class="logo" href="/" aria-label="DECHIVE 홈">DECHIVE<span>.</span></a>
  <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="메뉴 열기">☰</button>
  <nav class="nav" id="main-nav" aria-label="주요 메뉴">
-  <a href="#method">설계 방식</a><a href="/education/">교육·워크숍</a><a href="/work/">프로젝트</a><a href="/about/">소개</a><a class="nav-cta" href="#contact">문의하기</a>
+  <a href="#method">설계 방식</a><a href="/education/">교육·워크숍</a><a href="/work/">프로젝트</a><a href="/about/">소개</a><a class="nav-cta" href="#contact">문의</a>
  </nav>
  </div>
 </header>
@@ -45,12 +111,12 @@
 <section class="hero" aria-labelledby="hero-title">
  <div class="shell hero-grid">
   <div class="hero-copy">
-   <p class="eyebrow">생각의 구조를 다시 설계합니다</p>
-   <h1 id="hero-title">복잡한 문제를,<br><em>해결 가능한 구조로</em><br>다시 설계합니다.</h1>
-   <p class="hero-lead">DECHIVE는 생각과 일, 배움의 문제를 깊이 관찰하고 분석합니다. 새로운 관점을 찾고, 실행 가능한 방법으로 연결합니다.</p>
+   <p class="eyebrow">생각과 문제의 구조를 설계합니다</p>
+   <h1 id="hero-title">복잡한 문제를,<br><em>풀 수 있는 구조로 설계합니다.</em></h1>
+   <p class="hero-lead">DECHIVE는 생각과 일, 배움에서 마주하는 문제를 관찰하고 분석합니다. 새로운 관점과 실행 가능한 방법을 함께 설계합니다.</p>
    <div class="actions">
-    <a class="button primary" href="/education/#education-contact">교육·워크숍 문의하기 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
-    <a class="button" href="#method">설계 방식 보기 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
+    <a class="button primary" href="/education/#education-contact">교육 문의</a>
+    <a class="button" href="#method">설계 방식</a>
    </div>
   </div>
   <div class="hero-art" id="assembly" tabindex="0" role="button" aria-pressed="false" aria-label="분해와 재조립을 자동 반복하는 구조물. 클릭하면 일시정지합니다.">
@@ -78,7 +144,7 @@
     </g>
     <g id="panels"></g>
    </svg>
-   <div class="interaction-hint">자동 분해 · 재조립</div>
+   <div class="interaction-hint" aria-live="polite"></div>
   </div>
  </div>
  <div class="hero-steps"><div class="shell">
@@ -146,7 +212,7 @@
  const hint=art.querySelector('.interaction-hint');
  const clamp01=v=>Math.max(0,Math.min(1,v));
  const smooth=v=>{const t=clamp01(v);return t*t*(3-2*t);};
- const period=9200;
+ const period=11000;
  function automaticProgress(time){
   const phase=(time%period)/period;
   if(phase<.06)return .06;
@@ -155,7 +221,7 @@
   if(phase<.94)return 1-.94*smooth((phase-.57)/.37);
   return .06;
  }
- function draw(v){panels.forEach((p,i)=>{const ease=clamp((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
+ function draw(v){const core=document.getElementById('core');if(core){core.setAttribute('opacity',(0.25+0.62*v).toFixed(3));core.setAttribute('transform',`translate(${413*(1-(0.94+0.06*v))} ${312*(1-(0.94+0.06*v))}) scale(${(0.94+0.06*v).toFixed(4)})`);}panels.forEach((p,i)=>{const ease=clamp((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
  function tick(now){
   if(!lastFrame)lastFrame=now;
   const delta=Math.max(0,Math.min(64,now-lastFrame));
@@ -175,7 +241,7 @@
   function updateControl(){
    art.setAttribute('aria-pressed',String(paused));
    art.setAttribute('aria-label',paused?'구조물 애니메이션 다시 재생하기':'구조물 애니메이션 일시정지하기');
-   hint.textContent=paused?'정지됨 · 클릭해 재생':'자동 분해 · 재조립';
+   hint.textContent=paused?'일시정지 · 클릭하면 재생':'';
   }
   art.addEventListener('click',()=>{paused=!paused;updateControl();});
   art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();art.click();}});
