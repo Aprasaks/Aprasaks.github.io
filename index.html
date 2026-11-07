@@ -1,183 +1,163 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DECHIVE STUDIO — 하나의 브랜드, 서로 다른 이야기</title>
-  <meta name="description" content="지식을 읽고, 최신 AI 소식을 확인하고, 라디오를 듣고, 만화에 공감하세요. DECHIVE의 다양한 채널과 작업, 교육을 만나는 공식 Studio.">
-  <meta name="robots" content="index, follow">
-  <meta name="naver-site-verification" content="e5f4e93941503c95634712aa25b235a583672cd4">
-  <link rel="canonical" href="https://studio.dechive.dev/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="DECHIVE STUDIO — 무엇을 찾고 계신가요?">
-  <meta property="og:description" content="하나의 브랜드, 서로 다른 이야기. 읽고, 듣고, 공감하고, 함께 만드는 DECHIVE의 공간들.">
-  <meta property="og:url" content="https://studio.dechive.dev/">
-  <meta property="og:site_name" content="DECHIVE STUDIO">
-  <meta property="og:locale" content="ko_KR">
-  <meta property="og:image" content="https://studio.dechive.dev/images/dechive-studio-hero-clean.webp">
-  <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/studio-v2.css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://studio.dechive.dev/#website","url":"https://studio.dechive.dev/","name":"DECHIVE STUDIO","inLanguage":"ko-KR"},{"@type":"Organization","name":"DECHIVE","url":"https://studio.dechive.dev/","sameAs":["https://dechive.dev/","https://www.youtube.com/@dechive"]}]}
-  </script>
-  <link rel="stylesheet" href="/studio-v2-shell.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151619">
+<meta name="description" content="DECHIVE는 생각과 일, 배움에서 마주하는 복잡한 문제를 관찰하고 분석해 실행 가능한 구조로 설계합니다. 교육·워크숍과 실제 프로젝트를 살펴보세요.">
+<meta name="robots" content="index, follow">
+<meta name="naver-site-verification" content="e5f4e93941503c95634712aa25b235a583672cd4">
+<title>DECHIVE | 생각과 문제의 구조를 설계합니다</title>
+<link rel="canonical" href="https://studio.dechive.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DECHIVE">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="DECHIVE | 생각과 문제의 구조를 설계합니다">
+<meta property="og:description" content="복잡한 문제를 해결 가능한 구조로 다시 설계합니다. 관찰과 분석을 통해 배우고, 만들고, 실행하는 DECHIVE.">
+<meta property="og:url" content="https://studio.dechive.dev/">
+<link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64.png">
+<style>
+:root{color-scheme:dark;--bg:#151619;--bg2:#1a1b1d;--white:#f6f2eb;--gold:#e4cb9f;--gold2:#c9aa80;--muted:#b8b8b4;--hair:rgba(239,233,220,.17);--serif:'Noto Serif CJK KR','NanumMyeongjo',serif;--sans:'Noto Sans CJK KR','NanumSquare','Apple SD Gothic Neo',sans-serif}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--sans);letter-spacing:-.035em;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}a,button{outline-offset:5px}::selection{background:#d5b989;color:#181818}.skip{position:absolute;top:-60px;left:15px;z-index:99;background:#fff;color:#111;padding:12px}.skip:focus{top:10px}.shell{width:min(1440px,calc(100% - 112px));margin-inline:auto}
+.header{height:88px;border-bottom:1px solid var(--hair);position:relative;z-index:10;background:#151619}.header .shell{height:100%;display:flex;align-items:center;justify-content:space-between;gap:28px}.logo{font-family:Georgia,'Times New Roman',serif;letter-spacing:.22em;font-size:23px;font-weight:500;line-height:1}.logo span{color:var(--gold)}.nav{display:flex;align-items:center;gap:35px;font-size:14px;color:#dedbd5}.nav a:not(.nav-cta){transition:color .18s}.nav a:not(.nav-cta):hover{color:var(--gold)}.nav-cta{padding:13px 23px;border-radius:999px;background:#e9d8b8;color:#242120;font-size:13px;font-weight:750;transition:background .2s,transform .2s}.nav-cta:hover{background:#f5e8d0;transform:translateY(-2px)}.menu-toggle{display:none;background:none;border:1px solid var(--hair);color:white;padding:9px 11px;border-radius:5px}
+.hero{background:radial-gradient(ellipse at 73% 64%,rgba(184,155,111,.16),transparent 36%),linear-gradient(120deg,#141517 0%,#1a1b1d 66%,#151617 100%);position:relative;overflow:hidden}.hero-grid{min-height:618px;display:grid;grid-template-columns:53% 47%;align-items:center;position:relative}.hero-copy{padding:35px 0 30px;position:relative;z-index:2}.hero .eyebrow{font-size:14px;letter-spacing:.015em;color:var(--gold);display:flex;gap:17px;align-items:center;font-family:var(--serif);font-weight:400}.hero .eyebrow::before{content:'';display:block;width:38px;height:1px;background:var(--gold)}h1,h2,h3,p{margin-top:0}.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(42px,4.05vw,65px);line-height:1.51;letter-spacing:-.07em;word-break:keep-all;margin:37px 0 34px}.hero h1 em{color:var(--gold);font-style:normal;white-space:nowrap}.hero-lead{color:#cecfcc;max-width:510px;font-size:17px;line-height:2;word-break:keep-all;margin-bottom:38px}.actions{display:flex;align-items:center;gap:13px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;gap:36px;justify-content:space-between;min-height:57px;padding:0 23px;border:1px solid #777777;border-radius:7px;background:transparent;color:var(--white);font-size:14px;font-weight:550;transition:background .2s,transform .2s,border-color .2s}.button:hover{transform:translateY(-3px);border-color:#ded4c6;background:#ffffff0b}.button.primary{background:#e9d6b3;color:#24201a;border-color:#e9d6b3;font-weight:700}.button.primary:hover{background:#f3e4c9}.button svg{width:19px;height:19px}.hero-art{position:relative;height:610px;margin-right:-70px;margin-left:-48px;z-index:1;isolation:isolate;cursor:pointer;user-select:none}.hero-art::before{content:'';position:absolute;inset:11% 5% 0;background:radial-gradient(ellipse at 55% 72%,rgba(224,193,144,.12),transparent 50%);filter:blur(15px);pointer-events:none}.hero-art::after{content:'';position:absolute;bottom:48px;left:18%;right:4%;height:70px;border-radius:50%;background:rgba(211,180,130,.17);filter:blur(38px);pointer-events:none}.hero-art svg{width:100%;height:100%;position:relative;z-index:1;overflow:visible;filter:drop-shadow(0 6px 24px rgba(0,0,0,.20))}.interaction-hint{font-size:12px;color:#999991;position:absolute;bottom:45px;right:34px;z-index:2;letter-spacing:0}.interaction-hint span{display:inline-block;margin-right:5px;color:#d6b68c}.hero-steps{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}.hero-steps .shell{display:grid;grid-template-columns:repeat(4,1fr)}.step-mini{min-height:100px;display:flex;align-items:center;gap:20px;padding:18px 20px}.step-mini:not(:last-child){border-right:1px solid var(--hair)}.step-mini svg{width:26px;height:26px;flex:0 0 26px;stroke:#dac4a2;fill:none;stroke-width:1.2}.step-mini strong{font-size:15px;font-weight:600;display:block;margin-bottom:4px}.step-mini span{font-size:12px;color:#969792;display:block;line-height:1.5}
+.section{padding:110px 0}.intro{background:#f4f0e9;color:#282824}.section-top{display:grid;grid-template-columns:46% 54%;gap:55px;align-items:end}.kicker{color:#9c7c55;letter-spacing:.06em;font-size:12px;font-weight:750;margin-bottom:18px}.section h2{font-size:clamp(33px,3.05vw,46px);line-height:1.47;font-weight:500;font-family:var(--serif);letter-spacing:-.07em;word-break:keep-all;margin:0}.intro .section-top p{font-size:16px;line-height:1.95;color:#6d6b64;max-width:510px;margin:0}.method-grid{margin-top:48px;border:1px solid #d9d2c5;display:grid;grid-template-columns:43% 57%;min-height:380px}.method-tabs{display:flex;flex-direction:column}.method-tab{text-align:left;appearance:none;background:none;border:0;border-bottom:1px solid #d9d2c5;color:#45413a;padding:24px 34px;display:grid;grid-template-columns:45px 1fr;align-items:center;gap:13px;cursor:pointer;flex:1;transition:background .25s}.method-tab:last-child{border-bottom:0}.method-tab:hover,.method-tab[aria-selected="true"]{background:#e8dfcf}.method-tab .num{font-size:12px;color:#937958}.method-tab strong{font-size:21px;font-family:var(--serif);font-weight:600}.method-tab small{font-size:13px;line-height:1.75;color:#77756f;display:block;margin-top:5px}.method-visual{background:linear-gradient(145deg,#e9e3d9,#dcd7ce);position:relative;min-height:350px;overflow:hidden;border-left:1px solid #d2cabd}.method-visual svg{height:100%;width:100%;position:absolute;inset:0}.method-visual .wire{stroke:#a6a195;fill:none;stroke-width:1}.method-visual .node{fill:#fbf8ef;stroke:#8e8a7f;stroke-width:1.2}.method-visual .active-node{fill:#dcc29d;stroke:#a58558}.method-visual .flow{stroke:#957757;fill:none;stroke-width:2;transition:opacity .3s}.method-caption{position:absolute;left:28px;bottom:20px;color:#7b776f;font-size:12px;z-index:2}
+.offer{background:#171819;color:var(--white)}.offer .section-top p{color:#aeaca8;font-size:16px;line-height:1.9;max-width:500px;margin:0}.offer-grid{margin-top:45px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}.offer-card{padding:40px 30px 35px;min-height:288px;display:flex;flex-direction:column;gap:22px;transition:background .2s}.offer-card:not(:last-child){border-right:1px solid var(--hair)}.offer-card:hover{background:#242526}.offer-card .tag{font-size:12px;color:#d5b992}.offer-card h3{font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.35;margin:0}.offer-card p{color:#aeadab;font-size:14px;line-height:1.85;margin:0;flex:1}.offer-card a{font-size:14px;color:#ead1a9;align-self:flex-start}.offer-card a:hover{text-decoration:underline}
+.trust{background:#f4f0e9;color:#252525}.trust-grid{display:grid;grid-template-columns:40% 60%;gap:40px;align-items:start}.trust h2{max-width:440px}.trust .trust-content{padding-left:60px;border-left:1px solid #cfc9bb}.trust p{font-size:16px;color:#5b5b55;line-height:2;max-width:610px}.trust p strong{color:#262626;font-weight:650}.inline-link{display:inline-flex;gap:25px;border-bottom:1px solid #a18a69;padding-bottom:8px;color:#51422e;font-size:14px;font-weight:600;margin-top:8px}
+.cta{background:linear-gradient(110deg,#26231f,#1a1a1b);padding:90px 0;color:#f5f2ec}.cta-inner{display:flex;justify-content:space-between;gap:30px;align-items:center}.cta h2{font-family:var(--serif);font-weight:500;line-height:1.45;font-size:clamp(31px,2.9vw,44px);margin:0 0 15px}.cta p{color:#bfbdb9;font-size:15px;line-height:1.85;margin:0}.cta .button{white-space:nowrap}.footer{background:#141516;color:#999994;border-top:1px solid var(--hair)}.footer .shell{min-height:93px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:12px}.footer .logo{font-size:18px;color:#fff}.footer-links{display:flex;align-items:center;gap:20px}.footer-links a:hover{color:var(--white)}
+@media(max-width:1180px){.shell{width:calc(100% - 70px)}.header .nav{gap:18px}.hero-grid{grid-template-columns:55% 45%}.hero h1{font-size:clamp(38px,4.3vw,56px)}.hero-art{margin-right:-85px;margin-left:-60px}.interaction-hint{right:45px}}@media(max-width:780px){.shell{width:calc(100% - 38px)}.header{height:68px}.logo{font-size:20px}.menu-toggle{display:block}.nav{display:none!important;position:absolute;top:68px;left:0;right:0;background:#1b1c1d;border-bottom:1px solid var(--hair);padding:22px;flex-direction:column;align-items:stretch!important;gap:19px!important}.nav.open{display:flex!important}.hero-grid{grid-template-columns:1fr;min-height:0}.hero-copy{padding:60px 0 0}.hero h1{font-size:clamp(35px,8.4vw,50px);margin:27px 0 22px;line-height:1.48}.hero h1 em{white-space:normal}.hero-lead{font-size:15px;line-height:1.83;margin-bottom:25px}.button{font-size:13px;gap:16px;min-height:52px}.hero-art{height:340px;margin:-15px -30px 0;overflow:visible}.interaction-hint{bottom:14px;right:35px;font-size:10px}.hero-steps .shell{grid-template-columns:repeat(2,1fr)}.step-mini{padding:14px 6px;min-height:92px;gap:10px}.step-mini:nth-child(2){border-right:0}.step-mini:nth-child(-n+2){border-bottom:1px solid var(--hair)}.step-mini span{font-size:11px}.section{padding:76px 0}.section-top,.method-grid,.trust-grid{display:block}.section h2{font-size:32px}.section-top p{margin-top:20px!important;font-size:14px!important}.method-tabs{display:grid;grid-template-columns:1fr 1fr}.method-tab{min-height:132px;padding:19px 13px;display:block;border-right:1px solid #d9d2c5}.method-tab:nth-child(2){border-right:0}.method-tab strong{font-size:17px}.method-visual{height:300px;border-left:0;border-top:1px solid #d9d2c5}.offer-grid{grid-template-columns:1fr}.offer-card{min-height:0;padding:30px 15px}.offer-card:not(:last-child){border-right:0;border-bottom:1px solid var(--hair)}.offer-card p{flex:auto}.trust .trust-content{padding-left:0;border-left:0;margin-top:23px}.cta-inner{display:block}.cta .button{margin-top:27px}.footer .shell{min-height:125px;display:flex;flex-wrap:wrap;padding:20px 0}.footer-links{gap:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
 <body>
-<a class="skip-link" href="#main">본문으로 바로가기</a>
-<header class="studio-header" role="banner">
-  <div class="studio-frame studio-header-inner">
-    <a class="studio-wordmark" href="/" aria-label="DECHIVE STUDIO 홈"><strong>DECHIVE</strong><span>STUDIO</span></a>
-    <nav class="studio-desktop-nav" aria-label="주요 메뉴">
-      <a class="is-current" aria-current="page" href="/#explore">Explore</a>
-      <a href="/work/">Work</a>
-      <a href="/education/">Education</a>
-      <a href="/about/">About</a>
-    </nav>
-    <a class="studio-header-home-link" href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">dechive.dev <span aria-hidden="true">↗</span></a>
-    <details class="studio-mobile-nav">
-      <summary aria-label="메뉴 열기"><span></span><span></span><span></span></summary>
-      <nav aria-label="모바일 메뉴">
-        <a href="/#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">dechive.dev ↗</a>
-      </nav>
-    </details>
-  </div>
+<a class="skip" href="#main">본문으로 바로가기</a>
+<header class="header" id="top">
+ <div class="shell">
+ <a class="logo" href="/" aria-label="DECHIVE 홈">DECHIVE<span>.</span></a>
+ <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="메뉴 열기">☰</button>
+ <nav class="nav" id="main-nav" aria-label="주요 메뉴">
+  <a href="#method">설계 방식</a><a href="/education/">교육·워크숍</a><a href="/work/">프로젝트</a><a href="/about/">소개</a><a class="nav-cta" href="#contact">문의하기</a>
+ </nav>
+ </div>
 </header>
 <main id="main">
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-photo" aria-hidden="true"></div>
-    <div class="wrap hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">IDEAS FOR A MORE OPEN TOMORROW</p>
-        <h1 id="hero-title">무엇을 찾고 계신가요?</h1>
-        <p>DECHIVE는 다양한 플랫폼을 통해<br class="desktop-break"> 지식, 소식, 생각, 그리고 일상의 이야기를 전합니다.<br class="desktop-break"> 원하는 방식으로 DECHIVE를 만나보세요.</p>
-        <a class="hero-cta" href="#explore">DECHIVE 둘러보기 <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-side-note" aria-hidden="true"><span>GOOD QUESTIONS</span><span>BETTER THINKING</span><span>A KINDER TOMORROW</span></div>
-    </div>
-  </section>
-
-  <section id="explore" class="channels-section wrap" aria-labelledby="channels-title">
-    <div class="section-heading">
-      <div><p class="eyebrow">01 / EXPLORE DECHIVE</p><h2 id="channels-title">각자의 방식으로 만나는 DECHIVE</h2></div>
-      <p>읽고, 듣고, 공감하고, 생각하는 여섯 개의 입구.<br>관심 있는 이야기부터 편하게 시작하세요.</p>
-    </div>
-
-    <div class="channel-group" aria-label="지식과 콘텐츠 채널">
-      <p class="group-label"><span>CONTENTS</span><span>READ · LEARN · LISTEN</span></p>
-      <div class="channel-grid">
-        <article class="channel-card card-knowledge">
-          <div class="card-image" aria-hidden="true"></div>
-          <div class="card-copy">
-            <div class="card-mark mark-dechive">D<span>.</span></div>
-            <h3>DECHIVE.dev</h3>
-            <p class="card-subtitle">Knowledge · AI Update</p>
-            <p class="card-description">AI를 이해하는 지식부터<br>새롭게 달라진 소식까지.</p>
-            <div class="card-actions double">
-              <a href="https://dechive.dev/knowledge" target="_blank" rel="noopener noreferrer">Knowledge <span aria-hidden="true">↗</span></a>
-              <a href="https://dechive.dev/ai-update" target="_blank" rel="noopener noreferrer">AI Update <span aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-        </article>
-
-        <a class="channel-card card-naver linked-card" href="https://blog.naver.com/dehcive-ai" target="_blank" rel="noopener noreferrer" aria-label="DECHIVE 네이버 블로그 열기">
-          <div class="card-image" aria-hidden="true"></div>
-          <div class="card-copy">
-            <div class="card-mark mark-naver">N</div>
-            <h3>NAVER Blog</h3>
-            <p class="card-subtitle">질문으로 이해하는 글</p>
-            <p class="card-description">익숙한 궁금증에서 시작해<br>쉽게 설명하는 AI 이야기.</p>
-            <span class="card-action">블로그 바로가기 <span class="circle-arrow" aria-hidden="true">↗</span></span>
-          </div>
-        </a>
-
-        <a class="channel-card card-radio linked-card" href="https://www.youtube.com/@dechive" target="_blank" rel="noopener noreferrer" aria-label="DECHIVE 유튜브 모닝 AI 라디오 채널 열기">
-          <div class="card-image" aria-hidden="true"></div>
-          <div class="card-copy">
-            <div class="card-mark mark-youtube"><span aria-hidden="true">▶</span></div>
-            <h3>YouTube <span class="line">Morning Radio</span></h3>
-            <p class="card-subtitle">몰라도 되지만, 알면 도움이 되는</p>
-            <p class="card-description">아침에 가볍게 듣는<br>3~4분의 AI 이야기.</p>
-            <span class="card-action">라디오 들으러 가기 <span class="circle-arrow" aria-hidden="true">↗</span></span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="channel-group channel-group-social" aria-label="소셜 채널">
-      <p class="group-label"><span>SOCIAL</span><span>FEEL · CONNECT · THINK</span></p>
-      <div class="channel-grid">
-        <article class="channel-card card-instagram">
-          <div class="card-image" aria-hidden="true"></div>
-          <div class="card-copy">
-            <div class="card-mark mark-instagram" aria-label="Instagram"><span></span></div>
-            <h3>Instagram</h3>
-            <p class="card-subtitle">DECHIVE 일상 만화</p>
-            <p class="card-description">한 번쯤 겪어봤을<br>우리의 사소하고 웃긴 순간들.</p>
-            <span class="card-action muted">캐릭터 만화 준비 중 <span aria-hidden="true">↗</span></span>
-          </div>
-        </article>
-
-        <article class="channel-card card-threads">
-          <div class="card-image" aria-hidden="true"></div>
-          <div class="card-copy">
-            <div class="card-mark mark-threads" aria-label="Threads">@</div>
-            <h3>Threads</h3>
-            <p class="card-subtitle">만화에서 이어지는 대화</p>
-            <p class="card-description">같은 캐릭터, 다른 이야기.<br>공감이 대화가 되는 공간.</p>
-            <span class="card-action muted">계정 링크 확인 중 <span aria-hidden="true">↗</span></span>
-          </div>
-        </article>
-
-        <article class="channel-card card-x">
-          <div class="card-image" aria-hidden="true"></div>
-          <div class="card-copy">
-            <div class="card-mark mark-x">𝕏</div>
-            <h3>X</h3>
-            <p class="card-subtitle">DECHIVE의 생각과 기록</p>
-            <p class="card-description">어떤 질문을 던지고,<br>무엇을 확인하고 만드는지.</p>
-            <span class="card-action muted">계정 링크 확인 중 <span aria-hidden="true">↗</span></span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="together" aria-labelledby="together-title">
-    <div class="wrap together-grid">
-      <div class="together-intro">
-        <p class="eyebrow">02 / WORK & LEARNING</p>
-        <h2 id="together-title">함께 일하거나<br>배우고 싶다면</h2>
-        <p>콘텐츠 너머의 실제 프로젝트와 교육.<br>DECHIVE가 직접 만들고 경험한 일을 소개합니다.</p>
-      </div>
-      <div class="together-cards">
-        <a class="together-card together-work" href="/work/">
-          <div class="together-photo" aria-hidden="true"></div>
-          <div class="together-copy"><span class="tiny-label">BUILD</span><h3>Work</h3><p>필요한 것에서 시작해<br>직접 만든 프로젝트</p><strong>프로젝트 보기 <span aria-hidden="true">↗</span></strong></div>
-        </a>
-        <a class="together-card together-education" href="/education/">
-          <div class="together-photo" aria-hidden="true"></div>
-          <div class="together-copy"><span class="tiny-label">LEARN</span><h3>Education</h3><p>어렵지 않게 이해하고<br>직접 활용하는 AI 교육</p><strong>교육 알아보기 <span aria-hidden="true">↗</span></strong></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="closing wrap" aria-label="DECHIVE 소개">
-    <div><span class="eyebrow">A NOTE FROM DECHIVE</span><p>AI는 답을 만듭니다. <em>우리는 그 답을 검증합니다.</em></p></div>
-    <a href="/about/">DECHIVE에 대해 더 알아보기 <span aria-hidden="true">↗</span></a>
-  </section>
-</main>
-<footer class="studio-footer" role="contentinfo">
-  <div class="studio-frame studio-footer-inner">
-    <div class="studio-footer-identity"><a class="studio-footer-wordmark" href="/">DECHIVE <span>STUDIO</span></a><span class="studio-footer-tagline">Ideas for a More Open Tomorrow.</span></div>
-    <nav aria-label="하단 메뉴"><a href="/#explore">Explore</a><a href="/work/">Work</a><a href="/education/">Education</a><a href="/about/">About</a><a href="/book/">Book</a></nav>
-    <p class="studio-copyright">© <span id="copyright-year">2026</span> DECHIVE.</p>
+<section class="hero" aria-labelledby="hero-title">
+ <div class="shell hero-grid">
+  <div class="hero-copy">
+   <p class="eyebrow">생각의 구조를 다시 설계합니다</p>
+   <h1 id="hero-title">복잡한 문제를,<br><em>해결 가능한 구조로</em><br>다시 설계합니다.</h1>
+   <p class="hero-lead">DECHIVE는 생각과 일, 배움의 문제를 깊이 관찰하고 분석합니다. 새로운 관점을 찾고, 실행 가능한 방법으로 연결합니다.</p>
+   <div class="actions">
+    <a class="button primary" href="/education/#education-contact">교육·워크숍 문의하기 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
+    <a class="button" href="#method">설계 방식 보기 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
+   </div>
   </div>
-</footer>
-<script src="/studio-v2.js" defer></script>
+  <div class="hero-art" id="assembly" tabindex="0" role="button" aria-pressed="false" aria-label="분해된 설계 구조를 조립해 보기. 마우스를 올리거나 엔터를 누르세요.">
+   <svg viewBox="0 0 810 630" role="img" aria-label="분리된 반투명 구조 패널이 재조립되는 모션그래픽">
+    <defs>
+      <radialGradient id="ambient"><stop offset="0" stop-color="#eccb98" stop-opacity=".31"/><stop offset=".57" stop-color="#c5ab83" stop-opacity=".07"/><stop offset="1" stop-color="#c5ab83" stop-opacity="0"/></radialGradient>
+      <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff4db" stop-opacity=".87"/><stop offset=".42" stop-color="#ede1cf" stop-opacity=".33"/><stop offset="1" stop-color="#f6e9c8" stop-opacity=".06"/></linearGradient>
+      <linearGradient id="tinted" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff6de" stop-opacity=".60"/><stop offset="1" stop-color="#a69579" stop-opacity=".08"/></linearGradient>
+      <linearGradient id="coretop"><stop offset="0" stop-color="#fff4de" stop-opacity=".79"/><stop offset="1" stop-color="#cfb48d" stop-opacity=".24"/></linearGradient>
+      <linearGradient id="coreleft"><stop offset="0" stop-color="#b69c78" stop-opacity=".11"/><stop offset="1" stop-color="#f9dfb0" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="coreright"><stop offset="0" stop-color="#fbe2b3" stop-opacity=".47"/><stop offset="1" stop-color="#fff6df" stop-opacity=".14"/></linearGradient>
+      <filter id="light"><feGaussianBlur stdDeviation="24"/></filter>
+      <filter id="soft"><feGaussianBlur stdDeviation="5"/></filter>
+    </defs>
+    <circle cx="411" cy="301" r="252" fill="url(#ambient)"/>
+    <g opacity=".30" stroke="#d9c4a3" fill="none" stroke-width=".65"><circle cx="411" cy="301" r="224" stroke-dasharray="2 9"/><path d="M100 302H722M410 50V570" stroke-dasharray="3 8" opacity=".25"/></g>
+    <ellipse cx="413" cy="552" rx="235" ry="30" fill="#deb77a" opacity=".22" filter="url(#light)"/>
+    <ellipse cx="413" cy="549" rx="150" ry="16" fill="#f0c991" opacity=".13" filter="url(#soft)"/>
+    <g id="core" opacity=".87">
+      <path d="M413 231L488 268 413 309 337 269Z" fill="url(#coretop)" stroke="#f7e4c7" stroke-opacity=".75" stroke-width="1.2"/>
+      <path d="M337 269L413 309 413 398 337 360Z" fill="url(#coreleft)" stroke="#e8d1ad" stroke-opacity=".69" stroke-width="1.2"/>
+      <path d="M413 309L488 268 488 360 413 398Z" fill="url(#coreright)" stroke="#fde9cf" stroke-opacity=".68" stroke-width="1.2"/>
+      <path d="M337 360L413 320 488 360M413 231V398" fill="none" stroke="#f8e5c6" opacity=".18"/>
+      <circle cx="413" cy="321" r="67" fill="#ffe2af" opacity=".28" filter="url(#light)"/>
+    </g>
+    <g id="panels"></g>
+   </svg>
+   <div class="interaction-hint"><span>↗</span> 마우스를 올려 조립하기</div>
+  </div>
+ </div>
+ <div class="hero-steps"><div class="shell">
+  <div class="step-mini"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 10V4h7M18 4h7v6M25 18v6h-7M10 24H3v-6"/></svg><div><strong>관찰</strong><span>문제의 본질을 봅니다</span></div></div>
+  <div class="step-mini"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M18 18l8 8"/></svg><div><strong>분석</strong><span>원인과 조건을 살핍니다</span></div></div>
+  <div class="step-mini"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="m2 14 12-8 12 8-12 8zM2 20l12 8 12-8"/></svg><div><strong>설계</strong><span>실행 가능한 방법을 만듭니다</span></div></div>
+  <div class="step-mini"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="m3 15 8 9L26 4"/></svg><div><strong>검증</strong><span>현실에 적용해 확인합니다</span></div></div>
+ </div></div>
+</section>
+<section class="section intro" id="method" aria-labelledby="method-title">
+ <div class="shell">
+  <div class="section-top"><div><p class="kicker">DECHIVE의 설계 방식</p><h2 id="method-title">정답을 바꾸기 전에,<br>문제를 보는 방식을 바꿉니다.</h2></div><p>반복되는 문제에는 우리가 미처 확인하지 못한 조건과 전제가 있을 수 있습니다. 먼저 문제를 제대로 이해한 다음, 실제로 시도할 수 있는 방법을 설계합니다.</p></div>
+  <div class="method-grid"><div class="method-tabs" role="tablist" aria-label="설계 과정">
+   <button type="button" class="method-tab" role="tab" data-step="0" aria-selected="true"><span class="num">01</span><span><strong>관찰</strong><small>무엇이 정말 문제인지 살펴봅니다.</small></span></button>
+   <button type="button" class="method-tab" role="tab" data-step="1" aria-selected="false"><span class="num">02</span><span><strong>분석</strong><small>막히는 이유와 숨은 전제를 찾습니다.</small></span></button>
+   <button type="button" class="method-tab" role="tab" data-step="2" aria-selected="false"><span class="num">03</span><span><strong>설계</strong><small>새로운 관점으로 해결 방법을 만듭니다.</small></span></button>
+   <button type="button" class="method-tab" role="tab" data-step="3" aria-selected="false"><span class="num">04</span><span><strong>검증</strong><small>작게 실행하고 결과를 확인합니다.</small></span></button>
+  </div><div class="method-visual" role="tabpanel" aria-label="설계 단계에 따라 재배열되는 관계도">
+   <svg id="diagram" viewBox="0 0 620 420" aria-hidden="true"><defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="#c9c2b6" stroke-opacity=".35" fill="none"/></pattern></defs><rect width="620" height="420" fill="url(#grid)"/><g id="diagram-lines"></g><g id="diagram-nodes"></g></svg>
+   <div class="method-caption">단계를 선택하면 요소의 관계가 바뀝니다.</div>
+  </div></div>
+ </div>
+</section>
+<section class="section offer" id="explore" aria-labelledby="offer-title">
+ <div class="shell">
+  <div class="section-top"><div><p class="kicker">DECHIVE가 하는 일</p><h2 id="offer-title">생각을 실제 변화로<br>연결하는 방법.</h2></div><p>하나의 분야에만 머물지 않습니다. 지금은 교육과 워크숍을 중심으로 일하고, 실제 프로젝트와 지식 콘텐츠를 통해 설계의 과정을 기록합니다.</p></div>
+  <div class="offer-grid">
+   <article class="offer-card"><span class="tag">가장 먼저 만나볼 서비스</span><h3>교육과 워크숍</h3><p>처음 배우는 사람도 스스로 이해하고 적용할 수 있도록 수업을 설계합니다. 기관·단체 출강을 협의할 수 있습니다.</p><a href="/education/">교육과정 살펴보기 ↗</a></article>
+   <article class="offer-card"><span class="tag">실제 작업 사례</span><h3>프로젝트 설계</h3><p>불편함을 발견하고 무엇을 바꿔야 할지 판단한 뒤, 구현과 검증까지 이어간 작업을 소개합니다.</p><a href="/work/">프로젝트 확인하기 ↗</a></article>
+   <article class="offer-card"><span class="tag">계속 쌓아가는 지식</span><h3>기록과 콘텐츠</h3><p>배우고 검증한 내용을 독립적으로 활용할 수 있는 지식으로 정리합니다. 책과 디지털 도구도 준비해 갑니다.</p><a href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">지식 아카이브 보기 ↗</a></article>
+  </div>
+ </div>
+</section>
+<section class="section trust" aria-labelledby="trust-title">
+ <div class="shell trust-grid">
+  <div><p class="kicker">왜 이렇게 설계할까요?</p><h2 id="trust-title">멋진 답보다,<br>직접 확인할 수 있는 과정.</h2></div>
+  <div class="trust-content"><p>어떤 설명이든 <strong>상대가 이해하고 직접 해볼 수 있어야</strong> 의미가 있다고 생각합니다. 강의와 프로젝트에서도 그 출발점을 찾고, 무엇을 시도했고 무엇이 달라졌는지 확인하는 과정을 중요하게 여깁니다.</p><p>모든 문제를 해결한다고 약속하지는 않습니다. 가능한 범위와 확인하지 못한 부분을 구분하고, 필요한 방법을 함께 찾습니다.</p><a class="inline-link" href="/about/">DECHIVE에 대해 더 알아보기 <span>↗</span></a></div>
+ </div>
+</section>
+<section class="cta" id="contact" aria-labelledby="contact-title"><div class="shell cta-inner"><div><h2 id="contact-title">교육이나 워크숍을 계획하고 계신가요?</h2><p>교육 대상과 목적, 희망 일정을 알려주세요. 가능한 방식부터 함께 검토하겠습니다.</p></div><a class="button primary" href="/education/#education-contact">교육·출강 문의하기 <span aria-hidden="true">↗</span></a></div></section>
+</main>
+<footer class="footer"><div class="shell"><a class="logo" href="/" aria-label="DECHIVE 홈">DECHIVE<span>.</span></a><div class="footer-links"><a href="/education/">교육</a><a href="/work/">프로젝트</a><a href="/about/">소개</a><a href="mailto:heavenis0113@gmail.com">이메일</a></div><span>© 2026 DECHIVE</span></div></footer>
+<script>
+(()=>{
+ 'use strict';
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const toggle=document.querySelector('.menu-toggle');const menu=document.getElementById('main-nav');
+ toggle.addEventListener('click',()=>{const next=!menu.classList.contains('open');menu.classList.toggle('open',next);toggle.setAttribute('aria-expanded',String(next));toggle.setAttribute('aria-label',next?'메뉴 닫기':'메뉴 열기');});
+ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
+ const NS='http://www.w3.org/2000/svg';const partsRoot=document.getElementById('panels');const art=document.getElementById('assembly');
+ const panels=[
+  {x:180,y:180,tx:344,ty:202,rot:-16,tr:-12,kind:'a'},
+  {x:632,y:134,tx:480,ty:210,rot:22,tr:13,kind:'b'},
+  {x:128,y:343,tx:329,ty:293,rot:-14,tr:-7,kind:'b'},
+  {x:675,y:294,tx:492,ty:306,rot:16,tr:10,kind:'a'},
+  {x:225,y:467,tx:350,ty:381,rot:-21,tr:-12,kind:'a'},
+  {x:604,y:461,tx:480,ty:384,rot:27,tr:12,kind:'a'},
+  {x:369,y:99,tx:416,ty:172,rot:-9,tr:0,kind:'a'},
+  {x:688,y:403,tx:540,ty:345,rot:27,tr:0,kind:'b'},
+  {x:143,y:260,tx:281,ty:310,rot:-15,tr:0,kind:'b'},
+ ];
+ function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));parent.appendChild(e);return e;}
+ const groups=panels.map((p,i)=>{const g=el('g',{},partsRoot);let pts=p.kind==='a'?'-54,-22 32,-57 112,-14 26,21':'-34,-51 26,-70 26,52 -34,67';el('polygon',{points:pts,fill:i%3===0?'url(#tinted)':'url(#glass)',stroke:'#f3dfbe','stroke-opacity':'.68','stroke-width':'1.0'},g);el('path',{d:p.kind==='a'?'M-54 -22 L-54 7 26 48 112 13 112 -14':'M26 -70 L45 -57 45 38 26 52',fill:'none',stroke:'#e9caa2','stroke-opacity':'.35','stroke-width':'.9'},g);return g;});
+ let progress=reduced?1:.08,target=progress,hovered=false,locked=false;
+ const clamp=(n)=>Math.max(0,Math.min(1,n));
+ function recalc(){const hero=document.querySelector('.hero');const r=hero.getBoundingClientRect();const scroll=clamp(-r.top/(Math.min(window.innerHeight,730)*.92));target=reduced?1:(hovered||locked?1:Math.max(.08,scroll*.86));}
+ function draw(v){panels.forEach((p,i)=>{const ease=clamp((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
+ function tick(){progress+= (target-progress)*.085;draw(progress);requestAnimationFrame(tick)}
+ art.addEventListener('mouseenter',()=>{hovered=true;recalc()});art.addEventListener('mouseleave',()=>{hovered=false;recalc()});
+ art.addEventListener('click',()=>{if(reduced)return;locked=!locked;art.setAttribute('aria-pressed',String(locked));document.querySelector('.interaction-hint').innerHTML=locked?'↗ 클릭하면 다시 분해됩니다':'<span>↗</span> 마우스를 올려 조립하기';recalc()});
+ art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();art.click();}});
+ window.addEventListener('scroll',recalc,{passive:true});window.addEventListener('resize',recalc);recalc();if(reduced){draw(1)}else{draw(progress);requestAnimationFrame(tick)}
+ const tabs=[...document.querySelectorAll('.method-tab')], lines=document.getElementById('diagram-lines'),nodes=document.getElementById('diagram-nodes');
+ const labels=['문제','조건','관점','선택','실행'];const configurations=[[[117,80],[484,87],[309,202],[160,317],[494,317]],[[100,210],[230,210],[355,210],[485,210],[485,325]],[[167,125],[422,125],[294,228],[294,335],[489,335]],[[110,155],[240,155],[365,155],[490,155],[490,300]]];
+ const unit=labels.map((label)=>{let g=el('g',{},nodes);el('rect',{x:-43,y:-24,width:86,height:48,rx:5,class:'node'},g);let txt=el('text',{'text-anchor':'middle',y:5,fill:'#433b30','font-size':'15','font-family':'Noto Sans CJK KR, sans-serif'},g);txt.textContent=label;return g});
+ const connectors=Array.from({length:4},()=>el('path',{class:'flow'},lines));
+ function setStep(k){tabs.forEach((b,i)=>b.setAttribute('aria-selected',String(i===k)));const p=configurations[k];unit.forEach((g,i)=>{g.setAttribute('transform',`translate(${p[i][0]} ${p[i][1]})`);g.querySelector('rect').setAttribute('class',i===Math.min(k+1,4)?'node active-node':'node')});const pairs=k===0?[[0,2],[1,2],[3,2],[4,2]]:[[0,1],[1,2],[2,3],[3,4]];pairs.forEach(([a,b],i)=>{const A=p[a],B=p[b];connectors[i].setAttribute('d',`M${A[0]} ${A[1]} L${B[0]} ${B[1]}`)})}
+ tabs.forEach((b,i)=>{b.addEventListener('mouseenter',()=>setStep(i));b.addEventListener('focus',()=>setStep(i));b.addEventListener('click',()=>setStep(i));});setStep(0);
+})();
+</script>
 </body>
 </html>
