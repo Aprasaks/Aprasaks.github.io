@@ -53,7 +53,7 @@
     <a class="button" href="#method">설계 방식 보기 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
    </div>
   </div>
-  <div class="hero-art" id="assembly" tabindex="0" role="button" aria-pressed="false" aria-label="분해된 설계 구조를 조립해 보기. 마우스를 올리거나 엔터를 누르세요.">
+  <div class="hero-art" id="assembly" tabindex="0" role="button" aria-pressed="false" aria-label="분해와 재조립을 자동 반복하는 구조물. 클릭하면 일시정지합니다.">
    <svg viewBox="0 0 810 630" role="img" aria-label="분리된 반투명 구조 패널이 재조립되는 모션그래픽">
     <defs>
       <radialGradient id="ambient"><stop offset="0" stop-color="#eccb98" stop-opacity=".31"/><stop offset=".57" stop-color="#c5ab83" stop-opacity=".07"/><stop offset="1" stop-color="#c5ab83" stop-opacity="0"/></radialGradient>
@@ -78,7 +78,7 @@
     </g>
     <g id="panels"></g>
    </svg>
-   <div class="interaction-hint"><span>↗</span> 마우스를 올려 조립하기</div>
+   <div class="interaction-hint">자동 분해 · 재조립</div>
   </div>
  </div>
  <div class="hero-steps"><div class="shell">
@@ -142,15 +142,45 @@
  ];
  function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));parent.appendChild(e);return e;}
  const groups=panels.map((p,i)=>{const g=el('g',{},partsRoot);let pts=p.kind==='a'?'-54,-22 32,-57 112,-14 26,21':'-34,-51 26,-70 26,52 -34,67';el('polygon',{points:pts,fill:i%3===0?'url(#tinted)':'url(#glass)',stroke:'#f3dfbe','stroke-opacity':'.68','stroke-width':'1.0'},g);el('path',{d:p.kind==='a'?'M-54 -22 L-54 7 26 48 112 13 112 -14':'M26 -70 L45 -57 45 38 26 52',fill:'none',stroke:'#e9caa2','stroke-opacity':'.35','stroke-width':'.9'},g);return g;});
- let progress=reduced?1:.08,target=progress,hovered=false,locked=false;
- const clamp=(n)=>Math.max(0,Math.min(1,n));
- function recalc(){const hero=document.querySelector('.hero');const r=hero.getBoundingClientRect();const scroll=clamp(-r.top/(Math.min(window.innerHeight,730)*.92));target=reduced?1:(hovered||locked?1:Math.max(.08,scroll*.86));}
+ let progress=reduced?1:.06,paused=false,cycleTime=0,lastFrame=0;
+ const hint=art.querySelector('.interaction-hint');
+ const clamp01=v=>Math.max(0,Math.min(1,v));
+ const smooth=v=>{const t=clamp01(v);return t*t*(3-2*t);};
+ const period=9200;
+ function automaticProgress(time){
+  const phase=(time%period)/period;
+  if(phase<.06)return .06;
+  if(phase<.40)return .06+.94*smooth((phase-.06)/.34);
+  if(phase<.57)return 1;
+  if(phase<.94)return 1-.94*smooth((phase-.57)/.37);
+  return .06;
+ }
  function draw(v){panels.forEach((p,i)=>{const ease=clamp((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
- function tick(){progress+= (target-progress)*.085;draw(progress);requestAnimationFrame(tick)}
- art.addEventListener('mouseenter',()=>{hovered=true;recalc()});art.addEventListener('mouseleave',()=>{hovered=false;recalc()});
- art.addEventListener('click',()=>{if(reduced)return;locked=!locked;art.setAttribute('aria-pressed',String(locked));document.querySelector('.interaction-hint').innerHTML=locked?'↗ 클릭하면 다시 분해됩니다':'<span>↗</span> 마우스를 올려 조립하기';recalc()});
- art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();art.click();}});
- window.addEventListener('scroll',recalc,{passive:true});window.addEventListener('resize',recalc);recalc();if(reduced){draw(1)}else{draw(progress);requestAnimationFrame(tick)}
+ function tick(now){
+  if(!lastFrame)lastFrame=now;
+  const delta=Math.max(0,Math.min(64,now-lastFrame));
+  lastFrame=now;
+  if(!paused&&document.visibilityState==='visible')cycleTime+=delta;
+  const destination=paused?progress:automaticProgress(cycleTime);
+  progress+=(destination-progress)*Math.min(1,delta/110);
+  draw(progress);
+  requestAnimationFrame(tick);
+ }
+ if(reduced){
+  art.removeAttribute('role');art.removeAttribute('tabindex');art.removeAttribute('aria-pressed');
+  art.setAttribute('aria-label','완성된 설계 구조물');
+  hint.textContent='';
+  draw(1);
+ }else{
+  function updateControl(){
+   art.setAttribute('aria-pressed',String(paused));
+   art.setAttribute('aria-label',paused?'구조물 애니메이션 다시 재생하기':'구조물 애니메이션 일시정지하기');
+   hint.textContent=paused?'정지됨 · 클릭해 재생':'자동 분해 · 재조립';
+  }
+  art.addEventListener('click',()=>{paused=!paused;updateControl();});
+  art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();art.click();}});
+  updateControl();draw(progress);requestAnimationFrame(tick);
+ }
  const tabs=[...document.querySelectorAll('.method-tab')], lines=document.getElementById('diagram-lines'),nodes=document.getElementById('diagram-nodes');
  const labels=['문제','조건','관점','선택','실행'];const configurations=[[[117,80],[484,87],[309,202],[160,317],[494,317]],[[100,210],[230,210],[355,210],[485,210],[485,325]],[[167,125],[422,125],[294,228],[294,335],[489,335]],[[110,155],[240,155],[365,155],[490,155],[490,300]]];
  const unit=labels.map((label)=>{let g=el('g',{},nodes);el('rect',{x:-43,y:-24,width:86,height:48,rx:5,class:'node'},g);let txt=el('text',{'text-anchor':'middle',y:5,fill:'#433b30','font-size':'15','font-family':'Noto Sans CJK KR, sans-serif'},g);txt.textContent=label;return g});
