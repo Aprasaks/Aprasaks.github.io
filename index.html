@@ -108,6 +108,66 @@ body{letter-spacing:-.025em}
  }
 }
 @media(max-width:780px){.method-tab[aria-selected="true"]{box-shadow:inset 3px 0 #b79a72}}
+
+/* DECHIVE: every section has a restrained, intentional auto-motion layer. */
+.offer-card{position:relative;overflow:hidden;min-height:342px}
+.offer-motion{width:100%;height:86px;margin:0 0 2px;display:block;pointer-events:none;opacity:.82}
+.offer-motion svg{display:block;width:100%;height:100%;max-width:290px}
+.offer-motion .motion-guide{fill:none;stroke:rgba(215,198,170,.24);stroke-width:.8;stroke-dasharray:3 8}
+.offer-motion .motion-piece{fill:rgba(218,200,171,.055);stroke:#d2b994;stroke-width:1;stroke-linejoin:round;transform-box:fill-box;transform-origin:center;animation:dechive-form 9.5s cubic-bezier(.42,0,.25,1) infinite;animation-play-state:paused}
+.offer-motion .motion-piece path{fill:none;stroke:#d2b994;stroke-width:1}
+.offer-motion .motif-a{--sx:-17px;--sy:-9px;animation-delay:0s}
+.offer-motion .motif-b{--sx:0px;--sy:18px;animation-delay:-.32s}
+.offer-motion .motif-c{--sx:17px;--sy:-12px;animation-delay:-.64s}
+.offer-motion .motion-trace{fill:none;stroke:rgba(226,206,174,.62);stroke-width:1.1;stroke-dasharray:190;stroke-dashoffset:190;animation:dechive-trace 9.5s ease-in-out infinite;animation-play-state:paused}
+.offer-card.is-motion-active .motion-piece,.offer-card.is-motion-active .motion-trace{animation-play-state:running}
+@keyframes dechive-form{
+ 0%,100%{transform:translate(var(--sx),var(--sy)) rotate(-5deg);opacity:.48}
+ 30%,67%{transform:translate(0,0) rotate(0);opacity:1}
+ 85%{transform:translate(0,0);opacity:1}
+}
+@keyframes dechive-trace{0%,15%,100%{stroke-dashoffset:190;opacity:.2}40%,76%{stroke-dashoffset:0;opacity:1}92%{opacity:.3}}
+.trust{overflow:hidden}
+.trust-motion{width:min(360px,100%);margin-top:32px;pointer-events:none}
+.trust-motion svg{display:block;width:100%;height:auto;overflow:visible}
+.trust-motion .trust-guide{stroke:#c4bdb1;stroke-width:.8;stroke-dasharray:3 7;fill:none}
+.trust-motion .trust-node{fill:none;stroke:#a48d6a;stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:dechive-proof 10s ease-in-out infinite;animation-play-state:paused}
+.trust-motion .node-one{--offset:-16px;animation-delay:0s}
+.trust-motion .node-two{--offset:12px;animation-delay:-.35s}
+.trust-motion .node-three{--offset:-13px;animation-delay:-.7s}
+.trust-motion .trust-trace{fill:none;stroke:#a48d6a;stroke-width:1.2;stroke-dasharray:240;stroke-dashoffset:240;animation:dechive-proof-line 10s ease-in-out infinite;animation-play-state:paused}
+.trust-motion text{font-size:11px;fill:#847968;letter-spacing:0}
+.trust.is-motion-active .trust-node,.trust.is-motion-active .trust-trace{animation-play-state:running}
+@keyframes dechive-proof{0%,100%{transform:translateY(var(--offset));opacity:.34}32%,78%{transform:translateY(0);opacity:1}}
+@keyframes dechive-proof-line{0%,12%,100%{stroke-dashoffset:240;opacity:.2}37%,78%{stroke-dashoffset:0;opacity:.85}90%{opacity:.35}}
+.cta{position:relative;overflow:hidden}
+.cta-inner{position:relative;z-index:1}
+.cta-motion{position:absolute;width:420px;height:190px;right:9%;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.2}
+.cta-motion .cta-axis{stroke:#e5d5ba;stroke-width:.75;stroke-dasharray:2 7;fill:none}
+.cta-motion .cta-piece{fill:none;stroke:#e5d5ba;stroke-width:1.2;animation:dechive-cta-piece 11s ease-in-out infinite;animation-play-state:paused}
+.cta-motion .cta-one{--dx:26px;--dy:-16px}
+.cta-motion .cta-two{--dx:0px;--dy:13px}
+.cta-motion .cta-three{--dx:-26px;--dy:13px}
+.cta-motion .cta-connection{fill:none;stroke:#e5d5ba;stroke-width:1;stroke-dasharray:290;stroke-dashoffset:290;animation:dechive-cta-line 11s ease-in-out infinite;animation-play-state:paused}
+.cta.is-motion-active .cta-piece,.cta.is-motion-active .cta-connection{animation-play-state:running}
+@keyframes dechive-cta-piece{0%,100%{transform:translate(var(--dx),var(--dy));opacity:.3}34%,79%{transform:translate(0,0);opacity:1}}
+@keyframes dechive-cta-line{0%,16%,100%{stroke-dashoffset:290;opacity:.2}40%,79%{stroke-dashoffset:0;opacity:.9}}
+.hero-steps .step-mini{position:relative;transition:background .8s ease}
+.hero-steps .step-mini::after{content:"";position:absolute;bottom:0;left:0;width:0;height:1px;background:#cbb290;transition:width .85s ease}
+.hero-steps .step-mini.is-current::after{width:100%}
+.hero-steps .step-mini.is-current{background:rgba(226,199,159,.045)}
+.method-visual{isolation:isolate}
+.method-tab[aria-selected="true"] strong{color:#483422}
+@media(max-width:780px){
+ .offer-card{min-height:0}
+ .offer-motion{height:78px;max-width:290px}
+ .trust-motion{margin-top:21px;width:min(300px,100%)}
+ .cta-motion{right:-165px;opacity:.13}
+}
+@media(prefers-reduced-motion:reduce){
+ .offer-motion .motion-piece,.offer-motion .motion-trace,.trust-motion .trust-node,.trust-motion .trust-trace,.cta-motion .cta-piece,.cta-motion .cta-connection{animation:none!important;transform:none!important}
+ .hero-steps .step-mini::after{transition:none!important}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -187,19 +247,50 @@ body{letter-spacing:-.025em}
  <div class="shell">
   <div class="section-top"><div><p class="kicker">DECHIVE가 하는 일</p><h2 id="offer-title">생각을 실제 변화로<br>연결하는 방법.</h2></div><p>하나의 분야에만 머물지 않습니다. 지금은 교육과 워크숍을 중심으로 일하고, 실제 프로젝트와 지식 콘텐츠를 통해 설계의 과정을 기록합니다.</p></div>
   <div class="offer-grid">
-   <article class="offer-card"><span class="tag">가장 먼저 만나볼 서비스</span><h3>교육과 워크숍</h3><p>처음 배우는 사람도 스스로 이해하고 적용할 수 있도록 수업을 설계합니다. 기관·단체 출강을 협의할 수 있습니다.</p><a href="/education/">교육과정 살펴보기 ↗</a></article>
-   <article class="offer-card"><span class="tag">실제 작업 사례</span><h3>프로젝트 설계</h3><p>불편함을 발견하고 무엇을 바꿔야 할지 판단한 뒤, 구현과 검증까지 이어간 작업을 소개합니다.</p><a href="/work/">프로젝트 확인하기 ↗</a></article>
-   <article class="offer-card"><span class="tag">계속 쌓아가는 지식</span><h3>기록과 콘텐츠</h3><p>배우고 검증한 내용을 독립적으로 활용할 수 있는 지식으로 정리합니다. 책과 디지털 도구도 준비해 갑니다.</p><a href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">지식 아카이브 보기 ↗</a></article>
+   <article class="offer-card"><span class="tag">가장 먼저 만나볼 서비스</span><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
+ <path class="motion-guide" d="M32 47H258"/>
+ <g class="motion-piece motif-a"><rect x="35" y="29" width="46" height="36" rx="2"/><path d="M46 41h24M46 51h17"/></g>
+ <g class="motion-piece motif-b"><rect x="123" y="29" width="46" height="36" rx="2"/><path d="M133 41h26M133 51h21"/></g>
+ <g class="motion-piece motif-c"><rect x="211" y="29" width="46" height="36" rx="2"/><path d="M222 41h24M222 51h17"/></g>
+ <path class="motion-trace" d="M81 47H123M169 47H211"/>
+ </svg></div><h3>교육과 워크숍</h3><p>처음 배우는 사람도 스스로 이해하고 적용할 수 있도록 수업을 설계합니다. 기관·단체 출강을 협의할 수 있습니다.</p><a href="/education/">교육과정 살펴보기 ↗</a></article>
+   <article class="offer-card"><span class="tag">실제 작업 사례</span><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
+ <path class="motion-guide" d="M41 19V75M249 19V75M40 76H250"/>
+ <g class="motion-piece motif-a"><rect x="61" y="16" width="61" height="49" rx="1"/><path d="M74 30h34M74 39h19"/></g>
+ <g class="motion-piece motif-b"><rect x="140" y="31" width="40" height="32" rx="1"/><path d="M152 42h15"/></g>
+ <g class="motion-piece motif-c"><rect x="193" y="19" width="45" height="46" rx="1"/><path d="M206 34h21M206 44h15"/></g>
+ <path class="motion-trace" d="M122 49H140M180 49H193"/>
+ </svg></div><h3>프로젝트 설계</h3><p>불편함을 발견하고 무엇을 바꿔야 할지 판단한 뒤, 구현과 검증까지 이어간 작업을 소개합니다.</p><a href="/work/">프로젝트 확인하기 ↗</a></article>
+   <article class="offer-card"><span class="tag">계속 쌓아가는 지식</span><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
+ <path class="motion-guide" d="M30 71H258"/>
+ <g class="motion-piece motif-a"><path d="M58 25h50v44H58zM66 35h33M66 44h23M66 53h28"/></g>
+ <g class="motion-piece motif-b"><path d="M124 17h50v52h-50zM132 30h33M132 39h25M132 48h31"/></g>
+ <g class="motion-piece motif-c"><path d="M190 25h50v44h-50zM198 35h33M198 44h23M198 53h28"/></g>
+ <path class="motion-trace" d="M108 59h16M174 59h16"/>
+ </svg></div><h3>기록과 콘텐츠</h3><p>배우고 검증한 내용을 독립적으로 활용할 수 있는 지식으로 정리합니다. 책과 디지털 도구도 준비해 갑니다.</p><a href="https://dechive.dev/" target="_blank" rel="noopener noreferrer">지식 아카이브 보기 ↗</a></article>
   </div>
  </div>
 </section>
 <section class="section trust" aria-labelledby="trust-title">
  <div class="shell trust-grid">
-  <div><p class="kicker">왜 이렇게 설계할까요?</p><h2 id="trust-title">멋진 답보다,<br>직접 확인할 수 있는 과정.</h2></div>
+  <div><p class="kicker">왜 이렇게 설계할까요?</p><h2 id="trust-title">멋진 답보다,<br>직접 확인할 수 있는 과정.</h2><div class="trust-motion" aria-hidden="true"><svg viewBox="0 0 360 110">
+ <path class="trust-guide" d="M34 53H326"/>
+ <g class="trust-node node-one"><circle cx="64" cy="53" r="19"/><path d="M55 53h18"/></g>
+ <g class="trust-node node-two"><rect x="161" y="34" width="38" height="38" rx="2"/><path d="M169 53h22M180 43v20"/></g>
+ <g class="trust-node node-three"><circle cx="296" cy="53" r="19"/><path d="m285 53 8 7 14-16"/></g>
+ <path class="trust-trace" d="M83 53H161M199 53H277"/>
+ <text x="64" y="98" text-anchor="middle">확인</text><text x="180" y="98" text-anchor="middle">적용</text><text x="296" y="98" text-anchor="middle">검증</text>
+ </svg></div></div>
   <div class="trust-content"><p>어떤 설명이든 <strong>상대가 이해하고 직접 해볼 수 있어야</strong> 의미가 있다고 생각합니다. 강의와 프로젝트에서도 그 출발점을 찾고, 무엇을 시도했고 무엇이 달라졌는지 확인하는 과정을 중요하게 여깁니다.</p><p>모든 문제를 해결한다고 약속하지는 않습니다. 가능한 범위와 확인하지 못한 부분을 구분하고, 필요한 방법을 함께 찾습니다.</p><a class="inline-link" href="/about/">DECHIVE에 대해 더 알아보기 <span>↗</span></a></div>
  </div>
 </section>
-<section class="cta" id="contact" aria-labelledby="contact-title"><div class="shell cta-inner"><div><h2 id="contact-title">교육이나 워크숍을 계획하고 계신가요?</h2><p>교육 대상과 목적, 희망 일정을 알려주세요. 가능한 방식부터 함께 검토하겠습니다.</p></div><a class="button primary" href="/education/#education-contact">교육·출강 문의하기 <span aria-hidden="true">↗</span></a></div></section>
+<section class="cta" id="contact" aria-labelledby="contact-title"><svg class="cta-motion" aria-hidden="true" viewBox="0 0 420 190" preserveAspectRatio="xMidYMid meet">
+ <path class="cta-axis" d="M25 95H396M210 5v180"/>
+ <g class="cta-piece cta-one"><rect x="62" y="31" width="51" height="51" rx="2"/></g>
+ <g class="cta-piece cta-two"><rect x="180" y="52" width="59" height="59" rx="2"/></g>
+ <g class="cta-piece cta-three"><rect x="308" y="107" width="48" height="48" rx="2"/></g>
+ <path class="cta-connection" d="M113 57L180 82L239 82L308 131"/>
+ </svg><div class="shell cta-inner"><div><h2 id="contact-title">교육이나 워크숍을 계획하고 계신가요?</h2><p>교육 대상과 목적, 희망 일정을 알려주세요. 가능한 방식부터 함께 검토하겠습니다.</p></div><a class="button primary" href="/education/#education-contact">교육·출강 문의하기 <span aria-hidden="true">↗</span></a></div></section>
 </main>
 <footer class="footer"><div class="shell"><a class="logo" href="/" aria-label="DECHIVE 홈">DECHIVE<span>.</span></a><div class="footer-links"><a href="/education/">교육</a><a href="/work/">프로젝트</a><a href="/about/">소개</a><a href="mailto:heavenis0113@gmail.com">이메일</a></div><span>© 2026 DECHIVE</span></div></footer>
 <script>
@@ -225,6 +316,8 @@ body{letter-spacing:-.025em}
  const groups=panels.map((p,i)=>{const g=el('g',{},partsRoot);let pts=p.kind==='a'?'-54,-22 32,-57 112,-14 26,21':'-34,-51 26,-70 26,52 -34,67';el('polygon',{points:pts,fill:i%3===0?'url(#tinted)':'url(#glass)',stroke:'#f3dfbe','stroke-opacity':'.68','stroke-width':'1.0'},g);el('path',{d:p.kind==='a'?'M-54 -22 L-54 7 26 48 112 13 112 -14':'M26 -70 L45 -57 45 38 26 52',fill:'none',stroke:'#e9caa2','stroke-opacity':'.35','stroke-width':'.9'},g);return g;});
  let progress=reduced?1:.06,paused=false,cycleTime=0,lastFrame=0;
  const hint=art.querySelector('.interaction-hint');
+ const heroMini=[...document.querySelectorAll('.step-mini')];
+ let lastHeroMini=-1;
  const clamp01=v=>Math.max(0,Math.min(1,v));
  const smooth=v=>{const t=clamp01(v);return t*t*(3-2*t);};
  const period=11000;
@@ -245,6 +338,8 @@ body{letter-spacing:-.025em}
   const destination=paused?progress:automaticProgress(cycleTime);
   progress+=(destination-progress)*Math.min(1,delta/110);
   draw(progress);
+  const segment=Math.floor((cycleTime%period)/(period/4));
+  if(segment!==lastHeroMini){heroMini.forEach((item,i)=>item.classList.toggle('is-current',i===segment));lastHeroMini=segment;}
   requestAnimationFrame(tick);
  }
  if(reduced){
@@ -267,6 +362,8 @@ body{letter-spacing:-.025em}
  // Text is always visible, and the user remains in control of scrolling.
  const tabs=[...document.querySelectorAll('.method-tab')];
  const method=document.querySelector('.method-grid');
+ const methodCaption=document.querySelector('.method-caption');
+ const methodCaptions=['관찰 — 무엇이 문제인지 확인합니다.','분석 — 원인과 조건을 연결합니다.','설계 — 실행할 수 있는 구조로 정렬합니다.','검증 — 작게 실행하고 결과를 확인합니다.'];
  const lines=document.getElementById('diagram-lines');
  const nodes=document.getElementById('diagram-nodes');
  const labels=['문제','조건','관점','선택','실행'];
@@ -299,6 +396,7 @@ body{letter-spacing:-.025em}
  function connections(k){return k===0?[[0,2],[1,2],[3,2],[4,2]]:[[0,1],[1,2],[2,3],[3,4]];}
  function setStep(k,instant=false){
   activeStep=k;
+  methodCaption.textContent=methodCaptions[k];
   tabs.forEach((b,i)=>b.setAttribute('aria-selected',String(i===k)));
   const pairs=connections(k),destination=configurations[k];
   cancelAnimationFrame(diagramFrame);
@@ -323,6 +421,7 @@ body{letter-spacing:-.025em}
  }
  function startAuto(){
   if(reduced||autoStepTimer!==null||document.hidden)return;
+  if(performance.now()>=manualUntil)setStep((activeStep+1)%tabs.length);
   autoStepTimer=setInterval(()=>{
    if(performance.now()<manualUntil)return;
    setStep((activeStep+1)%tabs.length);
@@ -353,14 +452,23 @@ body{letter-spacing:-.025em}
    else if(method.getBoundingClientRect().top<innerHeight*.8 && method.getBoundingClientRect().bottom>innerHeight*.2)startAuto();
   });
  }
- // Subtle entrance animation on lower sections. Never hide or auto-scroll text.
- if(!reduced && 'IntersectionObserver' in window){
-  const revealWatcher=new IntersectionObserver(entries=>{
-   entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('in-view');revealWatcher.unobserve(entry.target);}
-   });
-  },{threshold:.12});
-  document.querySelectorAll('.offer-card,.trust-content,.cta-inner').forEach(item=>revealWatcher.observe(item));
+ // Each section moves automatically only while visible. Text is never hidden.
+ if(!reduced){
+  const moving=[...document.querySelectorAll('.offer-card,.trust,.cta')];
+  if('IntersectionObserver' in window){
+   const motionWatcher=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>entry.target.classList.toggle('is-motion-active',entry.isIntersecting));
+   },{threshold:.12});
+   moving.forEach(item=>motionWatcher.observe(item));
+   const revealWatcher=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+     if(entry.isIntersecting){entry.target.classList.add('in-view');revealWatcher.unobserve(entry.target);}
+    });
+   },{threshold:.12});
+   document.querySelectorAll('.offer-card,.trust-content,.cta-inner').forEach(item=>revealWatcher.observe(item));
+  }else{
+   moving.forEach(item=>item.classList.add('is-motion-active'));
+  }
  }
 
 })();
