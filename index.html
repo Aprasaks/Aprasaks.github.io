@@ -93,6 +93,21 @@ body{letter-spacing:-.025em}
  .cta h2{font-size:28px}
 }
 
+
+/* Automatic lower-section motion keeps the text visible and readable. */
+.method-visual .flow{stroke-linecap:round;stroke-linejoin:round}
+.method-tab[aria-selected="true"]{box-shadow:inset 3px 0 #b79a72}
+@media(prefers-reduced-motion:no-preference){
+ .offer-card.in-view{animation:gentle-arrival .8s ease-out both}
+ .offer-card:nth-child(2).in-view{animation-delay:.12s}
+ .offer-card:nth-child(3).in-view{animation-delay:.24s}
+ .trust-content.in-view,.cta-inner.in-view{animation:gentle-arrival .85s ease-out both}
+ @keyframes gentle-arrival{
+  from{opacity:.75;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+ }
+}
+@media(max-width:780px){.method-tab[aria-selected="true"]{box-shadow:inset 3px 0 #b79a72}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -164,7 +179,7 @@ body{letter-spacing:-.025em}
    <button type="button" class="method-tab" role="tab" data-step="3" aria-selected="false"><span class="num">04</span><span><strong>검증</strong><small>작게 실행하고 결과를 확인합니다.</small></span></button>
   </div><div class="method-visual" role="tabpanel" aria-label="설계 단계에 따라 재배열되는 관계도">
    <svg id="diagram" viewBox="0 0 620 420" aria-hidden="true"><defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="#c9c2b6" stroke-opacity=".35" fill="none"/></pattern></defs><rect width="620" height="420" fill="url(#grid)"/><g id="diagram-lines"></g><g id="diagram-nodes"></g></svg>
-   <div class="method-caption">단계를 선택하면 요소의 관계가 바뀝니다.</div>
+   <div class="method-caption">관찰에서 검증까지, 구조가 차례로 바뀝니다.</div>
   </div></div>
  </div>
 </section>
@@ -247,12 +262,107 @@ body{letter-spacing:-.025em}
   art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();art.click();}});
   updateControl();draw(progress);requestAnimationFrame(tick);
  }
- const tabs=[...document.querySelectorAll('.method-tab')], lines=document.getElementById('diagram-lines'),nodes=document.getElementById('diagram-nodes');
- const labels=['문제','조건','관점','선택','실행'];const configurations=[[[117,80],[484,87],[309,202],[160,317],[494,317]],[[100,210],[230,210],[355,210],[485,210],[485,325]],[[167,125],[422,125],[294,228],[294,335],[489,335]],[[110,155],[240,155],[365,155],[490,155],[490,300]]];
- const unit=labels.map((label)=>{let g=el('g',{},nodes);el('rect',{x:-43,y:-24,width:86,height:48,rx:5,class:'node'},g);let txt=el('text',{'text-anchor':'middle',y:5,fill:'#433b30','font-size':'15','font-family':'Noto Sans CJK KR, sans-serif'},g);txt.textContent=label;return g});
+
+ // The diagram progresses on its own while the section is in view.
+ // Text is always visible, and the user remains in control of scrolling.
+ const tabs=[...document.querySelectorAll('.method-tab')];
+ const method=document.querySelector('.method-grid');
+ const lines=document.getElementById('diagram-lines');
+ const nodes=document.getElementById('diagram-nodes');
+ const labels=['문제','조건','관점','선택','실행'];
+ const configurations=[
+  [[117,80],[484,87],[309,202],[160,317],[494,317]],
+  [[100,210],[230,210],[355,210],[485,210],[485,325]],
+  [[167,125],[422,125],[294,228],[294,335],[489,335]],
+  [[110,155],[240,155],[365,155],[490,155],[490,300]]
+ ];
+ const unit=labels.map(label=>{
+  const g=el('g',{},nodes);
+  el('rect',{x:-43,y:-24,width:86,height:48,rx:5,class:'node'},g);
+  const txt=el('text',{'text-anchor':'middle',y:5,fill:'#433b30','font-size':'15','font-family':'Noto Sans CJK KR, sans-serif'},g);
+  txt.textContent=label;
+  return g;
+ });
  const connectors=Array.from({length:4},()=>el('path',{class:'flow'},lines));
- function setStep(k){tabs.forEach((b,i)=>b.setAttribute('aria-selected',String(i===k)));const p=configurations[k];unit.forEach((g,i)=>{g.setAttribute('transform',`translate(${p[i][0]} ${p[i][1]})`);g.querySelector('rect').setAttribute('class',i===Math.min(k+1,4)?'node active-node':'node')});const pairs=k===0?[[0,2],[1,2],[3,2],[4,2]]:[[0,1],[1,2],[2,3],[3,4]];pairs.forEach(([a,b],i)=>{const A=p[a],B=p[b];connectors[i].setAttribute('d',`M${A[0]} ${A[1]} L${B[0]} ${B[1]}`)})}
- tabs.forEach((b,i)=>{b.addEventListener('mouseenter',()=>setStep(i));b.addEventListener('focus',()=>setStep(i));b.addEventListener('click',()=>setStep(i));});setStep(0);
+ const position=configurations[0].map(([x,y])=>[x,y]);
+ let activeStep=0,diagramFrame=0,autoStepTimer=null,manualUntil=0;
+ function drawDiagram(pairs){
+  unit.forEach((g,i)=>{
+   g.setAttribute('transform','translate('+position[i][0].toFixed(2)+' '+position[i][1].toFixed(2)+')');
+   g.querySelector('rect').setAttribute('class',i===Math.min(activeStep+1,4)?'node active-node':'node');
+  });
+  pairs.forEach(([a,b],i)=>{
+   const A=position[a],B=position[b];
+   connectors[i].setAttribute('d','M'+A[0].toFixed(2)+' '+A[1].toFixed(2)+' L'+B[0].toFixed(2)+' '+B[1].toFixed(2));
+  });
+ }
+ function connections(k){return k===0?[[0,2],[1,2],[3,2],[4,2]]:[[0,1],[1,2],[2,3],[3,4]];}
+ function setStep(k,instant=false){
+  activeStep=k;
+  tabs.forEach((b,i)=>b.setAttribute('aria-selected',String(i===k)));
+  const pairs=connections(k),destination=configurations[k];
+  cancelAnimationFrame(diagramFrame);
+  if(reduced||instant){
+   destination.forEach(([x,y],i)=>{position[i][0]=x;position[i][1]=y;});
+   drawDiagram(pairs);return;
+  }
+  const initial=position.map(p=>p.slice()),started=performance.now(),duration=1250;
+  function animate(now){
+   const u=Math.min(1,(now-started)/duration),e=u*u*(3-2*u);
+   destination.forEach(([x,y],i)=>{
+    position[i][0]=initial[i][0]+(x-initial[i][0])*e;
+    position[i][1]=initial[i][1]+(y-initial[i][1])*e;
+   });
+   drawDiagram(pairs);
+   if(u<1)diagramFrame=requestAnimationFrame(animate);
+  }
+  diagramFrame=requestAnimationFrame(animate);
+ }
+ function stopAuto(){
+  if(autoStepTimer!==null){clearInterval(autoStepTimer);autoStepTimer=null;}
+ }
+ function startAuto(){
+  if(reduced||autoStepTimer!==null||document.hidden)return;
+  autoStepTimer=setInterval(()=>{
+   if(performance.now()<manualUntil)return;
+   setStep((activeStep+1)%tabs.length);
+  },3400);
+ }
+ tabs.forEach((b,i)=>{
+  b.addEventListener('click',()=>{manualUntil=performance.now()+8500;setStep(i);});
+  b.addEventListener('keydown',e=>{
+   if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key==='ArrowUp'||e.key==='ArrowLeft'){
+    e.preventDefault();
+    const next=(i+(e.key==='ArrowDown'||e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+    tabs[next].focus();manualUntil=performance.now()+8500;setStep(next);
+   }
+  });
+ });
+ setStep(0,true);
+ if(!reduced){
+  if('IntersectionObserver' in window){
+   const methodWatcher=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>entry.isIntersecting?startAuto():stopAuto());
+   },{threshold:.25});
+   methodWatcher.observe(method);
+  }else{
+   startAuto();
+  }
+  document.addEventListener('visibilitychange',()=>{
+   if(document.hidden)stopAuto();
+   else if(method.getBoundingClientRect().top<innerHeight*.8 && method.getBoundingClientRect().bottom>innerHeight*.2)startAuto();
+  });
+ }
+ // Subtle entrance animation on lower sections. Never hide or auto-scroll text.
+ if(!reduced && 'IntersectionObserver' in window){
+  const revealWatcher=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('in-view');revealWatcher.unobserve(entry.target);}
+   });
+  },{threshold:.12});
+  document.querySelectorAll('.offer-card,.trust-content,.cta-inner').forEach(item=>revealWatcher.observe(item));
+ }
+
 })();
 </script>
 </body>
