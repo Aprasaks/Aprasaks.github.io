@@ -221,7 +221,7 @@ body{letter-spacing:-.025em}
   if(phase<.94)return 1-.94*smooth((phase-.57)/.37);
   return .06;
  }
- function draw(v){const core=document.getElementById('core');if(core){core.setAttribute('opacity',(0.25+0.62*v).toFixed(3));core.setAttribute('transform',`translate(${413*(1-(0.94+0.06*v))} ${312*(1-(0.94+0.06*v))}) scale(${(0.94+0.06*v).toFixed(4)})`);}panels.forEach((p,i)=>{const ease=clamp((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
+ function draw(v){const core=document.getElementById('core');if(core){core.setAttribute('opacity',(0.25+0.62*v).toFixed(3));core.setAttribute('transform',`translate(${413*(1-(0.94+0.06*v))} ${312*(1-(0.94+0.06*v))}) scale(${(0.94+0.06*v).toFixed(4)})`);}panels.forEach((p,i)=>{const ease=clamp01((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
  function tick(now){
   if(!lastFrame)lastFrame=now;
   const delta=Math.max(0,Math.min(64,now-lastFrame));
