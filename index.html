@@ -183,43 +183,35 @@ body{letter-spacing:-.025em}
  </div>
 </header>
 <main id="main">
+
 <section class="hero" aria-labelledby="hero-title">
+ <div class="hero-ambient" aria-hidden="true"></div>
  <div class="shell hero-grid">
   <div class="hero-copy">
-   <p class="eyebrow">생각과 문제의 구조를 설계합니다</p>
-   <h1 id="hero-title">복잡한 문제를,<br><em>풀 수 있는 구조로 설계합니다.</em></h1>
-   <p class="hero-lead">DECHIVE는 생각과 일, 배움에서 마주하는 문제를 관찰하고 분석합니다. 새로운 관점과 실행 가능한 방법을 함께 설계합니다.</p>
+   <p class="eyebrow">DECHIVE · 사고의 구조를 설계하다</p>
+   <h1 id="hero-title" aria-label="우리는 정답보다 그 답에 이르는 구조를 탐구합니다.">
+    <span class="type-line" data-type-line aria-hidden="true">우리는 정답보다</span>
+    <span class="type-line type-em" data-type-line aria-hidden="true">그 답에 이르는 구조를 탐구합니다.</span>
+   </h1>
+   <p class="hero-lead" aria-label="지식을 해체하고, 원리를 발견하고, 새로운 사고의 틀을 설계합니다. 배움에서 끝나지 않고 삶에 적용할 수 있도록.">
+    <span class="type-line" data-type-line aria-hidden="true">지식을 해체하고, 원리를 발견하고,</span>
+    <span class="type-line" data-type-line aria-hidden="true">새로운 사고의 틀을 설계합니다.</span>
+    <span class="type-line" data-type-line aria-hidden="true">배움에서 끝나지 않고 삶에 적용할 수 있도록.</span>
+   </p>
    <div class="actions">
-    <a class="button primary" href="/education/#education-contact">교육 문의</a>
-    <a class="button" href="#method">설계 방식</a>
+    <a class="button primary" href="#explore">DECHIVE가 제공하는 것</a>
+    <a class="button" href="#newsletter">설계 노트 구독</a>
    </div>
+   <p class="hero-footnote">사고의 구조 · 수업과 워크숍 · 실제 적용</p>
   </div>
-  <div class="hero-art" id="assembly" tabindex="0" role="button" aria-pressed="false" aria-label="분해와 재조립을 자동 반복하는 구조물. 클릭하면 일시정지합니다.">
-   <svg viewBox="0 0 810 630" role="img" aria-label="분리된 반투명 구조 패널이 재조립되는 모션그래픽">
-    <defs>
-      <radialGradient id="ambient"><stop offset="0" stop-color="#eccb98" stop-opacity=".31"/><stop offset=".57" stop-color="#c5ab83" stop-opacity=".07"/><stop offset="1" stop-color="#c5ab83" stop-opacity="0"/></radialGradient>
-      <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff4db" stop-opacity=".87"/><stop offset=".42" stop-color="#ede1cf" stop-opacity=".33"/><stop offset="1" stop-color="#f6e9c8" stop-opacity=".06"/></linearGradient>
-      <linearGradient id="tinted" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff6de" stop-opacity=".60"/><stop offset="1" stop-color="#a69579" stop-opacity=".08"/></linearGradient>
-      <linearGradient id="coretop"><stop offset="0" stop-color="#fff4de" stop-opacity=".79"/><stop offset="1" stop-color="#cfb48d" stop-opacity=".24"/></linearGradient>
-      <linearGradient id="coreleft"><stop offset="0" stop-color="#b69c78" stop-opacity=".11"/><stop offset="1" stop-color="#f9dfb0" stop-opacity=".55"/></linearGradient>
-      <linearGradient id="coreright"><stop offset="0" stop-color="#fbe2b3" stop-opacity=".47"/><stop offset="1" stop-color="#fff6df" stop-opacity=".14"/></linearGradient>
-      <filter id="light"><feGaussianBlur stdDeviation="24"/></filter>
-      <filter id="soft"><feGaussianBlur stdDeviation="5"/></filter>
-    </defs>
-    <circle cx="411" cy="301" r="252" fill="url(#ambient)"/>
-    <g opacity=".30" stroke="#d9c4a3" fill="none" stroke-width=".65"><circle cx="411" cy="301" r="224" stroke-dasharray="2 9"/><path d="M100 302H722M410 50V570" stroke-dasharray="3 8" opacity=".25"/></g>
-    <ellipse cx="413" cy="552" rx="235" ry="30" fill="#deb77a" opacity=".22" filter="url(#light)"/>
-    <ellipse cx="413" cy="549" rx="150" ry="16" fill="#f0c991" opacity=".13" filter="url(#soft)"/>
-    <g id="core" opacity=".87">
-      <path d="M413 231L488 268 413 309 337 269Z" fill="url(#coretop)" stroke="#f7e4c7" stroke-opacity=".75" stroke-width="1.2"/>
-      <path d="M337 269L413 309 413 398 337 360Z" fill="url(#coreleft)" stroke="#e8d1ad" stroke-opacity=".69" stroke-width="1.2"/>
-      <path d="M413 309L488 268 488 360 413 398Z" fill="url(#coreright)" stroke="#fde9cf" stroke-opacity=".68" stroke-width="1.2"/>
-      <path d="M337 360L413 320 488 360M413 231V398" fill="none" stroke="#f8e5c6" opacity=".18"/>
-      <circle cx="413" cy="321" r="67" fill="#ffe2af" opacity=".28" filter="url(#light)"/>
-    </g>
-    <g id="panels"></g>
-   </svg>
-   <div class="interaction-hint" aria-live="polite"></div>
+  <div class="hero-art" id="assembly" aria-label="해체된 입체 설계 조각들이 천천히 정렬되고 새로운 구조로 재조립되는 모션그래픽">
+   <div class="arch-scene" id="architecture-scene" aria-hidden="true">
+    <div class="arch-halo"></div>
+    <div class="arch-rings"><i></i><i></i><i></i></div>
+    <div class="arch-structure" id="architecture-structure"></div>
+    <div class="arch-floor"></div>
+   </div>
+   <button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false">모션 일시정지</button>
   </div>
  </div>
  <div class="hero-steps"><div class="shell">
