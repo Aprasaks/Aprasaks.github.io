@@ -873,6 +873,8 @@ body{letter-spacing:-.025em}
  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
 
 
+ const NS='http://www.w3.org/2000/svg';
+ function el(tag,attrs,parent){const node=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,v));parent.appendChild(node);return node;}
  // The photo, rather than translucent CSS rectangles, is the actual subject.
  const photo=document.getElementById('glass-photo');
  const motionToggle=document.getElementById('motion-toggle');
