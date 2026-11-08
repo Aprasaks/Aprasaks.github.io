@@ -235,6 +235,33 @@ body{letter-spacing:-.025em}
 }
 @media(prefers-reduced-motion:reduce){.type-line.is-writing:after{animation:none;display:none}.architecture-piece{will-change:auto}}
 
+
+.newsletter{background:#eae4d9;color:#242321;border-top:1px solid #d5cbbd}
+.newsletter-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.95fr);gap:9%;align-items:center}
+.newsletter-copy h2{font:500 clamp(28px,2.7vw,38px)/1.5 var(--serif);letter-spacing:-.06em;margin:0 0 17px}
+.newsletter-copy>p:last-child{font-size:14px;color:#69655d;line-height:1.9;max-width:520px}
+.newsletter-form{display:block;padding:28px 0;border-top:1px solid #b7ab9b;border-bottom:1px solid #b7ab9b}
+.newsletter-form>label:first-child{display:block;font-size:12px;font-weight:650;color:#4e4942;margin-bottom:10px}
+.newsletter-field{display:flex;gap:8px;align-items:stretch}
+.newsletter-field input{flex:1;min-width:0;max-width:100%;height:46px;border:1px solid #aca396;border-radius:2px;padding:0 13px;background:#f7f4ed;color:#262420;font:inherit;font-size:14px}
+.newsletter-field button{min-height:46px;border:1px solid #252420;border-radius:2px;background:#252420;color:#f5ecdd;padding:0 15px;font-size:12px;cursor:pointer;white-space:nowrap}
+.newsletter-field button:hover{background:#3d3933}
+.newsletter-form .consent{display:flex;align-items:flex-start;gap:10px;font-size:11px;color:#68635b;line-height:1.6;margin:18px 0 7px;cursor:pointer}
+.newsletter-form .consent input{margin-top:2px;accent-color:#6d5438}
+.newsletter-note{font-size:11px;line-height:1.7;color:#837e74;margin:0}
+.newsletter-note strong{color:#534e46;font-weight:650}
+.newsletter-message{min-height:15px;color:#55452f;font-size:11px;margin:8px 0 0}
+.contact-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cta .contact-actions .button{min-height:46px;font-size:12px}
+.cta .contact-actions .button:not(.primary){border-color:#857c70}
+@media(max-width:780px){
+ .newsletter-grid{grid-template-columns:1fr;gap:23px}
+ .newsletter-field{flex-wrap:wrap}
+ .newsletter-field input{flex-basis:100%}
+ .newsletter-field button{width:100%}
+ .contact-actions{margin-top:26px}
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -341,6 +368,26 @@ body{letter-spacing:-.025em}
  <text x="64" y="98" text-anchor="middle">확인</text><text x="180" y="98" text-anchor="middle">적용</text><text x="296" y="98" text-anchor="middle">검증</text>
  </svg></div></div>
   <div class="trust-content"><p>어떤 설명이든 <strong>상대가 이해하고 직접 해볼 수 있어야</strong> 의미가 있다고 생각합니다. 강의와 프로젝트에서도 그 출발점을 찾고, 무엇을 시도했고 무엇이 달라졌는지 확인하는 과정을 중요하게 여깁니다.</p><p>모든 문제를 해결한다고 약속하지는 않습니다. 가능한 범위와 확인하지 못한 부분을 구분하고, 필요한 방법을 함께 찾습니다.</p><a class="inline-link" href="/about/">DECHIVE에 대해 더 알아보기 <span>↗</span></a></div>
+ </div>
+</section>
+
+<section class="newsletter section" id="newsletter" aria-labelledby="newsletter-title">
+ <div class="shell newsletter-grid">
+  <div class="newsletter-copy">
+   <p class="kicker">DECHIVE LETTER</p>
+   <h2 id="newsletter-title">생각의 구조를 탐구하는<br>짧은 편지.</h2>
+   <p>설계에 관한 글과 새로운 자료, 프로그램 소식을 이메일로 전할 예정입니다. 과장된 정보 대신 직접 생각하고 적용할 수 있는 내용을 담겠습니다.</p>
+  </div>
+  <form class="newsletter-form" id="newsletter-form">
+   <label for="newsletter-email">이메일 주소</label>
+   <div class="newsletter-field">
+    <input id="newsletter-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required maxlength="254">
+    <button type="submit">구독 신청 메일 작성 <span aria-hidden="true">↗</span></button>
+   </div>
+   <label class="consent"><input type="checkbox" id="newsletter-consent" required> <span>뉴스레터 수신을 요청하며, 신청에 필요한 이메일 주소 전달에 동의합니다.</span></label>
+   <p class="newsletter-note">현재 자동 구독 시스템은 준비 중입니다. 신청 버튼을 누르면 이메일 앱이 열리며, <strong>직접 메일을 보내야 접수 요청이 전달됩니다.</strong></p>
+   <p class="newsletter-message" id="newsletter-message" role="status" aria-live="polite"></p>
+  </form>
  </div>
 </section>
 <section class="cta" id="contact" aria-labelledby="contact-title"><svg class="cta-motion" aria-hidden="true" viewBox="0 0 420 190" preserveAspectRatio="xMidYMid meet">
@@ -573,6 +620,25 @@ body{letter-spacing:-.025em}
    moving.forEach(item=>item.classList.add('is-motion-active'));
   }
  }
+
+ const newsletterForm=document.getElementById('newsletter-form');
+ newsletterForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!newsletterForm.reportValidity())return;
+  const email=document.getElementById('newsletter-email').value.trim();
+  const message=document.getElementById('newsletter-message');
+  const subject=encodeURIComponent('DECHIVE 뉴스레터 구독 신청');
+  const body=encodeURIComponent([
+   '안녕하세요. DECHIVE 뉴스레터를 신청합니다.',
+   '',
+   '구독 이메일: '+email,
+   '뉴스레터 수신 요청 및 이메일 주소 전달에 동의합니다.',
+   '',
+   '※ 메일을 직접 보내야 신청 요청이 전달됩니다.'
+  ].join(String.fromCharCode(10)));
+  message.textContent='이메일 앱이 열립니다. 직접 메일을 보내야 접수됩니다.';
+  window.location.href='mailto:heavenis0113@gmail.com?subject='+subject+'&body='+body;
+ });
 
 })();
 </script>
