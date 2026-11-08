@@ -346,6 +346,83 @@ body{letter-spacing:-.025em}
  .offer-card.is-motion-active .offer-photo img{transform:none}
 }
 
+
+/* Final photographic editorial layout — restrained text with a dimensional glass installation. */
+.hero{min-height:calc(100svh - 76px);background-color:#14100e}
+.hero-ambient{
+ background:
+ linear-gradient(90deg,rgba(11,11,12,.97) 0%,rgba(11,11,12,.87) 32%,rgba(12,11,11,.44) 62%,rgba(12,11,11,.21) 100%),
+ linear-gradient(180deg,rgba(13,12,11,.11),rgba(13,12,11,.06) 56%,rgba(13,12,11,.86)),
+ url("https://images.unsplash.com/photo-1650337771276-1ff47d60a7df?auto=format&fit=crop&w=2100&q=85");
+ background-position:center,center,center 48%;
+ background-size:cover;
+}
+.hero-grid{min-height:min(690px,calc(100svh - 156px));grid-template-columns:49% 51%}
+.hero-copy{max-width:655px}
+.hero h1{font-size:clamp(31px,3vw,43px);line-height:1.51;margin:24px 0 23px}
+.hero-lead{font-size:14px;margin-bottom:27px}
+.hero .actions{margin-top:16px}
+.hero-art{height:635px;margin-right:-52px;margin-left:-28px;filter:drop-shadow(0 15px 44px rgba(4,3,2,.42))}
+.arch-structure{filter:drop-shadow(0 0 17px rgba(219,179,130,.19))}
+.architecture-piece{width:260px;height:132px;top:calc(50% - 66px);left:calc(50% - 130px)}
+.architecture-face{
+ border:1px solid rgba(255,233,194,.66);
+ background:linear-gradient(150deg,rgba(250,234,207,.36),rgba(211,186,145,.11) 36%,rgba(44,42,39,.24) 77%,rgba(250,236,209,.13));
+ box-shadow:inset 1px 1px 1px rgba(255,250,220,.65),inset -2px -3px 22px rgba(20,15,11,.18),0 8px 17px rgba(7,6,5,.15);
+ -webkit-backdrop-filter:blur(1.5px);backdrop-filter:blur(1.5px);
+}
+.architecture-piece:nth-child(3n+1) .architecture-face{background:linear-gradient(140deg,rgba(250,227,192,.57),rgba(157,144,125,.17) 61%,rgba(45,42,37,.28))}
+.architecture-piece:nth-child(3n+2) .architecture-face{background:linear-gradient(128deg,rgba(230,228,218,.46),rgba(117,114,107,.11) 58%,rgba(48,44,40,.30))}
+.architecture-piece .face-front{
+ transform:translateZ(7px);
+ background-image:repeating-linear-gradient(90deg,transparent 0,transparent 42px,rgba(245,231,202,.10) 43px),
+ repeating-linear-gradient(0deg,transparent 0,transparent 33px,rgba(245,231,202,.08) 34px),
+ linear-gradient(150deg,rgba(250,234,207,.36),rgba(211,186,145,.13) 36%,rgba(44,42,39,.28) 77%,rgba(250,236,209,.14));
+}
+.architecture-piece .face-back{transform:rotateY(180deg) translateZ(7px)}
+.architecture-piece .face-left{width:14px;right:auto;transform:rotateY(-90deg) translateZ(7px);background:rgba(232,208,172,.41)}
+.architecture-piece .face-right{width:14px;left:auto;transform:rotateY(90deg) translateZ(7px);background:rgba(211,183,143,.39)}
+.architecture-piece .face-top{height:14px;bottom:auto;transform:rotateX(90deg) translateZ(7px);background:rgba(255,239,207,.53)}
+.architecture-piece .face-bottom{height:14px;top:auto;transform:rotateX(-90deg) translateZ(7px);background:rgba(126,106,78,.27)}
+.arch-rings i{opacity:.23}
+.arch-halo{background:radial-gradient(circle at 50% 52%,rgba(238,194,129,.22),rgba(194,144,85,.07) 27%,transparent 58%)}
+.arch-floor{bottom:9%;background:radial-gradient(ellipse at center,rgba(240,197,139,.29),transparent 68%)}
+.offer{background:#121110;padding:65px 0 88px}
+.offer .section-top{margin-bottom:30px}
+.offer .section-top h2{font-size:clamp(26px,2.55vw,35px);line-height:1.5}
+.offer .section-top p{font-size:13px;max-width:490px}
+.offer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;border:0;margin-top:20px}
+.offer-card{min-height:382px;border:1px solid rgba(218,196,159,.17)!important;padding:0 0 21px;gap:9px;background:#1b1917;overflow:hidden}
+.offer-card:hover{background:#211f1c}
+.offer-card .tag{order:2;font-size:10px;padding:7px 15px 0;color:#bca788;line-height:1.5}
+.offer-photo{order:1;height:185px;border:0;border-radius:0}
+.offer-photo img{filter:saturate(.73) contrast(1.05) brightness(.78);object-position:center 45%}
+.offer-card h3{order:3;font-family:var(--sans);font-weight:650;font-size:18px;padding:0 15px;margin:1px 0 0}
+.offer-card p{order:4;font-size:12px;line-height:1.7;color:#bcb8b1;padding:0 15px;margin:0}
+.offer-card a{order:5;margin:7px 15px 0;font-size:12px;color:#ebd0a8}
+.offer-photo .offer-motion{opacity:.27}
+.offer-card-newsletter .offer-photo img{object-position:center}
+.newsletter{background:#e9e3d9}
+.method-grid{margin-top:32px}
+@media(max-width:1180px){
+ .hero-art{margin-left:-58px;margin-right:-45px}
+ .offer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .offer-photo{height:195px}
+}
+@media(max-width:780px){
+ .hero-grid{min-height:0;display:flex;flex-direction:column}
+ .hero-copy{padding-top:56px}
+ .hero h1{font-size:clamp(28px,7.1vw,35px)}
+ .hero-art{height:370px;margin:0 -12px}
+ .arch-scene{transform:scale(.72)}
+ .architecture-piece{width:230px;height:120px;top:calc(50% - 60px);left:calc(50% - 115px)}
+ .offer-grid{grid-template-columns:1fr;gap:14px}
+ .offer-photo{height:200px}
+ .offer-card{min-height:0}
+ .offer{padding:70px 0}
+ .offer .section-top p{font-size:13px!important}
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -382,7 +459,7 @@ body{letter-spacing:-.025em}
    </div>
    <p class="hero-footnote">사고의 구조 · 수업과 워크숍 · 실제 적용</p>
   </div>
-  <div class="hero-art" id="assembly" aria-label="해체된 입체 설계 조각들이 천천히 정렬되고 새로운 구조로 재조립되는 모션그래픽">
+  <div class="hero-art" id="assembly" aria-label="반투명한 다섯 장의 유리 설계 패널이 공중에서 자동으로 분해되고 재조립되는 모션그래픽">
    <div class="arch-scene" id="architecture-scene" aria-hidden="true">
     <div class="arch-halo"></div>
     <div class="arch-rings"><i></i><i></i><i></i></div>
@@ -398,20 +475,6 @@ body{letter-spacing:-.025em}
   <div class="step-mini"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="m2 14 12-8 12 8-12 8zM2 20l12 8 12-8"/></svg><div><strong>설계</strong><span>실행 가능한 방법을 만듭니다</span></div></div>
   <div class="step-mini"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="m3 15 8 9L26 4"/></svg><div><strong>검증</strong><span>현실에 적용해 확인합니다</span></div></div>
  </div></div>
-</section>
-<section class="section intro" id="method" aria-labelledby="method-title">
- <div class="shell">
-  <div class="section-top"><div><p class="kicker">DECHIVE의 설계 방식</p><h2 id="method-title">정답을 바꾸기 전에,<br>문제를 보는 방식을 바꿉니다.</h2></div><p>반복되는 문제에는 우리가 미처 확인하지 못한 조건과 전제가 있을 수 있습니다. 먼저 문제를 제대로 이해한 다음, 실제로 시도할 수 있는 방법을 설계합니다.</p></div>
-  <div class="method-grid"><div class="method-tabs" role="tablist" aria-label="설계 과정">
-   <button type="button" class="method-tab" role="tab" data-step="0" aria-selected="true"><span class="num">01</span><span><strong>관찰</strong><small>무엇이 정말 문제인지 살펴봅니다.</small></span></button>
-   <button type="button" class="method-tab" role="tab" data-step="1" aria-selected="false"><span class="num">02</span><span><strong>분석</strong><small>막히는 이유와 숨은 전제를 찾습니다.</small></span></button>
-   <button type="button" class="method-tab" role="tab" data-step="2" aria-selected="false"><span class="num">03</span><span><strong>설계</strong><small>새로운 관점으로 해결 방법을 만듭니다.</small></span></button>
-   <button type="button" class="method-tab" role="tab" data-step="3" aria-selected="false"><span class="num">04</span><span><strong>검증</strong><small>작게 실행하고 결과를 확인합니다.</small></span></button>
-  </div><div class="method-visual" role="tabpanel" aria-label="설계 단계에 따라 재배열되는 관계도">
-   <svg id="diagram" viewBox="0 0 620 420" aria-hidden="true"><defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="#c9c2b6" stroke-opacity=".35" fill="none"/></pattern></defs><rect width="620" height="420" fill="url(#grid)"/><g id="diagram-lines"></g><g id="diagram-nodes"></g></svg>
-   <div class="method-caption">관찰에서 검증까지, 구조가 차례로 바뀝니다.</div>
-  </div></div>
- </div>
 </section>
 <section class="section offer" id="explore" aria-labelledby="offer-title">
  <div class="shell">
@@ -438,7 +501,33 @@ body{letter-spacing:-.025em}
  <g class="motion-piece motif-c"><path d="M190 25h50v44h-50zM198 35h33M198 44h23M198 53h28"/></g>
  <path class="motion-trace" d="M108 59h16M174 59h16"/>
  </svg></div></div><h3>프로젝트와 기록</h3><p>일과 학습의 실제 불편함을 발견하고, 필요한 구조를 만들어 검증하는 과정을 기록합니다.</p><a href="/work/">실제 작업 보기</a></article>
+   <article class="offer-card offer-card-newsletter">
+   <span class="tag">독립적으로 생각하는 사람들을 위한 편지</span>
+   <div class="offer-photo">
+    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=950&q=82" alt="노트와 자료를 정리하며 새로운 생각을 기록하는 작업 공간" loading="lazy" decoding="async">
+    <div class="offer-motion" aria-hidden="true">
+     <svg viewBox="0 0 290 92"><g class="motion-piece motif-a"><path d="M45 20h200v55H45zM45 20l100 43L245 20"/></g><path class="motion-trace" d="M73 65H219"/></svg>
+    </div>
+   </div>
+   <h3>DECHIVE 레터</h3>
+   <p>정답보다 구조를 탐구하는 글, 새로운 실험과 프로그램 소식을 전합니다. 자동 발송 시스템은 준비 중입니다.</p>
+   <a href="#newsletter">소식 신청하기</a>
+  </article>
   </div>
+ </div>
+</section>
+<section class="section intro" id="method" aria-labelledby="method-title">
+ <div class="shell">
+  <div class="section-top"><div><p class="kicker">DECHIVE의 설계 방식</p><h2 id="method-title">정답을 바꾸기 전에,<br>문제를 보는 방식을 바꿉니다.</h2></div><p>반복되는 문제에는 우리가 미처 확인하지 못한 조건과 전제가 있을 수 있습니다. 먼저 문제를 제대로 이해한 다음, 실제로 시도할 수 있는 방법을 설계합니다.</p></div>
+  <div class="method-grid"><div class="method-tabs" role="tablist" aria-label="설계 과정">
+   <button type="button" class="method-tab" role="tab" data-step="0" aria-selected="true"><span class="num">01</span><span><strong>관찰</strong><small>무엇이 정말 문제인지 살펴봅니다.</small></span></button>
+   <button type="button" class="method-tab" role="tab" data-step="1" aria-selected="false"><span class="num">02</span><span><strong>분석</strong><small>막히는 이유와 숨은 전제를 찾습니다.</small></span></button>
+   <button type="button" class="method-tab" role="tab" data-step="2" aria-selected="false"><span class="num">03</span><span><strong>설계</strong><small>새로운 관점으로 해결 방법을 만듭니다.</small></span></button>
+   <button type="button" class="method-tab" role="tab" data-step="3" aria-selected="false"><span class="num">04</span><span><strong>검증</strong><small>작게 실행하고 결과를 확인합니다.</small></span></button>
+  </div><div class="method-visual" role="tabpanel" aria-label="설계 단계에 따라 재배열되는 관계도">
+   <svg id="diagram" viewBox="0 0 620 420" aria-hidden="true"><defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" stroke="#c9c2b6" stroke-opacity=".35" fill="none"/></pattern></defs><rect width="620" height="420" fill="url(#grid)"/><g id="diagram-lines"></g><g id="diagram-nodes"></g></svg>
+   <div class="method-caption">관찰에서 검증까지, 구조가 차례로 바뀝니다.</div>
+  </div></div>
  </div>
 </section>
 <section class="section trust" aria-labelledby="trust-title">
@@ -498,19 +587,14 @@ body{letter-spacing:-.025em}
  const heroMini=[...document.querySelectorAll('.step-mini')];
  const clamp01=v=>Math.min(1,Math.max(0,v));
  const smooth=v=>{const u=clamp01(v);return u*u*(3-2*u);};
+
+ // Five glass layers assemble into one coherent thinking structure.
  const fragments=[
-  {from:[-254,-178,-155],to:[-87,-83,-58],rot:[-45,52,23]},
-  {from:[-38,-265,-190],to:[0,-83,-58],rot:[41,-26,-28]},
-  {from:[238,-170,-110],to:[87,-83,-58],rot:[-35,54,16]},
-  {from:[-295,-3,20],to:[-87,0,-58],rot:[65,-38,-25]},
-  {from:[-67,132,140],to:[0,0,-58],rot:[-55,40,45]},
-  {from:[305,25,40],to:[87,0,-58],rot:[43,-55,-14]},
-  {from:[-201,215,-70],to:[-87,83,-58],rot:[-21,49,36]},
-  {from:[4,266,-130],to:[0,83,-58],rot:[68,22,-40]},
-  {from:[249,218,-120],to:[87,83,-58],rot:[-42,-57,21]},
-  {from:[-276,140,120],to:[-87,-83,58],rot:[35,30,-26]},
-  {from:[138,-243,150],to:[87,-83,58],rot:[-42,59,-18]},
-  {from:[282,-71,140],to:[87,83,58],rot:[54,-43,29]}
+  {from:[-315,-198,-200],to:[0,-170,-90],rot:[-45,48,-19]},
+  {from:[260,-248,160],to:[-12,-86,-40],rot:[35,-38,22]},
+  {from:[-290,28,-170],to:[10,-2,10],rot:[-48,53,-26]},
+  {from:[305,135,220],to:[-8,82,55],rot:[29,-42,18]},
+  {from:[-165,276,-120],to:[0,164,105],rot:[46,32,-22]}
  ];
  const pieces=fragments.map((fragment,i)=>{
   const cube=document.createElement('div');
@@ -533,20 +617,19 @@ body{letter-spacing:-.025em}
   if(phase<.93)return 1-smooth((phase-.58)/.35);
   return 0;
  }
+
  function drawArchitecture(progress,time){
   const p=smooth(progress);
   for(let i=0;i<fragments.length;i++){
-   const f=fragments[i],cube=pieces[i],a=f.from,c=f.to;
-   const x=a[0]+(c[0]-a[0])*p;
-   const y=a[1]+(c[1]-a[1])*p;
-   const z=a[2]+(c[2]-a[2])*p;
+   const f=fragments[i],pane=pieces[i],a=f.from,c=f.to;
+   const x=a[0]+(c[0]-a[0])*p,y=a[1]+(c[1]-a[1])*p,z=a[2]+(c[2]-a[2])*p;
    const rx=f.rot[0]*(1-p),ry=f.rot[1]*(1-p),rz=f.rot[2]*(1-p);
-   const drift=reduced?0:Math.sin(time*.0007+i*.85)*(1-p)*4;
-   cube.style.transform='translate3d('+x.toFixed(2)+'px,'+(y+drift).toFixed(2)+'px,'+z.toFixed(2)+'px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg)';
-   cube.style.opacity=(.57+.43*p).toFixed(2);
+   const drift=reduced?0:Math.sin(time*.00055+i*.72)*(1-p)*3;
+   pane.style.transform='translate3d('+x.toFixed(2)+'px,'+(y+drift).toFixed(2)+'px,'+z.toFixed(2)+'px) rotateY('+ry.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg) rotateX('+(65+rx).toFixed(2)+'deg)';
+   pane.style.opacity=(.69+.31*p).toFixed(2);
   }
-  const turn=reduced?0:Math.sin(time*.00024)*9;
-  structure.style.transform='rotateX(-17deg) rotateY('+(-25+turn).toFixed(2)+'deg)';
+  const turn=reduced?0:Math.sin(time*.00019)*5.5;
+  structure.style.transform='rotateX(-6deg) rotateY('+(-13+turn).toFixed(2)+'deg)';
  }
  function sceneFrame(time){
   if(!previous)previous=time;
