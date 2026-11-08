@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#151619">
+<meta name="theme-color" content="#12100f">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <meta name="description" content="DECHIVE는 정답보다 그 답에 이르는 구조를 탐구합니다. 지식을 해체하고 새로운 사고의 틀을 설계하며, 수업과 프로젝트를 통해 현실에 적용합니다.">
 <meta name="robots" content="index, follow">
 <meta name="naver-site-verification" content="e5f4e93941503c95634712aa25b235a583672cd4">
@@ -262,6 +263,89 @@ body{letter-spacing:-.025em}
  .contact-actions{margin-top:26px}
 }
 
+
+/* Photographic studio layer: real environment, controlled contrast, native 3D remains live. */
+:root{--bg:#121211;--white:#f1ede5;--gold:#d9c3a2}
+.header{background:#171513}
+.hero{background:#11100e}
+.hero-ambient{
+ background:
+ linear-gradient(90deg,rgba(11,12,12,.99) 0%,rgba(11,12,12,.94) 30%,rgba(11,12,12,.70) 53%,rgba(11,12,12,.44) 100%),
+ linear-gradient(180deg,rgba(13,12,11,.16) 0%,rgba(13,12,11,.10) 70%,rgba(13,12,11,.92) 100%),
+ url("https://images.unsplash.com/photo-1650337771276-1ff47d60a7df?auto=format&fit=crop&w=2100&q=85");
+ background-size:cover;
+ background-position:center,right center,right 43%;
+ filter:saturate(.74) contrast(1.04);
+}
+.hero-ambient::after{opacity:.085}
+.hero-ambient:before{
+ content:"";position:absolute;inset:0;
+ background:radial-gradient(ellipse at 74% 52%,rgba(232,197,148,.21),transparent 34%);
+ pointer-events:none;
+}
+.hero h1{color:#f3eee6;text-shadow:0 2px 22px rgba(0,0,0,.46)}
+.hero .type-em{color:#e2c5a1}
+.hero-lead{color:#d5cec4;text-shadow:0 1px 16px rgba(0,0,0,.54)}
+.hero-art{filter:drop-shadow(0 12px 44px rgba(0,0,0,.35))}
+.arch-halo{background:radial-gradient(circle at 51% 52%,rgba(240,214,167,.18) 0%,rgba(197,152,91,.06) 24%,transparent 56%)}
+.arch-rings i{border-color:rgba(227,205,177,.10)}
+.arch-floor{background:radial-gradient(ellipse at center,rgba(236,192,131,.17),transparent 65%);filter:blur(24px)}
+.architecture-face{
+ border:1px solid rgba(247,226,192,.72);
+ background:linear-gradient(150deg,rgba(249,231,208,.40) 0%,rgba(216,202,180,.23) 22%,rgba(77,71,67,.24) 68%,rgba(253,236,207,.15));
+ box-shadow:inset 1px 1px 1px rgba(255,247,224,.58),inset -3px -6px 21px rgba(11,9,8,.25),0 9px 18px rgba(5,5,4,.16);
+ -webkit-backdrop-filter:blur(2px) saturate(.70);
+ backdrop-filter:blur(2px) saturate(.70);
+}
+.architecture-piece:nth-child(3n + 1) .architecture-face{
+ background:linear-gradient(145deg,rgba(253,225,182,.64),rgba(179,156,123,.25) 38%,rgba(46,45,45,.30) 85%);
+}
+.architecture-piece:nth-child(3n + 2) .architecture-face{
+ background:linear-gradient(133deg,rgba(235,231,219,.47),rgba(173,173,164,.20) 51%,rgba(32,33,34,.25));
+}
+.architecture-piece:nth-child(3n) .architecture-face{
+ background:linear-gradient(136deg,rgba(223,202,177,.50),rgba(117,105,88,.22) 60%,rgba(26,25,24,.26));
+}
+.offer-grid{align-items:stretch}
+.offer-card{min-height:408px;gap:15px;padding:30px 24px 33px}
+.offer-card .tag{font-size:11px;letter-spacing:.02em}
+.offer-photo{position:relative;width:100%;height:156px;overflow:hidden;background:#3b3028;border:1px solid rgba(224,197,156,.14)}
+.offer-photo img{
+ display:block;width:100%;height:100%;object-fit:cover;
+ filter:saturate(.65) sepia(.09) contrast(1.05) brightness(.77);
+ transform:scale(1.045);transition:transform 8s ease,filter 2s ease;
+}
+.offer-card.is-motion-active .offer-photo img{transform:scale(1.12);filter:saturate(.8) sepia(.06) contrast(1.04) brightness(.91)}
+.offer-photo:after{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(180deg,transparent 42%,rgba(9,10,10,.76)),linear-gradient(90deg,rgba(18,16,14,.20),transparent);
+}
+.offer-photo .offer-motion{
+ position:absolute;bottom:3px;right:8px;z-index:2;
+ margin:0;width:40%;max-width:130px;height:50px;opacity:.55;
+ transform:scale(.78);transform-origin:bottom right;mix-blend-mode:screen;pointer-events:none
+}
+.offer-card h3{margin-top:3px}
+.offer-card p{line-height:1.72}
+.offer-card a{margin-top:auto}
+.trust{background:linear-gradient(130deg,#ede8df 0%,#e4dbce 100%)}
+.newsletter{background:#e9e3d7}
+@media(max-width:780px){
+ .hero-ambient{
+ background:
+ linear-gradient(180deg,rgba(11,12,12,.95) 0%,rgba(11,12,12,.76) 40%,rgba(11,12,12,.57) 64%,rgba(11,12,12,.95) 100%),
+ url("https://images.unsplash.com/photo-1650337771276-1ff47d60a7df?auto=format&fit=crop&w=1100&q=78");
+ background-size:cover;background-position:center 45%;
+ }
+ .hero-art{filter:drop-shadow(0 10px 22px rgba(0,0,0,.35))}
+ .offer-card{min-height:0}
+ .offer-photo{height:174px}
+}
+@media(prefers-reduced-motion:reduce){
+ .offer-photo img{transition:none;transform:none}
+ .offer-card.is-motion-active .offer-photo img{transform:none}
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -333,27 +417,27 @@ body{letter-spacing:-.025em}
  <div class="shell">
   <div class="section-top"><div><p class="kicker">DECHIVE가 제공하는 것</p><h2 id="offer-title">사고의 구조를 배우고,<br>현실에 적용하는 방법.</h2></div><p>사고를 설계하는 방법과 수업, 프로젝트를 연결합니다. 지금 문의 가능한 서비스와 준비 중인 프로그램을 구분해 소개합니다.</p></div>
   <div class="offer-grid">
-   <article class="offer-card"><span class="tag">프레임워크 · 자료 준비 중</span><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
+   <article class="offer-card"><span class="tag">프레임워크 · 자료 준비 중</span><div class="offer-photo"><img src="https://images.unsplash.com/photo-1743385779534-f53c018c21f5?auto=format&fit=crop&w=900&q=82" alt="펜과 열린 노트가 놓인 실제 작업 책상" loading="lazy" decoding="async"><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
  <path class="motion-guide" d="M32 47H258"/>
  <g class="motion-piece motif-a"><rect x="35" y="29" width="46" height="36" rx="2"/><path d="M46 41h24M46 51h17"/></g>
  <g class="motion-piece motif-b"><rect x="123" y="29" width="46" height="36" rx="2"/><path d="M133 41h26M133 51h21"/></g>
  <g class="motion-piece motif-c"><rect x="211" y="29" width="46" height="36" rx="2"/><path d="M222 41h24M222 51h17"/></g>
  <path class="motion-trace" d="M81 47H123M169 47H211"/>
- </svg></div><h3>사고 구조 설계</h3><p>답을 외우는 대신 문제의 전제를 관찰하고 새로운 관점을 만드는 방법을 연구합니다. 실습 자료와 프로그램을 준비하고 있습니다.</p><a href="#newsletter">출시 소식 받기</a></article>
-   <article class="offer-card"><span class="tag">현재 문의 가능</span><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
+ </svg></div></div><h3>사고 구조 설계</h3><p>답을 외우는 대신 문제의 전제를 관찰하고 새로운 관점을 만드는 방법을 연구합니다. 실습 자료와 프로그램을 준비하고 있습니다.</p><a href="#newsletter">출시 소식 받기</a></article>
+   <article class="offer-card"><span class="tag">현재 문의 가능</span><div class="offer-photo"><img src="https://images.unsplash.com/photo-1769794371055-54436b54577e?auto=format&fit=crop&w=900&q=82" alt="책과 메모가 펼쳐진 실제 학습 공간" loading="lazy" decoding="async"><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
  <path class="motion-guide" d="M41 19V75M249 19V75M40 76H250"/>
  <g class="motion-piece motif-a"><rect x="61" y="16" width="61" height="49" rx="1"/><path d="M74 30h34M74 39h19"/></g>
  <g class="motion-piece motif-b"><rect x="140" y="31" width="40" height="32" rx="1"/><path d="M152 42h15"/></g>
  <g class="motion-piece motif-c"><rect x="193" y="19" width="45" height="46" rx="1"/><path d="M206 34h21M206 44h15"/></g>
  <path class="motion-trace" d="M122 49H140M180 49H193"/>
- </svg></div><h3>수업과 워크숍</h3><p>배운 내용을 직접 써볼 수 있도록 대상과 목적에 맞춰 구성하는 실습형 수업입니다. 기관·단체 출강을 협의합니다.</p><a href="/education/#education-contact">수업 문의하기</a></article>
-   <article class="offer-card"><span class="tag">실제 적용과 기록</span><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
+ </svg></div></div><h3>수업과 워크숍</h3><p>배운 내용을 직접 써볼 수 있도록 대상과 목적에 맞춰 구성하는 실습형 수업입니다. 기관·단체 출강을 협의합니다.</p><a href="/education/#education-contact">수업 문의하기</a></article>
+   <article class="offer-card"><span class="tag">실제 적용과 기록</span><div class="offer-photo"><img src="https://images.unsplash.com/photo-1521316973612-36489899f29b?auto=format&fit=crop&w=900&q=82" alt="나무 책상에서 노트를 펼쳐 연구하는 사람의 손" loading="lazy" decoding="async"><div class="offer-motion" aria-hidden="true"><svg viewBox="0 0 290 92">
  <path class="motion-guide" d="M30 71H258"/>
  <g class="motion-piece motif-a"><path d="M58 25h50v44H58zM66 35h33M66 44h23M66 53h28"/></g>
  <g class="motion-piece motif-b"><path d="M124 17h50v52h-50zM132 30h33M132 39h25M132 48h31"/></g>
  <g class="motion-piece motif-c"><path d="M190 25h50v44h-50zM198 35h33M198 44h23M198 53h28"/></g>
  <path class="motion-trace" d="M108 59h16M174 59h16"/>
- </svg></div><h3>프로젝트와 기록</h3><p>일과 학습의 실제 불편함을 발견하고, 필요한 구조를 만들어 검증하는 과정을 기록합니다.</p><a href="/work/">실제 작업 보기</a></article>
+ </svg></div></div><h3>프로젝트와 기록</h3><p>일과 학습의 실제 불편함을 발견하고, 필요한 구조를 만들어 검증하는 과정을 기록합니다.</p><a href="/work/">실제 작업 보기</a></article>
   </div>
  </div>
 </section>
