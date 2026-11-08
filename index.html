@@ -584,6 +584,51 @@ body{letter-spacing:-.025em}
  .arch-brass-base i,.glass-engraving{animation:none!important}
 }
 
+
+/* Detail pass — brass mounting hardware and material consistency below the fold. */
+.arch-structure{z-index:2}
+.arch-brass-base{z-index:0}
+.arch-floor{z-index:-1}
+.method-visual::before{
+ content:"";position:absolute;top:12px;left:16px;right:16px;bottom:12px;
+ border:1px solid rgba(234,197,147,.28);z-index:0;pointer-events:none;
+ box-shadow:inset 0 0 24px rgba(237,192,128,.05),0 0 8px rgba(0,0,0,.12);
+}
+.method-visual::after{
+ content:"";position:absolute;left:44px;right:44px;bottom:7px;height:6px;
+ background:linear-gradient(90deg,#55402a,#b89a71,#55402a);
+ box-shadow:0 2px 7px rgba(18,12,8,.31);z-index:0;pointer-events:none;
+}
+.method-visual svg{z-index:1}
+.method-caption{z-index:2}
+.trust-motion{
+ position:relative;border:1px solid rgba(230,190,133,.36);
+ padding:16px 18px 8px;
+ background:linear-gradient(138deg,rgba(225,191,144,.11),rgba(22,19,15,.20) 70%,rgba(216,181,129,.10));
+ box-shadow:inset 1px 1px 1px rgba(251,232,199,.32),0 9px 21px rgba(0,0,0,.23);
+ backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+}
+.trust-motion::before,.trust-motion::after{
+ content:"";position:absolute;bottom:-8px;width:18px;height:11px;
+ border:1px solid #a98351;background:linear-gradient(115deg,#6a4829,#d7b17a,#735532);
+ box-shadow:0 3px 8px rgba(0,0,0,.22)
+}
+.trust-motion::before{left:20px}
+.trust-motion::after{right:20px}
+.newsletter-form{
+ position:relative;
+ background:linear-gradient(140deg,rgba(247,239,226,.60),rgba(232,220,203,.47));
+ border:1px solid rgba(150,120,81,.31);
+ padding:24px;
+ box-shadow:0 12px 28px rgba(65,47,31,.12),inset 1px 1px 1px rgba(255,255,255,.48);
+}
+.newsletter-form .newsletter-field{position:relative;z-index:1}
+@media(max-width:780px){
+ .method-visual::before{inset:9px}
+ .method-visual::after{left:25px;right:25px}
+ .newsletter-form{padding:20px}
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
