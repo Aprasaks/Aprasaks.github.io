@@ -292,64 +292,108 @@ body{letter-spacing:-.025em}
  const toggle=document.querySelector('.menu-toggle');const menu=document.getElementById('main-nav');
  toggle.addEventListener('click',()=>{const next=!menu.classList.contains('open');menu.classList.toggle('open',next);toggle.setAttribute('aria-expanded',String(next));toggle.setAttribute('aria-label',next?'메뉴 닫기':'메뉴 열기');});
  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
- const NS='http://www.w3.org/2000/svg';const partsRoot=document.getElementById('panels');const art=document.getElementById('assembly');
- const panels=[
-  {x:180,y:180,tx:344,ty:202,rot:-16,tr:-12,kind:'a'},
-  {x:632,y:134,tx:480,ty:210,rot:22,tr:13,kind:'b'},
-  {x:128,y:343,tx:329,ty:293,rot:-14,tr:-7,kind:'b'},
-  {x:675,y:294,tx:492,ty:306,rot:16,tr:10,kind:'a'},
-  {x:225,y:467,tx:350,ty:381,rot:-21,tr:-12,kind:'a'},
-  {x:604,y:461,tx:480,ty:384,rot:27,tr:12,kind:'a'},
-  {x:369,y:99,tx:416,ty:172,rot:-9,tr:0,kind:'a'},
-  {x:688,y:403,tx:540,ty:345,rot:27,tr:0,kind:'b'},
-  {x:143,y:260,tx:281,ty:310,rot:-15,tr:0,kind:'b'},
- ];
+
+ const NS='http://www.w3.org/2000/svg';
  function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));parent.appendChild(e);return e;}
- const groups=panels.map((p,i)=>{const g=el('g',{},partsRoot);let pts=p.kind==='a'?'-54,-22 32,-57 112,-14 26,21':'-34,-51 26,-70 26,52 -34,67';el('polygon',{points:pts,fill:i%3===0?'url(#tinted)':'url(#glass)',stroke:'#f3dfbe','stroke-opacity':'.68','stroke-width':'1.0'},g);el('path',{d:p.kind==='a'?'M-54 -22 L-54 7 26 48 112 13 112 -14':'M26 -70 L45 -57 45 38 26 52',fill:'none',stroke:'#e9caa2','stroke-opacity':'.35','stroke-width':'.9'},g);return g;});
- let progress=reduced?1:.06,paused=false,cycleTime=0,lastFrame=0;
- const hint=art.querySelector('.interaction-hint');
+ const structure=document.getElementById('architecture-structure');
+ const motionToggle=document.getElementById('motion-toggle');
  const heroMini=[...document.querySelectorAll('.step-mini')];
- let lastHeroMini=-1;
- const clamp01=v=>Math.max(0,Math.min(1,v));
- const smooth=v=>{const t=clamp01(v);return t*t*(3-2*t);};
- const period=11000;
- function automaticProgress(time){
-  const phase=(time%period)/period;
-  if(phase<.06)return .06;
-  if(phase<.40)return .06+.94*smooth((phase-.06)/.34);
-  if(phase<.57)return 1;
-  if(phase<.94)return 1-.94*smooth((phase-.57)/.37);
-  return .06;
+ const clamp01=v=>Math.min(1,Math.max(0,v));
+ const smooth=v=>{const u=clamp01(v);return u*u*(3-2*u);};
+ const fragments=[
+  {from:[-254,-178,-155],to:[-87,-83,-58],rot:[-45,52,23]},
+  {from:[-38,-265,-190],to:[0,-83,-58],rot:[41,-26,-28]},
+  {from:[238,-170,-110],to:[87,-83,-58],rot:[-35,54,16]},
+  {from:[-295,-3,20],to:[-87,0,-58],rot:[65,-38,-25]},
+  {from:[-67,132,140],to:[0,0,-58],rot:[-55,40,45]},
+  {from:[305,25,40],to:[87,0,-58],rot:[43,-55,-14]},
+  {from:[-201,215,-70],to:[-87,83,-58],rot:[-21,49,36]},
+  {from:[4,266,-130],to:[0,83,-58],rot:[68,22,-40]},
+  {from:[249,218,-120],to:[87,83,-58],rot:[-42,-57,21]},
+  {from:[-276,140,120],to:[-87,-83,58],rot:[35,30,-26]},
+  {from:[138,-243,150],to:[87,-83,58],rot:[-42,59,-18]},
+  {from:[282,-71,140],to:[87,83,58],rot:[54,-43,29]}
+ ];
+ const pieces=fragments.map((fragment,i)=>{
+  const cube=document.createElement('div');
+  cube.className='architecture-piece';
+  for(const side of ['front','back','right','left','top','bottom']){
+   const face=document.createElement('span');
+   face.className='architecture-face face-'+side;
+   cube.appendChild(face);
+  }
+  structure.appendChild(cube);
+  return cube;
+ });
+ let cycleTime=0,previous=0,paused=false,lastMini=-1;
+ const period=11400;
+ function assemblyProgress(t){
+  const phase=(t%period)/period;
+  if(phase<.07)return 0;
+  if(phase<.41)return smooth((phase-.07)/.34);
+  if(phase<.58)return 1;
+  if(phase<.93)return 1-smooth((phase-.58)/.35);
+  return 0;
  }
- function draw(v){const core=document.getElementById('core');if(core){core.setAttribute('opacity',(0.25+0.62*v).toFixed(3));core.setAttribute('transform',`translate(${413*(1-(0.94+0.06*v))} ${312*(1-(0.94+0.06*v))}) scale(${(0.94+0.06*v).toFixed(4)})`);}panels.forEach((p,i)=>{const ease=clamp01((v-.04*i)*1.4);const xx=p.x+(p.tx-p.x)*ease,yy=p.y+(p.ty-p.y)*ease,rr=p.rot+(p.tr-p.rot)*ease;groups[i].setAttribute('transform',`translate(${xx.toFixed(1)} ${yy.toFixed(1)}) rotate(${rr.toFixed(2)})`);groups[i].setAttribute('opacity',(0.65+0.35*ease).toFixed(2));});}
- function tick(now){
-  if(!lastFrame)lastFrame=now;
-  const delta=Math.max(0,Math.min(64,now-lastFrame));
-  lastFrame=now;
-  if(!paused&&document.visibilityState==='visible')cycleTime+=delta;
-  const destination=paused?progress:automaticProgress(cycleTime);
-  progress+=(destination-progress)*Math.min(1,delta/110);
-  draw(progress);
-  const segment=Math.floor((cycleTime%period)/(period/4));
-  if(segment!==lastHeroMini){heroMini.forEach((item,i)=>item.classList.toggle('is-current',i===segment));lastHeroMini=segment;}
-  requestAnimationFrame(tick);
+ function drawArchitecture(progress,time){
+  const p=smooth(progress);
+  for(let i=0;i<fragments.length;i++){
+   const f=fragments[i],cube=pieces[i],a=f.from,c=f.to;
+   const x=a[0]+(c[0]-a[0])*p;
+   const y=a[1]+(c[1]-a[1])*p;
+   const z=a[2]+(c[2]-a[2])*p;
+   const rx=f.rot[0]*(1-p),ry=f.rot[1]*(1-p),rz=f.rot[2]*(1-p);
+   const drift=reduced?0:Math.sin(time*.0007+i*.85)*(1-p)*4;
+   cube.style.transform='translate3d('+x.toFixed(2)+'px,'+(y+drift).toFixed(2)+'px,'+z.toFixed(2)+'px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg)';
+   cube.style.opacity=(.57+.43*p).toFixed(2);
+  }
+  const turn=reduced?0:Math.sin(time*.00024)*9;
+  structure.style.transform='rotateX(-17deg) rotateY('+(-25+turn).toFixed(2)+'deg)';
+ }
+ function sceneFrame(time){
+  if(!previous)previous=time;
+  const dt=Math.min(60,Math.max(0,time-previous));
+  previous=time;
+  if(!paused&&!document.hidden)cycleTime+=dt;
+  drawArchitecture(assemblyProgress(cycleTime),cycleTime);
+  const index=Math.min(3,Math.floor((cycleTime%period)/(period/4)));
+  if(index!==lastMini){heroMini.forEach((node,i)=>node.classList.toggle('is-current',i===index));lastMini=index;}
+  requestAnimationFrame(sceneFrame);
  }
  if(reduced){
-  art.removeAttribute('role');art.removeAttribute('tabindex');art.removeAttribute('aria-pressed');
-  art.setAttribute('aria-label','완성된 설계 구조물');
-  hint.textContent='';
-  draw(1);
+  drawArchitecture(1,0);
+  motionToggle.hidden=true;
  }else{
-  function updateControl(){
-   art.setAttribute('aria-pressed',String(paused));
-   art.setAttribute('aria-label',paused?'구조물 애니메이션 다시 재생하기':'구조물 애니메이션 일시정지하기');
-   hint.textContent=paused?'일시정지 · 클릭하면 재생':'';
-  }
-  art.addEventListener('click',()=>{paused=!paused;updateControl();});
-  art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();art.click();}});
-  updateControl();draw(progress);requestAnimationFrame(tick);
+  drawArchitecture(0,0);
+  requestAnimationFrame(sceneFrame);
+  motionToggle.addEventListener('click',()=>{
+   paused=!paused;
+   motionToggle.textContent=paused?'모션 다시 재생':'모션 일시정지';
+   motionToggle.setAttribute('aria-pressed',String(paused));
+  });
  }
-
+ // Keep the complete motto in the HTML for search and assistive technology.
+ const typed=[...document.querySelectorAll('[data-type-line]')];
+ if(!reduced&&typed.length){
+  const full=typed.map(x=>x.textContent.trim());
+  typed.forEach(x=>{x.textContent='';x.classList.add('typing-pending');});
+  let row=0,column=0;
+  function write(){
+   if(row>=typed.length)return;
+   const line=typed[row],characters=Array.from(full[row]);
+   line.classList.remove('typing-pending');
+   line.classList.add('is-writing');
+   column++;
+   line.textContent=characters.slice(0,column).join('');
+   if(column<characters.length){setTimeout(write,row<2?53:38);}
+   else{
+    line.classList.remove('is-writing');
+    row++;column=0;
+    if(row<typed.length)setTimeout(write,row===2?440:220);
+   }
+  }
+  setTimeout(write,480);
+ }
  // The diagram progresses on its own while the section is in view.
  // Text is always visible, and the user remains in control of scrolling.
  const tabs=[...document.querySelectorAll('.method-tab')];
