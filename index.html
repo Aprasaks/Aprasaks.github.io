@@ -423,6 +423,18 @@ body{letter-spacing:-.025em}
  .offer .section-top p{font-size:13px!important}
 }
 
+
+/* Compact first-screen subscription, visually subordinate to the main sales paths. */
+.hero-newsletter-form{width:min(390px,100%);margin-top:30px;padding:0;border:0}
+.hero-newsletter-form>label{display:block;color:#d9bc8d;font-size:11px;font-weight:550;margin-bottom:11px;letter-spacing:0}
+.hero-newsletter-field{display:flex;height:43px;align-items:stretch;border:1px solid rgba(222,201,170,.56);border-radius:2px;background:rgba(7,8,9,.63)}
+.hero-newsletter-field input{flex:1;min-width:0;border:0;background:transparent;color:#f6eee1;padding:0 12px;font-size:12px;font-family:inherit;outline-offset:3px}
+.hero-newsletter-field input::placeholder{color:#b2aaa0}
+.hero-newsletter-field button{border:0;border-left:1px solid rgba(227,204,168,.36);background:rgba(226,196,151,.90);color:#242019;font-family:inherit;font-size:11px;font-weight:600;padding:0 13px;white-space:nowrap;cursor:pointer}
+.hero-newsletter-field button:hover{background:#e8d4b4}
+.hero-newsletter-help{font-size:10px;color:#a8a29b;margin:9px 0 0;line-height:1.5}
+.hero-newsletter-message{font-size:10px;color:#d9c5a4;margin:5px 0 0;min-height:0}
+@media(max-width:780px){.hero-newsletter-form{margin-top:25px}.hero-newsletter-field button{font-size:10px;padding:0 10px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -454,10 +466,19 @@ body{letter-spacing:-.025em}
     <span class="type-line" data-type-line aria-hidden="true">배움에서 끝나지 않고 삶에 적용할 수 있도록.</span>
    </p>
    <div class="actions">
-    <a class="button primary" href="#explore">DECHIVE가 제공하는 것</a>
-    <a class="button" href="#newsletter">설계 노트 구독</a>
+    <a class="button primary" href="#explore">사고 구조 설계</a>
+    <a class="button" href="/education/#education-contact">수업·워크숍</a>
    </div>
-   <p class="hero-footnote">사고의 구조 · 수업과 워크숍 · 실제 적용</p>
+   
+   <form class="hero-newsletter-form" id="hero-newsletter-form">
+    <label for="hero-newsletter-email">설계 노트와 새로운 실험을 이메일로 받아보세요.</label>
+    <div class="hero-newsletter-field">
+     <input type="email" id="hero-newsletter-email" name="email" placeholder="이메일 주소" autocomplete="email" maxlength="254" required>
+     <button type="submit">신청 메일 작성 <span aria-hidden="true">→</span></button>
+    </div>
+    <p class="hero-newsletter-help">현재는 메일 앱에서 직접 전송하는 신청 방식입니다.</p>
+    <p class="hero-newsletter-message" id="hero-newsletter-message" role="status" aria-live="polite"></p>
+   </form>
   </div>
   <div class="hero-art" id="assembly" aria-label="반투명한 다섯 장의 유리 설계 패널이 공중에서 자동으로 분해되고 재조립되는 모션그래픽">
    <div class="arch-scene" id="architecture-scene" aria-hidden="true">
@@ -788,24 +809,29 @@ body{letter-spacing:-.025em}
   }
  }
 
- const newsletterForm=document.getElementById('newsletter-form');
- newsletterForm.addEventListener('submit',event=>{
-  event.preventDefault();
-  if(!newsletterForm.reportValidity())return;
-  const email=document.getElementById('newsletter-email').value.trim();
-  const message=document.getElementById('newsletter-message');
-  const subject=encodeURIComponent('DECHIVE 뉴스레터 구독 신청');
-  const body=encodeURIComponent([
-   '안녕하세요. DECHIVE 뉴스레터를 신청합니다.',
-   '',
-   '구독 이메일: '+email,
-   '뉴스레터 수신 요청 및 이메일 주소 전달에 동의합니다.',
-   '',
-   '※ 메일을 직접 보내야 신청 요청이 전달됩니다.'
-  ].join(String.fromCharCode(10)));
-  message.textContent='이메일 앱이 열립니다. 직접 메일을 보내야 접수됩니다.';
-  window.location.href='mailto:heavenis0113@gmail.com?subject='+subject+'&body='+body;
- });
+ function prepareSubscription(formId,emailId,messageId,consentId){
+  const form=document.getElementById(formId),input=document.getElementById(emailId),message=document.getElementById(messageId);
+  if(!form||!input||!message)return;
+  form.addEventListener('submit',event=>{
+   event.preventDefault();
+   if(!form.reportValidity())return;
+   const email=input.value.trim();
+   if(!email)return;
+   const subject=encodeURIComponent('DECHIVE 뉴스레터 구독 신청');
+   const body=encodeURIComponent([
+    '안녕하세요. DECHIVE 뉴스레터 수신을 요청합니다.',
+    '',
+    '구독 이메일: '+email,
+    '뉴스레터 신청에 필요한 이메일 주소 전달에 동의합니다.',
+    '',
+    '※ 이메일을 직접 전송해야 신청 요청이 전달됩니다.'
+   ].join(String.fromCharCode(10)));
+   message.textContent='메일 앱이 열립니다. 직접 전송해야 신청 요청이 전달됩니다.';
+   window.location.href='mailto:heavenis0113@gmail.com?subject='+subject+'&body='+body;
+  });
+ }
+ prepareSubscription('newsletter-form','newsletter-email','newsletter-message');
+ prepareSubscription('hero-newsletter-form','hero-newsletter-email','hero-newsletter-message');
 
 })();
 </script>
