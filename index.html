@@ -629,6 +629,82 @@ body{letter-spacing:-.025em}
  .newsletter-form{padding:20px}
 }
 
+
+/* Photograph first: no fake CSS-glass boards remain in the hero. */
+.hero-art{position:relative;height:620px;isolation:isolate;filter:none}
+.hero-art::before,.hero-art::after{display:none}
+.real-glass-photo{
+ position:absolute;inset:15% -8% 17% -5%;
+ background:#18140f;
+ overflow:visible;
+ filter:drop-shadow(0 22px 39px rgba(3,3,3,.5));
+ -webkit-mask-image:linear-gradient(90deg,transparent 0%,black 9%,black 95%,transparent 100%);
+ mask-image:linear-gradient(90deg,transparent 0%,black 9%,black 95%,transparent 100%);
+}
+.photo-fallback{display:block;width:100%;height:100%;object-fit:fill;opacity:1}
+.photo-shard{
+ position:absolute;inset:0;
+ background-image:url("/assets/dechive-glass-photoreal.webp");
+ background-size:100% 100%;background-position:center;
+ background-repeat:no-repeat;
+ opacity:0;
+ animation:dechive-photographic-reassembly 11.4s ease-in-out infinite;
+ animation-play-state:running;
+ will-change:transform,opacity;
+}
+.real-glass-photo.photo-enhanced .photo-fallback{opacity:0}
+.real-glass-photo.photo-enhanced .photo-shard{opacity:1}
+.photo-shard.shard-a{
+ clip-path:polygon(0 0,25% 0,25% 100%,0 100%);
+ --shift-x:-46px;--shift-y:-16px;--turn:-2deg;
+}
+.photo-shard.shard-b{
+ clip-path:polygon(25% 0,50% 0,50% 100%,25% 100%);
+ --shift-x:13px;--shift-y:-24px;--turn:1deg;
+}
+.photo-shard.shard-c{
+ clip-path:polygon(50% 0,75% 0,75% 100%,50% 100%);
+ --shift-x:-8px;--shift-y:26px;--turn:-1deg;
+}
+.photo-shard.shard-d{
+ clip-path:polygon(75% 0,100% 0,100% 100%,75% 100%);
+ --shift-x:38px;--shift-y:17px;--turn:2deg;
+}
+@keyframes dechive-photographic-reassembly{
+ 0%,8%,96%,100%{transform:translate(var(--shift-x),var(--shift-y)) rotate(var(--turn));opacity:.98}
+ 34%,68%{transform:translate(0,0) rotate(0);opacity:1}
+ 84%{transform:translate(calc(var(--shift-x)*.55),calc(var(--shift-y)*.55)) rotate(var(--turn));opacity:1}
+}
+.real-glass-photo.is-paused .photo-shard{animation-play-state:paused}
+.hero-ambient{
+ background:
+ linear-gradient(90deg,rgba(11,10,10,.98) 0%,rgba(11,10,10,.89) 32%,rgba(11,10,10,.62) 58%,rgba(11,10,10,.50) 100%),
+ radial-gradient(ellipse at 72% 63%,rgba(211,157,93,.17),transparent 47%),
+ #13100e;
+}
+.hero-grid{grid-template-columns:49% 51%}
+.hero-copy{position:relative;z-index:3}
+.hero .eyebrow{font-size:12px}
+.hero h1{font-size:clamp(31px,2.95vw,42px)}
+.hero-lead{font-size:14px}
+@media(max-width:1180px){
+ .hero-art{height:570px;margin-left:-50px;margin-right:-35px}
+ .real-glass-photo{inset:17% -6% 18% -3%}
+}
+@media(max-width:780px){
+ .hero-grid{grid-template-columns:1fr}
+ .hero-art{height:320px;margin:0 -12px}
+ .real-glass-photo{inset:11% -3% 12% -3%}
+ .photo-shard.shard-a{--shift-x:-16px;--shift-y:-8px}
+ .photo-shard.shard-b{--shift-x:7px;--shift-y:-10px}
+ .photo-shard.shard-c{--shift-x:-5px;--shift-y:11px}
+ .photo-shard.shard-d{--shift-x:14px;--shift-y:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .real-glass-photo .photo-shard{animation:none!important;opacity:0!important}
+ .real-glass-photo .photo-fallback{opacity:1!important}
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DECHIVE","url":"https://studio.dechive.dev/","inLanguage":"ko-KR"}</script>
 </head>
@@ -674,13 +750,13 @@ body{letter-spacing:-.025em}
     <p class="hero-newsletter-message" id="hero-newsletter-message" role="status" aria-live="polite"></p>
    </form>
   </div>
-  <div class="hero-art" id="assembly" aria-label="반투명한 다섯 장의 유리 설계 패널이 공중에서 자동으로 분해되고 재조립되는 모션그래픽">
-   <div class="arch-scene" id="architecture-scene" aria-hidden="true">
-    <div class="arch-halo"></div>
-    <div class="arch-rings"><i></i><i></i><i></i></div>
-    <div class="arch-structure" id="architecture-structure"></div>
-    <div class="arch-brass-base"><i></i><i></i><i></i><i></i></div>
-    <div class="arch-floor"></div>
+  <div class="hero-art" id="assembly" aria-label="실사 유리 설계판 이미지가 천천히 분해·재조립되는 사진 기반 모션그래픽">
+   <div class="real-glass-photo" id="glass-photo" role="img" aria-label="작업실의 황동 받침 위에 세워진 실제 렌더링 유리 설계판 네 장">
+    <img class="photo-fallback" src="/assets/dechive-glass-photoreal.webp" alt="" fetchpriority="high" decoding="async" width="420" height="237">
+    <div class="photo-shard shard-a" aria-hidden="true"></div>
+    <div class="photo-shard shard-b" aria-hidden="true"></div>
+    <div class="photo-shard shard-c" aria-hidden="true"></div>
+    <div class="photo-shard shard-d" aria-hidden="true"></div>
    </div>
    <button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false">모션 일시정지</button>
   </div>
@@ -796,96 +872,34 @@ body{letter-spacing:-.025em}
  toggle.addEventListener('click',()=>{const next=!menu.classList.contains('open');menu.classList.toggle('open',next);toggle.setAttribute('aria-expanded',String(next));toggle.setAttribute('aria-label',next?'메뉴 닫기':'메뉴 열기');});
  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
 
- const NS='http://www.w3.org/2000/svg';
- function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));parent.appendChild(e);return e;}
- const structure=document.getElementById('architecture-structure');
+
+ // The photo, rather than translucent CSS rectangles, is the actual subject.
+ const photo=document.getElementById('glass-photo');
  const motionToggle=document.getElementById('motion-toggle');
  const heroMini=[...document.querySelectorAll('.step-mini')];
- const clamp01=v=>Math.min(1,Math.max(0,v));
- const smooth=v=>{const u=clamp01(v);return u*u*(3-2*u);};
-
- // Five glass layers assemble into one coherent thinking structure.
-
- // The photographed reference uses standing glass sheets on brass mounts.
- // Each real DOM pane contains engraved drawings, not a decorative text overlay.
- const fragments=[
-  {from:[-380,-220,-240],to:[-192,-20,-220],rot:[-24,39,-22],size:.68},
-  {from:[-100,235,240],to:[-85,-28,-132],rot:[30,-58,16],size:.80},
-  {from:[320,-200,-160],to:[42,-13,-35],rot:[-32,41,-24],size:.91},
-  {from:[350,180,235],to:[170,-10,72],rot:[28,-46,20],size:1.00}
- ];
- const boardGraphics=[
-  `<svg viewBox="0 0 300 220" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1" opacity=".72"><path d="M42 58h65v36H42zM165 58h93v36h-93zM108 76h57M150 76v38M76 114h153M76 114v19M229 114v19"/><rect x="38" y="136" width="82" height="34" rx="3"/><rect x="171" y="136" width="87" height="34" rx="3"/><path d="M80 170v19m0 0h107m0 0v-19"/><path d="M28 23h243M28 198h243" opacity=".22"/></g><g fill="currentColor" font-size="10" opacity=".77"><text x="54" y="79">QUESTION</text><text x="182" y="79">CONTEXT</text><text x="53" y="157">OBSERVE</text><text x="184" y="157">REVIEW</text></g></svg>`,
-  `<svg viewBox="0 0 300 220" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width=".9" opacity=".72"><path d="M14 39C70 8 106 88 151 53s101-31 137-8M14 52C70 21 106 101 151 66s101-31 137-8M14 65C70 34 106 114 151 79s101-31 137-8M14 78C70 47 106 127 151 92s101-31 137-8M14 91C70 60 106 140 151 105s101-31 137-8M14 104C70 73 106 153 151 118s101-31 137-8M14 117C70 86 106 166 151 131s101-31 137-8M14 130C70 99 106 179 151 144s101-31 137-8M14 143C70 112 106 192 151 157s101-31 137-8M14 156C70 125 106 205 151 170s101-31 137-8M14 169C70 138 106 218 151 183s101-31 137-8"/><path d="M22 14v192M278 14v192" opacity=".3"/></g></svg>`,
-  `<svg viewBox="0 0 300 220" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1" opacity=".72"><path d="M151 40l78 35-78 35-78-35zM73 75v65l78 35v-65M229 75v65l-78 35M73 107l78 35 78-35M151 40v70M151 175v22" /><path d="M46 60h37M46 154h37M219 36h36M214 180h48" opacity=".5" stroke-dasharray="3 5"/><circle cx="151" cy="110" r="62" opacity=".2" stroke-dasharray="4 8"/></g></svg>`,
-  `<svg viewBox="0 0 300 220" aria-hidden="true"><text x="24" y="32" fill="currentColor" font-size="17" letter-spacing="2">DECHIVE</text><g fill="none" stroke="currentColor" stroke-width="1.2" opacity=".82"><rect x="114" y="88" width="77" height="40" rx="3"/><rect x="26" y="54" width="72" height="30" rx="3"/><rect x="204" y="54" width="70" height="30" rx="3"/><rect x="26" y="152" width="72" height="30" rx="3"/><rect x="204" y="152" width="70" height="30" rx="3"/><path d="M98 69L114 88M204 69L191 88M98 167l16-39M204 167l-13-39"/></g><g fill="currentColor" font-size="10.5" text-anchor="middle"><text x="63" y="72">관찰</text><text x="239" y="72">분석</text><text x="152" y="112">구조</text><text x="63" y="171">설계</text><text x="239" y="171">검증</text></g><path d="M22 200h256" stroke="currentColor" opacity=".3"/></svg>`
- ];
- const pieces=fragments.map((spec,i)=>{
-  const board=document.createElement('div');
-  board.className='architecture-piece';
-  const front=document.createElement('span');
-  front.className='architecture-face face-front';
-  const engraving=document.createElement('span');
-  engraving.className='glass-engraving';
-  engraving.innerHTML=boardGraphics[i];
-  front.appendChild(engraving);
-  board.appendChild(front);
-  const back=document.createElement('span');back.className='architecture-face face-back';board.appendChild(back);
-  const clipTop=document.createElement('span');clipTop.className='glass-clip glass-clip-left';board.appendChild(clipTop);
-  const clipBottom=document.createElement('span');clipBottom.className='glass-clip glass-clip-right';board.appendChild(clipBottom);
-  structure.appendChild(board);
-  return board;
- });
- let cycleTime=0,previous=0,paused=false,lastMini=-1;
- const period=11400;
- function assemblyProgress(t){
-  const phase=(t%period)/period;
-  if(phase<.07)return 0;
-  if(phase<.41)return smooth((phase-.07)/.34);
-  if(phase<.58)return 1;
-  if(phase<.93)return 1-smooth((phase-.58)/.35);
-  return 0;
- }
-
-
- function drawArchitecture(progress,time){
-  const p=smooth(progress);
-  fragments.forEach((f,i)=>{
-   const a=f.from,c=f.to,b=pieces[i];
-   const x=a[0]+(c[0]-a[0])*p,y=a[1]+(c[1]-a[1])*p,z=a[2]+(c[2]-a[2])*p;
-   const rx=f.rot[0]*(1-p),ry=f.rot[1]*(1-p),rz=f.rot[2]*(1-p);
-   const drift=reduced?0:Math.sin(time*.0006+i*.75)*(1-p)*3;
-   b.style.transform='translate3d('+x.toFixed(2)+'px,'+(y+drift).toFixed(2)+'px,'+z.toFixed(2)+'px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg) scale('+f.size+')';
-   b.style.opacity=(.69+.31*p).toFixed(2);
-  });
-  const turn=reduced?0:Math.sin(time*.00021)*3.2;
-  structure.style.transform='rotateX(-3deg) rotateY('+(-12+turn).toFixed(2)+'deg)';
- }
- function sceneFrame(time){
-  if(!previous)previous=time;
-  const dt=Math.min(60,Math.max(0,time-previous));
-  previous=time;
-  if(!paused&&!document.hidden)cycleTime+=dt;
-  drawArchitecture(assemblyProgress(cycleTime),cycleTime);
-  const index=Math.min(3,Math.floor((cycleTime%period)/(period/4)));
-  if(index!==lastMini){heroMini.forEach((node,i)=>node.classList.toggle('is-current',i===index));lastMini=index;}
-  requestAnimationFrame(sceneFrame);
- }
+ let photoPaused=false,photoStarted=performance.now(),photoElapsed=0,lastMini=-1;
+ const photoPeriod=11400;
  if(reduced){
-  drawArchitecture(1,0);
   motionToggle.hidden=true;
  }else{
-  drawArchitecture(0,0);
-  requestAnimationFrame(sceneFrame);
+  photo.classList.add('photo-enhanced');
+  function animateHero(now){
+   if(!photoPaused && !document.hidden)photoElapsed=now-photoStarted;
+   const current=Math.min(3,Math.floor((photoElapsed%photoPeriod)/(photoPeriod/4)));
+   if(current!==lastMini){heroMini.forEach((item,i)=>item.classList.toggle('is-current',i===current));lastMini=current;}
+   requestAnimationFrame(animateHero);
+  }
   motionToggle.addEventListener('click',()=>{
-   paused=!paused;
-   motionToggle.textContent=paused?'모션 다시 재생':'모션 일시정지';
-   motionToggle.setAttribute('aria-pressed',String(paused));
+   photoPaused=!photoPaused;
+   photo.classList.toggle('is-paused',photoPaused);
+   if(!photoPaused)photoStarted=performance.now()-photoElapsed;
+   motionToggle.textContent=photoPaused?'모션 다시 재생':'모션 일시정지';
+   motionToggle.setAttribute('aria-pressed',String(photoPaused));
   });
+  requestAnimationFrame(animateHero);
  }
- // Keep the complete motto in the HTML for search and assistive technology.
  const typed=[...document.querySelectorAll('[data-type-line]')];
- if(!reduced&&typed.length){
+ if(!reduced && typed.length){
   const full=typed.map(x=>x.textContent.trim());
   typed.forEach(x=>{x.textContent='';x.classList.add('typing-pending');});
   let row=0,column=0;
