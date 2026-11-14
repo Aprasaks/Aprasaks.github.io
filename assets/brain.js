@@ -212,6 +212,9 @@
     // 0 → 2 (A → B → C), 끝부분은 C에 머물게 약간 여유
     phaseTarget = Math.min(2, prog * 2.25);
     hero.style.setProperty('--phase', phaseTarget.toFixed(3));
+    hero.style.setProperty('--progress', prog.toFixed(3));
+    var done = prog > 0.97 ? 'true' : 'false';
+    if (hero.dataset.done !== done) hero.dataset.done = done;
     var stage = phaseTarget < 0.55 ? 'a' : phaseTarget < 1.5 ? 'b' : 'c';
     if (hero.dataset.stage !== stage) hero.dataset.stage = stage;
   }
@@ -231,10 +234,10 @@
     var rx = -0.32 + my * 0.22;
     var cy = Math.cos(ry), sy = Math.sin(ry), cx = Math.cos(rx), sx = Math.sin(rx);
 
-    // 화면 배치: 큰 화면에서는 오른쪽으로 비켜 텍스트와 겹치지 않게
-    var centerX = small ? W * 0.5 : W * (0.64 + (1 - clamp01(phase)) * 0.04);
-    var centerY = small ? H * 0.36 : H * 0.45;
-    var scale = Math.min(W * (small ? 0.33 : 0.25), H * 0.33);
+    // 캔버스는 히어로의 그림 칸만 차지합니다. 가장 넓게 퍼지는 엉킨 상태도 칸 안에 들어오게 크기를 잡습니다.
+    var centerX = W * 0.5;
+    var centerY = H * 0.5;
+    var scale = Math.min(W / 3.1, H / 2.9);
 
     var p1 = clamp01(phase), p2 = clamp01(phase - 1);
     var i, k;
@@ -318,12 +321,13 @@
     if (wC > 0.05) {
       var scanT = reduceMotion ? 0.5 : (time * 0.18) % 1;
       var scanY = centerY + scale * 0.85 - scanT * scale * 1.7;
+      var half = Math.min(scale * 1.45, W / 2 - 4);
       ctx.globalAlpha = wC * 0.5;
       ctx.strokeStyle = '#2448D8';
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(centerX - scale * 1.45, scanY);
-      ctx.lineTo(centerX + scale * 1.45, scanY);
+      ctx.moveTo(centerX - half, scanY);
+      ctx.lineTo(centerX + half, scanY);
       ctx.stroke();
       ctx.globalAlpha = 1;
     }

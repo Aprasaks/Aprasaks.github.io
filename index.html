@@ -45,78 +45,75 @@
   <!-- 히어로: 스크롤에 따라 엉킨 생각 → 뇌 → 설계도 -->
   <section id="hero" class="hero" data-stage="a" aria-labelledby="hero-title">
     <div class="hero-stage">
-      <canvas id="brain-canvas" aria-hidden="true"></canvas>
-
-      <div class="wrap hero-copy">
-        <h1 id="hero-title">생각을<br>다시 설계하는 수업</h1>
-        <p class="hero-lead">AI를 배워도, 책을 읽어도 결과가 그대로라면 바꿔야 할 것은 도구가 아니라 생각의 구조입니다.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">수업 상담 신청</a>
-          <a class="btn btn-line" href="#programs">어떤 수업인지 보기</a>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">생각을<br>다시 설계하는 수업</h1>
+          <p class="hero-lead">AI 수업 · 사고 훈련 · 콘텐츠 설계</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">상담 신청</a>
+            <a class="btn btn-line" href="#programs">수업 보기</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <canvas id="brain-canvas" aria-hidden="true"></canvas>
         </div>
       </div>
 
-      <ol class="hero-revs" aria-label="생각이 재설계되는 과정">
-        <li data-rev="a"><span class="rev-code">REV.A</span><strong>엉킨 생각</strong><span>정보는 많은데 판단이 서지 않는 상태</span></li>
-        <li data-rev="b"><span class="rev-code">REV.B</span><strong>구조가 보인다</strong><span>무엇을 보고 어떻게 판단했는지가 드러납니다</span></li>
-        <li data-rev="c"><span class="rev-code">REV.C</span><strong>다시 설계한다</strong><span>기준과 순서를 새로 짜면 결과가 달라집니다</span></li>
-      </ol>
-
-      <div class="hero-scroll" aria-hidden="true"><span></span>스크롤해서 생각을 재설계해 보세요</div>
+      <div class="hero-bar">
+        <div class="wrap hero-bar-inner">
+          <p class="scroll-cue" aria-hidden="true"><span class="scroll-arrow"></span>스크롤</p>
+          <ol class="stage-track" aria-label="스크롤 진행 단계">
+            <li data-step="a">엉킨 생각</li>
+            <li data-step="b">구조</li>
+            <li data-step="c">재설계</li>
+          </ol>
+        </div>
+        <div class="stage-fill" aria-hidden="true"></div>
+      </div>
     </div>
   </section>
 
-  <!-- 잘못된 믿음 -->
+  <!-- 문제 -->
   <section class="section beliefs" aria-labelledby="beliefs-title">
     <div class="wrap">
-      <h2 id="beliefs-title" class="section-title">열심히 하는데<br>제자리인 이유</h2>
-      <p class="section-lead">대부분은 노력이 부족해서가 아닙니다. 같은 방식으로 생각하면서 다른 결과를 기대하기 때문입니다.</p>
-
+      <h2 id="beliefs-title" class="section-title">열심히 하는데<br>제자리라면</h2>
       <div class="belief-list">
         <article class="belief">
-          <p class="belief-quote">“AI 툴을 하나 더 배우면 달라지겠지.”</p>
-          <p>도구는 생각을 키워줄 뿐입니다. 질문이 흐리면 AI의 답도 흐립니다. 먼저 바뀌어야 할 것은 질문을 만드는 방식입니다.</p>
+          <p class="belief-quote">“AI 툴을 하나 더 배우면 되겠지.”</p>
+          <p>질문이 흐리면 AI의 답도 흐립니다.</p>
         </article>
         <article class="belief">
-          <p class="belief-quote">“나는 원래 이런 사람이라서.”</p>
-          <p>반복되는 결과는 성격보다 판단의 순서에서 나오는 경우가 많습니다. 순서는 바꿀 수 있습니다.</p>
+          <p class="belief-quote">“나는 원래 이래.”</p>
+          <p>반복되는 결과는 판단 순서에서 나옵니다.</p>
         </article>
         <article class="belief">
-          <p class="belief-quote">“시간이 없어서 못 하는 거야.”</p>
-          <p>시간이 모자란 게 아니라 무엇을 먼저 할지 정하는 기준이 없는 경우가 많습니다. 기준이 생기면 시간은 다시 배분됩니다.</p>
+          <p class="belief-quote">“시간이 없어서.”</p>
+          <p>없는 건 시간이 아니라 기준입니다.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 새로운 기회 -->
+  <!-- 다른 점 -->
   <section class="section shift" aria-labelledby="shift-title">
     <div class="wrap shift-grid">
-      <div>
-        <h2 id="shift-title" class="section-title">더 많이 아는 수업이 아니라,<br>다르게 생각하게 되는 수업</h2>
-        <p class="section-lead">DECHIVE는 사용법을 늘어놓지 않습니다. 같은 도구, 같은 하루를 두고도 다른 결과를 만드는 생각의 구조를 함께 짭니다.</p>
-      </div>
-
+      <h2 id="shift-title" class="section-title">사용법이 아니라<br>생각하는 법을 배웁니다</h2>
       <div class="compare" role="table" aria-label="흔한 강의와 DECHIVE 수업 비교">
         <div class="compare-row compare-head" role="row">
           <span role="columnheader">흔한 강의</span>
           <span role="columnheader">DECHIVE</span>
         </div>
         <div class="compare-row" role="row">
-          <span role="cell">기능과 사용법을 알려줍니다</span>
-          <span role="cell">어떤 질문을 던질지부터 함께 설계합니다</span>
-        </div>
-        <div class="compare-row" role="row">
-          <span role="cell">예제를 따라 하면 끝납니다</span>
-          <span role="cell">내 일과 삶의 문제에 맞게 다시 짭니다</span>
+          <span role="cell">기능을 알려줍니다</span>
+          <span role="cell">질문부터 함께 설계합니다</span>
         </div>
         <div class="compare-row" role="row">
           <span role="cell">끝나면 잊힙니다</span>
-          <span role="cell">혼자서도 반복할 수 있는 점검 순서가 남습니다</span>
+          <span role="cell">혼자 반복할 순서가 남습니다</span>
         </div>
         <div class="compare-row" role="row">
-          <span role="cell">“이것도 된다더라”를 전합니다</span>
-          <span role="cell">직접 실험해 확인한 것만 가르칩니다</span>
+          <span role="cell">“된다더라”를 전합니다</span>
+          <span role="cell">직접 실험한 것만 가르칩니다</span>
         </div>
       </div>
     </div>
@@ -126,37 +123,20 @@
   <section id="method" class="section method" aria-labelledby="method-title">
     <div class="wrap">
       <h2 id="method-title" class="section-title">생각을 다시 짓는 네 단계</h2>
-      <p class="section-lead">모든 수업은 이 순서로 진행됩니다. 완벽한 공식이 아니라, 어떤 문제 앞에서도 다시 꺼내 쓸 수 있는 점검 순서입니다.</p>
 
       <figure class="method-film">
         <video id="method-video" muted playsinline loop preload="none"
           data-src-wide="/assets/video/method-landscape.mp4" data-poster-wide="/assets/video/method-landscape.jpg"
           data-src-tall="/assets/video/method-portrait.mp4" data-poster-tall="/assets/video/method-portrait.jpg"
-          aria-label="생각을 다시 짓는 네 단계를 보여주는 22초 영상. 엉킨 선에서 사실을 표시하고, 전제를 지우고, 뇌의 구조로 다시 짠 뒤 결과를 확인합니다."></video>
+          aria-label="네 단계를 보여주는 22초 영상: 관찰, 의심, 재설계, 검증"></video>
         <button class="film-toggle" type="button" aria-pressed="false" hidden>일시정지</button>
       </figure>
 
       <ol class="steps">
-        <li class="step">
-          <span class="step-no">1</span>
-          <h3>관찰한다</h3>
-          <p>무슨 일이 일어났는지, 해석을 보태기 전에 사실부터 적습니다.</p>
-        </li>
-        <li class="step">
-          <span class="step-no">2</span>
-          <h3>의심한다</h3>
-          <p>익숙한 기준과 당연하게 여긴 전제가 정말 맞는지 묻습니다.</p>
-        </li>
-        <li class="step">
-          <span class="step-no">3</span>
-          <h3>재설계한다</h3>
-          <p>의지에 기대는 대신 선택과 행동의 순서, 환경, 기준을 바꿉니다.</p>
-        </li>
-        <li class="step">
-          <span class="step-no">4</span>
-          <h3>검증한다</h3>
-          <p>달라졌다고 믿는 데서 멈추지 않고 실제 결과를 확인합니다.</p>
-        </li>
+        <li class="step"><span class="step-no">1</span><h3>관찰한다</h3><p>해석 전에 사실부터</p></li>
+        <li class="step"><span class="step-no">2</span><h3>의심한다</h3><p>당연한 전제를 묻기</p></li>
+        <li class="step"><span class="step-no">3</span><h3>재설계한다</h3><p>순서와 기준을 바꾸기</p></li>
+        <li class="step"><span class="step-no">4</span><h3>검증한다</h3><p>결과로 확인하기</p></li>
       </ol>
     </div>
   </section>
@@ -165,61 +145,32 @@
   <section id="programs" class="section programs" aria-labelledby="programs-title">
     <div class="wrap">
       <h2 id="programs-title" class="section-title">수업</h2>
-      <p class="section-lead">주제는 달라도 뼈대는 같습니다. 지금 가장 막혀 있는 문제에서 시작하면 됩니다.</p>
-
       <div class="program-list">
         <article class="program program-main">
           <h3>AI 실전 수업</h3>
-          <p>ChatGPT, Gemini, Claude를 업무와 공부에 실제로 쓰는 수업입니다. 기능 소개보다 질문을 설계하는 법과 AI의 답을 검증하는 법에 시간을 씁니다.</p>
-          <p class="program-for">AI를 써봤지만 결과가 들쭉날쭉했던 분</p>
+          <p>ChatGPT·Gemini·Claude를 일과 공부에 제대로 쓰는 법.</p>
+          <p class="program-for">결과가 들쭉날쭉했던 분</p>
         </article>
         <article class="program">
           <h3>생각의 재설계 클래스</h3>
-          <p>반복되는 실수, 미뤄지는 결정, 남의 목표를 내 목표로 착각하는 문제를 구조로 들여다보고 판단 순서를 다시 짭니다.</p>
-          <p class="program-for">같은 고민을 몇 년째 반복하고 있는 분</p>
+          <p>반복되는 실수와 미뤄지는 결정을 구조로 풉니다.</p>
+          <p class="program-for">같은 고민을 반복하는 분</p>
         </article>
         <article class="program">
           <h3>콘텐츠 설계 수업</h3>
-          <p>블로그와 SNS 글을 꾸준히 쓰기 위한 구조를 만듭니다. 주제를 찾는 법, 끝까지 읽히는 글의 뼈대, 매일 발행하는 루틴까지.</p>
-          <p class="program-for">글을 쓰고 싶은데 시작과 지속이 어려운 분</p>
+          <p>매일 쓸 수 있는 글의 구조와 루틴을 만듭니다.</p>
+          <p class="program-for">시작과 지속이 어려운 분</p>
         </article>
         <article class="program">
           <h3>1:1 설계 세션</h3>
-          <p>지금 막혀 있는 문제 하나를 놓고 함께 구조를 다시 짭니다. 일, 진로, 공부, 프로젝트 무엇이든 괜찮습니다.</p>
-          <p class="program-for">어디서부터 손대야 할지 모르겠는 분</p>
+          <p>막힌 문제 하나를 함께 다시 짭니다.</p>
+          <p class="program-for">어디서부터 할지 모르겠는 분</p>
         </article>
         <article class="program">
           <h3>기관·기업 출강</h3>
-          <p>팀 단위로 AI 활용과 사고 훈련을 함께 진행하는 워크숍입니다. 인원과 목적에 맞춰 구성합니다.</p>
+          <p>팀 단위 AI 활용과 사고 훈련 워크숍.</p>
           <p class="program-for">교육 담당자, 팀 리더</p>
         </article>
-      </div>
-      <p class="programs-note">일정, 진행 방식, 수강료는 상담에서 목적과 상황을 듣고 안내합니다.</p>
-    </div>
-  </section>
-
-  <!-- 원칙 -->
-  <section id="why" class="section principles" aria-labelledby="principles-title">
-    <div class="wrap principles-grid">
-      <blockquote class="manifesto">
-        <p>정답보다 그 답에 이르는 구조를 탐구합니다. 배움에서 끝나지 않고 삶에 적용할 수 있도록.</p>
-      </blockquote>
-      <div>
-        <h2 id="principles-title" class="section-title-sm">DECHIVE가 지키는 기준</h2>
-        <dl class="principle-list">
-          <div>
-            <dt>직접 해본 것만 가르칩니다</dt>
-            <dd>“이것도 된다”는 말은 많지만 직접 시도해 본 경우는 드뭅니다. 수업에 나오는 방법은 모두 직접 실험해 확인한 것입니다.</dd>
-          </div>
-          <div>
-            <dt>정답인 척하지 않습니다</dt>
-            <dd>모르는 것은 모른다고 말하고, 확인한 사실과 해석을 구분해서 전합니다.</dd>
-          </div>
-          <div>
-            <dt>삶으로 돌아옵니다</dt>
-            <dd>좋은 말이 아니라 수업 뒤 실제 선택과 행동이 바뀌었는지를 기준으로 봅니다.</dd>
-          </div>
-        </dl>
       </div>
     </div>
   </section>
@@ -229,18 +180,16 @@
     <div class="wrap">
       <div class="notes-head">
         <h2 id="notes-title" class="section-title-sm">생각 노트</h2>
-        <a class="text-link" href="/notes/">노트 전체 보기</a>
+        <a class="text-link" href="/notes/">전체 보기</a>
       </div>
       <div class="note-list">
         <a class="note" href="/notes/repeating-failure/">
           <span class="note-topic">반복과 실패</span>
           <h3>우리는 왜 같은 실패를 반복하는가?</h3>
-          <p>반성과 사과는 하는데, 왜 다음 주에도 같은 일이 벌어질까. 의지를 탓하기 전에 반복을 만드는 방식을 살펴봅니다.</p>
         </a>
         <a class="note" href="/notes/whose-goal/">
           <span class="note-topic">목표와 판단</span>
           <h3>당신의 목표는 정말 당신이 정한 것입니까?</h3>
-          <p>남의 결과가 부러웠던 순간, 그 사람의 삶까지 원했던 걸까. 욕망과 목표를 구분하는 질문.</p>
         </a>
       </div>
     </div>
@@ -252,39 +201,28 @@
       <h2 id="faq-title" class="section-title-sm">자주 묻는 질문</h2>
       <div class="faq-list">
         <details>
-          <summary>AI를 거의 써본 적이 없어도 괜찮을까요?</summary>
-          <p>괜찮습니다. 가입과 첫 사용부터 시작할 수 있습니다. 오히려 습관이 굳기 전이라 질문하는 법을 처음부터 제대로 익히기 좋습니다.</p>
+          <summary>AI를 처음 써도 괜찮나요?</summary>
+          <p>괜찮습니다. 가입과 첫 사용부터 시작할 수 있습니다.</p>
         </details>
         <details>
-          <summary>어떤 수업이 저에게 맞는지 모르겠어요.</summary>
-          <p>상담에서 지금 막혀 있는 문제를 들려주시면 맞는 수업을 함께 고릅니다. 수업을 정하지 않고 신청하셔도 됩니다.</p>
+          <summary>어떤 수업이 맞는지 모르겠어요.</summary>
+          <p>상담에서 지금 막힌 문제를 듣고 함께 고릅니다.</p>
         </details>
         <details>
-          <summary>회사나 단체로 신청할 수 있나요?</summary>
-          <p>가능합니다. 인원, 대상, 원하는 결과를 알려주시면 그에 맞춰 워크숍을 구성합니다.</p>
-        </details>
-        <details>
-          <summary>수강료와 일정은 어떻게 되나요?</summary>
-          <p>수업 종류와 진행 방식에 따라 달라서 상담에서 안내합니다. 상담 신청만으로 비용이 생기지는 않습니다.</p>
+          <summary>수강료와 일정은요?</summary>
+          <p>수업과 진행 방식에 따라 달라 상담에서 안내합니다. 상담은 무료입니다.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- 상담 신청: 도면 표제란 -->
+  <!-- 상담 신청 -->
   <section id="contact" class="section contact" aria-labelledby="contact-title">
     <div class="wrap">
       <div class="title-block">
-        <div class="tb-main">
-          <h2 id="contact-title">지금 막혀 있는 생각 하나를 가져오세요.</h2>
-          <p>어떤 수업이 맞을지 몰라도 괜찮습니다. 지금 상황을 짧게 알려주시면 어디서부터 다시 설계할지 함께 정합니다.</p>
-          <div id="contact-channels" class="contact-channels"></div>
-        </div>
-        <dl class="tb-meta" aria-label="상담 안내">
-          <div><dt>준비할 것</dt><dd>지금 가장 막혀 있는 문제 한 가지</dd></div>
-          <div><dt>알려주시면 좋은 것</dt><dd>하는 일, 써본 AI 도구, 원하는 결과</dd></div>
-          <div><dt>그다음</dt><dd>맞는 수업과 진행 방식을 안내드립니다</dd></div>
-        </dl>
+        <h2 id="contact-title">막혀 있는 생각 하나를 가져오세요.</h2>
+        <p>어떤 수업이 맞을지는 함께 정합니다.</p>
+        <div id="contact-channels" class="contact-channels"></div>
       </div>
     </div>
   </section>
