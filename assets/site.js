@@ -71,6 +71,43 @@ var DECHIVE_CONTACT = {
     }, { passive: true });
   }
 
+  // 방법 소개 영상: 화면 방향에 맞는 파일을, 보일 때만 불러와 재생
+  var film = document.getElementById('method-video');
+  if (film) {
+    var toggleBtn = document.querySelector('.film-toggle');
+    var tall = window.matchMedia('(max-width: 760px)').matches;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    film.poster = tall ? film.dataset.posterTall : film.dataset.posterWide;
+    var loaded = false;
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      film.src = tall ? film.dataset.srcTall : film.dataset.srcWide;
+    }
+    function setLabel() {
+      toggleBtn.textContent = film.paused ? '재생' : '일시정지';
+      toggleBtn.setAttribute('aria-pressed', String(film.paused));
+    }
+    if (toggleBtn) {
+      toggleBtn.hidden = false;
+      toggleBtn.addEventListener('click', function () {
+        load();
+        if (film.paused) { film.play(); } else { film.pause(); }
+      });
+      film.addEventListener('play', setLabel);
+      film.addEventListener('pause', setLabel);
+      setLabel();
+    }
+    if (!still && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { load(); var pr = film.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else if (!film.paused) film.pause();
+        });
+      }, { threshold: 0.35 }).observe(film);
+    }
+  }
+
   // 노트 목록 필터
   var filter = document.getElementById('note-filter');
   if (filter) {
