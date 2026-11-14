@@ -1,15 +1,26 @@
 # DECHIVE · 생각의 재설계
 
-정답보다 그 답에 이르는 구조를 탐구하는 한국어 에세이 블로그입니다.
+DECHIVE의 수업(AI 실전 수업, 생각의 재설계 클래스, 콘텐츠 설계, 1:1 세션, 출강)을 소개하고 상담 신청을 받는 랜딩 사이트입니다.
 
-- **주소:** https://studio.dechive.dev
-- **배포:** GitHub Pages, `main` 브랜치 루트
-- **구현:** 정적 HTML/CSS/JavaScript. 프레임워크나 별도 서버 없음.
-- **화면:** `index.html` 홈, `essays/index.html` 글 목록, `about/index.html` 소개
-- **글:** `essays/<slug>/index.html`
-- **공통 파일:** `assets/site.css`, `assets/site.js`
-- **검색:** 글 목록 페이지 안에서만 동작하는 클라이언트 필터. 서버 검색 아님.
+- **배포:** GitHub Pages, `main` 브랜치 루트. 빌드 단계 없음.
+- **구현:** 정적 HTML/CSS/JS. 외부 라이브러리 없음(글꼴만 Google Fonts).
+- **주소:** 현재 `CNAME`은 `studio.dechive.dev`. 새 도메인을 연결할 때 `CNAME`, 각 페이지의 `canonical`/`og:url`, `sitemap.xml`, `feed.xml`, `robots.txt`의 주소를 함께 바꿉니다.
 
-새 글을 추가할 때는 새 글 폴더 및 HTML을 만들고, 홈의 최신 글 영역·글 목록·`sitemap.xml`·`feed.xml`을 함께 갱신합니다. 현재 올라간 글 2편은 이번 사이트 구축 과정에서 새로 작성한 초안입니다. 향후 편집/확정할 수 있습니다.
+## 파일
 
-기존 파일과 메뉴 구조를 재사용하지 않고 새로 작성했습니다. 커스텀 도메인 연결을 위해 `CNAME`은 유지했습니다.
+| 경로 | 역할 |
+| --- | --- |
+| `index.html` | 랜딩 페이지 |
+| `assets/brain.js` | 히어로 모션. 스크롤에 따라 엉킨 생각(REV.A) → 뇌(REV.B) → 등고선 설계도(REV.C) |
+| `assets/site.js` | 메뉴, 상담 채널 버튼, 노트 검색 |
+| `assets/site.css` | 전체 스타일 (청사진 도면 컨셉) |
+| `notes/` | 생각 노트 목록과 글 |
+| `essays/`, `about/` | 옛 주소. 새 주소로 넘겨주는 페이지만 남아 있음 |
+
+## 상담 채널 바꾸기
+
+`assets/site.js` 맨 위 `DECHIVE_CONTACT`에 링크를 넣으면 상담 섹션에 버튼이 생깁니다. 비워둔 항목은 표시되지 않습니다.
+
+## 노트 추가하기
+
+`notes/<slug>/index.html`을 기존 글 형식대로 만들고, `notes/index.html` 목록, 홈의 생각 노트 영역, `sitemap.xml`, `feed.xml`을 함께 갱신합니다.

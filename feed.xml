@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel><title>DECHIVE · 생각의 재설계</title><link>https://studio.dechive.dev/</link><description>생각을 관찰하고, 해체하고, 다시 설계하는 기록.</description><language>ko-KR</language>
-<item><title>우리는 왜 같은 실패를 반복하는가?</title><link>https://studio.dechive.dev/essays/repeating-failure/</link><guid>https://studio.dechive.dev/essays/repeating-failure/</guid><pubDate>Sat, 14 Nov 2026 09:00:00 GMT</pubDate><description>같은 실수를 만드는 판단과 행동의 구조를 살펴봅니다.</description></item>
-<item><title>당신의 목표는 정말 당신이 정한 것입니까?</title><link>https://studio.dechive.dev/essays/whose-goal/</link><guid>https://studio.dechive.dev/essays/whose-goal/</guid><pubDate>Sat, 14 Nov 2026 09:00:00 GMT</pubDate><description>남의 성공을 자신의 목표로 착각하고 있지는 않은지 묻습니다.</description></item>
+<rss version="2.0"><channel><title>DECHIVE 생각 노트</title><link>https://studio.dechive.dev/</link><description>생각을 다시 설계하는 수업, DECHIVE의 노트.</description><language>ko-KR</language>
+<item><title>우리는 왜 같은 실패를 반복하는가?</title><link>https://studio.dechive.dev/notes/repeating-failure/</link><guid>https://studio.dechive.dev/notes/repeating-failure/</guid><pubDate>Sat, 14 Nov 2026 09:00:00 GMT</pubDate><description>반성과 사과는 하는데, 왜 다음 주에도 같은 일이 벌어질까. 의지를 탓하기 전에 반복을 만드는 방식을 살펴봅니다.</description></item>
+<item><title>당신의 목표는 정말 당신이 정한 것입니까?</title><link>https://studio.dechive.dev/notes/whose-goal/</link><guid>https://studio.dechive.dev/notes/whose-goal/</guid><pubDate>Sat, 14 Nov 2026 09:00:00 GMT</pubDate><description>남의 결과가 부러웠던 순간, 그 사람의 삶까지 원했던 걸까. 욕망과 목표를 구분하는 질문.</description></item>
 </channel></rss>
