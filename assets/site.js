@@ -75,15 +75,33 @@ var DECHIVE_CONTACT = {
   var film = document.getElementById('method-video');
   if (film) {
     var toggleBtn = document.querySelector('.film-toggle');
-    var tall = window.matchMedia('(max-width: 760px)').matches;
+    var narrow = window.matchMedia('(max-width: 760px)');
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    film.poster = tall ? film.dataset.posterTall : film.dataset.posterWide;
     var loaded = false;
+    function wanted() { return narrow.matches ? film.dataset.srcTall : film.dataset.srcWide; }
+    function applyPoster() { film.poster = narrow.matches ? film.dataset.posterTall : film.dataset.posterWide; }
     function load() {
       if (loaded) return;
       loaded = true;
-      film.src = tall ? film.dataset.srcTall : film.dataset.srcWide;
+      film.src = wanted();
     }
+    // 화면 폭이 기준을 넘나들면 가로/세로 영상을 바꿔 끼움(재생 위치 유지)
+    function onBreakpoint() {
+      applyPoster();
+      if (!loaded) return;
+      var t = film.currentTime, playing = !film.paused;
+      film.preload = 'metadata';
+      film.addEventListener('loadedmetadata', function once() {
+        film.removeEventListener('loadedmetadata', once);
+        try { film.currentTime = t; } catch (e) {}
+      });
+      film.src = wanted();
+      if (playing) { var pr = film.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      else film.load();
+    }
+    if (narrow.addEventListener) narrow.addEventListener('change', onBreakpoint);
+    else if (narrow.addListener) narrow.addListener(onBreakpoint);
+    applyPoster();
     function setLabel() {
       toggleBtn.textContent = film.paused ? '재생' : '일시정지';
       toggleBtn.setAttribute('aria-pressed', String(film.paused));
