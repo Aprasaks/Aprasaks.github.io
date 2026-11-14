@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://studio.dechive.dev/sitemap.xml
