@@ -13,7 +13,8 @@ DECHIVE의 수업(AI 실전 수업, 생각의 재설계 클래스, 콘텐츠 설
 | `index.html` | 랜딩 페이지 |
 | `assets/brain.js` | 히어로 모션. 스크롤에 따라 엉킨 생각(REV.A) → 뇌(REV.B) → 등고선 설계도(REV.C) |
 | `assets/site.js` | 메뉴, 상담 채널 버튼, 노트 검색 |
-| `assets/site.css` | 전체 스타일 (청사진 도면 컨셉) |
+| `assets/site.css` | 전체 스타일 (밝은 종이 + 잉크, 강조색은 파랑 하나) |
+| `assets/og.jpg` | 링크 공유 미리보기 이미지 (1200×630) |
 | `notes/` | 생각 노트 목록과 글 |
 | `essays/`, `about/` | 옛 주소. 새 주소로 넘겨주는 페이지만 남아 있음 |
 

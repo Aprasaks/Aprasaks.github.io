@@ -266,12 +266,12 @@
     var wA = 1 - clamp01(phase * 1.4);
     var wB = phase <= 1 ? clamp01((phase - 0.3) / 0.7) : 1 - clamp01((phase - 1) / 0.6);
     var wC = clamp01((phase - 1.25) / 0.6);
-    drawEdges(edgesA, wA * 0.42);
+    drawEdges(edgesA, wA * 0.34);
     drawEdges(edgesB, wB * 0.30);
-    drawEdges(edgesC, wC * 0.55);
+    drawEdges(edgesC, wC * 0.42);
 
     // 점
-    ctx.fillStyle = '#E9F0F8';
+    ctx.fillStyle = '#15181C';
     var dotScale = 1 - wC * 0.45;
     for (i = 0; i < N; i++) {
       k = i * 3;
@@ -286,7 +286,7 @@
     // 신호: 뇌 상태에서만
     if (!reduceMotion && wB > 0.05) {
       if (pulses.length < (small ? 14 : 26) && rand() < 0.35) spawnPulse();
-      ctx.fillStyle = '#FFC94A';
+      ctx.fillStyle = '#2448D8';
       for (var pi = pulses.length - 1; pi >= 0; pi--) {
         var pu = pulses[pi];
         pu.t += pu.speed;
@@ -319,7 +319,7 @@
       var scanT = reduceMotion ? 0.5 : (time * 0.18) % 1;
       var scanY = centerY + scale * 0.85 - scanT * scale * 1.7;
       ctx.globalAlpha = wC * 0.5;
-      ctx.strokeStyle = '#FFC94A';
+      ctx.strokeStyle = '#2448D8';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(centerX - scale * 1.45, scanY);
@@ -354,7 +354,7 @@
 
   function drawEdges(list, alpha) {
     if (alpha < 0.01) return;
-    ctx.strokeStyle = '#E9F0F8';
+    ctx.strokeStyle = '#15181C';
     ctx.lineWidth = 0.7;
     ctx.globalAlpha = alpha;
     ctx.beginPath();
