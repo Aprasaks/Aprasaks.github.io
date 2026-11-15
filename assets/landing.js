@@ -49,7 +49,7 @@
           _subject:'[DECHIVE] 새로운 뉴스레터 구독 신청',
           _template:'table',
           _honey:document.getElementById('newsletter-honey')?.value||'',
-          source:'https://studio.dechive.dev/',
+          source:'https://dechive.app/',
           type:'newsletter',
         }),
         signal:controller.signal
