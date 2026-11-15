@@ -23,7 +23,7 @@
   const newsletterEmail=document.getElementById('newsletter-email');
   const newsletterStatus=document.getElementById('newsletter-status');
   const newsletterSubmit=newsletterForm?.querySelector('[type="submit"]');
-  const NEWSLETTER_ENDPOINT='https://formsubmit.co/ajax/heavenis0113@gmail.com';
+  const NEWSLETTER_ENDPOINT='https://formsubmit.co/ajax/298ea801ae249c951d035afc4174346b';
 
   newsletterDialog?.querySelectorAll('[data-newsletter-close]').forEach(button=>
     button.addEventListener('click',()=>{if(!newsletterSubmit?.disabled)newsletterDialog.close();})
