@@ -62,5 +62,29 @@
       <button class="notice-done" type="button" data-close>확인</button>
     </div>
   </dialog>
+
+  <dialog id="newsletter-dialog" class="notice newsletter-dialog" aria-labelledby="newsletter-title">
+    <div class="notice-inner">
+      <button class="notice-close" type="button" data-newsletter-close aria-label="닫기">×</button>
+      <p class="notice-brand">DECHIVE</p>
+      <h2 id="newsletter-title">뉴스레터 구독</h2>
+      <p class="newsletter-description">새로운 시선을 이메일로 받아보세요.</p>
+      <form id="newsletter-form">
+        <label class="newsletter-label" for="newsletter-email">이메일 주소</label>
+        <input id="newsletter-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" inputmode="email" maxlength="254" required>
+        <div class="newsletter-honeypot" aria-hidden="true">
+          <label for="newsletter-honey">Leave this blank</label>
+          <input type="text" name="website" id="newsletter-honey" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="newsletter-consent">
+          <input type="checkbox" id="newsletter-consent" required>
+          <span>뉴스레터 구독을 위한 이메일 수집·이용에 동의합니다.</span>
+        </label>
+        <p class="newsletter-privacy">입력한 주소는 구독 신청 알림으로 운영자에게 전달됩니다. 전송에는 FormSubmit을 사용합니다.</p>
+        <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+        <button class="newsletter-submit" type="submit">구독 신청</button>
+      </form>
+    </div>
+  </dialog>
 </body>
 </html>

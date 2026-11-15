@@ -90,3 +90,20 @@ a { color:inherit; text-decoration:none; }
   *,*::before,*::after { animation:none!important; transition:none!important; }
   .type-caret { opacity:1; }
 }
+
+/* Newsletter signup dialog — one email field, no new landing sections */
+.newsletter-dialog .notice-inner{width:min(440px,calc(100vw - 32px));}
+.newsletter-description{font:400 14px/1.75 var(--serif)!important;margin:0 0 23px!important;color:#525e55!important;}
+.newsletter-label{display:block;margin:0 0 9px;color:#374039;font:500 13px/1.5 var(--serif);}
+#newsletter-email{display:block;width:100%;min-height:49px;border:1px solid #b7b6ac;background:#fffdf8;border-radius:0;padding:12px 14px;color:#1e2621;font:400 16px/1.4 var(--sans);outline-offset:2px;}
+#newsletter-email:focus{border-color:#485547;outline:1px solid #485547;}
+.newsletter-consent{display:flex;gap:10px;align-items:start;margin-top:19px;color:#454e47;font:400 12px/1.7 var(--serif);cursor:pointer;}
+.newsletter-consent input{width:16px;height:16px;flex:none;margin:2px 0 0;accent-color:#34483a;}
+.newsletter-privacy{margin:12px 0 0!important;color:#687168!important;font:400 11px/1.65 var(--serif)!important;}
+.newsletter-status{min-height:0;margin:13px 0 0!important;font:400 12px/1.7 var(--serif)!important;color:#4f5d52!important;}
+.newsletter-status:empty{display:none;}
+.newsletter-status.is-error{color:#9c3d36!important;}
+.newsletter-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+.newsletter-submit{display:block;width:100%;min-height:47px;margin-top:22px;border:1px solid #27372d;border-radius:0;background:#25372d;color:#f9f4e9;font:500 14px/1.5 var(--serif);transition:background .2s;}
+.newsletter-submit:hover{background:#395443;}
+.newsletter-submit:disabled{opacity:.7;cursor:wait;}
