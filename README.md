@@ -1,13 +1,12 @@
 # DECHIVE — 생각의 재설계
+2026-11-15 고해상도 포토 기반 랜딩 개편.
 
-2026-11-15 전면 리뉴얼. 첫 화면 한 장면만 남긴 미니멀 랜딩페이지.
-
-- 도메인: https://studio.dechive.dev (CNAME 유지)
-- 메인: `index.html`, `assets/landing.css`, `assets/landing.js`
-- 사진: `assets/architecture.webp` (사용자와 함께 생성한 시안의 건축 공간 부분)
-- 정육면체: CSS 3D + `assets/stone.svg`, 첫 진입 시 3.5초 굴러와 정지, 동작 줄이기 설정 시 정지 상태
-- 본문: 생각의 / 재설계. / AI시대에 익숙한 판단을 멈추고, 다르게 보는 힘을 만듭니다.
-- CTA: 상담 신청, 뉴스레터 구독. **외부 URL 미제공 상태로 연결 준비 중 안내만 표시.**
-- 실제 URL을 받으면 `assets/landing.js`의 `DESTINATIONS.consult`, `DESTINATIONS.newsletter`에 HTTPS 링크 입력.
-- 기존 `/notes/`, `/about/`, `/work/` 등은 URL 보존. 랜딩 메인에는 노출하지 않음.
-- Google Forms, 뉴스레터 서비스의 접수/저장 기능은 아직 연동되지 않았음. 정상 접수로 오인시키지 말 것.
+- URL: https://studio.dechive.dev
+- 첫 화면만 표시: DECHIVE / 생각의 / 재설계. / 두 줄 문구 / 상담 신청 / 뉴스레터 구독
+- 배경: `assets/dechive-real-cube.jpg` (2400×3600, Pexels, Anna Shvets; free license, https://www.pexels.com/photo/cube-stool-in-white-studio-in-sunlight-4971990/)
+- 3D CSS 정육면체와 과도한 모션 제거. 정육면체 자체가 사진에 포함되어 있어 그림자와 조명이 일치합니다.
+- 왜곡 방지: `object-fit: cover`로 종횡비 유지, 가로 확장이 아닌 크롭.
+- HTML 텍스트를 사진 위에 배치하여 화면 크기에 관계없이 선명합니다.
+- 응답형 레이아웃: PC / 태블릿 / 모바일
+- CTA는 신청 URL 아직 미제공으로 안내창만 표시. `assets/landing.js`의 `DESTINATIONS`에 실제 HTTPS 주소를 입력하면 링크가 작동합니다.
+- 과거 글 페이지와 기존 CNAME은 유지합니다.
