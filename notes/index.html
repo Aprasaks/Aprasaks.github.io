@@ -1,83 +1,54 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F2F3F0">
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#141c1b">
 <title>생각 노트 · DECHIVE</title>
-<meta name="description" content="생각을 관찰하고, 의심하고, 다시 설계하는 과정을 기록한 DECHIVE의 노트입니다.">
+<meta name="description" content="DECHIVE 생각의 재설계 아카이브. 같은 실패, 나의 목표, 판단과 선택의 구조를 살펴보는 글.">
 <link rel="canonical" href="https://studio.dechive.dev/notes/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="DECHIVE 생각 노트" href="/feed.xml">
-<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DECHIVE"><meta property="og:locale" content="ko_KR">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="DECHIVE">
-<meta property="og:title" content="생각 노트 · DECHIVE">
-<meta property="og:description" content="생각을 관찰하고, 의심하고, 다시 설계하는 과정을 기록한 DECHIVE의 노트입니다.">
+<meta property="og:title" content="생각 노트">
+<meta property="og:description" content="DECHIVE 생각의 재설계 아카이브. 같은 실패, 나의 목표, 판단과 선택의 구조를 살펴보는 글.">
 <meta property="og:url" content="https://studio.dechive.dev/notes/">
 <meta property="og:image" content="https://studio.dechive.dev/assets/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
-</head>
-<body>
-<a class="skip-link" href="#main">본문으로 건너뛰기</a>
-<header class="site-header">
-  <div class="wrap header-inner">
-    <a class="wordmark" href="/" aria-label="DECHIVE 홈">DECHIVE</a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기"><span></span><span></span></button>
-    <nav id="site-nav" class="site-nav" aria-label="주 메뉴">
-      <a href="/#programs">수업</a>
-      <a href="/#method">방법</a>
+</head><body class="inner-page"><a class="skip-link" href="#main">본문으로 바로가기</a>
+<header class="site-header" id="site-header">
+  <div class="site-header__inner shell">
+    <a href="/" class="wordmark" aria-label="DECHIVE 첫 화면">DECHIVE<span class="wordmark-dot">.</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="주 메뉴">
+      <a href="/#perspective">관점</a>
       <a href="/notes/" aria-current="page">생각 노트</a>
-      <a class="nav-cta" href="/#contact">상담 신청</a>
+      <a href="/work/">기록과 작업</a>
+      <a href="/about/">DECHIVE</a>
+      <a class="site-nav__enter" href="/notes/">EXPLORE <span aria-hidden="true">↗</span></a>
     </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기"><span></span><span></span></button>
   </div>
 </header>
-<main id="main" class="notes-page">
-  <section class="page-head">
-    <div class="wrap">
-      <h1>생각 노트</h1>
-      <p>수업에서 다루는 질문들을 글로 먼저 풀어둡니다. 읽고 나서 내 문제에 적용해 보고 싶어지면 그때 상담을 신청하세요.</p>
-    </div>
-  </section>
-  <div class="wrap">
-    <div class="note-tools">
-      <label for="note-filter">노트 찾기</label>
-      <input id="note-filter" type="search" placeholder="제목이나 주제로 찾기" autocomplete="off">
-    </div>
-    <div class="note-list">
-        <a class="note" href="/notes/repeating-failure/" data-note>
-          <span class="note-topic">반복과 실패</span>
-          <h3>우리는 왜 같은 실패를 반복하는가?</h3>
-          <p>반성과 사과는 하는데, 왜 다음 주에도 같은 일이 벌어질까. 의지를 탓하기 전에 반복을 만드는 방식을 살펴봅니다.</p>
-        </a>
-        <a class="note" href="/notes/whose-goal/" data-note>
-          <span class="note-topic">목표와 판단</span>
-          <h3>당신의 목표는 정말 당신이 정한 것입니까?</h3>
-          <p>남의 결과가 부러웠던 순간, 그 사람의 삶까지 원했던 걸까. 욕망과 목표를 구분하는 질문.</p>
-        </a>
-    </div>
-    <p id="note-empty" class="note-empty" hidden>찾는 노트가 없습니다. 다른 낱말로 찾아보세요.</p>
-  </div>
-</main>
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <p class="wordmark">DECHIVE</p>
-    <p>생각의 재설계. 정답보다 그 답에 이르는 구조를 탐구합니다.</p>
-    <nav aria-label="하단 메뉴">
-      <a href="/#programs">수업</a>
-      <a href="/notes/">생각 노트</a>
-      <a href="https://blog.naver.com/dechive-ai" target="_blank" rel="noopener">네이버 블로그</a>
-      <a href="/feed.xml">RSS</a>
-    </nav>
-    <p class="copyright">© 2026 DECHIVE</p>
-  </div>
-</footer>
-<script src="/assets/site.js" defer></script>
-</body>
-</html>
+<main id="main">
+<section class="inner-hero"><div class="shell">
+ <div class="inner-index">DECHIVE / ARCHIVE <span>NO. 001—∞</span></div><h1>생각의<br><em>기록.</em></h1>
+ <div class="inner-hero-bottom"><p>질문은 남고, 판단은 수정됩니다.<br>우리가 탐구한 생각의 구조를 기록합니다.</p><span>THE FIELD NOTES ↘</span></div>
+</div><div class="inner-hero-shape" aria-hidden="true"><span></span><span></span></div></section>
+<section class="notes-index-section"><div class="shell">
+ <div class="notes-toolbar"><span>INDEX / 002 RECORDS</span><label class="notes-search"><span class="sr-only">생각 노트 검색</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg><input id="note-filter" type="search" placeholder="주제나 제목 찾기" autocomplete="off"></label></div>
+ <div class="notes-ledger">
+ <a class="ledger-row" data-note href="/notes/repeating-failure/"><span class="ledger-number">001</span><span class="ledger-title"><small>반복과 실패</small><strong>우리는 왜 같은 실패를 반복하는가?</strong><em>반성과 다짐보다 먼저 바꿔야 하는 것.</em></span><span class="ledger-arrow" aria-hidden="true">↗</span></a>
+ <a class="ledger-row" data-note href="/notes/whose-goal/"><span class="ledger-number">002</span><span class="ledger-title"><small>목표와 판단</small><strong>당신의 목표는 정말 당신이 정한 것입니까?</strong><em>부러운 결과와 내가 원하는 삶은 같지 않다.</em></span><span class="ledger-arrow" aria-hidden="true">↗</span></a>
+ </div><p id="note-empty" class="note-empty" hidden>일치하는 기록이 없습니다. 검색어를 바꿔보세요.</p>
+</div></section>
+</main><footer class="site-footer">
+ <div class="shell footer-main">
+  <div><a class="footer-brand" href="/">DECHIVE<span>.</span></a><p>우리는 정답보다 그 답에 이르는 구조를 탐구합니다.</p></div>
+  <nav aria-label="하단 메뉴" class="footer-nav"><a href="/notes/">생각 노트 ↗</a><a href="/work/">기록과 작업 ↗</a><a href="/about/">우리의 관점 ↗</a><a href="https://blog.naver.com/dechive-ai" target="_blank" rel="noopener noreferrer">NAVER BLOG ↗</a></nav>
+ </div>
+ <div class="shell footer-meta"><span>© <span data-year>2026</span> DECHIVE</span><span>OBSERVE / QUESTION / REDESIGN / VERIFY</span><a href="#main">BACK TO TOP ↑</a></div>
+</footer><script defer src="/assets/site.js"></script></body></html>
