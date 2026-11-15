@@ -1,58 +1,73 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#151817">
-<meta name="description" content="DECHIVE — 생각의 재설계. AI시대에 익숙한 판단을 멈추고, 다르게 보는 힘을 만듭니다.">
-<meta name="robots" content="index,follow">
-<title>DECHIVE | 생각의 재설계</title>
-<link rel="canonical" href="https://studio.dechive.dev/">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="DECHIVE | 생각의 재설계">
-<meta property="og:description" content="AI시대에 익숙한 판단을 멈추고, 다르게 보는 힘을 만듭니다.">
-<meta property="og:url" content="https://studio.dechive.dev/">
-<meta property="og:image" content="https://studio.dechive.dev/assets/og.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="/assets/dechive-real-cube.jpg" type="image/jpeg">
-<link rel="stylesheet" href="/assets/landing.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171714">
+  <meta name="description" content="DECHIVE — 생각의 재설계. AI시대에 익숙한 판단을 멈추고, 다르게 보는 힘을 만듭니다.">
+  <meta name="robots" content="index,follow">
+  <title>DECHIVE | 생각의 재설계</title>
+  <link rel="canonical" href="https://studio.dechive.dev/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="DECHIVE">
+  <meta property="og:title" content="DECHIVE | 생각의 재설계">
+  <meta property="og:description" content="AI시대에 익숙한 판단을 멈추고, 다르게 보는 힘을 만듭니다.">
+  <meta property="og:url" content="https://studio.dechive.dev/">
+  <meta property="og:image" content="https://studio.dechive.dev/assets/hero-thought.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/hero-thought.avif" as="image" type="image/avif">
+  <link rel="stylesheet" href="/assets/landing.css">
+  <script src="/assets/landing.js" defer></script>
 </head>
 <body>
-<a class="skip-link" href="#content">본문으로 건너뛰기</a>
-<div class="landing">
-  <div class="photo-scene" aria-hidden="true">
-    <img class="architecture" src="/assets/dechive-real-cube.jpg" alt="" fetchpriority="high" decoding="async">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+  <div class="landing">
+    <picture class="backdrop" aria-hidden="true">
+      <source type="image/avif" srcset="/assets/hero-thought.avif">
+      <img src="/assets/hero-thought.jpg" width="1672" height="941" alt="" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="backdrop-shade" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="DECHIVE 첫 화면">DECHIVE</a>
+      <button class="menu-trigger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span>
+      </button>
+      <nav id="site-menu" class="site-menu" aria-label="페이지 메뉴" hidden>
+        <a href="/notes/">생각 노트</a>
+        <a href="/about/">DECHIVE의 관점</a>
+      </nav>
+    </header>
+
+    <main class="landing-main" id="main">
+      <div class="hero-message">
+        <h1 aria-label="생각의 재설계">
+          <span class="title-prefix" aria-hidden="true">생각의</span>
+          <span class="title-typed" aria-hidden="true"><span id="typed-word">재설계</span><span class="type-caret"></span></span>
+        </h1>
+        <p class="hero-subtitle">AI시대에 익숙한 판단을 멈추고,<br>다르게 보는 힘을 만듭니다.</p>
+      </div>
+
+      <div id="actions" class="landing-actions" aria-label="참여하기">
+        <button type="button" data-destination="consult">상담신청</button>
+        <button type="button" data-destination="newsletter">구독하기</button>
+      </div>
+    </main>
   </div>
-  <div class="light-veil" aria-hidden="true"></div>
-  <header class="header">
-    <a href="/" class="wordmark" aria-label="DECHIVE 홈">DECHIVE</a>
-    
-  </header>
-  <main id="content" class="content">
-    <div class="statement">
-      <p class="statement-small">생각의</p>
-      <h1>재설계.</h1>
-      <p class="statement-sub">AI시대에 익숙한 판단을 멈추고,<br>다르게 보는 힘을 만듭니다.</p>
+
+  <dialog id="destination-notice" aria-labelledby="notice-title" class="notice">
+    <div class="notice-inner">
+      <button class="notice-close" type="button" data-close aria-label="닫기">×</button>
+      <p class="notice-brand">DECHIVE</p>
+      <h2 id="notice-title">연결 준비 중입니다.</h2>
+      <p id="notice-copy">신청 페이지가 준비되면 이곳에서 이동할 수 있습니다.</p>
+      <button class="notice-done" type="button" data-close>확인</button>
     </div>
-    <nav class="actions" aria-label="DECHIVE 참여">
-      <button type="button" data-destination="consult">상담 신청</button>
-      <button type="button" data-destination="newsletter">뉴스레터 구독</button>
-    </nav>
-  </main>
-</div>
-<dialog id="destination-notice" class="notice" aria-labelledby="notice-title">
-  <div class="notice-panel">
-    <button type="button" class="notice-close" data-close aria-label="닫기">×</button>
-    <p class="notice-brand">DECHIVE</p>
-    <h2 id="notice-title">연결 준비 중입니다.</h2>
-    <p id="notice-copy">신청 주소를 연결하면 이곳에서 바로 이동할 수 있습니다.</p>
-    <button type="button" class="notice-okay" data-close>확인</button>
-  </div>
-</dialog>
-<script defer src="/assets/landing.js"></script>
+  </dialog>
 </body>
 </html>
