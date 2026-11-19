@@ -1,6 +1,6 @@
 (()=>{'use strict';
   /* Insert verified, active HTTPS destinations below. No placeholder URLs are opened. */
-  const DESTINATIONS={consult:'',newsletter:''};
+  const DESTINATIONS={consult:'https://docs.google.com/forms/d/e/1FAIpQLSdKnGWKXG0t5CmHsU1lTAHrxwjmYV69IshLvb-CDPAtdagPlw/viewform?usp=publish-editor',newsletter:''};
   const dialog=document.getElementById('destination-notice');
   const noticeCopy=document.getElementById('notice-copy');
 
