@@ -55,13 +55,19 @@
     </main>
   </div>
 
-  <dialog id="destination-notice" aria-labelledby="notice-title" class="notice">
-    <div class="notice-inner">
-      <button class="notice-close" type="button" data-close aria-label="닫기">×</button>
-      <p class="notice-brand">DECHIVE</p>
-      <h2 id="notice-title">연결 준비 중입니다.</h2>
-      <p id="notice-copy">신청 페이지가 준비되면 이곳에서 이동할 수 있습니다.</p>
-      <button class="notice-done" type="button" data-close>확인</button>
+  <dialog id="consult-dialog" class="consult-dialog" aria-labelledby="consult-title">
+    <div class="consult-panel">
+      <div class="consult-heading">
+        <div class="consult-heading-copy">
+          <span class="consult-brand">DECHIVE</span>
+          <h2 id="consult-title">상담 신청</h2>
+        </div>
+        <button class="consult-close" type="button" aria-label="상담창 닫기" data-consult-close>×</button>
+      </div>
+      <iframe id="consult-frame" class="consult-frame" title="DECHIVE 상담 신청 Google 설문지" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="consult-footer">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKnGWKXG0t5CmHsU1lTAHrxwjmYV69IshLvb-CDPAtdagPlw/viewform" target="_blank" rel="noopener noreferrer">양식이 보이지 않으면 새 창에서 열기</a>
+      </div>
     </div>
   </dialog>
 

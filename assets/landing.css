@@ -107,3 +107,24 @@ a { color:inherit; text-decoration:none; }
 .newsletter-submit{display:block;width:100%;min-height:47px;margin-top:22px;border:1px solid #27372d;border-radius:0;background:#25372d;color:#f9f4e9;font:500 14px/1.5 var(--serif);transition:background .2s;}
 .newsletter-submit:hover{background:#395443;}
 .newsletter-submit:disabled{opacity:.7;cursor:wait;}
+
+/* Consultation form — embedded Google Form in a native, accessible modal */
+.consult-dialog{width:min(720px,calc(100vw - 32px));height:min(88dvh,900px);max-height:calc(100dvh - 24px);max-width:none;
+  padding:0;border:0;border-radius:0;background:#f4f0e8;color:#222921;overflow:hidden;}
+.consult-dialog::backdrop{background:rgba(0,0,0,.70);backdrop-filter:blur(5px);}
+.consult-panel{height:100%;min-height:0;display:flex;flex-direction:column;}
+.consult-heading{flex:none;min-height:91px;padding:19px 25px 14px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.consult-heading-copy{display:flex;flex-direction:column;gap:8px;}
+.consult-brand{font:600 10px/1.4 var(--sans);letter-spacing:.22em;}
+.consult-heading h2{font:500 21px/1.4 var(--serif);margin:0;letter-spacing:-.04em;}
+.consult-close{flex:none;align-self:flex-start;width:38px;height:38px;padding:0;border:0;background:none;color:#263027;font:300 32px/1 var(--sans);}
+.consult-frame{display:block;flex:1 1 auto;width:100%;min-height:0;border:0;background:#fff;color:#222;}
+.consult-footer{flex:none;min-height:42px;padding:11px 24px 14px;text-align:right;background:#f4f0e8;}
+.consult-footer a{color:#445147;font:400 12px/1.5 var(--serif);text-decoration:underline;text-underline-offset:3px;}
+.consult-footer a:hover{color:#152719;}
+@media(max-width:760px){
+  .consult-dialog{width:calc(100vw - 12px);height:calc(100dvh - 12px);max-height:none;margin:auto;}
+  .consult-heading{min-height:78px;padding:13px 16px 10px;}
+  .consult-heading h2{font-size:19px;}
+  .consult-footer{padding:9px 16px 13px;}
+}
