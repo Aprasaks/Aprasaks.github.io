@@ -53,6 +53,8 @@ a { color:inherit; text-decoration:none; }
 .landing-actions button:disabled { cursor:default; opacity:1; }
 .records-list { list-style:none; margin:2px 0 12px; padding:0; display:flex; flex-direction:column; align-items:flex-end; gap:3px; }
 .records-list li { padding:3px 0; color:var(--gold); font:400 clamp(14px,1.12vw,17px)/1.6 var(--sans); letter-spacing:.03em; }
+.records-list a { display:inline-block; color:inherit; padding:4px 0; transition:color .2s ease; }
+.records-list a:hover { color:var(--ivory); }
 #records-toggle[aria-expanded="true"] { color:var(--gold); }
 
 .notice { max-width:calc(100vw - 32px); border:0; padding:0; background:transparent; color:#232820; }
