@@ -23,14 +23,6 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
 .skip-link{position:fixed;z-index:200;left:16px;top:-90px;background:var(--paper);color:var(--type);padding:12px 18px}
 .skip-link:focus{top:12px}
 .container{width:min(1120px,calc(100% - 88px));margin-inline:auto}
-.record-header{position:relative;z-index:10;background:#171714;border-bottom:1px solid rgba(247,240,228,.19)}
-.header-inner{width:min(1250px,calc(100% - 88px));min-height:78px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{font:600 20px/1 var(--sans);letter-spacing:.25em;white-space:nowrap}
-.header-nav{display:flex;align-items:center;gap:12px;font:400 12px/1.5 var(--serif);color:#dbccba;white-space:nowrap}
-.header-nav a{transition:color .2s}
-.header-nav a:hover{color:var(--gold)}
-.header-nav [aria-current=page]{color:var(--gold);font:600 12px/1.5 var(--sans);letter-spacing:.12em}
-.header-nav>span[aria-hidden]{color:#786f64}
 
 /* Hero: sibling atmosphere to the one-scene landing */
 .intro{position:relative;isolation:isolate;min-height:700px;overflow:hidden;background:radial-gradient(ellipse at 77% 40%,#433427 0%,#221d18 48%,#151411 85%)}
@@ -165,10 +157,6 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
 }
 @media(max-width:680px){
   .container{width:calc(100% - 42px)}
-  .header-inner{width:calc(100% - 42px);min-height:67px}
-  .brand{font-size:17px;letter-spacing:.2em}
-  .header-nav{gap:8px;font-size:11px}
-  .header-nav [aria-current=page]{font-size:11px}
   .intro-layout{padding-block:67px 38px}
   .eyebrow{font-size:10px;letter-spacing:.16em}
   .project-name{font-size:17px}
@@ -219,8 +207,6 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
   .footer-inner{flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;padding-block:24px}
 }
 @media(max-width:360px){
-  .header-nav{font-size:10px}
-  .brand{font-size:15px}
   .intro h1{font-size:28px}
   .slogan{font-size:19px}
 }
