@@ -1,0 +1,8 @@
+/* Shared DECHIVE header. Main landing is the single visual reference. */
+.site-header { position:relative; z-index:8; display:flex; align-items:center; justify-content:space-between; height:66px;
+  margin:0 clamp(25px,6.5vw,110px); border-bottom:1px solid rgba(245,232,209,.3); }
+.wordmark { display:inline-block; font:600 clamp(18px,1.55vw,25px)/1 var(--sans); letter-spacing:.23em; white-space:nowrap; }
+@media(max-width:760px) {
+  .site-header { height:60px; margin:0 22px; }
+  .wordmark { font-size:18px; }
+}
