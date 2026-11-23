@@ -26,9 +26,6 @@ a { color:inherit; text-decoration:none; }
              linear-gradient(0deg, rgba(10,10,9,.34) 0%, transparent 32%, transparent 86%, rgba(10,10,9,.12) 100%);
 }
 
-.site-header { position:relative; z-index:8; display:flex; align-items:center; justify-content:space-between; height:66px;
-  margin:0 clamp(25px,6.5vw,110px); border-bottom:1px solid rgba(245,232,209,.3); }
-.wordmark { display:inline-block; font:600 clamp(18px,1.55vw,25px)/1 var(--sans); letter-spacing:.23em; white-space:nowrap; }
 .landing-main { position:relative; height:calc(100% - 66px); }
 .hero-message { position:absolute; z-index:2; top:38%; left:clamp(28px,11.8vw,210px); transform:translateY(-50%);
   max-width:calc(100% - 60px); text-shadow:0 2px 24px rgba(0,0,0,.18); }
@@ -71,8 +68,6 @@ a { color:inherit; text-decoration:none; }
   .backdrop img { object-position:64% center; }
   .backdrop-shade { background:linear-gradient(90deg,rgba(14,12,10,.68),rgba(14,12,10,.3) 65%,rgba(14,12,10,.12)),
      linear-gradient(0deg,rgba(10,10,9,.55),transparent 37%,transparent 80%,rgba(10,10,9,.12)); }
-  .site-header { height:60px; margin:0 22px; }
-  .wordmark { font-size:18px; }
   .landing-main { height:calc(100% - 60px); }
   .hero-message { top:35%; left:clamp(24px,7vw,35px); max-width:calc(100% - 42px); }
   .hero-message h1 { gap:13px; letter-spacing:-.07em; }
