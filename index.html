@@ -49,7 +49,12 @@
       </div>
 
       <div id="actions" class="landing-actions" aria-label="참여하기">
-        <button type="button" disabled title="소개 페이지 준비 중">설계자의 기록</button>
+        <button type="button" id="records-toggle" aria-expanded="false" aria-controls="records-list">설계자의 기록</button>
+        <ul id="records-list" class="records-list" aria-label="설계자의 프로젝트" hidden>
+          <li>Jarvis</li>
+          <li>Wiki</li>
+          <li>Dev</li>
+        </ul>
         <button type="button" data-destination="consult">상담신청</button>
         <button type="button" data-destination="newsletter">구독하기</button>
       </div>
