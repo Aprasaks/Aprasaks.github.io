@@ -7,6 +7,26 @@
     if(event.target===consultDialog)consultDialog.close();
   });
 
+  const recordsToggle=document.getElementById('records-toggle');
+  const recordsList=document.getElementById('records-list');
+  const setRecordsOpen=(open)=>{
+    if(!recordsToggle || !recordsList)return;
+    recordsList.hidden=!open;
+    recordsToggle.setAttribute('aria-expanded',String(open));
+  };
+  recordsToggle?.addEventListener('click',()=>setRecordsOpen(recordsList.hidden));
+  document.addEventListener('click',event=>{
+    if(!recordsList?.hidden && !recordsToggle?.contains(event.target) && !recordsList?.contains(event.target)){
+      setRecordsOpen(false);
+    }
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape' && !recordsList?.hidden){
+      setRecordsOpen(false);
+      recordsToggle.focus();
+    }
+  });
+
   const typed=document.getElementById('typed-word');
   if(typed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     const letters=Array.from('재설계');
