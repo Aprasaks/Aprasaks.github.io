@@ -43,7 +43,7 @@
 
   const newsletterDialog=document.getElementById('newsletter-dialog');
   const newsletterFrame=document.getElementById('newsletter-frame');
-  const NEWSLETTER_URL='https://letter.dechive.app/subscribe/';
+  const NEWSLETTER_URL='https://letter.dechive.app/subscribe/?source=dechive.app';
 
   newsletterDialog?.querySelectorAll('[data-newsletter-close]').forEach(button=>
     button.addEventListener('click',()=>newsletterDialog.close())
