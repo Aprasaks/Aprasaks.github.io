@@ -166,3 +166,33 @@ a { color:inherit; text-decoration:none; }
 @media(max-width:420px){
   .newsletter-dialog .notice-inner{padding:22px 8px 10px;}
 }
+
+/* Subscription submitted: show a clear acknowledgement inside the existing
+   DECHIVE newsletter dialog instead of nesting a dialog inside the iframe. */
+.newsletter-dialog [hidden]{display:none!important;}
+.newsletter-dialog .newsletter-success{
+  padding:10px 0 4px;
+}
+.newsletter-dialog .newsletter-success p{
+  margin:0 0 14px!important;
+  font:400 14px/1.85 var(--serif)!important;
+  color:#455048!important;
+  word-break:keep-all;
+}
+.newsletter-dialog .newsletter-success p:first-child{
+  font-weight:600!important;
+  color:#202921!important;
+}
+.newsletter-success-confirm{
+  display:block;
+  width:100%;
+  min-height:47px;
+  margin-top:22px;
+  border:0;
+  border-radius:0;
+  background:#25372d;
+  color:#f9f4e9;
+  font:600 14px/1.5 var(--serif);
+  cursor:pointer;
+}
+.newsletter-success-confirm:hover{background:#395443;}
